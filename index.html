@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Test Restaurant — Your Experience</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+      background: #07111f;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .card {
+      width: 100%;
+      max-width: 430px;
+      background: #0d1b2d;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 28px;
+      padding: 34px 24px 28px;
+      text-align: center;
+      box-shadow: 0 25px 70px rgba(0,0,0,0.35);
+    }
+
+    .logo {
+      width: 78px;
+      height: 78px;
+      border-radius: 22px;
+      margin: 0 auto 18px;
+      background: #132a45;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 34px;
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    h1 {
+      font-size: 25px;
+      margin-bottom: 8px;
+      letter-spacing: -0.4px;
+    }
+
+    .subtitle {
+      color: #9eacbd;
+      font-size: 15px;
+      line-height: 1.5;
+      margin-bottom: 30px;
+    }
+
+    .stars {
+      display: flex;
+      justify-content: center;
+      gap: 7px;
+      margin-bottom: 14px;
+    }
+
+    .star {
+      border: none;
+      background: transparent;
+      color: #536174;
+      font-size: 43px;
+      cursor: pointer;
+      transition: transform 0.15s ease, color 0.15s ease;
+      padding: 2px;
+    }
+
+    .star:hover {
+      transform: scale(1.12);
+    }
+
+    .star.active {
+      color: #ffc83d;
+    }
+
+    .rating-text {
+      min-height: 24px;
+      color: #b8c3d1;
+      font-size: 14px;
+      margin-bottom: 24px;
+    }
+
+    .message {
+      display: none;
+      text-align: left;
+      animation: appear 0.25s ease;
+    }
+
+    .message.show {
+      display: block;
+    }
+
+    @keyframes appear {
+      from {
+        opacity: 0;
+        transform: translateY(8px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .message h2 {
+      font-size: 19px;
+      margin-bottom: 8px;
+    }
+
+    .message p {
+      color: #aab7c7;
+      font-size: 14px;
+      line-height: 1.5;
+      margin-bottom: 18px;
+    }
+
+    .button {
+      display: block;
+      width: 100%;
+      padding: 15px 18px;
+      border-radius: 15px;
+      border: none;
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      margin-top: 11px;
+      transition: transform 0.15s ease, opacity 0.15s ease;
+    }
+
+    .button:active {
+      transform: scale(0.98);
+    }
+
+    .google {
+      background: white;
+      color: #111827;
+    }
+
+    .whatsapp {
+      background: #25D366;
+      color: white;
+    }
+
+    .private {
+      background: #1b3049;
+      color: white;
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .small {
+      margin-top: 22px;
+      color: #66758a;
+      font-size: 11px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <main class="card">
+
+    <div class="logo">🍽️</div>
+
+    <h1>Test Restaurant</h1>
+
+    <p class="subtitle">
+      How was your experience with us?
+    </p>
+
+    <div class="stars" id="stars">
+      <button class="star" data-rating="1">★</button>
+      <button class="star" data-rating="2">★</button>
+      <button class="star" data-rating="3">★</button>
+      <button class="star" data-rating="4">★</button>
+      <button class="star" data-rating="5">★</button>
+    </div>
+
+    <div class="rating-text" id="ratingText">
+      Tap a star to rate your experience
+    </div>
+
+    <section class="message" id="message">
+
+      <h2 id="messageTitle"></h2>
+
+      <p id="messageText"></p>
+
+      <a
+        class="button google"
+        href="https://www.google.com/maps"
+        target="_blank"
+        rel="noopener">
+        ⭐ Share your experience on Google
+      </a>
+
+      <a
+        class="button whatsapp"
+        href="https://wa.me/213555000000"
+        target="_blank"
+        rel="noopener">
+        💬 Contact us on WhatsApp
+      </a>
+
+      <button class="button private" onclick="showPrivateFeedback()">
+        📝 Send private feedback
+      </button>
+
+    </section>
+
+    <div class="small">
+      Your feedback helps us improve.
+    </div>
+
+  </main>
+
+  <script>
+    const stars = document.querySelectorAll(".star");
+    const ratingText = document.getElementById("ratingText");
+    const message = document.getElementById("message");
+    const messageTitle = document.getElementById("messageTitle");
+    const messageText = document.getElementById("messageText");
+
+    const texts = {
+      1: "We're sorry your experience wasn't great.",
+      2: "We're sorry we didn't meet your expectations.",
+      3: "Thanks for the feedback. We'd love to improve.",
+      4: "We're glad you had a good experience!",
+      5: "We're thrilled you enjoyed your experience!"
+    };
+
+    stars.forEach(star => {
+      star.addEventListener("click", () => {
+
+        const rating = Number(star.dataset.rating);
+
+        stars.forEach(s => {
+          s.classList.toggle(
+            "active",
+            Number(s.dataset.rating) <= rating
+          );
+        });
+
+        ratingText.textContent = `${rating} out of 5 stars`;
+
+        messageTitle.textContent = texts[rating];
+
+        if (rating <= 3) {
+          messageText.textContent =
+            "We'd really appreciate the chance to hear what went wrong and make things right.";
+        } else {
+          messageText.textContent =
+            "Thank you for taking the time to rate us. If you'd like, you can share your experience publicly or contact us directly.";
+        }
+
+        message.classList.add("show");
+      });
+    });
+
+    function showPrivateFeedback() {
+      alert(
+        "Private feedback form coming next! We'll connect this to your database so the business receives the message."
+      );
+    }
+  </script>
+
+</body>
+</html>
