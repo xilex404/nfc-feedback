@@ -14,8 +14,7 @@
 <style>
 
 /* =========================================================
-   SMART REVIEW
-   PREMIUM NFC REVIEW UI
+   SMART REVIEW — PREMIUM NFC REVIEW EXPERIENCE
    ========================================================= */
 
 :root{
@@ -77,7 +76,6 @@ body{
   text-rendering:optimizeLegibility;
 
   background:#fff;
-
   color:var(--ink);
 
   overflow-x:hidden;
@@ -105,7 +103,7 @@ body{
 
 
 /* =========================================================
-   NAVY HEADER
+   NAVY HERO
    ========================================================= */
 
 .hero{
@@ -137,7 +135,7 @@ body{
       #08264d 100%
     );
 
-  color:white;
+  color:#fff;
 
   display:flex;
 
@@ -157,7 +155,7 @@ body{
 
 
 /* =========================================================
-   PREMIUM TEXTURE
+   HERO TEXTURE
    ========================================================= */
 
 .hero::before{
@@ -192,7 +190,7 @@ body{
 
 
 /* =========================================================
-   GOOGLE BADGE
+   GOOGLE MARK
    ========================================================= */
 
 .google-mark{
@@ -291,7 +289,7 @@ body{
 
 
 /* =========================================================
-   HEADER TITLE
+   HERO TITLE
    ========================================================= */
 
 .hero-title{
@@ -321,7 +319,7 @@ body{
 
 
 /* =========================================================
-   GOLD DIVIDER + STARS
+   HERO RATING
    ========================================================= */
 
 .hero-rating{
@@ -409,7 +407,6 @@ body{
     rgba(255,190,45,.22);
 
   transform:
-
     perspective(300px)
     rotateX(7deg);
 
@@ -417,7 +414,7 @@ body{
 
 
 /* =========================================================
-   BLUE WAVE
+   WAVES
    ========================================================= */
 
 .wave{
@@ -437,7 +434,6 @@ body{
   background:#fff;
 
   clip-path:
-
     ellipse(
       72% 58%
       at 50% 100%
@@ -469,7 +465,6 @@ body{
     );
 
   clip-path:
-
     ellipse(
       68% 55%
       at 50% 100%
@@ -479,7 +474,7 @@ body{
 
 
 /* =========================================================
-   MAIN WHITE AREA
+   MAIN CONTENT
    ========================================================= */
 
 .content{
@@ -499,10 +494,9 @@ body{
   margin-top:-18px;
 
   padding:
-
     0
     22px
-    max(28px,env(safe-area-inset-bottom));
+    max(38px,env(safe-area-inset-bottom));
 
   display:flex;
 
@@ -510,11 +504,13 @@ body{
 
   align-items:center;
 
+  text-align:center;
+
 }
 
 
 /* =========================================================
-   CLIENT LOGO AREA
+   CLIENT BRAND
    ========================================================= */
 
 .client-brand{
@@ -529,6 +525,8 @@ body{
 
   justify-content:center;
 
+  text-align:center;
+
   margin-top:-10px;
 
   position:relative;
@@ -537,25 +535,26 @@ body{
 
 
 /* =========================================================
-   CORNER FRAME
+   LOGO FRAME
    ========================================================= */
 
 .logo-frame{
 
   width:
-    clamp(155px,46vw,215px);
+    clamp(170px,50vw,215px);
 
   height:
-    clamp(155px,46vw,215px);
+    clamp(170px,50vw,215px);
 
   position:relative;
 
   display:flex;
 
   align-items:center;
+
   justify-content:center;
 
-  margin-bottom:20px;
+  margin-bottom:22px;
 
 }
 
@@ -632,19 +631,24 @@ body{
 }
 
 
+/* =========================================================
+   CLIENT LOGO
+   ========================================================= */
+
 .client-logo{
 
   width:
-    clamp(112px,34vw,160px);
+    clamp(122px,37vw,160px);
 
   height:
-    clamp(112px,34vw,160px);
+    clamp(122px,37vw,160px);
 
-  border-radius:22px;
+  border-radius:24px;
 
   display:flex;
 
   align-items:center;
+
   justify-content:center;
 
   overflow:hidden;
@@ -653,8 +657,8 @@ body{
 
     linear-gradient(
       145deg,
-      #fdfdfd,
-      #f3f5f8
+      #ffffff,
+      #f1f4f8
     );
 
   border:
@@ -663,10 +667,13 @@ body{
 
   box-shadow:
 
-    0 12px 30px
-    rgba(7,27,60,.10);
+    0 15px 34px
+    rgba(7,27,60,.13),
 
-  font-size:50px;
+    0 2px 5px
+    rgba(7,27,60,.05);
+
+  font-size:52px;
 
   color:#0b315f;
 
@@ -689,14 +696,16 @@ body{
 
 .business-name{
 
+  width:100%;
+
   font-size:
-    clamp(27px,7vw,40px);
+    clamp(30px,8vw,40px);
 
   line-height:1.08;
 
   font-weight:850;
 
-  letter-spacing:-.9px;
+  letter-spacing:-1px;
 
   color:var(--navy);
 
@@ -706,17 +715,19 @@ body{
 
   overflow-wrap:anywhere;
 
-  margin-bottom:9px;
+  margin-bottom:10px;
 
 }
 
 
 .subtitle{
 
+  width:100%;
+
   color:#53657d;
 
   font-size:
-    clamp(16px,4.3vw,20px);
+    clamp(17px,4.7vw,20px);
 
   font-weight:600;
 
@@ -724,7 +735,7 @@ body{
 
   line-height:1.45;
 
-  margin-bottom:26px;
+  margin-bottom:30px;
 
 }
 
@@ -776,16 +787,20 @@ body{
 
 .rating-question{
 
+  width:100%;
+
   color:var(--navy);
 
   font-size:
-    clamp(21px,5.5vw,29px);
+    clamp(23px,6.2vw,29px);
 
-  font-weight:800;
+  line-height:1.2;
 
-  letter-spacing:-.4px;
+  font-weight:850;
 
-  margin-bottom:16px;
+  letter-spacing:-.5px;
+
+  margin-bottom:18px;
 
 }
 
@@ -805,9 +820,9 @@ body{
   align-items:center;
 
   gap:
-    clamp(2px,1.2vw,12px);
+    clamp(3px,1.8vw,12px);
 
-  margin-bottom:9px;
+  margin-bottom:10px;
 
 }
 
@@ -826,21 +841,23 @@ body{
   box-shadow:none !important;
 
   width:
-    clamp(52px,14vw,84px);
+    clamp(60px,16vw,84px);
 
   height:
-    clamp(58px,15vw,90px);
+    clamp(68px,17vw,90px);
 
   padding:0;
+
   margin:0;
 
   display:flex;
 
   align-items:center;
+
   justify-content:center;
 
   font-size:
-    clamp(52px,14vw,82px);
+    clamp(59px,16vw,82px);
 
   line-height:1;
 
@@ -866,7 +883,7 @@ body{
 
     filter .18s ease,
 
-    transform .14s
+    transform .16s
     cubic-bezier(.2,.9,.25,1.4);
 
 }
@@ -946,7 +963,7 @@ body{
 
   font-weight:650;
 
-  margin-bottom:18px;
+  margin-bottom:20px;
 
 }
 
@@ -998,7 +1015,7 @@ body{
   color:var(--navy);
 
   font-size:
-    clamp(22px,5.7vw,30px);
+    clamp(23px,6.2vw,30px);
 
   line-height:1.18;
 
@@ -1023,7 +1040,7 @@ body{
   max-width:620px;
 
   margin:
-    0 auto 18px;
+    0 auto 20px;
 
 }
 
@@ -1086,7 +1103,7 @@ textarea:focus{
 
 
 /* =========================================================
-   ALL BUTTONS
+   BUTTON BASE
    ========================================================= */
 
 .button{
@@ -1143,7 +1160,7 @@ textarea:focus{
 
 
 /* =========================================================
-   GOOGLE REVIEW — PREMIUM CTA
+   GOOGLE REVIEW — PREMIUM HERO CTA
    ========================================================= */
 
 .google{
@@ -1154,36 +1171,38 @@ textarea:focus{
 
     linear-gradient(
       135deg,
-      #061b3a 0%,
-      #0b315f 55%,
-      #123e72 100%
+      #051832 0%,
+      #08264d 48%,
+      #0d3970 100%
     );
 
   border:
     2px solid
-    rgba(255,202,67,.75);
+    rgba(255,202,67,.82);
 
-  min-height:76px;
+  min-height:82px;
 
-  padding:20px 24px;
+  padding:21px 22px;
 
   font-size:
-    clamp(18px,4.8vw,23px);
+    clamp(19px,5.2vw,23px);
 
   font-weight:900;
 
-  letter-spacing:-.2px;
+  letter-spacing:-.25px;
+
+  border-radius:20px;
 
   box-shadow:
 
-    0 12px 30px
-    rgba(6,27,58,.25),
+    0 15px 34px
+    rgba(6,27,58,.27),
 
     0 0 0 1px
-    rgba(217,146,19,.15),
+    rgba(255,202,67,.10),
 
-    0 0 22px
-    rgba(255,202,67,.12);
+    0 0 25px
+    rgba(255,202,67,.15);
 
   position:relative;
 
@@ -1191,10 +1210,15 @@ textarea:focus{
 
   transform:translateZ(0);
 
+  animation:
+    googleAttention 3.2s
+    ease-in-out
+    infinite;
+
 }
 
 
-/* Google button shine */
+/* Google shine */
 
 .google::before{
 
@@ -1204,7 +1228,7 @@ textarea:focus{
 
   top:0;
 
-  left:-120%;
+  left:-130%;
 
   width:65%;
 
@@ -1215,14 +1239,14 @@ textarea:focus{
     linear-gradient(
       90deg,
       transparent,
-      rgba(255,255,255,.22),
+      rgba(255,255,255,.30),
       transparent
     );
 
   transform:skewX(-20deg);
 
   animation:
-    googleShine 3.8s
+    googleShine 4s
     ease-in-out
     infinite;
 
@@ -1231,15 +1255,17 @@ textarea:focus{
 }
 
 
+/* Inner gold border */
+
 .google::after{
 
   content:"";
 
   position:absolute;
 
-  inset:3px;
+  inset:4px;
 
-  border-radius:14px;
+  border-radius:15px;
 
   border:
     1px solid
@@ -1250,15 +1276,46 @@ textarea:focus{
 }
 
 
+@keyframes googleAttention{
+
+  0%,
+  70%,
+  100%{
+
+    box-shadow:
+
+      0 15px 34px
+      rgba(6,27,58,.27),
+
+      0 0 25px
+      rgba(255,202,67,.12);
+
+  }
+
+  84%{
+
+    box-shadow:
+
+      0 17px 38px
+      rgba(6,27,58,.31),
+
+      0 0 34px
+      rgba(255,202,67,.25);
+
+  }
+
+}
+
+
 @keyframes googleShine{
 
   0%{
-    left:-120%;
+    left:-130%;
   }
 
   35%,
   100%{
-    left:140%;
+    left:145%;
   }
 
 }
@@ -1266,28 +1323,28 @@ textarea:focus{
 
 .google:hover{
 
-  transform:translateY(-2px);
+  transform:translateY(-3px);
 
   box-shadow:
 
-    0 16px 35px
-    rgba(6,27,58,.30),
+    0 18px 40px
+    rgba(6,27,58,.32),
 
-    0 0 28px
-    rgba(255,202,67,.18);
+    0 0 32px
+    rgba(255,202,67,.22);
 
 }
 
 
 .google:active{
 
-  transform:scale(.97);
+  transform:scale(.965);
 
 }
 
 
 /* =========================================================
-   WHATSAPP NORMAL
+   PRIVATE WHATSAPP
    ========================================================= */
 
 .private{
@@ -1310,10 +1367,6 @@ textarea:focus{
 }
 
 
-/* =========================================================
-   WHATSAPP ACTIVE
-   ========================================================= */
-
 .private.sending{
 
   background:
@@ -1335,7 +1388,7 @@ textarea:focus{
 
 
 /* =========================================================
-   SMART REVIEW BRANDING
+   SMART REVIEW FOOTER
    ========================================================= */
 
 .brand-footer{
@@ -1350,9 +1403,11 @@ textarea:focus{
 
   justify-content:center;
 
-  margin-top:32px;
+  text-align:center;
 
-  padding-top:21px;
+  margin-top:38px;
+
+  padding-top:23px;
 
   border-top:
     1px solid
@@ -1387,28 +1442,31 @@ textarea:focus{
 
 .smart-review{
 
+  position:relative;
+
   font-size:
-    clamp(29px,8vw,44px);
+    clamp(31px,8.5vw,44px);
 
   line-height:1;
 
-  font-weight:850;
+  font-weight:900;
 
-  letter-spacing:-1.2px;
+  letter-spacing:-1.3px;
 
   background:
 
     linear-gradient(
       110deg,
-      #a86c08 0%,
-      #e3a51e 20%,
-      #f3f5f8 43%,
-      #b9c3d0 58%,
-      #123e72 78%,
+      #9b6205 0%,
+      #d99213 18%,
+      #ffca43 29%,
+      #f8f9fb 42%,
+      #c1cad6 54%,
+      #315b88 72%,
       #061b3a 100%
     );
 
-  background-size:200% 100%;
+  background-size:220% 100%;
 
   -webkit-background-clip:text;
   background-clip:text;
@@ -1416,14 +1474,13 @@ textarea:focus{
   color:transparent;
 
   filter:
-
     drop-shadow(
       0 4px 8px
-      rgba(7,27,60,.12)
+      rgba(7,27,60,.13)
     );
 
   animation:
-    smartReviewShine 5s
+    smartReviewShine 5.5s
     ease-in-out
     infinite;
 
@@ -1433,40 +1490,36 @@ textarea:focus{
 @keyframes smartReviewShine{
 
   0%,
-  20%{
+  18%{
 
     background-position:0% 50%;
 
-    filter:
-      drop-shadow(
-        0 4px 8px
-        rgba(7,27,60,.12)
-      );
+    transform:translateY(0);
 
   }
 
-  50%{
+  48%{
 
     background-position:100% 50%;
 
-    filter:
-      drop-shadow(
-        0 5px 12px
-        rgba(217,146,19,.22)
-      );
+    transform:translateY(-1px);
 
   }
 
-  80%,
+  58%{
+
+    background-position:100% 50%;
+
+    transform:translateY(0);
+
+  }
+
+  82%,
   100%{
 
     background-position:0% 50%;
 
-    filter:
-      drop-shadow(
-        0 4px 8px
-        rgba(7,27,60,.12)
-      );
+    transform:translateY(0);
 
   }
 
@@ -1567,7 +1620,158 @@ textarea:focus{
 
 
 /* =========================================================
-   SMALL PHONES
+   PHONE OPTIMIZATION
+   ========================================================= */
+
+@media(max-width:600px){
+
+  .content{
+
+    padding-left:18px;
+
+    padding-right:18px;
+
+    padding-bottom:
+      max(42px,env(safe-area-inset-bottom));
+
+  }
+
+
+  .client-brand{
+
+    width:100%;
+
+    margin-top:-7px;
+
+  }
+
+
+  .logo-frame{
+
+    width:175px;
+
+    height:175px;
+
+    margin-bottom:20px;
+
+  }
+
+
+  .client-logo{
+
+    width:128px;
+
+    height:128px;
+
+    border-radius:24px;
+
+  }
+
+
+  .business-name{
+
+    font-size:
+      clamp(30px,8.5vw,38px);
+
+    max-width:95%;
+
+  }
+
+
+  .rating-question{
+
+    max-width:95%;
+
+    font-size:
+      clamp(23px,6.5vw,28px);
+
+    margin-bottom:14px;
+
+  }
+
+
+  .stars{
+
+    gap:2px;
+
+    margin-bottom:7px;
+
+  }
+
+
+  .star{
+
+    width:18vw;
+
+    height:19vw;
+
+    font-size:18vw;
+
+    max-width:76px;
+
+    max-height:82px;
+
+  }
+
+
+  .rating-text{
+
+    font-size:16px;
+
+    margin-bottom:20px;
+
+  }
+
+
+  .message h2{
+
+    font-size:
+      clamp(23px,6.5vw,29px);
+
+  }
+
+
+  .message p{
+
+    font-size:17px;
+
+    max-width:94%;
+
+    margin-bottom:20px;
+
+  }
+
+
+  .google{
+
+    min-height:82px;
+
+    width:100%;
+
+    font-size:
+      clamp(19px,5.3vw,22px);
+
+    padding:
+      20px 18px;
+
+    border-radius:20px;
+
+  }
+
+
+  .brand-footer{
+
+    margin-top:38px;
+
+    padding-top:23px;
+
+  }
+
+}
+
+
+/* =========================================================
+   VERY SMALL PHONES
    ========================================================= */
 
 @media(max-width:390px){
@@ -1577,6 +1781,7 @@ textarea:focus{
     min-height:355px;
 
     padding-left:15px;
+
     padding-right:15px;
 
   }
@@ -1599,6 +1804,7 @@ textarea:focus{
   .content{
 
     padding-left:16px;
+
     padding-right:16px;
 
   }
@@ -1606,38 +1812,42 @@ textarea:focus{
 
   .logo-frame{
 
-    width:145px;
-    height:145px;
+    width:160px;
+
+    height:160px;
 
   }
 
 
   .client-logo{
 
-    width:105px;
-    height:105px;
+    width:118px;
+
+    height:118px;
 
   }
 
 
   .star{
 
-    width:56px;
-    height:63px;
+    width:18vw;
 
-    font-size:54px;
+    height:19vw;
+
+    font-size:18vw;
 
   }
 
 
   .google{
 
-    min-height:72px;
+    min-height:78px;
 
     font-size:18px;
 
-    padding-left:16px;
-    padding-right:16px;
+    padding-left:15px;
+
+    padding-right:15px;
 
   }
 
@@ -1691,6 +1901,7 @@ textarea:focus{
     margin-top:-35px;
 
     padding-left:40px;
+
     padding-right:40px;
 
   }
@@ -1828,6 +2039,10 @@ textarea:focus{
 
 
 
+    <!-- ===================================================
+         FEEDBACK
+         =================================================== -->
+
     <section
       id="feedbackArea"
       class="feedback-area hidden"
@@ -1896,6 +2111,10 @@ textarea:focus{
       </div>
 
 
+
+      <!-- =================================================
+           MESSAGE
+           ================================================= -->
 
       <section
         class="message"
@@ -2108,6 +2327,10 @@ async function loadCard(){
       "feedbackArea"
     );
 
+
+  /* =======================================================
+     NO CARD
+     ======================================================= */
 
   if(!cardCode){
 
@@ -2358,6 +2581,10 @@ stars.forEach(
           );
 
 
+        /* =================================================
+           HIGHLIGHT
+           ================================================= */
+
         stars.forEach(
           s => {
 
@@ -2373,6 +2600,10 @@ stars.forEach(
           }
         );
 
+
+        /* =================================================
+           RATING LABEL
+           ================================================= */
 
         const ratingLabels = {
 
@@ -2399,6 +2630,10 @@ stars.forEach(
             selectedRating
           ];
 
+
+        /* =================================================
+           REPLAY MESSAGE ANIMATION
+           ================================================= */
 
         message.classList.remove(
           "show"
@@ -2543,6 +2778,10 @@ document
           .trim();
 
 
+      /* =====================================================
+         CHECK BUSINESS
+         ===================================================== */
+
       if(
         !currentBusiness
       ){
@@ -2555,6 +2794,10 @@ document
 
       }
 
+
+      /* =====================================================
+         CHECK WHATSAPP
+         ===================================================== */
 
       if(
         !currentBusiness.whatsapp_number
