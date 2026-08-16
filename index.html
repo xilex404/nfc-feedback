@@ -1,318 +1,1303 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Customer Feedback</title>
+<meta charset="UTF-8">
 
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0"
+>
 
-    body {
-      min-height: 100vh;
-      font-family:
-        -apple-system,
-        BlinkMacSystemFont,
-        "Segoe UI",
-        Roboto,
-        Arial,
-        sans-serif;
+<title>Customer Feedback</title>
 
-      background: #07111f;
-      color: white;
+<style>
 
-      display: flex;
-      justify-content: center;
-      align-items: center;
+/* =========================================================
+   TAPREVIEW — AAA CUSTOMER EXPERIENCE
+   ========================================================= */
 
-      padding: 20px;
-    }
+:root {
+  --bg: #050a12;
+  --bg-2: #091321;
 
-    .card {
-      width: 100%;
-      max-width: 430px;
+  --panel: rgba(13, 27, 45, 0.82);
+  --panel-solid: #0d1b2d;
 
-      background: #0d1b2d;
+  --white: #ffffff;
+  --muted: #91a0b3;
+  --muted-2: #627187;
 
-      border: 1px solid rgba(255,255,255,0.08);
+  --gold: #ffc83d;
+  --gold-2: #ffe39a;
 
-      border-radius: 28px;
+  --blue: #2b78ff;
+  --whatsapp: #25d366;
 
-      padding: 34px 24px 28px;
+  --border: rgba(255,255,255,0.09);
 
-      text-align: center;
+  --shadow:
+    0 35px 100px rgba(0,0,0,0.55);
+}
 
-      box-shadow:
-        0 25px 70px rgba(0,0,0,0.35);
-    }
 
-    .logo {
-      width: 78px;
-      height: 78px;
+/* =========================================================
+   RESET
+   ========================================================= */
 
-      border-radius: 22px;
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
-      margin: 0 auto 18px;
 
-      background: #132a45;
+html {
+  min-height: 100%;
+  background: var(--bg);
+}
 
-      display: flex;
-      align-items: center;
-      justify-content: center;
 
-      font-size: 34px;
+body {
 
-      border: 1px solid rgba(255,255,255,0.1);
+  min-height: 100vh;
 
-      overflow: hidden;
-    }
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    Helvetica,
+    Arial,
+    sans-serif;
 
-    .logo img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
+  background:
+    radial-gradient(
+      circle at 50% -10%,
+      rgba(31,72,122,0.38),
+      transparent 38%
+    ),
 
-    h1 {
-      font-size: 25px;
-      margin-bottom: 8px;
-      letter-spacing: -0.4px;
-    }
+    radial-gradient(
+      circle at 0% 100%,
+      rgba(255,200,61,0.06),
+      transparent 32%
+    ),
 
-    .subtitle {
-      color: #9eacbd;
-      font-size: 15px;
-      line-height: 1.5;
-      margin-bottom: 30px;
-    }
+    linear-gradient(
+      145deg,
+      #040810 0%,
+      #07111f 48%,
+      #050a12 100%
+    );
 
-    /* =====================================================
-       STARS
-       ===================================================== */
+  color: var(--white);
 
-    .stars {
-      display: flex;
-      justify-content: center;
-      gap: 7px;
-      margin-bottom: 14px;
-    }
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-    .star {
-      border: none;
-      background: transparent;
+  padding: 20px;
 
-      color: #536174;
+  overflow-x: hidden;
+}
 
-      font-size: 43px;
-      line-height: 1;
 
-      cursor: pointer;
+/* =========================================================
+   BACKGROUND DETAIL
+   ========================================================= */
 
-      padding: 2px;
+body::before {
 
-      outline: none;
+  content: "";
 
-      -webkit-tap-highlight-color: transparent;
-      appearance: none;
-    }
+  position: fixed;
 
-    /*
-      The actual star stays completely stable.
-      Only the inner span animates.
-    */
+  width: 420px;
+  height: 420px;
 
-    .star span {
-      display: inline-block;
+  left: 50%;
+  top: 40%;
 
-      color: inherit;
+  transform: translate(-50%, -50%);
 
-      transition:
-        color 0.15s ease,
-        transform 0.15s ease;
-    }
+  background:
+    radial-gradient(
+      circle,
+      rgba(255,200,61,0.045),
+      transparent 68%
+    );
 
-    .star:hover span {
-      transform: scale(1.08);
-    }
+  pointer-events: none;
 
-    .star.active {
-      color: #ffc83d;
-    }
+  filter: blur(20px);
 
-    .star.active span {
-      transform: scale(1.04);
-    }
+}
 
-    /*
-      Small pop when the customer selects a star.
-    */
 
-    .star.pop span {
-      animation: starPop 0.22s ease-out;
-    }
+body::after {
 
-    @keyframes starPop {
+  content: "";
 
-      0% {
-        transform: scale(1.04);
-      }
+  position: fixed;
 
-      45% {
-        transform: scale(1.22);
-      }
+  inset: 0;
 
-      100% {
-        transform: scale(1.04);
-      }
+  pointer-events: none;
 
-    }
+  opacity: 0.035;
 
-    .rating-text {
-      min-height: 24px;
+  background-image:
+    radial-gradient(
+      rgba(255,255,255,0.8) 0.5px,
+      transparent 0.5px
+    );
 
-      color: #b8c3d1;
+  background-size: 7px 7px;
 
-      font-size: 14px;
+}
 
-      margin-bottom: 24px;
-    }
 
-    .message {
-      display: none;
+/* =========================================================
+   MAIN CARD
+   ========================================================= */
 
-      text-align: left;
+.card {
 
-      animation: appear 0.25s ease;
-    }
+  position: relative;
 
-    .message.show {
-      display: block;
-    }
+  width: 100%;
 
-    @keyframes appear {
+  max-width: 470px;
 
-      from {
-        opacity: 0;
-        transform: translateY(8px);
-      }
+  padding: 34px 26px 25px;
 
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+  background:
+    linear-gradient(
+      145deg,
+      rgba(19,40,66,0.88),
+      rgba(8,19,33,0.92)
+    );
 
-    }
+  border:
+    1px solid var(--border);
 
-    .message h2 {
-      font-size: 19px;
-      margin-bottom: 8px;
-    }
+  border-radius: 32px;
 
-    .message p {
-      color: #aab7c7;
+  box-shadow: var(--shadow);
 
-      font-size: 14px;
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
 
-      line-height: 1.5;
+  overflow: hidden;
 
-      margin-bottom: 18px;
-    }
+  animation:
+    cardEntrance
+    0.65s cubic-bezier(.16,1,.3,1);
 
-    textarea {
+}
 
-      width: 100%;
 
-      min-height: 130px;
+@keyframes cardEntrance {
 
-      resize: vertical;
+  from {
 
-      padding: 14px;
+    opacity: 0;
 
-      border-radius: 15px;
+    transform:
+      translateY(22px)
+      scale(0.97);
 
-      border:
-        1px solid rgba(255,255,255,0.1);
+  }
 
-      background: #07111f;
+  to {
 
-      color: white;
+    opacity: 1;
 
-      font-family: inherit;
+    transform:
+      translateY(0)
+      scale(1);
 
-      font-size: 14px;
+  }
 
-      outline: none;
+}
 
-      margin-bottom: 10px;
-    }
 
-    textarea:focus {
-      border-color: #607994;
-    }
+/* =========================================================
+   TOP ACCENT
+   ========================================================= */
 
-    .button {
+.card::before {
 
-      display: block;
+  content: "";
 
-      width: 100%;
+  position: absolute;
 
-      padding: 15px 18px;
+  top: 0;
+  left: 12%;
 
-      border-radius: 15px;
+  width: 76%;
+  height: 1px;
 
-      border: none;
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(255,200,61,0.75),
+      transparent
+    );
 
-      text-decoration: none;
+}
 
-      font-size: 15px;
 
-      font-weight: 700;
+/* =========================================================
+   LOGO
+   ========================================================= */
 
-      cursor: pointer;
+.logo-wrap {
 
-      margin-top: 11px;
+  position: relative;
 
-      text-align: center;
+  width: 92px;
+  height: 92px;
 
-      transition:
-        transform 0.15s ease,
-        opacity 0.15s ease;
-    }
+  margin:
+    0 auto 20px;
 
-    .button:active {
-      transform: scale(0.98);
-    }
+}
 
-    .google {
-      background: white;
-      color: #111827;
-    }
 
-    .private {
-      background: #1b3049;
-      color: white;
-    }
+.logo-glow {
 
-    .small {
-      margin-top: 22px;
-      color: #66758a;
-      font-size: 11px;
-    }
+  position: absolute;
 
-    .error {
-      color: #ff8f8f;
-    }
+  inset: -10px;
 
-    .hidden {
-      display: none !important;
-    }
+  border-radius: 29px;
 
-  </style>
+  background:
+    radial-gradient(
+      circle,
+      rgba(255,200,61,0.14),
+      transparent 68%
+    );
+
+  filter: blur(9px);
+
+}
+
+
+.logo {
+
+  position: relative;
+
+  width: 92px;
+  height: 92px;
+
+  border-radius: 27px;
+
+  background:
+    linear-gradient(
+      145deg,
+      #172e4b,
+      #0b1a2c
+    );
+
+  border:
+    1px solid rgba(255,255,255,0.12);
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  font-size: 38px;
+
+  overflow: hidden;
+
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.08),
+    0 18px 40px rgba(0,0,0,0.32);
+
+}
+
+
+.logo img {
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+}
+
+
+/* =========================================================
+   BRAND
+   ========================================================= */
+
+.eyebrow {
+
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+
+  gap: 7px;
+
+  margin-bottom: 9px;
+
+  color: var(--gold);
+
+  font-size: 10px;
+
+  font-weight: 800;
+
+  text-transform: uppercase;
+
+  letter-spacing: 1.8px;
+
+}
+
+
+.eyebrow-dot {
+
+  width: 5px;
+  height: 5px;
+
+  border-radius: 50%;
+
+  background: var(--gold);
+
+  box-shadow:
+    0 0 12px rgba(255,200,61,0.8);
+
+}
+
+
+h1 {
+
+  font-size: 29px;
+
+  line-height: 1.15;
+
+  font-weight: 800;
+
+  letter-spacing: -0.8px;
+
+  text-align: center;
+
+  word-break: break-word;
+
+}
+
+
+.subtitle {
+
+  max-width: 330px;
+
+  margin:
+    10px auto 29px;
+
+  color: var(--muted);
+
+  font-size: 14px;
+
+  line-height: 1.55;
+
+  text-align: center;
+
+}
+
+
+/* =========================================================
+   FEEDBACK AREA
+   ========================================================= */
+
+.feedback-area {
+
+  animation:
+    contentIn
+    0.5s
+    cubic-bezier(.16,1,.3,1);
+
+}
+
+
+.hidden {
+
+  display: none !important;
+
+}
+
+
+@keyframes contentIn {
+
+  from {
+
+    opacity: 0;
+
+    transform: translateY(12px);
+
+  }
+
+  to {
+
+    opacity: 1;
+
+    transform: translateY(0);
+
+  }
+
+}
+
+
+/* =========================================================
+   RATING LABEL
+   ========================================================= */
+
+.rating-label {
+
+  text-align: center;
+
+  color: #d9e1eb;
+
+  font-size: 12px;
+
+  font-weight: 700;
+
+  letter-spacing: 0.7px;
+
+  text-transform: uppercase;
+
+  margin-bottom: 12px;
+
+}
+
+
+/* =========================================================
+   STARS
+   ========================================================= */
+
+.stars {
+
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  gap: 5px;
+
+  margin-bottom: 13px;
+
+}
+
+
+.star {
+
+  width: 58px;
+  height: 58px;
+
+  border: 0;
+
+  background: transparent;
+
+  color: #405069;
+
+  cursor: pointer;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  padding: 0;
+
+  outline: none;
+
+  -webkit-tap-highlight-color: transparent;
+
+  touch-action: manipulation;
+
+}
+
+
+.star span {
+
+  display: inline-block;
+
+  font-size: 46px;
+
+  line-height: 1;
+
+  transition:
+    color 0.18s ease,
+    transform 0.18s cubic-bezier(.16,1,.3,1),
+    filter 0.18s ease;
+
+}
+
+
+.star:hover span {
+
+  transform: scale(1.12);
+
+}
+
+
+.star.active {
+
+  color: var(--gold);
+
+}
+
+
+.star.active span {
+
+  filter:
+    drop-shadow(
+      0 0 9px
+      rgba(255,200,61,0.20)
+    );
+
+  transform: scale(1.04);
+
+}
+
+
+.star.pop span {
+
+  animation:
+    starPop
+    0.27s
+    cubic-bezier(.16,1,.3,1);
+
+}
+
+
+@keyframes starPop {
+
+  0% {
+
+    transform:
+      scale(1.04);
+
+  }
+
+  45% {
+
+    transform:
+      scale(1.27);
+
+    filter:
+      drop-shadow(
+        0 0 15px
+        rgba(255,200,61,0.48)
+      );
+
+  }
+
+  100% {
+
+    transform:
+      scale(1.04);
+
+  }
+
+}
+
+
+/* =========================================================
+   RATING TEXT
+   ========================================================= */
+
+.rating-text {
+
+  min-height: 23px;
+
+  color: var(--muted);
+
+  font-size: 13px;
+
+  text-align: center;
+
+  margin-bottom: 24px;
+
+  transition:
+    color 0.2s ease;
+
+}
+
+
+/* =========================================================
+   MESSAGE
+   ========================================================= */
+
+.message {
+
+  display: none;
+
+  padding-top: 4px;
+
+  text-align: left;
+
+}
+
+
+.message.show {
+
+  display: block;
+
+  animation:
+    messageIn
+    0.38s
+    cubic-bezier(.16,1,.3,1);
+
+}
+
+
+@keyframes messageIn {
+
+  from {
+
+    opacity: 0;
+
+    transform: translateY(14px);
+
+  }
+
+  to {
+
+    opacity: 1;
+
+    transform: translateY(0);
+
+  }
+
+}
+
+
+/* =========================================================
+   MESSAGE HEADER
+   ========================================================= */
+
+.message-header {
+
+  display: flex;
+
+  align-items: flex-start;
+
+  gap: 13px;
+
+  margin-bottom: 17px;
+
+}
+
+
+.message-icon {
+
+  flex-shrink: 0;
+
+  width: 42px;
+  height: 42px;
+
+  border-radius: 13px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  background:
+    rgba(255,200,61,0.09);
+
+  border:
+    1px solid
+    rgba(255,200,61,0.16);
+
+  color: var(--gold);
+
+  font-size: 18px;
+
+}
+
+
+.message h2 {
+
+  font-size: 18px;
+
+  line-height: 1.25;
+
+  margin-bottom: 5px;
+
+}
+
+
+.message p {
+
+  color: var(--muted);
+
+  font-size: 13px;
+
+  line-height: 1.55;
+
+}
+
+
+/* =========================================================
+   TEXTAREA
+   ========================================================= */
+
+.textarea-wrap {
+
+  position: relative;
+
+}
+
+
+textarea {
+
+  width: 100%;
+
+  min-height: 128px;
+
+  resize: vertical;
+
+  padding:
+    16px;
+
+  padding-bottom: 30px;
+
+  border-radius: 17px;
+
+  border:
+    1px solid
+    rgba(255,255,255,0.09);
+
+  background:
+    rgba(3,9,17,0.72);
+
+  color: white;
+
+  font-family: inherit;
+
+  font-size: 14px;
+
+  line-height: 1.5;
+
+  outline: none;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+
+}
+
+
+textarea::placeholder {
+
+  color: #56667b;
+
+}
+
+
+textarea:focus {
+
+  border-color:
+    rgba(255,200,61,0.4);
+
+  box-shadow:
+    0 0 0 4px
+    rgba(255,200,61,0.06);
+
+}
+
+
+.char-hint {
+
+  position: absolute;
+
+  right: 13px;
+  bottom: 10px;
+
+  color: #4f6075;
+
+  font-size: 10px;
+
+  pointer-events: none;
+
+}
+
+
+/* =========================================================
+   BUTTONS
+   ========================================================= */
+
+.button {
+
+  position: relative;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 10px;
+
+  width: 100%;
+
+  min-height: 54px;
+
+  padding:
+    14px 18px;
+
+  border-radius: 16px;
+
+  border: 1px solid transparent;
+
+  text-decoration: none;
+
+  font-size: 14px;
+
+  font-weight: 800;
+
+  letter-spacing: -0.1px;
+
+  cursor: pointer;
+
+  margin-top: 11px;
+
+  text-align: center;
+
+  transition:
+    transform 0.16s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease,
+    background 0.2s ease;
+
+  touch-action: manipulation;
+
+}
+
+
+.button:active {
+
+  transform:
+    scale(0.985);
+
+}
+
+
+.button:focus-visible {
+
+  outline:
+    2px solid
+    var(--gold);
+
+  outline-offset: 3px;
+
+}
+
+
+/* =========================================================
+   GOOGLE
+   ========================================================= */
+
+.google {
+
+  background:
+    linear-gradient(
+      180deg,
+      #ffffff,
+      #e9edf2
+    );
+
+  color: #111827;
+
+  box-shadow:
+    0 12px 28px
+    rgba(0,0,0,0.20);
+
+}
+
+
+.google:hover {
+
+  transform:
+    translateY(-2px);
+
+  box-shadow:
+    0 16px 34px
+    rgba(0,0,0,0.28);
+
+}
+
+
+.google-icon {
+
+  width: 23px;
+  height: 23px;
+
+  border-radius: 50%;
+
+  background: #fff;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  font-size: 15px;
+
+}
+
+
+/* =========================================================
+   WHATSAPP
+   ========================================================= */
+
+.private {
+
+  background:
+    linear-gradient(
+      180deg,
+      #28dc6d,
+      #1fc45d
+    );
+
+  color: #04130a;
+
+  box-shadow:
+    0 12px 30px
+    rgba(37,211,102,0.17);
+
+}
+
+
+.private:hover {
+
+  transform:
+    translateY(-2px);
+
+  box-shadow:
+    0 16px 36px
+    rgba(37,211,102,0.25);
+
+}
+
+
+.whatsapp-icon {
+
+  width: 23px;
+  height: 23px;
+
+  border-radius: 50%;
+
+  background:
+    rgba(0,0,0,0.12);
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  font-size: 14px;
+
+}
+
+
+/* =========================================================
+   DIVIDER
+   ========================================================= */
+
+.divider {
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 10px;
+
+  margin:
+    19px 0 2px;
+
+  color: #46566a;
+
+  font-size: 10px;
+
+  text-transform: uppercase;
+
+  letter-spacing: 1px;
+
+}
+
+
+.divider::before,
+.divider::after {
+
+  content: "";
+
+  flex: 1;
+
+  height: 1px;
+
+  background:
+    rgba(255,255,255,0.06);
+
+}
+
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
+.footer {
+
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  gap: 6px;
+
+  margin-top: 25px;
+
+  color: #4e5e72;
+
+  font-size: 10px;
+
+  letter-spacing: 0.2px;
+
+}
+
+
+.footer-dot {
+
+  width: 4px;
+  height: 4px;
+
+  border-radius: 50%;
+
+  background:
+    rgba(255,200,61,0.5);
+
+}
+
+
+/* =========================================================
+   SUCCESS
+   ========================================================= */
+
+.success {
+
+  display: none;
+
+  text-align: center;
+
+  padding:
+    12px 0 5px;
+
+}
+
+
+.success.show {
+
+  display: block;
+
+  animation:
+    successIn
+    0.5s
+    cubic-bezier(.16,1,.3,1);
+
+}
+
+
+@keyframes successIn {
+
+  from {
+
+    opacity: 0;
+
+    transform:
+      scale(0.94)
+      translateY(10px);
+
+  }
+
+  to {
+
+    opacity: 1;
+
+    transform:
+      scale(1)
+      translateY(0);
+
+  }
+
+}
+
+
+.success-icon {
+
+  width: 68px;
+  height: 68px;
+
+  margin:
+    0 auto 17px;
+
+  border-radius: 22px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  background:
+    rgba(37,211,102,0.10);
+
+  border:
+    1px solid
+    rgba(37,211,102,0.18);
+
+  color: #42e879;
+
+  font-size: 30px;
+
+  box-shadow:
+    0 0 35px
+    rgba(37,211,102,0.08);
+
+}
+
+
+.success h2 {
+
+  font-size: 22px;
+
+  margin-bottom: 8px;
+
+}
+
+
+.success p {
+
+  max-width: 300px;
+
+  margin: auto;
+
+  color: var(--muted);
+
+  font-size: 13px;
+
+  line-height: 1.55;
+
+}
+
+
+/* =========================================================
+   ERROR
+   ========================================================= */
+
+.error {
+
+  color: #ff8f8f;
+
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 500px) {
+
+  body {
+
+    padding:
+      12px;
+
+    align-items:
+      center;
+
+  }
+
+
+  .card {
+
+    padding:
+      29px 18px 22px;
+
+    border-radius:
+      27px;
+
+  }
+
+
+  .logo,
+  .logo-wrap {
+
+    width: 82px;
+    height: 82px;
+
+  }
+
+
+  h1 {
+
+    font-size:
+      26px;
+
+  }
+
+
+  .star {
+
+    width:
+      56px;
+
+    height:
+      56px;
+
+  }
+
+
+  .star span {
+
+    font-size:
+      43px;
+
+  }
+
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+
+    animation-duration:
+      0.01ms !important;
+
+    animation-iteration-count:
+      1 !important;
+
+    transition-duration:
+      0.01ms !important;
+
+  }
+
+}
+
+</style>
+
 </head>
 
 
@@ -322,25 +1307,47 @@
 <main class="card">
 
 
-  <!-- LOGO -->
+  <!-- =====================================================
+       LOGO
+       ===================================================== -->
 
-  <div
-    class="logo"
-    id="logo">
+  <div class="logo-wrap">
 
-    🍽️
+    <div class="logo-glow"></div>
+
+    <div
+      class="logo"
+      id="logo"
+      aria-label="Business logo">
+
+      🍽️
+
+    </div>
 
   </div>
 
 
-  <!-- BUSINESS NAME -->
+  <!-- =====================================================
+       BRAND
+       ===================================================== -->
+
+  <div class="eyebrow">
+
+    <span class="eyebrow-dot"></span>
+
+    Your experience matters
+
+    <span class="eyebrow-dot"></span>
+
+  </div>
+
 
   <h1 id="businessName">
+
     Loading...
+
   </h1>
 
-
-  <!-- SUBTITLE -->
 
   <p
     class="subtitle"
@@ -351,102 +1358,142 @@
   </p>
 
 
-  <!-- FEEDBACK AREA -->
+  <!-- =====================================================
+       FEEDBACK
+       ===================================================== -->
 
   <div
     id="feedbackArea"
-    class="hidden">
+    class="feedback-area hidden">
 
 
-    <!-- STARS -->
+    <div class="rating-label">
 
-    <div
-      class="stars"
-      id="stars">
-
-      <button
-        class="star"
-        type="button"
-        data-rating="1">
-
-        <span>★</span>
-
-      </button>
-
-
-      <button
-        class="star"
-        type="button"
-        data-rating="2">
-
-        <span>★</span>
-
-      </button>
-
-
-      <button
-        class="star"
-        type="button"
-        data-rating="3">
-
-        <span>★</span>
-
-      </button>
-
-
-      <button
-        class="star"
-        type="button"
-        data-rating="4">
-
-        <span>★</span>
-
-      </button>
-
-
-      <button
-        class="star"
-        type="button"
-        data-rating="5">
-
-        <span>★</span>
-
-      </button>
+      How did we do?
 
     </div>
 
 
-    <!-- RATING TEXT -->
+    <!-- ===================================================
+         STARS
+         =================================================== -->
+
+    <div
+      class="stars"
+      id="stars"
+      role="group"
+      aria-label="Rate your experience from 1 to 5 stars">
+
+
+      <button
+        class="star"
+        type="button"
+        data-rating="1"
+        aria-label="1 star">
+
+        <span>★</span>
+
+      </button>
+
+
+      <button
+        class="star"
+        type="button"
+        data-rating="2"
+        aria-label="2 stars">
+
+        <span>★</span>
+
+      </button>
+
+
+      <button
+        class="star"
+        type="button"
+        data-rating="3"
+        aria-label="3 stars">
+
+        <span>★</span>
+
+      </button>
+
+
+      <button
+        class="star"
+        type="button"
+        data-rating="4"
+        aria-label="4 stars">
+
+        <span>★</span>
+
+      </button>
+
+
+      <button
+        class="star"
+        type="button"
+        data-rating="5"
+        aria-label="5 stars">
+
+        <span>★</span>
+
+      </button>
+
+
+    </div>
+
 
     <div
       class="rating-text"
-      id="ratingText">
+      id="ratingText"
+      aria-live="polite">
 
       Tap a star to rate your experience
 
     </div>
 
 
-    <!-- MESSAGE -->
+    <!-- ===================================================
+         MESSAGE
+         =================================================== -->
 
     <section
       class="message"
       id="message">
 
 
-      <h2
-        id="messageTitle">
-      </h2>
+      <div class="message-header">
 
 
-      <p
-        id="messageText">
-      </p>
+        <div
+          class="message-icon"
+          id="messageIcon">
+
+          ✦
+
+        </div>
 
 
-      <!-- ==========================================
-           3–5 STARS → GOOGLE
-           ========================================== -->
+        <div>
+
+          <h2
+            id="messageTitle">
+          </h2>
+
+
+          <p
+            id="messageText">
+          </p>
+
+        </div>
+
+
+      </div>
+
+
+      <!-- =================================================
+           GOOGLE
+           ================================================= -->
 
       <div
         id="googleArea"
@@ -458,28 +1505,56 @@
           class="button google"
           href="#"
           target="_blank"
-          rel="noopener">
+          rel="noopener noreferrer">
 
-          ⭐ Leave us a Google review
+          <span class="google-icon">
+            G
+          </span>
+
+          Leave us a Google review
 
         </a>
+
+
+        <div class="divider">
+
+          Share your experience
+
+        </div>
 
 
       </div>
 
 
-      <!-- ==========================================
-           1–2 STARS → PRIVATE WHATSAPP
-           ========================================== -->
+      <!-- =================================================
+           PRIVATE
+           ================================================= -->
 
       <div
         id="privateArea"
         class="hidden">
 
 
-        <textarea
-          id="feedbackMessage"
-          placeholder="Tell us what went wrong or how we can improve..."></textarea>
+        <div class="textarea-wrap">
+
+
+          <textarea
+            id="feedbackMessage"
+            maxlength="1000"
+            aria-label="Private feedback"
+            placeholder="Tell us what happened or how we can improve..."></textarea>
+
+
+          <span
+            class="char-hint"
+            id="charHint">
+
+            0 / 1000
+
+          </span>
+
+
+        </div>
 
 
         <button
@@ -487,7 +1562,11 @@
           class="button private"
           type="button">
 
-          💬 Send privately
+          <span class="whatsapp-icon">
+            💬
+          </span>
+
+          Send privately
 
         </button>
 
@@ -498,12 +1577,52 @@
     </section>
 
 
+    <!-- ===================================================
+         SUCCESS STATE
+         =================================================== -->
+
+    <section
+      id="success"
+      class="success"
+      aria-live="polite">
+
+
+      <div class="success-icon">
+
+        ✓
+
+      </div>
+
+
+      <h2>
+        Thank you
+      </h2>
+
+
+      <p id="successText">
+
+        Your feedback has been sent successfully.
+
+      </p>
+
+
+    </section>
+
+
   </div>
 
 
-  <div class="small">
+  <!-- =====================================================
+       FOOTER
+       ===================================================== -->
 
-    Your feedback helps us improve.
+  <div class="footer">
+
+    <span>Secure feedback</span>
+
+    <span class="footer-dot"></span>
+
+    <span>Thank you for helping us improve</span>
 
   </div>
 
@@ -598,207 +1717,26 @@ let selectedRating = null;
 
 
 /* =========================================================
-   LOAD CARD
+   DOM
    ========================================================= */
 
-async function loadCard() {
+const businessName =
+  document.getElementById(
+    "businessName"
+  );
 
-  const cardCode =
-    getCardCode();
 
+const subtitle =
+  document.getElementById(
+    "subtitle"
+  );
 
-  const businessName =
-    document.getElementById(
-      "businessName"
-    );
 
+const feedbackArea =
+  document.getElementById(
+    "feedbackArea"
+  );
 
-  const subtitle =
-    document.getElementById(
-      "subtitle"
-    );
-
-
-  const feedbackArea =
-    document.getElementById(
-      "feedbackArea"
-    );
-
-
-  /* No card code */
-
-  if (!cardCode) {
-
-    businessName.textContent =
-      "Card not found";
-
-
-    subtitle.innerHTML =
-      `<span class="error">
-        No card code was provided.
-      </span>`;
-
-
-    return;
-
-  }
-
-
-  try {
-
-    /* ==========================================
-       FIND CARD
-       ========================================== */
-
-    const cards =
-      await supabaseGet(
-        `cards?card_code=eq.${encodeURIComponent(cardCode)}&active=eq.true&select=*`
-      );
-
-
-    if (!cards.length) {
-
-      throw new Error(
-        "Card not found"
-      );
-
-    }
-
-
-    const card =
-      cards[0];
-
-
-    /* ==========================================
-       FIND BUSINESS
-       ========================================== */
-
-    const businesses =
-      await supabaseGet(
-        `businesses?id=eq.${encodeURIComponent(card.business_id)}&select=*`
-      );
-
-
-    if (!businesses.length) {
-
-      throw new Error(
-        "Business not found"
-      );
-
-    }
-
-
-    currentBusiness =
-      businesses[0];
-
-
-    /* ==========================================
-       BUSINESS NAME
-       ========================================== */
-
-    businessName.textContent =
-      currentBusiness.name ||
-      "Your Business";
-
-
-    document.title =
-      `${currentBusiness.name || "Business"} — Your Experience`;
-
-
-    subtitle.textContent =
-      "How was your experience with us?";
-
-
-    /* ==========================================
-       LOGO
-       ========================================== */
-
-    if (
-      currentBusiness.logo_url
-    ) {
-
-      const logo =
-        document.getElementById(
-          "logo"
-        );
-
-
-      logo.innerHTML =
-        "";
-
-
-      const image =
-        document.createElement(
-          "img"
-        );
-
-
-      image.src =
-        currentBusiness.logo_url;
-
-
-      image.alt =
-        currentBusiness.name ||
-        "Business logo";
-
-
-      logo.appendChild(
-        image
-      );
-
-    }
-
-
-    /* ==========================================
-       GOOGLE REVIEW LINK
-       ========================================== */
-
-    const googleButton =
-      document.getElementById(
-        "googleButton"
-      );
-
-
-    googleButton.href =
-      currentBusiness.google_review_url ||
-      "https://www.google.com/maps";
-
-
-    /* ==========================================
-       SHOW PAGE
-       ========================================== */
-
-    feedbackArea
-      .classList
-      .remove("hidden");
-
-  }
-
-
-  catch (error) {
-
-    console.error(
-      error
-    );
-
-
-    businessName.textContent =
-      "Card not found";
-
-
-    subtitle.innerHTML =
-      `<span class="error">
-        This card is inactive or does not exist.
-      </span>`;
-
-  }
-
-}
-
-
-/* =========================================================
-   STAR SYSTEM
-   ========================================================= */
 
 const stars =
   document.querySelectorAll(
@@ -830,6 +1768,12 @@ const messageText =
   );
 
 
+const messageIcon =
+  document.getElementById(
+    "messageIcon"
+  );
+
+
 const googleArea =
   document.getElementById(
     "googleArea"
@@ -842,10 +1786,247 @@ const privateArea =
   );
 
 
+const googleButton =
+  document.getElementById(
+    "googleButton"
+  );
+
+
 const feedbackMessage =
   document.getElementById(
     "feedbackMessage"
   );
+
+
+const charHint =
+  document.getElementById(
+    "charHint"
+  );
+
+
+const sendPrivate =
+  document.getElementById(
+    "sendPrivate"
+  );
+
+
+const success =
+  document.getElementById(
+    "success"
+  );
+
+
+const successText =
+  document.getElementById(
+    "successText"
+  );
+
+
+/* =========================================================
+   LOAD CARD
+   ========================================================= */
+
+async function loadCard() {
+
+  const cardCode =
+    getCardCode();
+
+
+  /* ---------------------------------------------
+     NO CARD CODE
+     --------------------------------------------- */
+
+  if (!cardCode) {
+
+    businessName.textContent =
+      "Card not found";
+
+
+    subtitle.innerHTML =
+      `<span class="error">
+        No card code was provided.
+      </span>`;
+
+
+    return;
+
+  }
+
+
+  try {
+
+
+    /* ---------------------------------------------
+       FIND CARD
+       --------------------------------------------- */
+
+    const cards =
+      await supabaseGet(
+        `cards?card_code=eq.${encodeURIComponent(cardCode)}&active=eq.true&select=*`
+      );
+
+
+    if (!cards.length) {
+
+      throw new Error(
+        "Card not found"
+      );
+
+    }
+
+
+    const card =
+      cards[0];
+
+
+    /* ---------------------------------------------
+       FIND BUSINESS
+       --------------------------------------------- */
+
+    const businesses =
+      await supabaseGet(
+        `businesses?id=eq.${encodeURIComponent(card.business_id)}&select=*`
+      );
+
+
+    if (!businesses.length) {
+
+      throw new Error(
+        "Business not found"
+      );
+
+    }
+
+
+    currentBusiness =
+      businesses[0];
+
+
+    /* ---------------------------------------------
+       BUSINESS NAME
+       --------------------------------------------- */
+
+    businessName.textContent =
+      currentBusiness.name ||
+      "Your Business";
+
+
+    document.title =
+      `${currentBusiness.name || "Business"} — Your Experience`;
+
+
+    subtitle.textContent =
+      "Take a moment to tell us about your experience.";
+
+
+    /* ---------------------------------------------
+       LOGO
+       --------------------------------------------- */
+
+    if (
+      currentBusiness.logo_url
+    ) {
+
+      const logo =
+        document.getElementById(
+          "logo"
+        );
+
+
+      logo.innerHTML =
+        "";
+
+
+      const image =
+        document.createElement(
+          "img"
+        );
+
+
+      image.src =
+        currentBusiness.logo_url;
+
+
+      image.alt =
+        currentBusiness.name ||
+        "Business logo";
+
+
+      image.onerror =
+        function() {
+
+          logo.textContent =
+            "🍽️";
+
+        };
+
+
+      logo.appendChild(
+        image
+      );
+
+    }
+
+
+    /* ---------------------------------------------
+       PRIMARY COLOR
+       --------------------------------------------- */
+
+    if (
+      currentBusiness.primary_color
+    ) {
+
+      document.documentElement
+        .style
+        .setProperty(
+          "--gold",
+          currentBusiness.primary_color
+        );
+
+    }
+
+
+    /* ---------------------------------------------
+       GOOGLE LINK
+       --------------------------------------------- */
+
+    googleButton.href =
+      currentBusiness.google_review_url ||
+      "https://www.google.com/maps";
+
+
+    /* ---------------------------------------------
+       SHOW
+       --------------------------------------------- */
+
+    feedbackArea
+      .classList
+      .remove(
+        "hidden"
+      );
+
+  }
+
+
+  catch (error) {
+
+    console.error(
+      error
+    );
+
+
+    businessName.textContent =
+      "Card not found";
+
+
+    subtitle.innerHTML =
+      `<span class="error">
+        This card is inactive or does not exist.
+      </span>`;
+
+  }
+
+}
 
 
 /* =========================================================
@@ -859,20 +2040,21 @@ stars.forEach(
       "click",
       () => {
 
+
         selectedRating =
           Number(
             star.dataset.rating
           );
 
 
-        /* ==========================================
-           REMOVE PREVIOUS POP ANIMATION
-           ========================================== */
+        /* -----------------------------------------
+           RESET POP
+           ----------------------------------------- */
 
         stars.forEach(
-          currentStar => {
+          s => {
 
-            currentStar.classList.remove(
+            s.classList.remove(
               "pop"
             );
 
@@ -881,112 +2063,128 @@ stars.forEach(
 
 
         /*
-          Force a tiny reflow so the animation
-          can restart every time the customer clicks.
+          Force browser reflow so the
+          animation can restart.
         */
 
         void star.offsetWidth;
 
 
-        /* ==========================================
-           HIGHLIGHT STARS
-           ========================================== */
+        /* -----------------------------------------
+           HIGHLIGHT
+           ----------------------------------------- */
 
         stars.forEach(
-          currentStar => {
+          s => {
 
-            const currentRating =
+            const rating =
               Number(
-                currentStar.dataset.rating
+                s.dataset.rating
               );
 
 
-            currentStar.classList.toggle(
+            s.classList.toggle(
               "active",
-              currentRating <= selectedRating
+              rating <= selectedRating
             );
 
           }
         );
 
 
-        /* ==========================================
-           POP THE STAR THAT WAS CLICKED
-           ========================================== */
+        /* -----------------------------------------
+           POP SELECTED STAR
+           ----------------------------------------- */
 
         star.classList.add(
           "pop"
         );
 
 
-        /* ==========================================
-           RATING TEXT
-           ========================================== */
+        /* -----------------------------------------
+           TEXT
+           ----------------------------------------- */
 
         ratingText.textContent =
           `${selectedRating} out of 5 stars`;
 
 
-        /* ==========================================
+        /* -----------------------------------------
            SHOW MESSAGE
-           ========================================== */
+           ----------------------------------------- */
 
         message.classList.add(
           "show"
         );
 
 
-        /* ==========================================
+        /* -----------------------------------------
            1–2 STARS
-           ========================================== */
+           ----------------------------------------- */
 
         if (
           selectedRating <= 2
         ) {
 
+
+          messageIcon.textContent =
+            "♡";
+
+
           messageTitle.textContent =
-            "We're sorry about your experience.";
+            "We're sorry we missed the mark.";
 
 
           messageText.textContent =
-            "Tell us what went wrong and we'll do our best to make things right.";
+            "Tell us what happened. Your message goes directly to the business privately.";
 
 
           googleArea
             .classList
-            .add("hidden");
+            .add(
+              "hidden"
+            );
 
 
           privateArea
             .classList
-            .remove("hidden");
+            .remove(
+              "hidden"
+            );
 
-
-          /*
-            Clear previous comment
-            when selecting 1 or 2 stars.
-          */
 
           feedbackMessage.value =
             "";
 
+
+          updateCharCount();
+
         }
 
 
-        /* ==========================================
+        /* -----------------------------------------
            3–5 STARS
-           ========================================== */
+           ----------------------------------------- */
 
         else {
 
+
           privateArea
             .classList
-            .add("hidden");
+            .add(
+              "hidden"
+            );
 
 
           googleArea
             .classList
-            .remove("hidden");
+            .remove(
+              "hidden"
+            );
+
+
+          messageIcon.textContent =
+            "★";
 
 
           if (
@@ -994,29 +2192,31 @@ stars.forEach(
           ) {
 
             messageTitle.textContent =
-              "Thanks for your feedback!";
+              "Thank you for your feedback.";
 
           }
+
 
           else if (
             selectedRating === 4
           ) {
 
             messageTitle.textContent =
-              "We're glad you enjoyed your experience!";
+              "We're glad you enjoyed it.";
 
           }
+
 
           else {
 
             messageTitle.textContent =
-              "We're thrilled you loved it! ❤️";
+              "We're thrilled you loved it!";
 
           }
 
 
           messageText.textContent =
-            "Thank you! We'd really appreciate you sharing your experience on Google.";
+            "If you have a moment, we'd really appreciate you sharing your experience on Google.";
 
         }
 
@@ -1028,157 +2228,185 @@ stars.forEach(
 
 
 /* =========================================================
-   SEND PRIVATE FEEDBACK TO WHATSAPP
+   CHARACTER COUNT
    ========================================================= */
 
-document
-  .getElementById(
-    "sendPrivate"
-  )
-  .addEventListener(
-    "click",
-    () => {
+function updateCharCount() {
 
-      /*
-        The comment is OPTIONAL.
+  charHint.textContent =
+    `${feedbackMessage.value.length} / 1000`;
 
-        Empty comment is still allowed.
-      */
-
-      const text =
-        feedbackMessage
-          .value
-          .trim();
+}
 
 
-      /* ==========================================
-         CHECK BUSINESS
-         ========================================== */
-
-      if (
-        !currentBusiness
-      ) {
-
-        alert(
-          "Business information is unavailable."
-        );
-
-        return;
-
-      }
+feedbackMessage.addEventListener(
+  "input",
+  updateCharCount
+);
 
 
-      /* ==========================================
-         CHECK WHATSAPP NUMBER
-         ========================================== */
+/* =========================================================
+   SEND PRIVATE FEEDBACK
+   ========================================================= */
 
-      if (
-        !currentBusiness.whatsapp_number
-      ) {
-
-        alert(
-          "WhatsApp contact is not configured for this business."
-        );
-
-        return;
-
-      }
+sendPrivate.addEventListener(
+  "click",
+  () => {
 
 
-      /* ==========================================
-         CLEAN WHATSAPP NUMBER
-         ========================================== */
+    /* -----------------------------------------
+       CHECK BUSINESS
+       ----------------------------------------- */
 
-      let number =
-        String(
-          currentBusiness.whatsapp_number
-        )
-        .replace(
-          /\D/g,
-          ""
-        );
+    if (
+      !currentBusiness
+    ) {
 
+      alert(
+        "Business information is unavailable."
+      );
 
-      /*
-        Algeria example:
+      return;
 
-        0555123456
-
-        becomes:
-
-        213555123456
-      */
-
-      if (
-        number.startsWith("0")
-      ) {
-
-        number =
-          "213" +
-          number.substring(1);
-
-      }
+    }
 
 
-      /* ==========================================
-         CREATE BASE MESSAGE
-         ========================================== */
+    /* -----------------------------------------
+       CHECK WHATSAPP
+       ----------------------------------------- */
 
-      const businessName =
-        currentBusiness.name ||
-        "Business";
+    if (
+      !currentBusiness.whatsapp_number
+    ) {
+
+      alert(
+        "WhatsApp contact is not configured for this business."
+      );
+
+      return;
+
+    }
 
 
-      let whatsappMessage =
-`🔒 Private feedback — ${businessName}
+    /* -----------------------------------------
+       GET COMMENT
+       ----------------------------------------- */
+
+    const text =
+      feedbackMessage
+        .value
+        .trim();
+
+
+    /* -----------------------------------------
+       CLEAN NUMBER
+       ----------------------------------------- */
+
+    let number =
+      String(
+        currentBusiness.whatsapp_number
+      )
+      .replace(
+        /\D/g,
+        ""
+      );
+
+
+    /*
+      Algeria:
+
+      0555123456
+
+      becomes:
+
+      213555123456
+    */
+
+    if (
+      number.startsWith("0")
+    ) {
+
+      number =
+        "213" +
+        number.substring(1);
+
+    }
+
+
+    /* -----------------------------------------
+       MESSAGE
+       ----------------------------------------- */
+
+    const name =
+      currentBusiness.name ||
+      "Business";
+
+
+    let whatsappMessage =
+`🔒 Private feedback — ${name}
 
 ⭐ Rating: ${selectedRating}/5`;
 
 
-      /* ==========================================
-         ADD COMMENT ONLY IF PROVIDED
-         ========================================== */
+    if (
+      text.length > 0
+    ) {
 
-      if (
-        text.length > 0
-      ) {
-
-        whatsappMessage +=
+      whatsappMessage +=
 `
 
 💬 Customer feedback:
 ${text}`;
 
-      }
-
-
-      /* ==========================================
-         ENCODE MESSAGE
-         ========================================== */
-
-      const encodedMessage =
-        encodeURIComponent(
-          whatsappMessage
-        );
-
-
-      /* ==========================================
-         CREATE WHATSAPP URL
-         ========================================== */
-
-      const whatsappURL =
-        `https://wa.me/${number}?text=${encodedMessage}`;
-
-
-      /* ==========================================
-         OPEN WHATSAPP
-         ========================================== */
-
-      window.location.href =
-        whatsappURL;
-
     }
-  );
+
+
+    /* -----------------------------------------
+       URL
+       ----------------------------------------- */
+
+    const encodedMessage =
+      encodeURIComponent(
+        whatsappMessage
+      );
+
+
+    const whatsappURL =
+      `https://wa.me/${number}?text=${encodedMessage}`;
+
+
+    /* -----------------------------------------
+       UI FEEDBACK
+       ----------------------------------------- */
+
+    sendPrivate.disabled =
+      true;
+
+    sendPrivate.style.opacity =
+      "0.65";
+
+    sendPrivate.innerHTML =
+      `<span class="whatsapp-icon">✓</span>
+       Opening WhatsApp...`;
+
+
+    /*
+      Small delay makes the button state
+      visible before navigation.
+    */
+
+    setTimeout(
+      () => {
+
+        window.location.href =
+          whatsappURL;
+
+      },
+      180
+    );
+
+  }
+);
 
 
 /* =========================================================
@@ -1189,7 +2417,6 @@ loadCard();
 
 
 </script>
-
 
 </body>
 </html>
