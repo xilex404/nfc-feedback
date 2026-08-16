@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
 
 <meta
@@ -9,6 +11,7 @@
 >
 
 <title>Customer Feedback</title>
+
 
 <style>
 
@@ -22,12 +25,21 @@
   padding:0;
 }
 
-html{
+html,
+body{
+  width:100%;
   min-height:100%;
 }
 
+
+/* =========================================================
+   BODY — APP STYLE
+========================================================= */
+
 body{
+
   min-height:100vh;
+  min-height:100dvh;
 
   font-family:
     -apple-system,
@@ -39,11 +51,15 @@ body{
 
   background:
     radial-gradient(
-      circle at 50% -10%,
-      rgba(34,65,100,.55),
-      transparent 45%
+      circle at 50% -15%,
+      rgba(41,78,120,.65),
+      transparent 48%
     ),
-    #07111f;
+    linear-gradient(
+      180deg,
+      #07111f 0%,
+      #050d18 100%
+    );
 
   color:#fff;
 
@@ -52,17 +68,18 @@ body{
   align-items:center;
 
   padding:
-    max(22px, env(safe-area-inset-top))
-    max(18px, env(safe-area-inset-right))
-    max(22px, env(safe-area-inset-bottom))
-    max(18px, env(safe-area-inset-left));
+    env(safe-area-inset-top)
+    env(safe-area-inset-right)
+    env(safe-area-inset-bottom)
+    env(safe-area-inset-left);
 
   overflow-x:hidden;
+
 }
 
 
 /* =========================================================
-   MAIN CARD
+   MAIN APP
 ========================================================= */
 
 .card{
@@ -70,43 +87,47 @@ body{
   width:100%;
 
   /*
-    Bigger than before.
-    Still responsive so it never becomes wider
-    than the available screen.
+    Large application-style surface.
   */
 
-  max-width:520px;
+  max-width:580px;
 
-  min-height:650px;
+  min-height:
+    min(900px, 94dvh);
 
   background:
     linear-gradient(
       145deg,
-      rgba(17,36,59,.98),
-      rgba(9,23,39,.98)
+      rgba(17,37,61,.99),
+      rgba(7,19,33,.99)
     );
 
   border:
     1px solid rgba(255,255,255,.09);
 
-  border-radius:32px;
+  border-radius:36px;
 
-  padding:52px 38px 38px;
+  padding:
+    58px
+    48px
+    42px;
 
   text-align:center;
-
-  box-shadow:
-    0 35px 100px rgba(0,0,0,.42),
-    0 0 0 1px rgba(255,255,255,.015);
 
   position:relative;
 
   overflow:hidden;
 
+  box-shadow:
+    0 40px 120px rgba(0,0,0,.48),
+    0 0 0 1px rgba(255,255,255,.015);
+
 }
 
 
-/* subtle premium glow */
+/* =========================================================
+   PREMIUM GLOW
+========================================================= */
 
 .card::before{
 
@@ -114,10 +135,10 @@ body{
 
   position:absolute;
 
-  width:300px;
-  height:300px;
+  width:420px;
+  height:420px;
 
-  top:-180px;
+  top:-260px;
   left:50%;
 
   transform:translateX(-50%);
@@ -125,8 +146,8 @@ body{
   background:
     radial-gradient(
       circle,
-      rgba(255,200,61,.12),
-      transparent 70%
+      rgba(255,200,61,.14),
+      transparent 68%
     );
 
   pointer-events:none;
@@ -140,18 +161,20 @@ body{
 
 .logo{
 
-  width:94px;
-  height:94px;
+  width:120px;
+  height:120px;
 
-  border-radius:27px;
+  border-radius:34px;
 
-  margin:0 auto 23px;
+  margin:
+    0 auto
+    28px;
 
   background:
     linear-gradient(
       145deg,
-      #183653,
-      #10263e
+      #1b3d60,
+      #102a44
     );
 
   display:flex;
@@ -159,13 +182,14 @@ body{
   align-items:center;
   justify-content:center;
 
-  font-size:42px;
+  font-size:52px;
 
   border:
-    1px solid rgba(255,255,255,.12);
+    1px solid rgba(255,255,255,.13);
 
   box-shadow:
-    0 14px 35px rgba(0,0,0,.25);
+    0 20px 45px rgba(0,0,0,.28),
+    inset 0 1px 0 rgba(255,255,255,.05);
 
   overflow:hidden;
 
@@ -194,15 +218,15 @@ body{
 
 h1{
 
-  font-size:31px;
+  font-size:36px;
 
-  line-height:1.15;
+  line-height:1.12;
 
-  margin-bottom:10px;
+  margin-bottom:12px;
 
-  letter-spacing:-.7px;
+  letter-spacing:-.9px;
 
-  font-weight:800;
+  font-weight:850;
 
 }
 
@@ -213,13 +237,24 @@ h1{
 
 .subtitle{
 
-  color:#9eacbd;
+  color:#a5b3c4;
 
-  font-size:16px;
+  font-size:17px;
 
   line-height:1.55;
 
-  margin-bottom:38px;
+  margin-bottom:48px;
+
+}
+
+
+/* =========================================================
+   FEEDBACK AREA
+========================================================= */
+
+#feedbackArea{
+
+  width:100%;
 
 }
 
@@ -230,15 +265,17 @@ h1{
 
 .stars{
 
+  width:100%;
+
   display:flex;
 
   justify-content:center;
 
   align-items:center;
 
-  gap:9px;
+  gap:12px;
 
-  margin-bottom:17px;
+  margin-bottom:19px;
 
 }
 
@@ -251,34 +288,31 @@ h1{
 
   color:#536174;
 
-  font-size:52px;
+  font-size:61px;
 
   line-height:1;
 
   cursor:pointer;
 
-  padding:4px;
+  padding:5px;
 
   appearance:none;
 
   -webkit-appearance:none;
+
+  outline:none;
+
+  -webkit-tap-highlight-color:transparent;
 
   transition:
     transform .16s ease,
     color .16s ease,
     filter .16s ease;
 
-  outline:none;
-
-  -webkit-tap-highlight-color:transparent;
-
 }
 
 
-/*
-  IMPORTANT:
-  Keep the active class behavior stable.
-*/
+/* SELECTED STARS */
 
 .star.active{
 
@@ -286,11 +320,14 @@ h1{
 
   filter:
     drop-shadow(
-      0 0 8px rgba(255,200,61,.25)
+      0 0 10px
+      rgba(255,200,61,.28)
     );
 
 }
 
+
+/* HOVER */
 
 .star:hover{
 
@@ -299,9 +336,11 @@ h1{
 }
 
 
+/* PRESS */
+
 .star:active{
 
-  transform:scale(.94);
+  transform:scale(.91);
 
 }
 
@@ -312,13 +351,13 @@ h1{
 
 .rating-text{
 
-  min-height:26px;
+  min-height:27px;
 
-  color:#b8c3d1;
+  color:#bcc7d4;
 
-  font-size:15px;
+  font-size:16px;
 
-  margin-bottom:30px;
+  margin-bottom:35px;
 
 }
 
@@ -353,7 +392,7 @@ h1{
     opacity:0;
 
     transform:
-      translateY(10px);
+      translateY(12px);
 
   }
 
@@ -375,11 +414,13 @@ h1{
 
 .message h2{
 
-  font-size:21px;
+  font-size:23px;
 
   line-height:1.3;
 
-  margin-bottom:9px;
+  margin-bottom:10px;
+
+  letter-spacing:-.3px;
 
 }
 
@@ -392,11 +433,11 @@ h1{
 
   color:#aab7c7;
 
-  font-size:15px;
+  font-size:16px;
 
-  line-height:1.55;
+  line-height:1.6;
 
-  margin-bottom:20px;
+  margin-bottom:22px;
 
 }
 
@@ -409,30 +450,30 @@ textarea{
 
   width:100%;
 
-  min-height:145px;
+  min-height:175px;
 
   resize:vertical;
 
-  padding:16px;
+  padding:18px;
 
-  border-radius:17px;
+  border-radius:18px;
 
   border:
     1px solid rgba(255,255,255,.11);
 
   background:#07111f;
 
-  color:white;
+  color:#fff;
 
   font-family:inherit;
 
-  font-size:15px;
+  font-size:16px;
 
-  line-height:1.5;
+  line-height:1.55;
 
   outline:none;
 
-  margin-bottom:11px;
+  margin-bottom:12px;
 
   transition:
     border-color .2s ease,
@@ -446,14 +487,15 @@ textarea:focus{
   border-color:#607994;
 
   box-shadow:
-    0 0 0 3px rgba(96,121,148,.10);
+    0 0 0 4px
+    rgba(96,121,148,.10);
 
 }
 
 
 textarea::placeholder{
 
-  color:#65758a;
+  color:#64758a;
 
 }
 
@@ -468,21 +510,25 @@ textarea::placeholder{
 
   width:100%;
 
-  padding:16px 20px;
+  min-height:60px;
 
-  border-radius:16px;
+  padding:
+    17px
+    20px;
+
+  border-radius:18px;
 
   border:none;
 
   text-decoration:none;
 
-  font-size:16px;
+  font-size:17px;
 
   font-weight:750;
 
   cursor:pointer;
 
-  margin-top:12px;
+  margin-top:13px;
 
   text-align:center;
 
@@ -496,7 +542,7 @@ textarea::placeholder{
 
 .button:active{
 
-  transform:scale(.985);
+  transform:scale(.98);
 
 }
 
@@ -508,7 +554,8 @@ textarea::placeholder{
   color:#111827;
 
   box-shadow:
-    0 8px 24px rgba(0,0,0,.18);
+    0 10px 30px
+    rgba(0,0,0,.20);
 
 }
 
@@ -518,14 +565,18 @@ textarea::placeholder{
   background:
     linear-gradient(
       135deg,
-      #203b59,
+      #244563,
       #172f49
     );
 
-  color:white;
+  color:#fff;
 
   border:
-    1px solid rgba(255,255,255,.07);
+    1px solid rgba(255,255,255,.08);
+
+  box-shadow:
+    0 10px 28px
+    rgba(0,0,0,.18);
 
 }
 
@@ -539,14 +590,14 @@ textarea::placeholder{
 
 
 /* =========================================================
-   SMALL FOOTER
+   FOOTER
 ========================================================= */
 
 .small{
 
-  margin-top:28px;
+  margin-top:38px;
 
-  color:#66758a;
+  color:#68788d;
 
   font-size:12px;
 
@@ -576,52 +627,179 @@ textarea::placeholder{
 
 
 /* =========================================================
-   TABLET / LARGE PHONE
+   TABLET / DESKTOP
 ========================================================= */
 
 @media (min-width:600px){
 
   body{
 
-    padding:35px;
+    padding:24px;
 
   }
 
   .card{
 
-    max-width:540px;
+    max-width:600px;
 
-    min-height:680px;
+    min-height:
+      min(900px, 94dvh);
 
     padding:
-      58px
-      46px
-      42px;
+      65px
+      55px
+      48px;
 
   }
 
   .logo{
 
-    width:100px;
-    height:100px;
+    width:130px;
+    height:130px;
 
   }
 
   h1{
 
-    font-size:33px;
+    font-size:39px;
 
   }
 
-  .stars{
+  .subtitle{
 
-    gap:10px;
+    font-size:18px;
 
   }
 
   .star{
 
-    font-size:55px;
+    font-size:66px;
+
+  }
+
+}
+
+
+/* =========================================================
+   PHONES
+========================================================= */
+
+@media (max-width:599px){
+
+  body{
+
+    align-items:stretch;
+
+    padding:0;
+
+  }
+
+
+  .card{
+
+    width:100%;
+
+    max-width:none;
+
+    min-height:
+      100vh;
+
+    min-height:
+      100dvh;
+
+    height:auto;
+
+    border-radius:0;
+
+    border:none;
+
+    padding:
+      max(48px, env(safe-area-inset-top) + 28px)
+      25px
+      max(34px, env(safe-area-inset-bottom) + 22px);
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+  }
+
+
+  .logo{
+
+    width:120px;
+    height:120px;
+
+    border-radius:34px;
+
+    margin-bottom:25px;
+
+  }
+
+
+  h1{
+
+    font-size:
+      clamp(30px, 8vw, 38px);
+
+  }
+
+
+  .subtitle{
+
+    font-size:17px;
+
+    margin-bottom:43px;
+
+  }
+
+
+  .stars{
+
+    gap:
+      clamp(4px, 1.8vw, 10px);
+
+  }
+
+
+  .star{
+
+    font-size:
+      clamp(48px, 14vw, 62px);
+
+    padding:4px;
+
+  }
+
+
+  .rating-text{
+
+    font-size:15px;
+
+    margin-bottom:31px;
+
+  }
+
+
+  .message h2{
+
+    font-size:22px;
+
+  }
+
+
+  .message p{
+
+    font-size:15px;
+
+  }
+
+
+  .small{
+
+    margin-top:31px;
 
   }
 
@@ -632,47 +810,25 @@ textarea::placeholder{
    SMALL PHONES
 ========================================================= */
 
-@media (max-width:430px){
-
-  body{
-
-    align-items:center;
-
-    padding:
-      16px
-      12px
-      16px
-      12px;
-
-  }
+@media (max-width:380px){
 
   .card{
 
-    max-width:none;
-
-    min-height:620px;
-
-    border-radius:29px;
-
-    padding:
-      42px
-      22px
-      30px;
+    padding-left:18px;
+    padding-right:18px;
 
   }
+
 
   .logo{
 
-    width:86px;
-    height:86px;
+    width:100px;
+    height:100px;
 
-    border-radius:24px;
-
-    margin-bottom:20px;
-
-    font-size:38px;
+    border-radius:29px;
 
   }
+
 
   h1{
 
@@ -680,33 +836,35 @@ textarea::placeholder{
 
   }
 
+
   .subtitle{
 
     font-size:15px;
 
-    margin-bottom:32px;
+    margin-bottom:34px;
 
   }
+
 
   .stars{
 
-    gap:5px;
+    gap:0;
 
   }
+
 
   .star{
 
-    font-size:45px;
-
-    padding:3px;
+    font-size:44px;
 
   }
 
-  .rating-text{
 
-    font-size:14px;
+  .button{
 
-    margin-bottom:25px;
+    min-height:56px;
+
+    font-size:16px;
 
   }
 
@@ -714,108 +872,72 @@ textarea::placeholder{
 
 
 /* =========================================================
-   VERY SMALL PHONES
+   SHORT PHONES
 ========================================================= */
 
-@media (max-width:360px){
+@media (
+  max-height:700px
+) and (
+  max-width:599px
+){
 
   .card{
 
-    padding:
-      34px
-      17px
-      27px;
+    justify-content:flex-start;
+
+    padding-top:
+      max(25px, env(safe-area-inset-top) + 15px);
 
   }
+
 
   .logo{
 
-    width:78px;
-    height:78px;
+    width:82px;
+    height:82px;
+
+    border-radius:24px;
+
+    margin-bottom:15px;
 
   }
 
-  h1{
-
-    font-size:25px;
-
-  }
-
-  .subtitle{
-
-    margin-bottom:27px;
-
-  }
-
-  .stars{
-
-    gap:2px;
-
-  }
-
-  .star{
-
-    font-size:39px;
-
-  }
-
-}
-
-
-/* =========================================================
-   SHORT SCREENS
-========================================================= */
-
-@media (max-height:720px){
-
-  body{
-
-    align-items:flex-start;
-
-  }
-
-  .card{
-
-    margin-top:10px;
-
-    min-height:auto;
-
-    padding-top:32px;
-
-    padding-bottom:28px;
-
-  }
-
-  .logo{
-
-    width:76px;
-    height:76px;
-
-    margin-bottom:16px;
-
-  }
 
   h1{
 
     font-size:27px;
 
+    margin-bottom:7px;
+
   }
+
 
   .subtitle{
 
-    margin-bottom:24px;
+    font-size:14px;
+
+    margin-bottom:22px;
 
   }
 
-  .stars{
-
-    margin-bottom:12px;
-
-  }
 
   .star{
 
-    font-size:43px;
+    font-size:42px;
+
+  }
+
+
+  .rating-text{
+
+    margin-bottom:20px;
+
+  }
+
+
+  .small{
+
+    margin-top:20px;
 
   }
 
@@ -826,7 +948,9 @@ textarea::placeholder{
    REDUCED MOTION
 ========================================================= */
 
-@media (prefers-reduced-motion:reduce){
+@media (
+  prefers-reduced-motion:reduce
+){
 
   *{
 
@@ -841,6 +965,7 @@ textarea::placeholder{
 }
 
 </style>
+
 </head>
 
 
@@ -850,208 +975,214 @@ textarea::placeholder{
 <main class="card">
 
 
-  <!-- =====================================================
-       LOGO
-  ====================================================== -->
+<!-- =======================================================
+     LOGO
+======================================================= -->
 
-  <div
-    class="logo"
-    id="logo">
+<div
+  class="logo"
+  id="logo">
 
-    🍽️
+  🍽️
 
-  </div>
+</div>
 
 
-  <!-- =====================================================
-       BUSINESS NAME
-  ====================================================== -->
+<!-- =======================================================
+     BUSINESS NAME
+======================================================= -->
 
-  <h1 id="businessName">
+<h1 id="businessName">
 
-    Loading...
+  Loading...
 
-  </h1>
+</h1>
 
 
-  <!-- =====================================================
-       SUBTITLE
-  ====================================================== -->
+<!-- =======================================================
+     SUBTITLE
+======================================================= -->
 
-  <p
-    class="subtitle"
-    id="subtitle">
+<p
+  class="subtitle"
+  id="subtitle">
 
-    Loading your experience...
+  Loading your experience...
 
-  </p>
+</p>
 
 
-  <!-- =====================================================
-       FEEDBACK AREA
-  ====================================================== -->
+<!-- =======================================================
+     FEEDBACK AREA
+======================================================= -->
 
-  <div
-    id="feedbackArea"
-    class="hidden">
+<div
+  id="feedbackArea"
+  class="hidden">
 
 
-    <!-- ===================================================
-         STARS
-    ==================================================== -->
+<!-- =====================================================
+     STARS
+====================================================== -->
 
-    <div
-      class="stars"
-      id="stars">
+<div
+  class="stars"
+  id="stars">
 
-      <button
-        type="button"
-        class="star"
-        data-rating="1"
-        aria-label="1 star">
 
-        ★
+<button
+  type="button"
+  class="star"
+  data-rating="1"
+  aria-label="1 star">
 
-      </button>
+  ★
 
-      <button
-        type="button"
-        class="star"
-        data-rating="2"
-        aria-label="2 stars">
+</button>
 
-        ★
 
-      </button>
+<button
+  type="button"
+  class="star"
+  data-rating="2"
+  aria-label="2 stars">
 
-      <button
-        type="button"
-        class="star"
-        data-rating="3"
-        aria-label="3 stars">
+  ★
 
-        ★
+</button>
 
-      </button>
 
-      <button
-        type="button"
-        class="star"
-        data-rating="4"
-        aria-label="4 stars">
+<button
+  type="button"
+  class="star"
+  data-rating="3"
+  aria-label="3 stars">
 
-        ★
+  ★
 
-      </button>
+</button>
 
-      <button
-        type="button"
-        class="star"
-        data-rating="5"
-        aria-label="5 stars">
 
-        ★
+<button
+  type="button"
+  class="star"
+  data-rating="4"
+  aria-label="4 stars">
 
-      </button>
+  ★
 
-    </div>
+</button>
 
 
-    <!-- ===================================================
-         RATING TEXT
-    ==================================================== -->
+<button
+  type="button"
+  class="star"
+  data-rating="5"
+  aria-label="5 stars">
 
-    <div
-      class="rating-text"
-      id="ratingText">
+  ★
 
-      Tap a star to rate your experience
+</button>
 
-    </div>
 
+</div>
 
-    <!-- ===================================================
-         MESSAGE
-    ==================================================== -->
 
-    <section
-      class="message"
-      id="message">
+<!-- =====================================================
+     RATING TEXT
+====================================================== -->
 
+<div
+  class="rating-text"
+  id="ratingText">
 
-      <h2
-        id="messageTitle">
-      </h2>
+  Tap a star to rate your experience
 
+</div>
 
-      <p
-        id="messageText">
-      </p>
 
+<!-- =====================================================
+     MESSAGE
+====================================================== -->
 
-      <!-- =================================================
-           3–5 STARS → GOOGLE
-      ================================================== -->
+<section
+  class="message"
+  id="message">
 
-      <div
-        id="googleArea"
-        class="hidden">
 
+<h2
+  id="messageTitle">
+</h2>
 
-        <a
-          id="googleButton"
-          class="button google"
-          href="#"
-          target="_blank"
-          rel="noopener">
 
-          ⭐ Leave us a Google review
+<p
+  id="messageText">
+</p>
 
-        </a>
 
+<!-- ===================================================
+     GOOGLE
+==================================================== -->
 
-      </div>
+<div
+  id="googleArea"
+  class="hidden">
 
 
-      <!-- =================================================
-           1–2 STARS → PRIVATE WHATSAPP
-      ================================================== -->
+<a
+  id="googleButton"
+  class="button google"
+  href="#"
+  target="_blank"
+  rel="noopener">
 
-      <div
-        id="privateArea"
-        class="hidden">
+  ⭐ Leave us a Google review
 
+</a>
 
-        <textarea
-          id="feedbackMessage"
-          placeholder="Tell us what went wrong or how we can improve..."
-        ></textarea>
 
+</div>
 
-        <button
-          type="button"
-          id="sendPrivate"
-          class="button private">
 
-          💬 Send privately
+<!-- ===================================================
+     PRIVATE WHATSAPP
+==================================================== -->
 
-        </button>
+<div
+  id="privateArea"
+  class="hidden">
 
 
-      </div>
+<textarea
+  id="feedbackMessage"
+  placeholder="Tell us what went wrong or how we can improve..."
+></textarea>
 
 
-    </section>
+<button
+  type="button"
+  id="sendPrivate"
+  class="button private">
 
+  💬 Send privately
 
-  </div>
+</button>
 
 
-  <div class="small">
+</div>
 
-    Your feedback helps us improve.
 
-  </div>
+</section>
+
+
+</div>
+
+
+<div class="small">
+
+  Your feedback helps us improve.
+
+</div>
 
 
 </main>
@@ -1059,7 +1190,6 @@ textarea::placeholder{
 
 
 <script>
-
 
 /* =========================================================
    SUPABASE CONFIG
@@ -1099,17 +1229,22 @@ async function supabaseGet(endpoint){
     await fetch(
       `${SUPABASE_URL}/rest/v1/${endpoint}`,
       {
+
         method:"GET",
 
         headers:{
-          "apikey":SUPABASE_KEY,
+
+          "apikey":
+            SUPABASE_KEY,
 
           "Authorization":
             `Bearer ${SUPABASE_KEY}`,
 
           "Content-Type":
             "application/json"
+
         }
+
       }
     );
 
@@ -1186,9 +1321,7 @@ async function loadCard(){
   try{
 
 
-    /* ==========================================
-       FIND CARD
-    ========================================== */
+    /* FIND CARD */
 
     const cards =
       await supabaseGet(
@@ -1209,9 +1342,7 @@ async function loadCard(){
       cards[0];
 
 
-    /* ==========================================
-       FIND BUSINESS
-    ========================================== */
+    /* FIND BUSINESS */
 
     const businesses =
       await supabaseGet(
@@ -1232,9 +1363,7 @@ async function loadCard(){
       businesses[0];
 
 
-    /* ==========================================
-       BUSINESS NAME
-    ========================================== */
+    /* BUSINESS NAME */
 
     businessName.textContent =
       currentBusiness.name ||
@@ -1249,9 +1378,7 @@ async function loadCard(){
       "How was your experience with us?";
 
 
-    /* ==========================================
-       LOGO
-    ========================================== */
+    /* LOGO */
 
     if(currentBusiness.logo_url){
 
@@ -1287,9 +1414,7 @@ async function loadCard(){
     }
 
 
-    /* ==========================================
-       GOOGLE REVIEW LINK
-    ========================================== */
+    /* GOOGLE LINK */
 
     const googleButton =
       document.getElementById(
@@ -1302,9 +1427,7 @@ async function loadCard(){
       "https://www.google.com/maps";
 
 
-    /* ==========================================
-       SHOW PAGE
-    ========================================== */
+    /* SHOW */
 
     feedbackArea
       .classList
@@ -1401,9 +1524,7 @@ stars.forEach(
           );
 
 
-        /* ==========================================
-           HIGHLIGHT SELECTED STARS
-        ========================================== */
+        /* HIGHLIGHT STARS */
 
         stars.forEach(
           s => {
@@ -1428,9 +1549,7 @@ stars.forEach(
         );
 
 
-        /* ==========================================
-           1–2 STARS
-        ========================================== */
+        /* 1–2 STARS */
 
         if(selectedRating <= 2){
 
@@ -1458,9 +1577,7 @@ stars.forEach(
         }
 
 
-        /* ==========================================
-           3–5 STARS
-        ========================================== */
+        /* 3–5 STARS */
 
         else{
 
@@ -1509,7 +1626,7 @@ stars.forEach(
 
 
 /* =========================================================
-   SEND PRIVATE FEEDBACK TO WHATSAPP
+   WHATSAPP
 ========================================================= */
 
 document
@@ -1527,10 +1644,6 @@ document
           .trim();
 
 
-      /* ==========================================
-         CHECK BUSINESS
-      ========================================== */
-
       if(!currentBusiness){
 
         alert(
@@ -1541,10 +1654,6 @@ document
 
       }
 
-
-      /* ==========================================
-         CHECK WHATSAPP
-      ========================================== */
 
       if(!currentBusiness.whatsapp_number){
 
@@ -1557,10 +1666,6 @@ document
       }
 
 
-      /* ==========================================
-         CLEAN NUMBER
-      ========================================== */
-
       let number =
         String(
           currentBusiness.whatsapp_number
@@ -1571,10 +1676,6 @@ document
         );
 
 
-      /* ==========================================
-         ALGERIAN NUMBER
-      ========================================== */
-
       if(number.startsWith("0")){
 
         number =
@@ -1583,10 +1684,6 @@ document
 
       }
 
-
-      /* ==========================================
-         CREATE MESSAGE
-      ========================================== */
 
       const businessName =
         currentBusiness.name ||
@@ -1610,27 +1707,15 @@ ${text}`;
       }
 
 
-      /* ==========================================
-         ENCODE
-      ========================================== */
-
       const encodedMessage =
         encodeURIComponent(
           whatsappMessage
         );
 
 
-      /* ==========================================
-         WHATSAPP URL
-      ========================================== */
-
       const whatsappURL =
         `https://wa.me/${number}?text=${encodedMessage}`;
 
-
-      /* ==========================================
-         OPEN WHATSAPP
-      ========================================== */
 
       window.location.href =
         whatsappURL;
@@ -1647,5 +1732,7 @@ loadCard();
 
 </script>
 
+
 </body>
+
 </html>
