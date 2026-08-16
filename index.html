@@ -3,855 +3,1085 @@
 
 <head>
 
-  <meta charset="UTF-8">
+<meta charset="UTF-8">
 
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0, viewport-fit=cover"
-  >
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0"
+>
 
-  <meta name="theme-color" content="#07111f">
+<meta
+  name="theme-color"
+  content="#07111f"
+>
 
-  <title>Customer Feedback</title>
+<title>Customer Feedback</title>
 
 
-  <style>
+<style>
 
-    /* =====================================================
-       RESET
-       ===================================================== */
+/* =========================================================
+   TAPREVIEW — AAA FULL SCREEN CUSTOMER EXPERIENCE
+   UI ONLY
+   ========================================================= */
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
 
 
-    html {
-      width: 100%;
-      min-height: 100%;
-      background: #07111f;
-    }
+html{
+  min-height:100%;
+  background:#07111f;
+}
 
 
-    body {
+body{
 
-      width: 100%;
-      min-height: 100vh;
-      min-height: 100dvh;
+  min-height:100vh;
+  min-height:100dvh;
 
-      font-family:
-        -apple-system,
-        BlinkMacSystemFont,
-        "Segoe UI",
-        Roboto,
-        Arial,
-        sans-serif;
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    Arial,
+    sans-serif;
 
-      background:
-        radial-gradient(
-          circle at 50% -10%,
-          rgba(36, 72, 111, 0.38),
-          transparent 38%
-        ),
-        linear-gradient(
-          180deg,
-          #07111f 0%,
-          #081421 50%,
-          #06101c 100%
-        );
+  background:
+    radial-gradient(
+      circle at 50% -10%,
+      rgba(255,200,61,.10),
+      transparent 38%
+    ),
+    radial-gradient(
+      circle at 0% 100%,
+      rgba(46,117,255,.10),
+      transparent 35%
+    ),
+    #07111f;
 
-      color: white;
+  color:#fff;
 
-      overflow-x: hidden;
+  overflow-x:hidden;
 
-      -webkit-font-smoothing: antialiased;
-      text-rendering: optimizeLegibility;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}
 
-      padding:
-        env(safe-area-inset-top)
-        env(safe-area-inset-right)
-        env(safe-area-inset-bottom)
-        env(safe-area-inset-left);
 
-    }
+/* =========================================================
+   APP
+   ========================================================= */
 
+.app{
 
-    button,
-    textarea,
-    input {
-      font: inherit;
-    }
+  width:100%;
+  min-height:100vh;
+  min-height:100dvh;
 
+  display:flex;
+  flex-direction:column;
 
-    button {
-      -webkit-tap-highlight-color: transparent;
-    }
+  position:relative;
 
+  overflow:hidden;
+}
 
-    /* =====================================================
-       APP
-       ===================================================== */
 
-    .app {
+/* =========================================================
+   TOP AMBIENT LIGHT
+   ========================================================= */
 
-      width: 100%;
-      min-height: 100vh;
-      min-height: 100dvh;
+.app::before{
 
-      display: flex;
-      flex-direction: column;
+  content:"";
 
-      position: relative;
+  position:absolute;
 
-      overflow: hidden;
+  width:420px;
+  height:420px;
 
-    }
+  top:-250px;
+  left:50%;
 
+  transform:translateX(-50%);
 
-    /* =====================================================
-       DECORATIVE BACKGROUND
-       ===================================================== */
+  background:
+    radial-gradient(
+      circle,
+      rgba(255,200,61,.16),
+      transparent 68%
+    );
 
-    .background-glow {
+  pointer-events:none;
 
-      position: fixed;
+}
 
-      width: 420px;
-      height: 420px;
 
-      left: 50%;
-      top: -250px;
+/* =========================================================
+   MAIN CONTENT
+   ========================================================= */
 
-      transform: translateX(-50%);
+.main{
 
-      border-radius: 50%;
+  width:100%;
 
-      background:
-        radial-gradient(
-          circle,
-          rgba(255, 200, 61, 0.09),
-          transparent 68%
-        );
+  min-height:100vh;
+  min-height:100dvh;
 
-      pointer-events: none;
+  display:flex;
+  flex-direction:column;
 
-      z-index: 0;
+  align-items:center;
 
-    }
+  position:relative;
+  z-index:1;
 
+  padding:
+    max(32px, env(safe-area-inset-top))
+    22px
+    max(30px, env(safe-area-inset-bottom));
 
-    .background-glow.two {
+}
 
-      width: 300px;
-      height: 300px;
 
-      top: auto;
-      bottom: -180px;
+/* =========================================================
+   BRAND / LOGO
+   ========================================================= */
 
-      background:
-        radial-gradient(
-          circle,
-          rgba(43, 112, 178, 0.10),
-          transparent 68%
-        );
+.logo{
 
-    }
+  width:112px;
+  height:112px;
 
+  margin-top:clamp(15px,5vh,55px);
+  margin-bottom:28px;
 
-    /* =====================================================
-       MAIN CONTENT
-       ===================================================== */
+  border-radius:32px;
 
-    .content {
+  background:
+    linear-gradient(
+      145deg,
+      #183552,
+      #0d1f34
+    );
 
-      position: relative;
-      z-index: 1;
+  border:
+    1px solid rgba(255,255,255,.12);
 
-      width: 100%;
+  box-shadow:
+    0 20px 55px rgba(0,0,0,.30),
+    inset 0 1px 0 rgba(255,255,255,.08);
 
-      min-height: 100vh;
-      min-height: 100dvh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
 
-      display: flex;
-      flex-direction: column;
+  font-size:52px;
 
-      padding:
-        clamp(34px, 7vh, 72px)
-        clamp(22px, 6vw, 70px)
-        clamp(28px, 6vh, 55px);
+  overflow:hidden;
 
-    }
+  flex-shrink:0;
 
+  animation:
+    logoEnter .65s cubic-bezier(.2,.8,.2,1);
+}
 
-    /* =====================================================
-       BUSINESS HEADER
-       ===================================================== */
 
-    .business-header {
+@keyframes logoEnter{
 
-      width: 100%;
+  from{
+    opacity:0;
+    transform:
+      translateY(-15px)
+      scale(.88);
+  }
 
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+  to{
+    opacity:1;
+    transform:
+      translateY(0)
+      scale(1);
+  }
 
-      text-align: center;
+}
 
-      margin-bottom:
-        clamp(30px, 6vh, 55px);
 
-    }
+.logo img{
 
+  width:100%;
+  height:100%;
 
-    .logo {
+  object-fit:cover;
 
-      width:
-        clamp(88px, 22vw, 128px);
+}
 
-      height:
-        clamp(88px, 22vw, 128px);
 
-      border-radius:
-        clamp(25px, 6vw, 34px);
+/* =========================================================
+   BUSINESS NAME
+   ========================================================= */
 
-      margin-bottom: 22px;
+h1{
 
-      background:
-        linear-gradient(
-          145deg,
-          #172f4a,
-          #0d2034
-        );
+  width:100%;
+  max-width:700px;
 
-      border:
-        1px solid rgba(255,255,255,.11);
+  text-align:center;
 
-      display: flex;
-      align-items: center;
-      justify-content: center;
+  font-size:
+    clamp(30px,8vw,48px);
 
-      font-size:
-        clamp(38px, 9vw, 54px);
+  line-height:1.08;
 
-      overflow: hidden;
+  font-weight:850;
 
-      box-shadow:
-        0 18px 50px rgba(0,0,0,.30),
-        inset 0 1px 0 rgba(255,255,255,.06);
+  letter-spacing:-1.2px;
 
-    }
+  color:#fff;
 
+  margin-bottom:13px;
 
-    .logo img {
+  overflow-wrap:anywhere;
 
-      width: 100%;
-      height: 100%;
+  animation:
+    titleEnter .65s .05s both
+    cubic-bezier(.2,.8,.2,1);
 
-      object-fit: cover;
+}
 
-      display: block;
 
-    }
+@keyframes titleEnter{
 
+  from{
+    opacity:0;
+    transform:translateY(14px);
+  }
 
-    h1 {
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
 
-      font-size:
-        clamp(28px, 7vw, 42px);
+}
 
-      line-height: 1.1;
 
-      font-weight: 800;
+/* =========================================================
+   SUBTITLE
+   ========================================================= */
 
-      letter-spacing: -.7px;
+.subtitle{
 
-      max-width: 850px;
+  width:100%;
+  max-width:650px;
 
-      margin-bottom: 11px;
+  text-align:center;
 
-    }
+  color:#aebdce;
 
+  font-size:
+    clamp(18px,4.8vw,23px);
 
-    .subtitle {
+  line-height:1.45;
 
-      color: #9eacbd;
+  font-weight:500;
 
-      font-size:
-        clamp(15px, 3.8vw, 19px);
+  margin-bottom:clamp(35px,7vh,60px);
 
-      line-height: 1.55;
+  animation:
+    titleEnter .65s .10s both
+    cubic-bezier(.2,.8,.2,1);
 
-      max-width: 650px;
+}
 
-    }
 
+/* =========================================================
+   FEEDBACK AREA
+   ========================================================= */
 
-    /* =====================================================
-       FEEDBACK AREA
-       ===================================================== */
+#feedbackArea{
 
-    #feedbackArea {
+  width:100%;
+  max-width:760px;
 
-      width: 100%;
+  animation:
+    contentEnter .7s .12s both
+    cubic-bezier(.2,.8,.2,1);
 
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+}
 
-      flex: 1;
 
-    }
+@keyframes contentEnter{
 
+  from{
+    opacity:0;
+    transform:translateY(18px);
+  }
 
-    .hidden {
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
 
-      display: none !important;
+}
 
-    }
 
+/* =========================================================
+   STAR AREA
+   ========================================================= */
 
-    /* =====================================================
-       STAR AREA
-       ===================================================== */
+.stars{
 
-    .rating-section {
+  width:100%;
 
-      width: 100%;
+  display:flex;
 
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+  justify-content:center;
+  align-items:center;
 
-    }
+  gap:
+    clamp(4px,2vw,16px);
 
+  margin-bottom:18px;
 
-    .stars {
+}
 
-      width: 100%;
 
-      display: flex;
+/* =========================================================
+   STAR BUTTON
+   IMPORTANT:
+   We use explicit color + opacity + visibility.
+   This prevents the selected star from disappearing.
+   ========================================================= */
 
-      justify-content: center;
-      align-items: center;
+.star{
 
-      gap:
-        clamp(5px, 2vw, 18px);
+  appearance:none;
+  -webkit-appearance:none;
 
-      margin-bottom: 16px;
+  border:0;
 
-    }
+  background:transparent;
 
+  width:
+    clamp(58px,16vw,105px);
 
-    .star {
+  height:
+    clamp(64px,17vw,110px);
 
-      border: none;
+  min-width:58px;
+  min-height:64px;
 
-      background: transparent;
+  padding:0;
 
-      color: #3c4b5e;
+  margin:0;
 
-      font-size:
-        clamp(55px, 13vw, 88px);
+  display:flex;
+  align-items:center;
+  justify-content:center;
 
-      line-height: 1;
+  cursor:pointer;
 
-      cursor: pointer;
+  position:relative;
 
-      padding:
-        clamp(3px, 1vw, 8px);
+  color:#526174;
 
-      width:
-        clamp(58px, 15vw, 105px);
+  opacity:1;
 
-      height:
-        clamp(68px, 16vw, 105px);
+  visibility:visible;
 
-      display: flex;
-      align-items: center;
-      justify-content: center;
+  font-family:
+    Arial,
+    sans-serif;
 
-      transition:
-        color .18s ease,
-        transform .18s cubic-bezier(.2,.8,.2,1),
-        filter .18s ease;
+  font-size:
+    clamp(52px,15vw,92px);
 
-      transform-origin: center;
+  line-height:1;
 
-    }
+  font-weight:900;
 
+  -webkit-text-fill-color:#526174;
 
-    .star:hover {
+  text-shadow:
+    0 3px 10px rgba(0,0,0,.30);
 
-      transform: scale(1.08);
+  transform:
+    translateZ(0)
+    scale(1);
 
-      color: #69798c;
+  transition:
+    color .18s ease,
+    -webkit-text-fill-color .18s ease,
+    transform .18s ease,
+    text-shadow .18s ease,
+    filter .18s ease;
 
-    }
+  touch-action:manipulation;
 
+}
 
-    .star:active {
 
-      transform: scale(.88);
+/* =========================================================
+   STAR HOVER
+   ========================================================= */
 
-    }
+.star:hover{
 
+  color:#ffd968;
 
-    .star.active {
+  -webkit-text-fill-color:#ffd968;
 
-      color: #ffc83d;
+  transform:
+    translateZ(0)
+    scale(1.10);
 
-      filter:
-        drop-shadow(
-          0 0 13px
-          rgba(255,200,61,.24)
-        );
+}
 
-      animation:
-        starPop .28s cubic-bezier(.2,.9,.3,1.4);
 
-    }
+/* =========================================================
+   STAR ACTIVE
+   ========================================================= */
 
+.star.active{
 
-    @keyframes starPop {
+  color:#ffc83d !important;
 
-      0% {
-        transform: scale(.72);
-      }
+  -webkit-text-fill-color:#ffc83d !important;
 
-      55% {
-        transform: scale(1.17);
-      }
+  opacity:1 !important;
 
-      100% {
-        transform: scale(1);
-      }
+  visibility:visible !important;
 
-    }
+  transform:
+    translateZ(0)
+    scale(1.08);
 
+  text-shadow:
+    0 0 8px rgba(255,200,61,.45),
+    0 0 22px rgba(255,200,61,.28),
+    0 4px 12px rgba(0,0,0,.35);
 
-    .rating-text {
+  filter:
+    drop-shadow(
+      0 0 7px
+      rgba(255,200,61,.30)
+    );
 
-      min-height: 28px;
+  animation:
+    starPop .28s cubic-bezier(.2,1.5,.4,1);
 
-      color: #aebbc9;
+}
 
-      font-size:
-        clamp(14px, 3.6vw, 17px);
 
-      font-weight: 500;
+@keyframes starPop{
 
-      text-align: center;
+  0%{
 
-      margin-bottom:
-        clamp(25px, 5vh, 42px);
+    opacity:1;
 
-      transition:
-        opacity .2s ease,
-        transform .2s ease;
+    transform:
+      translateZ(0)
+      scale(.72)
+      rotate(-8deg);
 
-    }
+  }
 
+  55%{
 
-    /* =====================================================
-       MESSAGE PANEL
-       ===================================================== */
+    opacity:1;
 
-    .message {
+    transform:
+      translateZ(0)
+      scale(1.18)
+      rotate(3deg);
 
-      width: 100%;
+  }
 
-      max-width: 760px;
+  100%{
 
-      text-align: center;
+    opacity:1;
 
-      padding:
-        clamp(20px, 5vw, 34px);
+    transform:
+      translateZ(0)
+      scale(1.08)
+      rotate(0);
 
-      border-radius:
-        clamp(22px, 5vw, 30px);
+  }
 
-      background:
-        linear-gradient(
-          145deg,
-          rgba(18,39,61,.88),
-          rgba(9,25,41,.78)
-        );
+}
 
-      border:
-        1px solid rgba(255,255,255,.075);
 
-      box-shadow:
-        0 25px 70px rgba(0,0,0,.25),
-        inset 0 1px 0 rgba(255,255,255,.035);
+/* =========================================================
+   RATING TEXT
+   ========================================================= */
 
-      animation:
-        messageIn .28s cubic-bezier(.2,.8,.2,1);
+.rating-text{
 
-    }
+  width:100%;
 
+  min-height:32px;
 
-    @keyframes messageIn {
+  text-align:center;
 
-      from {
-        opacity: 0;
-        transform: translateY(14px) scale(.98);
-      }
+  color:#9eacbd;
 
-      to {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-      }
+  font-size:
+    clamp(16px,4.3vw,20px);
 
-    }
+  line-height:1.4;
 
+  font-weight:500;
 
-    .message h2 {
+  margin-bottom:32px;
 
-      font-size:
-        clamp(21px, 5.5vw, 30px);
+  transition:
+    color .2s ease,
+    transform .2s ease;
 
-      line-height: 1.2;
+}
 
-      margin-bottom: 10px;
 
-      letter-spacing: -.35px;
+.rating-text:not(:empty){
 
-    }
+  color:#dce6f1;
 
+}
 
-    .message p {
 
-      color: #aab7c7;
+/* =========================================================
+   MESSAGE
+   ========================================================= */
 
-      font-size:
-        clamp(14px, 3.7vw, 17px);
+.message{
 
-      line-height: 1.55;
+  width:100%;
 
-      margin-bottom: 22px;
+  display:none;
 
-    }
+  text-align:center;
 
+}
 
-    /* =====================================================
-       TEXTAREA
-       ===================================================== */
 
-    textarea {
+.message.show{
 
-      width: 100%;
+  display:block;
 
-      min-height:
-        clamp(130px, 24vh, 190px);
+  animation:
+    messageEnter .45s
+    cubic-bezier(.2,.8,.2,1);
 
-      resize: vertical;
+}
 
-      padding:
-        clamp(15px, 4vw, 20px);
 
-      border-radius:
-        clamp(16px, 4vw, 20px);
+@keyframes messageEnter{
 
-      border:
-        1px solid rgba(255,255,255,.10);
+  from{
 
-      background:
-        rgba(4,14,25,.82);
+    opacity:0;
 
-      color: white;
+    transform:
+      translateY(20px)
+      scale(.98);
 
-      font-size:
-        clamp(15px, 4vw, 17px);
+  }
 
-      line-height: 1.55;
+  to{
 
-      outline: none;
+    opacity:1;
 
-      margin-bottom: 10px;
+    transform:
+      translateY(0)
+      scale(1);
 
-      transition:
-        border-color .2s ease,
-        box-shadow .2s ease;
+  }
 
-    }
+}
 
 
-    textarea::placeholder {
+/* =========================================================
+   MESSAGE TITLE
+   ========================================================= */
 
-      color: #66778b;
+.message h2{
 
-    }
+  width:100%;
 
+  font-size:
+    clamp(24px,6.5vw,34px);
 
-    textarea:focus {
+  line-height:1.2;
 
-      border-color:
-        rgba(255,200,61,.42);
+  font-weight:800;
 
-      box-shadow:
-        0 0 0 4px
-        rgba(255,200,61,.055);
+  letter-spacing:-.5px;
 
-    }
+  margin-bottom:12px;
 
+}
 
-    /* =====================================================
-       BUTTONS
-       ===================================================== */
 
-    .button {
+/* =========================================================
+   MESSAGE DESCRIPTION
+   ========================================================= */
 
-      display: flex;
+.message p{
 
-      width: 100%;
+  width:100%;
 
-      min-height:
-        clamp(58px, 9vh, 72px);
+  max-width:650px;
 
-      padding:
-        15px 20px;
+  margin:
+    0 auto 27px;
 
-      border-radius:
-        clamp(16px, 4vw, 20px);
+  color:#aebdce;
 
-      border: none;
+  font-size:
+    clamp(17px,4.6vw,21px);
 
-      text-decoration: none;
+  line-height:1.55;
 
-      font-size:
-        clamp(15px, 4vw, 18px);
+}
 
-      font-weight: 750;
 
-      cursor: pointer;
+/* =========================================================
+   GOOGLE / PRIVATE AREAS
+   ========================================================= */
 
-      margin-top: 12px;
+#googleArea,
+#privateArea{
 
-      text-align: center;
+  width:100%;
 
-      align-items: center;
-      justify-content: center;
+}
 
-      transition:
-        transform .15s ease,
-        opacity .15s ease,
-        box-shadow .2s ease;
 
-    }
+/* =========================================================
+   BUTTONS
+   ========================================================= */
 
+.button{
 
-    .button:hover {
+  display:flex;
 
-      transform: translateY(-2px);
+  width:100%;
 
-    }
+  min-height:70px;
 
+  padding:
+    17px 22px;
 
-    .button:active {
+  border-radius:20px;
 
-      transform: scale(.975);
+  border:0;
 
-    }
+  text-decoration:none;
 
+  font-size:
+    clamp(18px,5vw,23px);
 
-    .google {
+  font-weight:800;
 
-      background:
-        linear-gradient(
-          135deg,
-          #ffffff,
-          #e9edf2
-        );
+  line-height:1.25;
 
-      color: #101722;
+  cursor:pointer;
 
-      box-shadow:
-        0 12px 30px rgba(0,0,0,.22);
+  align-items:center;
+  justify-content:center;
 
-    }
+  text-align:center;
 
+  transition:
+    transform .15s ease,
+    box-shadow .2s ease,
+    filter .2s ease;
 
-    .google:hover {
+  touch-action:manipulation;
 
-      box-shadow:
-        0 16px 36px rgba(0,0,0,.28);
+}
 
-    }
 
+.button:hover{
 
-    .private {
+  transform:translateY(-2px);
 
-      background:
-        linear-gradient(
-          135deg,
-          #203c59,
-          #152d46
-        );
+}
 
-      color: white;
 
-      border:
-        1px solid rgba(255,255,255,.07);
+.button:active{
 
-      box-shadow:
-        0 12px 30px rgba(0,0,0,.20);
+  transform:
+    translateY(1px)
+    scale(.985);
 
-    }
+}
 
 
-    /* =====================================================
-       FOOTER
-       ===================================================== */
+/* =========================================================
+   GOOGLE BUTTON
+   ========================================================= */
 
-    .small {
+.google{
 
-      margin-top: auto;
+  background:
+    linear-gradient(
+      135deg,
+      #ffffff,
+      #eef2f6
+    );
 
-      padding-top:
-        clamp(30px, 6vh, 55px);
+  color:#101722;
 
-      text-align: center;
+  box-shadow:
+    0 15px 35px rgba(0,0,0,.25);
 
-      color: #53657a;
+}
 
-      font-size:
-        clamp(11px, 3vw, 13px);
 
-      letter-spacing: .15px;
+.google:hover{
 
-    }
+  box-shadow:
+    0 20px 42px rgba(0,0,0,.32);
 
+}
 
-    /* =====================================================
-       ERROR
-       ===================================================== */
 
-    .error {
+/* =========================================================
+   PRIVATE BUTTON
+   ========================================================= */
 
-      color: #ff8f8f;
+.private{
 
-    }
+  background:
+    linear-gradient(
+      135deg,
+      #203c5a,
+      #172e47
+    );
 
+  color:#fff;
 
-    /* =====================================================
-       LARGE SCREENS
-       ===================================================== */
+  border:
+    1px solid rgba(255,255,255,.10);
 
-    @media (min-width: 700px) {
+  box-shadow:
+    0 15px 35px rgba(0,0,0,.25);
 
-      .content {
+}
 
-        justify-content: center;
 
-      }
+.private:hover{
 
+  filter:brightness(1.08);
 
-      .business-header {
+}
 
-        margin-bottom: 55px;
 
-      }
+/* =========================================================
+   TEXTAREA
+   ========================================================= */
 
+textarea{
 
-      #feedbackArea {
+  width:100%;
 
-        flex: initial;
+  min-height:170px;
 
-      }
+  resize:vertical;
 
+  padding:20px;
 
-      .stars {
+  border-radius:20px;
 
-        margin-bottom: 20px;
+  border:
+    1px solid rgba(255,255,255,.12);
 
-      }
+  background:
+    linear-gradient(
+      145deg,
+      #091522,
+      #07111f
+    );
 
+  color:#fff;
 
-      .message {
+  font-family:inherit;
 
-        margin-top: 5px;
+  font-size:
+    clamp(17px,4.7vw,20px);
 
-      }
+  line-height:1.5;
 
-    }
+  outline:none;
 
+  margin-bottom:12px;
 
-    /* =====================================================
-       VERY SMALL PHONES
-       ===================================================== */
+  box-shadow:
+    inset 0 1px 0
+    rgba(255,255,255,.03);
 
-    @media (max-height: 680px) {
+}
 
-      .content {
 
-        padding-top: 24px;
-        padding-bottom: 20px;
+textarea::placeholder{
 
-      }
+  color:#718298;
 
+}
 
-      .business-header {
 
-        margin-bottom: 20px;
+textarea:focus{
 
-      }
+  border-color:
+    rgba(255,200,61,.55);
 
+  box-shadow:
+    0 0 0 4px
+    rgba(255,200,61,.08);
 
-      .logo {
+}
 
-        width: 70px;
-        height: 70px;
 
-        border-radius: 20px;
+/* =========================================================
+   FOOTER
+   ========================================================= */
 
-        margin-bottom: 12px;
+.small{
 
-      }
+  margin-top:auto;
 
+  padding-top:40px;
 
-      h1 {
+  width:100%;
 
-        font-size: 25px;
+  text-align:center;
 
-      }
+  color:#66758a;
 
+  font-size:
+    clamp(13px,3.5vw,16px);
 
-      .subtitle {
+  line-height:1.4;
 
-        font-size: 14px;
+}
 
-      }
 
+/* =========================================================
+   ERROR
+   ========================================================= */
 
-      .star {
+.error{
 
-        font-size: 48px;
+  color:#ff9696;
 
-        width: 53px;
-        height: 60px;
+  font-weight:600;
 
-      }
+}
 
 
-      .rating-text {
+/* =========================================================
+   HIDDEN
+   ========================================================= */
 
-        margin-bottom: 15px;
+.hidden{
 
-      }
+  display:none !important;
 
+}
 
-      .message {
 
-        padding: 17px;
+/* =========================================================
+   DESKTOP / TABLET
+   ========================================================= */
 
-      }
+@media(min-width:700px){
 
-    }
+  .main{
 
+    padding-left:40px;
+    padding-right:40px;
 
-  </style>
+  }
+
+
+  .logo{
+
+    width:130px;
+    height:130px;
+
+    border-radius:36px;
+
+    font-size:60px;
+
+  }
+
+
+  h1{
+
+    font-size:50px;
+
+  }
+
+
+  .subtitle{
+
+    font-size:22px;
+
+  }
+
+
+  .stars{
+
+    gap:12px;
+
+  }
+
+
+  .star{
+
+    width:105px;
+    height:110px;
+
+    font-size:92px;
+
+  }
+
+
+  .button{
+
+    min-height:76px;
+
+  }
+
+}
+
+
+/* =========================================================
+   SMALL PHONES
+   ========================================================= */
+
+@media(max-height:700px){
+
+  .logo{
+
+    width:82px;
+    height:82px;
+
+    border-radius:24px;
+
+    margin-top:12px;
+    margin-bottom:16px;
+
+    font-size:38px;
+
+  }
+
+
+  h1{
+
+    font-size:29px;
+
+    margin-bottom:7px;
+
+  }
+
+
+  .subtitle{
+
+    font-size:16px;
+
+    margin-bottom:22px;
+
+  }
+
+
+  .star{
+
+    width:56px;
+    height:60px;
+
+    font-size:50px;
+
+  }
+
+
+  .rating-text{
+
+    margin-bottom:20px;
+
+  }
+
+
+  .message h2{
+
+    font-size:23px;
+
+  }
+
+
+  .message p{
+
+    font-size:16px;
+
+    margin-bottom:18px;
+
+  }
+
+
+  .button{
+
+    min-height:62px;
+
+    font-size:18px;
+
+  }
+
+
+  textarea{
+
+    min-height:120px;
+
+  }
+
+
+  .small{
+
+    padding-top:20px;
+
+  }
+
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media(
+  prefers-reduced-motion:reduce
+){
+
+  *,
+  *::before,
+  *::after{
+
+    animation-duration:.01ms !important;
+
+    animation-iteration-count:1 !important;
+
+    transition-duration:.01ms !important;
+
+    scroll-behavior:auto !important;
+
+  }
+
+}
+
+</style>
 
 </head>
 
@@ -862,48 +1092,53 @@
 <div class="app">
 
 
-  <div class="background-glow"></div>
-  <div class="background-glow two"></div>
+  <main class="main">
 
 
-  <main class="content">
+    <!-- =====================================================
+         LOGO
+         ===================================================== -->
+
+    <div
+      class="logo"
+      id="logo"
+    >
+
+      🍽️
+
+    </div>
 
 
-    <!-- =================================================
-         BUSINESS HEADER
-         ================================================= -->
+    <!-- =====================================================
+         BUSINESS NAME
+         ===================================================== -->
 
-    <section class="business-header">
+    <h1
+      id="businessName"
+    >
 
+      Loading...
 
-      <div
-        class="logo"
-        id="logo"
-      >
-        🍽️
-      </div>
+    </h1>
 
 
-      <h1 id="businessName">
-        Loading...
-      </h1>
+    <!-- =====================================================
+         SUBTITLE
+         ===================================================== -->
+
+    <p
+      class="subtitle"
+      id="subtitle"
+    >
+
+      Loading your experience...
+
+    </p>
 
 
-      <p
-        class="subtitle"
-        id="subtitle"
-      >
-        Loading your experience...
-      </p>
-
-
-    </section>
-
-
-
-    <!-- =================================================
+    <!-- =====================================================
          FEEDBACK AREA
-         ================================================= -->
+         ===================================================== -->
 
     <div
       id="feedbackArea"
@@ -911,149 +1146,147 @@
     >
 
 
-      <section class="rating-section">
+      <!-- ===================================================
+           STARS
+           =================================================== -->
+
+      <div
+        class="stars"
+        id="stars"
+      >
 
 
-        <!-- STARS -->
+        <button
+          type="button"
+          class="star"
+          data-rating="1"
+          aria-label="1 star"
+        >★</button>
+
+
+        <button
+          type="button"
+          class="star"
+          data-rating="2"
+          aria-label="2 stars"
+        >★</button>
+
+
+        <button
+          type="button"
+          class="star"
+          data-rating="3"
+          aria-label="3 stars"
+        >★</button>
+
+
+        <button
+          type="button"
+          class="star"
+          data-rating="4"
+          aria-label="4 stars"
+        >★</button>
+
+
+        <button
+          type="button"
+          class="star"
+          data-rating="5"
+          aria-label="5 stars"
+        >★</button>
+
+
+      </div>
+
+
+      <!-- ===================================================
+           RATING TEXT
+           =================================================== -->
+
+      <div
+        class="rating-text"
+        id="ratingText"
+      >
+
+        Tap a star to rate your experience
+
+      </div>
+
+
+      <!-- ===================================================
+           MESSAGE
+           =================================================== -->
+
+      <section
+        class="message"
+        id="message"
+      >
+
+
+        <h2
+          id="messageTitle"
+        ></h2>
+
+
+        <p
+          id="messageText"
+        ></p>
+
+
+        <!-- ===============================================
+             3–5 STARS → GOOGLE
+             =============================================== -->
 
         <div
-          class="stars"
-          id="stars"
+          id="googleArea"
+          class="hidden"
         >
 
-          <button
-            class="star"
-            data-rating="1"
-            type="button"
-            aria-label="1 star"
+
+          <a
+            id="googleButton"
+            class="button google"
+            href="#"
+            target="_blank"
+            rel="noopener"
           >
-            ★
-          </button>
 
+            ⭐ Leave us a Google review
 
-          <button
-            class="star"
-            data-rating="2"
-            type="button"
-            aria-label="2 stars"
-          >
-            ★
-          </button>
+          </a>
 
-
-          <button
-            class="star"
-            data-rating="3"
-            type="button"
-            aria-label="3 stars"
-          >
-            ★
-          </button>
-
-
-          <button
-            class="star"
-            data-rating="4"
-            type="button"
-            aria-label="4 stars"
-          >
-            ★
-          </button>
-
-
-          <button
-            class="star"
-            data-rating="5"
-            type="button"
-            aria-label="5 stars"
-          >
-            ★
-          </button>
 
         </div>
 
 
-        <!-- RATING TEXT -->
+        <!-- ===============================================
+             1–2 STARS → PRIVATE WHATSAPP
+             =============================================== -->
 
         <div
-          class="rating-text"
-          id="ratingText"
+          id="privateArea"
+          class="hidden"
         >
-          Tap a star to rate your experience
+
+
+          <textarea
+            id="feedbackMessage"
+            placeholder="Tell us what went wrong or how we can improve..."
+          ></textarea>
+
+
+          <button
+            id="sendPrivate"
+            class="button private"
+            type="button"
+          >
+
+            💬 Send privately
+
+          </button>
+
+
         </div>
-
-
-        <!-- =================================================
-             MESSAGE
-             ================================================= -->
-
-        <section
-          class="message"
-          id="message"
-        >
-
-
-          <h2
-            id="messageTitle"
-          ></h2>
-
-
-          <p
-            id="messageText"
-          ></p>
-
-
-          <!-- ===============================================
-               3–5 STARS → GOOGLE
-               =============================================== -->
-
-          <div
-            id="googleArea"
-            class="hidden"
-          >
-
-            <a
-              id="googleButton"
-              class="button google"
-              href="#"
-              target="_blank"
-              rel="noopener"
-            >
-              ⭐ Leave us a Google review
-            </a>
-
-          </div>
-
-
-          <!-- ===============================================
-               1–2 STARS → PRIVATE WHATSAPP
-               =============================================== -->
-
-          <div
-            id="privateArea"
-            class="hidden"
-          >
-
-
-            <textarea
-              id="feedbackMessage"
-              placeholder="Tell us what went wrong or how we can improve..."
-            ></textarea>
-
-
-            <button
-              id="sendPrivate"
-              class="button private"
-              type="button"
-            >
-              💬 Send privately
-            </button>
-
-
-          </div>
-
-
-        </section>
 
 
       </section>
@@ -1062,7 +1295,9 @@
     </div>
 
 
-    <!-- FOOTER -->
+    <!-- =====================================================
+         FOOTER
+         ===================================================== -->
 
     <div class="small">
 
@@ -1431,21 +1666,31 @@ stars.forEach(
           );
 
 
-        /* Highlight stars */
+        /* ==========================================
+           HIGHLIGHT STARS
+           ========================================== */
 
         stars.forEach(
           s => {
 
-            s.classList.toggle(
-              "active",
+            const value =
               Number(
                 s.dataset.rating
-              ) <= selectedRating
+              );
+
+
+            s.classList.toggle(
+              "active",
+              value <= selectedRating
             );
 
           }
         );
 
+
+        /* ==========================================
+           RATING TEXT
+           ========================================== */
 
         ratingText.textContent =
           `${selectedRating} out of 5 stars`;
@@ -1481,6 +1726,8 @@ stars.forEach(
             .classList
             .remove("hidden");
 
+
+          /* Clear previous comment */
 
           feedbackMessage.value =
             "";
@@ -1553,6 +1800,18 @@ document
   .addEventListener(
     "click",
     () => {
+
+      /*
+        IMPORTANT:
+
+        The comment is OPTIONAL.
+
+        If the customer writes something,
+        it will be included.
+
+        If they leave it empty,
+        WhatsApp still opens.
+      */
 
       const text =
         feedbackMessage
