@@ -260,39 +260,12 @@
 
     }
 
-    .whatsapp {
-
-      background: #25D366;
-
-      color: white;
-
-    }
-
     .private {
 
       background: #1b3049;
 
       color: white;
 
-    }
-
-    .status {
-
-      display: none;
-
-      margin-top: 15px;
-
-      padding: 12px;
-
-      border-radius: 12px;
-
-      background: #132a45;
-
-      color: #cbd5e1;
-
-      font-size: 13px;
-
-      line-height: 1.4;
     }
 
     .small {
@@ -443,7 +416,7 @@
 
 
       <!-- ==========================================
-           3–5 STARS
+           3–5 STARS → GOOGLE
            ========================================== -->
 
       <div
@@ -467,7 +440,7 @@
 
 
       <!-- ==========================================
-           1–2 STARS
+           1–2 STARS → PRIVATE WHATSAPP
            ========================================== -->
 
       <div
@@ -488,13 +461,6 @@
           💬 Send privately
 
         </button>
-
-
-        <div
-          id="status"
-          class="status">
-
-        </div>
 
 
       </div>
@@ -543,7 +509,6 @@ function getCardCode() {
       window.location.search
     );
 
-
   return params.get("card");
 
 }
@@ -554,7 +519,6 @@ function getCardCode() {
    ========================================================= */
 
 async function supabaseGet(endpoint) {
-
 
   const response =
     await fetch(
@@ -610,7 +574,6 @@ let selectedRating = null;
 
 async function loadCard() {
 
-
   const cardCode =
     getCardCode();
 
@@ -653,7 +616,6 @@ async function loadCard() {
 
 
   try {
-
 
     /* ==========================================
        FIND CARD
@@ -726,7 +688,6 @@ async function loadCard() {
       currentBusiness.logo_url
     ) {
 
-
       const logo =
         document.getElementById(
           "logo"
@@ -782,12 +743,10 @@ async function loadCard() {
       .classList
       .remove("hidden");
 
-
   }
 
 
   catch (error) {
-
 
     console.error(
       error
@@ -867,11 +826,9 @@ const feedbackMessage =
 stars.forEach(
   star => {
 
-
     star.addEventListener(
       "click",
       () => {
-
 
         selectedRating =
           Number(
@@ -912,7 +869,6 @@ stars.forEach(
           selectedRating <= 2
         ) {
 
-
           messageTitle.textContent =
             "We're sorry about your experience.";
 
@@ -931,9 +887,10 @@ stars.forEach(
             .remove("hidden");
 
 
+          /* Clear previous comment */
+
           feedbackMessage.value =
             "";
-
 
         }
 
@@ -943,7 +900,6 @@ stars.forEach(
            ========================================== */
 
         else {
-
 
           privateArea
             .classList
@@ -964,7 +920,6 @@ stars.forEach(
 
           }
 
-
           else if (
             selectedRating === 4
           ) {
@@ -973,7 +928,6 @@ stars.forEach(
               "We're glad you enjoyed your experience!";
 
           }
-
 
           else {
 
@@ -989,7 +943,6 @@ stars.forEach(
         }
 
       }
-
     );
 
   }
@@ -1008,6 +961,17 @@ document
     "click",
     () => {
 
+      /*
+        IMPORTANT:
+
+        The comment is OPTIONAL.
+
+        If the customer writes something,
+        it will be included.
+
+        If they leave it empty,
+        WhatsApp still opens.
+      */
 
       const text =
         feedbackMessage
@@ -1015,51 +979,34 @@ document
           .trim();
 
 
-      /* Empty message */
-
-      if (!text) {
-
-
-        feedbackMessage.focus();
-
-
-        feedbackMessage.placeholder =
-          "Please write your feedback first.";
-
-
-        return;
-
-      }
-
-
-      /* No business */
+      /* ==========================================
+         CHECK BUSINESS
+         ========================================== */
 
       if (
         !currentBusiness
       ) {
 
-
         alert(
           "Business information is unavailable."
         );
-
 
         return;
 
       }
 
 
-      /* No WhatsApp */
+      /* ==========================================
+         CHECK WHATSAPP NUMBER
+         ========================================== */
 
       if (
         !currentBusiness.whatsapp_number
       ) {
 
-
         alert(
           "WhatsApp contact is not configured for this business."
         );
-
 
         return;
 
@@ -1081,7 +1028,7 @@ document
 
 
       /*
-        Algeria number:
+        Algeria example:
 
         0555123456
 
@@ -1102,7 +1049,7 @@ document
 
 
       /* ==========================================
-         CREATE MESSAGE
+         CREATE BASE MESSAGE
          ========================================== */
 
       const businessName =
@@ -1110,17 +1057,29 @@ document
         "Business";
 
 
-      const whatsappMessage =
+      let whatsappMessage =
 `🔒 Private feedback — ${businessName}
 
-⭐ Rating: ${selectedRating}/5
+⭐ Rating: ${selectedRating}/5`;
+
+
+      /* ==========================================
+         ADD COMMENT ONLY IF PROVIDED
+         ========================================== */
+
+      if (text.length > 0) {
+
+        whatsappMessage +=
+`
 
 💬 Customer feedback:
 ${text}`;
 
+      }
+
 
       /* ==========================================
-         ENCODE
+         ENCODE MESSAGE
          ========================================== */
 
       const encodedMessage =
@@ -1130,7 +1089,7 @@ ${text}`;
 
 
       /* ==========================================
-         WHATSAPP URL
+         CREATE WHATSAPP URL
          ========================================== */
 
       const whatsappURL =
@@ -1143,7 +1102,6 @@ ${text}`;
 
       window.location.href =
         whatsappURL;
-
 
     }
   );
