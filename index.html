@@ -9,7 +9,7 @@
 <style>
 
 /* =========================================================
-   SMART REVIEW — PREMIUM FULL-SCREEN UI
+   SMART REVIEW — AAA FULL SCREEN EXPERIENCE
    ========================================================= */
 
 *{
@@ -21,7 +21,7 @@
 html{
   width:100%;
   min-height:100%;
-  background:#050b14;
+  background:#040912;
 }
 
 body{
@@ -39,26 +39,31 @@ body{
 
   background:
     radial-gradient(
-      circle at 50% -10%,
-      rgba(255,200,61,.10),
-      transparent 38%
+      circle at 50% 12%,
+      rgba(105,145,190,.13),
+      transparent 34%
     ),
     radial-gradient(
-      circle at 10% 100%,
-      rgba(46,102,160,.14),
-      transparent 38%
+      circle at 50% 88%,
+      rgba(130,155,185,.08),
+      transparent 34%
+    ),
+    radial-gradient(
+      circle at 10% 50%,
+      rgba(30,75,120,.10),
+      transparent 35%
     ),
     linear-gradient(
       180deg,
       #07111f 0%,
-      #050b14 100%
+      #040912 100%
     );
 
   color:#fff;
 
   display:flex;
   justify-content:center;
-  align-items:stretch;
+  align-items:center;
 
   overflow-x:hidden;
 
@@ -86,26 +91,27 @@ button{
   min-height:100vh;
   min-height:100dvh;
 
-  display:flex;
-  flex-direction:column;
-
   position:relative;
+
+  display:flex;
+  justify-content:center;
+  align-items:center;
 
   overflow:hidden;
 }
 
 
 /* =========================================================
-   TOP DECORATION
+   PREMIUM BACKGROUND GLOW
    ========================================================= */
 
 .top-glow{
   position:absolute;
 
-  width:420px;
-  height:420px;
+  width:650px;
+  height:650px;
 
-  top:-260px;
+  top:-300px;
   left:50%;
 
   transform:translateX(-50%);
@@ -113,32 +119,40 @@ button{
   background:
     radial-gradient(
       circle,
-      rgba(255,200,61,.16) 0%,
-      rgba(255,200,61,.05) 30%,
+      rgba(180,205,230,.12) 0%,
+      rgba(100,140,180,.06) 30%,
       transparent 70%
     );
 
   pointer-events:none;
+
+  filter:blur(2px);
 }
 
 
 /* =========================================================
-   MAIN CONTENT
+   MAIN — TRUE CENTER
    ========================================================= */
 
 .main{
   width:100%;
+  max-width:760px;
 
-  flex:1;
+  min-height:100vh;
+  min-height:100dvh;
 
   display:flex;
   flex-direction:column;
+
+  justify-content:center;
   align-items:center;
 
+  text-align:center;
+
   padding:
-    max(34px,env(safe-area-inset-top))
+    max(32px,env(safe-area-inset-top))
     24px
-    20px
+    max(32px,env(safe-area-inset-bottom))
     24px;
 
   position:relative;
@@ -147,43 +161,49 @@ button{
 
 
 /* =========================================================
-   BUSINESS BRANDING
+   CENTER CONTENT GROUP
    ========================================================= */
 
-.business-section{
+.business-section,
+.feedback-area{
   width:100%;
-  max-width:650px;
 
   display:flex;
   flex-direction:column;
   align-items:center;
+}
 
-  text-align:center;
 
-  margin-top:8px;
+/* =========================================================
+   BUSINESS BRANDING
+   ========================================================= */
+
+.business-section{
+  animation:
+    contentEnter .65s cubic-bezier(.2,.8,.2,1) both;
 }
 
 
 .logo{
-  width:128px;
-  height:128px;
+  width:138px;
+  height:138px;
 
-  border-radius:34px;
+  border-radius:36px;
 
   background:
     linear-gradient(
       145deg,
-      #172f4d,
-      #0c1b2d
+      #193451,
+      #0a1728
     );
 
   border:
-    1px solid rgba(255,255,255,.13);
+    1px solid rgba(220,235,250,.15);
 
   box-shadow:
-    0 18px 50px rgba(0,0,0,.38),
-    0 0 0 7px rgba(255,255,255,.025),
-    inset 0 1px 0 rgba(255,255,255,.08);
+    0 25px 70px rgba(0,0,0,.45),
+    0 0 0 8px rgba(170,200,230,.025),
+    inset 0 1px 0 rgba(255,255,255,.10);
 
   display:flex;
   align-items:center;
@@ -191,17 +211,21 @@ button{
 
   overflow:hidden;
 
-  font-size:55px;
+  font-size:60px;
 
-  margin-bottom:24px;
+  margin-bottom:25px;
+
+  flex-shrink:0;
 
   animation:
-    logoEnter .65s cubic-bezier(.2,.8,.2,1) both;
+    logoEnter .7s cubic-bezier(.2,.8,.2,1) both;
 }
+
 
 .logo img{
   width:100%;
   height:100%;
+
   object-fit:cover;
 }
 
@@ -211,8 +235,8 @@ button{
   from{
     opacity:0;
     transform:
-      translateY(-15px)
-      scale(.88);
+      translateY(-18px)
+      scale(.86);
   }
 
   to{
@@ -231,52 +255,45 @@ button{
 
 .business-name{
   font-size:
-    clamp(30px,7vw,48px);
+    clamp(31px,7vw,50px);
 
   line-height:1.08;
 
   font-weight:850;
 
-  letter-spacing:-1.2px;
+  letter-spacing:-1.4px;
 
-  color:#fff;
+  color:#ffffff;
 
   max-width:100%;
 
   overflow-wrap:anywhere;
 
-  margin-bottom:13px;
+  margin-bottom:12px;
 }
 
 
 .subtitle{
-  color:#aebccc;
+  color:#aebdce;
 
   font-size:
     clamp(17px,4.4vw,22px);
 
   line-height:1.45;
 
-  max-width:560px;
+  max-width:600px;
 
-  margin-bottom:40px;
+  margin-bottom:34px;
 }
 
 
 /* =========================================================
-   FEEDBACK AREA
+   FEEDBACK
    ========================================================= */
 
 .feedback-area{
-  width:100%;
-  max-width:650px;
-
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-
   animation:
-    contentEnter .55s .12s cubic-bezier(.2,.8,.2,1) both;
+    contentEnter .6s .1s cubic-bezier(.2,.8,.2,1) both;
 }
 
 
@@ -284,7 +301,7 @@ button{
 
   from{
     opacity:0;
-    transform:translateY(15px);
+    transform:translateY(18px);
   }
 
   to{
@@ -301,17 +318,15 @@ button{
 
 .rating-question{
   font-size:
-    clamp(20px,5vw,28px);
+    clamp(21px,5vw,29px);
 
   font-weight:750;
 
-  color:#f3f6fa;
+  color:#f4f7fa;
 
-  text-align:center;
+  margin-bottom:24px;
 
-  margin-bottom:25px;
-
-  letter-spacing:-.3px;
+  letter-spacing:-.35px;
 }
 
 
@@ -330,7 +345,7 @@ button{
   gap:
     clamp(4px,2vw,14px);
 
-  margin-bottom:19px;
+  margin-bottom:17px;
 }
 
 
@@ -346,13 +361,12 @@ button{
   color:#46566c;
 
   width:
-    clamp(54px,14vw,92px);
+    clamp(55px,14vw,94px);
 
   height:
-    clamp(64px,16vw,100px);
+    clamp(65px,16vw,102px);
 
   padding:0;
-
   margin:0;
 
   display:flex;
@@ -360,7 +374,7 @@ button{
   justify-content:center;
 
   font-size:
-    clamp(53px,15vw,88px);
+    clamp(54px,15vw,90px);
 
   line-height:1;
 
@@ -387,7 +401,7 @@ button{
 }
 
 
-/* NO BLUE MOBILE/TABLET FOCUS BOX */
+/* Remove ugly mobile focus box */
 
 .star:focus{
   outline:none !important;
@@ -400,7 +414,7 @@ button{
 
 .star:focus-visible{
   outline:
-    3px solid rgba(255,200,61,.65) !important;
+    3px solid rgba(180,205,230,.65) !important;
 
   outline-offset:4px;
 
@@ -408,23 +422,24 @@ button{
 }
 
 
-/* Press animation */
+/* Press */
 
 .star:active{
   transform:scale(.84);
+
   background:transparent !important;
 }
 
 
-/* Gold selected stars */
+/* Selected */
 
 .star.active{
   color:#ffc83d;
 
   filter:
     drop-shadow(
-      0 5px 14px
-      rgba(255,200,61,.24)
+      0 5px 15px
+      rgba(255,200,61,.25)
     );
 
   animation:
@@ -460,7 +475,7 @@ button{
 .rating-text{
   min-height:31px;
 
-  color:#aebccc;
+  color:#aebdce;
 
   font-size:
     clamp(15px,4vw,19px);
@@ -469,7 +484,7 @@ button{
 
   text-align:center;
 
-  margin-bottom:29px;
+  margin-bottom:25px;
 }
 
 
@@ -511,30 +526,30 @@ button{
 
 .message h2{
   font-size:
-    clamp(22px,5.5vw,30px);
+    clamp(22px,5.5vw,31px);
 
   line-height:1.2;
 
   font-weight:800;
 
-  letter-spacing:-.4px;
+  letter-spacing:-.45px;
 
-  margin-bottom:11px;
+  margin-bottom:10px;
 }
 
 
 .message p{
-  color:#aebccc;
+  color:#aebdce;
 
   font-size:
     clamp(16px,4vw,19px);
 
   line-height:1.55;
 
-  max-width:580px;
+  max-width:620px;
 
   margin:
-    0 auto 24px;
+    0 auto 23px;
 }
 
 
@@ -545,11 +560,11 @@ button{
 .button{
   width:100%;
 
-  min-height:68px;
+  min-height:70px;
 
   padding:18px 22px;
 
-  border-radius:19px;
+  border-radius:20px;
 
   border:none;
 
@@ -559,8 +574,6 @@ button{
   align-items:center;
   justify-content:center;
 
-  gap:11px;
-
   font-size:
     clamp(17px,4.3vw,21px);
 
@@ -568,14 +581,12 @@ button{
 
   cursor:pointer;
 
-  margin-top:13px;
+  margin-top:12px;
 
   transition:
     transform .16s ease,
     box-shadow .2s ease,
-    opacity .2s ease,
-    background .25s ease,
-    color .25s ease;
+    opacity .2s ease;
 
   -webkit-tap-highlight-color:transparent;
 
@@ -588,109 +599,48 @@ button{
 }
 
 
+/* Google */
+
 .google{
   background:
     linear-gradient(
       135deg,
       #ffffff,
-      #edf1f5
+      #e9eef3
     );
 
   color:#101722;
 
   box-shadow:
-    0 14px 35px rgba(0,0,0,.28);
+    0 16px 40px rgba(0,0,0,.30);
 }
 
 
 .google:hover{
   box-shadow:
-    0 18px 42px rgba(0,0,0,.34);
+    0 20px 48px rgba(0,0,0,.36);
 
   transform:translateY(-2px);
 }
 
 
+/* Private */
+
 .private{
   background:
     linear-gradient(
       135deg,
-      #1e4265,
-      #17334f
+      #244b70,
+      #173650
     );
 
   color:#fff;
 
   border:
-    1px solid rgba(255,255,255,.10);
+    1px solid rgba(220,235,250,.13);
 
   box-shadow:
-    0 14px 35px rgba(0,0,0,.25);
-}
-
-
-/* =========================================================
-   WHATSAPP ACTIVE STATE
-   ========================================================= */
-
-.private.opening{
-  background:
-    linear-gradient(
-      135deg,
-      #20c76a,
-      #119b50
-    );
-
-  color:#ffffff;
-
-  border-color:
-    rgba(255,255,255,.22);
-
-  box-shadow:
-    0 14px 40px
-    rgba(20,190,90,.28);
-
-  cursor:wait;
-
-  transform:scale(.985);
-}
-
-
-.private.opening:hover{
-  transform:scale(.985);
-}
-
-
-.private:disabled{
-  pointer-events:none;
-}
-
-
-.whatsapp-spinner{
-  width:20px;
-  height:20px;
-
-  border-radius:50%;
-
-  border:
-    2.5px solid
-    rgba(255,255,255,.35);
-
-  border-top-color:#fff;
-
-  animation:
-    whatsappSpin .7s linear infinite;
-
-  flex-shrink:0;
-}
-
-
-@keyframes whatsappSpin{
-
-  to{
-    transform:rotate(360deg);
-  }
-
+    0 16px 40px rgba(0,0,0,.27);
 }
 
 
@@ -707,13 +657,13 @@ textarea{
 
   padding:18px;
 
-  border-radius:19px;
+  border-radius:20px;
 
   border:
-    1px solid rgba(255,255,255,.12);
+    1px solid rgba(220,235,250,.12);
 
   background:
-    rgba(4,10,18,.78);
+    rgba(3,9,16,.78);
 
   color:#fff;
 
@@ -731,22 +681,22 @@ textarea{
 
 
 textarea::placeholder{
-  color:#697a8f;
+  color:#718196;
 }
 
 
 textarea:focus{
   border-color:
-    rgba(255,200,61,.55);
+    rgba(180,205,230,.50);
 
   box-shadow:
     0 0 0 4px
-    rgba(255,200,61,.08);
+    rgba(180,205,230,.07);
 }
 
 
 /* =========================================================
-   SMART REVIEW BRANDING
+   SMART REVIEW — HERO BRANDING
    ========================================================= */
 
 .brand-footer{
@@ -756,99 +706,12 @@ textarea:focus{
   flex-direction:column;
   align-items:center;
 
-  margin-top:auto;
+  margin-top:34px;
 
-  padding:
-    44px
-    0
-    max(20px,env(safe-area-inset-bottom));
-}
-
-
-.brand-line{
-  width:105px;
-  height:1px;
-
-  background:
-    linear-gradient(
-      90deg,
-      transparent,
-      rgba(220,228,238,.70),
-      transparent
-    );
-
-  margin-bottom:20px;
-
-  box-shadow:
-    0 0 12px rgba(220,228,238,.08);
-}
-
-
-/*
-=========================================================
-SMART REVIEW — PREMIUM SILVER WORDMARK
-=========================================================
-*/
-
-.smart-review{
-  font-family:
-    -apple-system,
-    BlinkMacSystemFont,
-    "SF Pro Display",
-    "Segoe UI",
-    Roboto,
-    Arial,
-    sans-serif;
-
-  font-size:
-    clamp(29px,8vw,43px);
-
-  font-weight:850;
-
-  letter-spacing:
-    3.8px;
-
-  line-height:1;
-
-  text-transform:uppercase;
-
-  text-align:center;
-
-  /*
-    Metallic silver gradient
-  */
-
-  background:
-    linear-gradient(
-      180deg,
-      #ffffff 0%,
-      #eef2f6 22%,
-      #aeb8c4 52%,
-      #f8fafc 76%,
-      #b7c1cc 100%
-    );
-
-  -webkit-background-clip:text;
-  background-clip:text;
-
-  -webkit-text-fill-color:transparent;
-
-  color:transparent;
-
-  text-shadow:
-    0 8px 28px
-    rgba(255,255,255,.08);
-
-  filter:
-    drop-shadow(
-      0 4px 14px
-      rgba(0,0,0,.30)
-    );
+  padding:0 0 4px;
 
   animation:
-    brandEnter .7s .2s
-    cubic-bezier(.2,.8,.2,1)
-    both;
+    brandEnter .7s .25s cubic-bezier(.2,.8,.2,1) both;
 }
 
 
@@ -856,43 +719,137 @@ SMART REVIEW — PREMIUM SILVER WORDMARK
 
   from{
     opacity:0;
-    transform:
-      translateY(10px)
-      scale(.96);
-    letter-spacing:5px;
+    transform:translateY(12px);
   }
 
   to{
     opacity:1;
-    transform:
-      translateY(0)
-      scale(1);
-    letter-spacing:3.8px;
+    transform:translateY(0);
   }
 
 }
 
 
-.smart-review-sub{
-  margin-top:10px;
+/* Elegant separator */
 
-  color:#8492a4;
+.brand-line{
+  width:130px;
+  height:1px;
 
-  font-size:
-    clamp(11px,3vw,14px);
+  margin-bottom:20px;
 
-  font-weight:650;
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(180,205,230,.65),
+      transparent
+    );
 
-  letter-spacing:2.4px;
-
-  text-transform:uppercase;
-
-  text-align:center;
+  box-shadow:
+    0 0 16px rgba(170,200,230,.12);
 }
 
 
 /* =========================================================
-   LOADING / ERROR
+   SMART REVIEW WORDMARK
+   ========================================================= */
+
+.smart-review{
+
+  font-size:
+    clamp(30px,8vw,46px);
+
+  line-height:1;
+
+  font-weight:800;
+
+  letter-spacing:
+    clamp(3px,1vw,6px);
+
+  text-transform:uppercase;
+
+  /* Premium silver metallic gradient */
+
+  background:
+    linear-gradient(
+      180deg,
+      #ffffff 0%,
+      #e8edf2 25%,
+      #aeb9c5 52%,
+      #f7f9fb 75%,
+      #9da9b6 100%
+    );
+
+  -webkit-background-clip:text;
+  background-clip:text;
+
+  color:transparent;
+
+  /* Subtle metallic depth */
+
+  text-shadow:
+    0 0 20px rgba(190,210,230,.08),
+    0 8px 30px rgba(0,0,0,.28);
+
+  position:relative;
+}
+
+
+/* Subtle premium shine */
+
+.smart-review::after{
+
+  content:"";
+
+  position:absolute;
+
+  left:0;
+  right:0;
+
+  bottom:-7px;
+
+  height:1px;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(220,235,250,.35),
+      transparent
+    );
+
+  opacity:.7;
+}
+
+
+/* =========================================================
+   SMART REVIEW SUBLINE
+   ========================================================= */
+
+.smart-review-sub{
+
+  margin-top:17px;
+
+  color:#7f91a5;
+
+  font-size:
+    clamp(12px,3vw,15px);
+
+  font-weight:650;
+
+  letter-spacing:
+    clamp(2px,0.7vw,3px);
+
+  text-transform:uppercase;
+
+  line-height:1;
+
+}
+
+
+/* =========================================================
+   LOADING
    ========================================================= */
 
 .error{
@@ -913,7 +870,7 @@ SMART REVIEW — PREMIUM SILVER WORDMARK
 
   border-radius:50%;
 
-  background:#ffc83d;
+  background:#b9c9d9;
 
   margin:0 3px;
 
@@ -948,20 +905,25 @@ SMART REVIEW — PREMIUM SILVER WORDMARK
 
 
 /* =========================================================
-   SMALL MOBILE
+   SHORT MOBILE HEIGHT
    ========================================================= */
 
-@media(max-width:390px){
+@media(max-height:760px){
 
   .main{
-    padding-left:16px;
-    padding-right:16px;
+    justify-content:flex-start;
+
+    padding-top:
+      max(24px,env(safe-area-inset-top));
   }
 
   .logo{
-    width:108px;
-    height:108px;
+    width:105px;
+    height:105px;
+
     border-radius:29px;
+
+    margin-bottom:17px;
   }
 
   .business-name{
@@ -969,25 +931,61 @@ SMART REVIEW — PREMIUM SILVER WORDMARK
   }
 
   .subtitle{
-    margin-bottom:28px;
+    margin-bottom:22px;
   }
 
   .rating-question{
-    font-size:20px;
+    margin-bottom:15px;
+  }
+
+  .star{
+    height:65px;
+    font-size:55px;
+  }
+
+  .rating-text{
+    margin-bottom:18px;
+  }
+
+  .brand-footer{
+    margin-top:24px;
+  }
+
+}
+
+
+/* =========================================================
+   SMALL MOBILE WIDTH
+   ========================================================= */
+
+@media(max-width:390px){
+
+  .main{
+    padding-left:14px;
+    padding-right:14px;
+  }
+
+  .logo{
+    width:102px;
+    height:102px;
+  }
+
+  .business-name{
+    font-size:29px;
   }
 
   .stars{
-    gap:1px;
+    gap:0;
   }
 
   .star{
     width:59px;
-    height:68px;
+    height:67px;
     font-size:55px;
   }
 
   .smart-review{
-    font-size:28px;
+    font-size:30px;
     letter-spacing:3px;
   }
 
@@ -1001,24 +999,19 @@ SMART REVIEW — PREMIUM SILVER WORDMARK
 @media(min-width:700px){
 
   .main{
-    padding-top:55px;
-  }
+    max-width:820px;
 
-  .business-section{
-    margin-top:5px;
+    padding-left:40px;
+    padding-right:40px;
   }
 
   .logo{
-    width:145px;
-    height:145px;
+    width:150px;
+    height:150px;
   }
 
-  .feedback-area{
-    margin-top:4px;
-  }
-
-  .brand-footer{
-    padding-bottom:30px;
+  .smart-review{
+    font-size:48px;
   }
 
 }
@@ -1222,7 +1215,7 @@ SMART REVIEW — PREMIUM SILVER WORDMARK
 
 
     <!-- =====================================================
-         SMART REVIEW BRAND
+         SMART REVIEW
          ===================================================== -->
 
     <footer class="brand-footer">
@@ -1371,10 +1364,6 @@ async function loadCard(){
 
   try{
 
-    /* =====================================================
-       FIND CARD
-       ===================================================== */
-
     const cards =
       await supabaseGet(
         `cards?card_code=eq.${encodeURIComponent(cardCode)}&active=eq.true&select=*`
@@ -1394,10 +1383,6 @@ async function loadCard(){
       cards[0];
 
 
-    /* =====================================================
-       FIND BUSINESS
-       ===================================================== */
-
     const businesses =
       await supabaseGet(
         `businesses?id=eq.${encodeURIComponent(card.business_id)}&select=*`
@@ -1416,10 +1401,6 @@ async function loadCard(){
     currentBusiness =
       businesses[0];
 
-
-    /* =====================================================
-       BUSINESS NAME
-       ===================================================== */
 
     businessName.textContent =
       currentBusiness.name ||
@@ -1494,10 +1475,6 @@ async function loadCard(){
       currentBusiness.google_review_url ||
       "https://www.google.com/maps";
 
-
-    /* =====================================================
-       SHOW PAGE
-       ===================================================== */
 
     feedbackArea
       .classList
@@ -1612,15 +1589,20 @@ stars.forEach(
 
         const ratingLabels = {
 
-          1:"We'd like to do better.",
+          1:
+            "We'd like to do better.",
 
-          2:"Thanks for telling us.",
+          2:
+            "Thanks for telling us.",
 
-          3:"Thanks for your feedback.",
+          3:
+            "Thanks for your feedback.",
 
-          4:"Great to hear!",
+          4:
+            "Great to hear!",
 
-          5:"Amazing! We're thrilled!"
+          5:
+            "Amazing! We're thrilled!"
 
         };
 
@@ -1672,11 +1654,6 @@ stars.forEach(
 
           feedbackMessage.value =
             "";
-
-
-          /* Reset WhatsApp button if user changes rating */
-
-          resetWhatsAppButton();
 
         }
 
@@ -1732,204 +1709,103 @@ stars.forEach(
 
 
 /* =========================================================
-   WHATSAPP BUTTON
-   ========================================================= */
-
-const sendPrivateButton =
-  document.getElementById(
-    "sendPrivate"
-  );
-
-
-/* =========================================================
-   RESET WHATSAPP BUTTON
-   ========================================================= */
-
-function resetWhatsAppButton(){
-
-  sendPrivateButton.disabled =
-    false;
-
-  sendPrivateButton.classList.remove(
-    "opening"
-  );
-
-  sendPrivateButton.innerHTML =
-    "💬 Send privately";
-
-}
-
-
-/* =========================================================
    SEND PRIVATE FEEDBACK TO WHATSAPP
    ========================================================= */
 
-sendPrivateButton.addEventListener(
-  "click",
-  () => {
+document
+  .getElementById(
+    "sendPrivate"
+  )
+  .addEventListener(
+    "click",
+    () => {
 
-    /* =====================================================
-       PREVENT DOUBLE TAP
-       ===================================================== */
-
-    if(
-      sendPrivateButton.disabled
-    ){
-
-      return;
-
-    }
+      const text =
+        feedbackMessage
+          .value
+          .trim();
 
 
-    const text =
-      feedbackMessage
-        .value
-        .trim();
+      if(!currentBusiness){
+
+        alert(
+          "Business information is unavailable."
+        );
+
+        return;
+
+      }
 
 
-    /* =====================================================
-       CHECK BUSINESS
-       ===================================================== */
+      if(
+        !currentBusiness.whatsapp_number
+      ){
 
-    if(!currentBusiness){
+        alert(
+          "WhatsApp contact is not configured for this business."
+        );
 
-      alert(
-        "Business information is unavailable."
-      );
+        return;
 
-      return;
-
-    }
+      }
 
 
-    /* =====================================================
-       CHECK WHATSAPP
-       ===================================================== */
-
-    if(
-      !currentBusiness.whatsapp_number
-    ){
-
-      alert(
-        "WhatsApp contact is not configured for this business."
-      );
-
-      return;
-
-    }
+      let number =
+        String(
+          currentBusiness.whatsapp_number
+        )
+        .replace(
+          /\D/g,
+          ""
+        );
 
 
-    /* =====================================================
-       CLEAN WHATSAPP NUMBER
-       ===================================================== */
+      if(number.startsWith("0")){
 
-    let number =
-      String(
-        currentBusiness.whatsapp_number
-      )
-      .replace(
-        /\D/g,
-        ""
-      );
+        number =
+          "213" +
+          number.substring(1);
+
+      }
 
 
-    /*
-      Algeria:
-
-      0555123456
-
-      becomes:
-
-      213555123456
-    */
-
-    if(number.startsWith("0")){
-
-      number =
-        "213" +
-        number.substring(1);
-
-    }
+      const businessName =
+        currentBusiness.name ||
+        "Business";
 
 
-    /* =====================================================
-       MESSAGE
-       ===================================================== */
-
-    const businessName =
-      currentBusiness.name ||
-      "Business";
-
-
-    let whatsappMessage =
+      let whatsappMessage =
 `🔒 Private feedback — ${businessName}
 
 ⭐ Rating: ${selectedRating}/5`;
 
 
-    if(text.length > 0){
+      if(text.length > 0){
 
-      whatsappMessage +=
+        whatsappMessage +=
 `
 
 💬 Customer feedback:
 ${text}`;
 
+      }
+
+
+      const encodedMessage =
+        encodeURIComponent(
+          whatsappMessage
+        );
+
+
+      const whatsappURL =
+        `https://wa.me/${number}?text=${encodedMessage}`;
+
+
+      window.location.href =
+        whatsappURL;
+
     }
-
-
-    /* =====================================================
-       ENCODE
-       ===================================================== */
-
-    const encodedMessage =
-      encodeURIComponent(
-        whatsappMessage
-      );
-
-
-    /* =====================================================
-       WHATSAPP URL
-       ===================================================== */
-
-    const whatsappURL =
-      `https://wa.me/${number}?text=${encodedMessage}`;
-
-
-    /* =====================================================
-       PREMIUM ACTIVE STATE
-       ===================================================== */
-
-    sendPrivateButton.disabled =
-      true;
-
-    sendPrivateButton.classList.add(
-      "opening"
-    );
-
-    sendPrivateButton.innerHTML = `
-      <span class="whatsapp-spinner"></span>
-      <span>Opening WhatsApp…</span>
-    `;
-
-
-    /*
-      Give the browser a moment to paint
-      the green active state before navigating.
-    */
-
-    setTimeout(
-      () => {
-
-        window.location.href =
-          whatsappURL;
-
-      },
-      180
-    );
-
-  }
-);
+  );
 
 
 /* =========================================================
