@@ -1,0 +1,2731 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>TapReview — Admin</title>
+
+
+  <!-- SUPABASE -->
+
+  <script
+    src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2">
+  </script>
+
+
+  <style>
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+
+    body {
+
+      min-height: 100vh;
+
+      font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Roboto,
+        Arial,
+        sans-serif;
+
+      background:
+        radial-gradient(
+          circle at top,
+          #142c47 0%,
+          #07111f 45%,
+          #050b13 100%
+        );
+
+      color: white;
+
+      padding: 20px;
+
+    }
+
+
+    .container {
+
+      width: 100%;
+
+      max-width: 1050px;
+
+      margin: auto;
+
+    }
+
+
+    /* =========================================
+       HEADER
+       ========================================= */
+
+    header {
+
+      display: flex;
+
+      justify-content: space-between;
+
+      align-items: center;
+
+      gap: 15px;
+
+      margin-bottom: 25px;
+
+    }
+
+
+    .brand {
+
+      display: flex;
+
+      align-items: center;
+
+      gap: 12px;
+
+    }
+
+
+    .brand-icon {
+
+      width: 46px;
+
+      height: 46px;
+
+      border-radius: 14px;
+
+      background:
+        linear-gradient(
+          135deg,
+          #ffc83d,
+          #b88719
+        );
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: center;
+
+      color: #07111f;
+
+      font-size: 22px;
+
+      font-weight: 900;
+
+    }
+
+
+    .brand h1 {
+
+      font-size: 21px;
+
+      letter-spacing: -0.4px;
+
+    }
+
+
+    .brand p {
+
+      color: #8293a8;
+
+      font-size: 12px;
+
+      margin-top: 2px;
+
+    }
+
+
+    .logout {
+
+      border: 1px solid
+        rgba(255,255,255,0.1);
+
+      background: rgba(255,255,255,0.04);
+
+      color: #dce5ef;
+
+      padding: 10px 14px;
+
+      border-radius: 12px;
+
+      cursor: pointer;
+
+    }
+
+
+    /* =========================================
+       LOGIN
+       ========================================= */
+
+    #loginScreen {
+
+      min-height: 90vh;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: center;
+
+    }
+
+
+    .login-box {
+
+      width: 100%;
+
+      max-width: 420px;
+
+      background: rgba(13,27,45,0.94);
+
+      border: 1px solid
+        rgba(255,255,255,0.08);
+
+      border-radius: 26px;
+
+      padding: 30px;
+
+      box-shadow:
+        0 30px 80px
+        rgba(0,0,0,0.4);
+
+    }
+
+
+    .login-box h1 {
+
+      font-size: 27px;
+
+      margin-bottom: 8px;
+
+    }
+
+
+    .login-box p {
+
+      color: #93a2b5;
+
+      font-size: 14px;
+
+      line-height: 1.5;
+
+      margin-bottom: 25px;
+
+    }
+
+
+    /* =========================================
+       MAIN
+       ========================================= */
+
+    #dashboard {
+
+      display: none;
+
+    }
+
+
+    .top-actions {
+
+      display: flex;
+
+      justify-content: space-between;
+
+      align-items: center;
+
+      gap: 15px;
+
+      margin-bottom: 18px;
+
+    }
+
+
+    .top-actions h2 {
+
+      font-size: 23px;
+
+    }
+
+
+    .primary {
+
+      background:
+        linear-gradient(
+          135deg,
+          #ffc83d,
+          #d89f20
+        );
+
+      color: #07111f;
+
+      border: none;
+
+      padding: 12px 17px;
+
+      border-radius: 13px;
+
+      font-weight: 800;
+
+      cursor: pointer;
+
+    }
+
+
+    /* =========================================
+       CARDS
+       ========================================= */
+
+    .business-grid {
+
+      display: grid;
+
+      grid-template-columns:
+        repeat(
+          auto-fit,
+          minmax(280px, 1fr)
+        );
+
+      gap: 16px;
+
+    }
+
+
+    .business-card {
+
+      background:
+        rgba(13,27,45,0.92);
+
+      border:
+        1px solid
+        rgba(255,255,255,0.07);
+
+      border-radius: 22px;
+
+      padding: 20px;
+
+      box-shadow:
+        0 15px 40px
+        rgba(0,0,0,0.18);
+
+    }
+
+
+    .business-top {
+
+      display: flex;
+
+      gap: 13px;
+
+      align-items: center;
+
+      margin-bottom: 18px;
+
+    }
+
+
+    .business-logo {
+
+      width: 54px;
+
+      height: 54px;
+
+      border-radius: 16px;
+
+      background: #132a45;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: center;
+
+      overflow: hidden;
+
+      font-size: 23px;
+
+      flex-shrink: 0;
+
+    }
+
+
+    .business-logo img {
+
+      width: 100%;
+
+      height: 100%;
+
+      object-fit: cover;
+
+    }
+
+
+    .business-name {
+
+      font-size: 18px;
+
+      font-weight: 800;
+
+    }
+
+
+    .business-date {
+
+      color: #718298;
+
+      font-size: 11px;
+
+      margin-top: 4px;
+
+    }
+
+
+    .info {
+
+      background:
+        rgba(255,255,255,0.035);
+
+      border-radius: 14px;
+
+      padding: 12px;
+
+      margin-bottom: 12px;
+
+    }
+
+
+    .info-label {
+
+      color: #718298;
+
+      font-size: 10px;
+
+      text-transform: uppercase;
+
+      letter-spacing: .6px;
+
+      margin-bottom: 4px;
+
+    }
+
+
+    .info-value {
+
+      color: #d9e3ed;
+
+      font-size: 13px;
+
+      word-break: break-word;
+
+    }
+
+
+    /* =========================================
+       CARDS LIST
+       ========================================= */
+
+    .cards-title {
+
+      display: flex;
+
+      justify-content: space-between;
+
+      align-items: center;
+
+      margin: 16px 0 10px;
+
+    }
+
+
+    .cards-title strong {
+
+      font-size: 13px;
+
+    }
+
+
+    .card-count {
+
+      color: #ffc83d;
+
+      font-size: 12px;
+
+    }
+
+
+    .mini-card {
+
+      display: flex;
+
+      justify-content: space-between;
+
+      align-items: center;
+
+      gap: 8px;
+
+      background:
+        rgba(0,0,0,0.15);
+
+      border-radius: 12px;
+
+      padding: 10px;
+
+      margin-top: 7px;
+
+    }
+
+
+    .mini-left {
+
+      min-width: 0;
+
+    }
+
+
+    .code {
+
+      font-family: monospace;
+
+      font-size: 13px;
+
+      font-weight: 800;
+
+      color: white;
+
+    }
+
+
+    .status {
+
+      font-size: 10px;
+
+      margin-top: 3px;
+
+    }
+
+
+    .active {
+
+      color: #62e6a2;
+
+    }
+
+
+    .inactive {
+
+      color: #ff8585;
+
+    }
+
+
+    .mini-actions {
+
+      display: flex;
+
+      gap: 5px;
+
+      flex-shrink: 0;
+
+    }
+
+
+    .small-btn {
+
+      border: 1px solid
+        rgba(255,255,255,0.08);
+
+      background:
+        rgba(255,255,255,0.04);
+
+      color: #dce5ef;
+
+      border-radius: 9px;
+
+      padding: 7px 9px;
+
+      font-size: 11px;
+
+      cursor: pointer;
+
+    }
+
+
+    .small-btn:hover {
+
+      background:
+        rgba(255,255,255,0.08);
+
+    }
+
+
+    /* =========================================
+       MODAL
+       ========================================= */
+
+    .modal {
+
+      position: fixed;
+
+      inset: 0;
+
+      background:
+        rgba(0,0,0,0.72);
+
+      display: none;
+
+      align-items: center;
+
+      justify-content: center;
+
+      padding: 20px;
+
+      z-index: 100;
+
+    }
+
+
+    .modal.show {
+
+      display: flex;
+
+    }
+
+
+    .modal-box {
+
+      width: 100%;
+
+      max-width: 500px;
+
+      max-height: 90vh;
+
+      overflow-y: auto;
+
+      background: #0d1b2d;
+
+      border:
+        1px solid
+        rgba(255,255,255,0.08);
+
+      border-radius: 24px;
+
+      padding: 25px;
+
+    }
+
+
+    .modal-header {
+
+      display: flex;
+
+      justify-content: space-between;
+
+      align-items: center;
+
+      margin-bottom: 20px;
+
+    }
+
+
+    .modal-header h2 {
+
+      font-size: 20px;
+
+    }
+
+
+    .close {
+
+      width: 35px;
+
+      height: 35px;
+
+      border-radius: 10px;
+
+      border: none;
+
+      background:
+        rgba(255,255,255,0.06);
+
+      color: white;
+
+      font-size: 20px;
+
+      cursor: pointer;
+
+    }
+
+
+    label {
+
+      display: block;
+
+      color: #93a2b5;
+
+      font-size: 12px;
+
+      margin-bottom: 6px;
+
+      margin-top: 14px;
+
+    }
+
+
+    input {
+
+      width: 100%;
+
+      padding: 13px 14px;
+
+      border-radius: 12px;
+
+      border:
+        1px solid
+        rgba(255,255,255,0.1);
+
+      background: #07111f;
+
+      color: white;
+
+      outline: none;
+
+      font-family: inherit;
+
+    }
+
+
+    input:focus {
+
+      border-color: #ffc83d;
+
+    }
+
+
+    .modal-buttons {
+
+      display: flex;
+
+      gap: 10px;
+
+      margin-top: 22px;
+
+    }
+
+
+    .modal-buttons button {
+
+      flex: 1;
+
+    }
+
+
+    .secondary {
+
+      background:
+        rgba(255,255,255,0.06);
+
+      color: white;
+
+      border:
+        1px solid
+        rgba(255,255,255,0.08);
+
+      padding: 13px;
+
+      border-radius: 12px;
+
+      cursor: pointer;
+
+    }
+
+
+    /* =========================================
+       EMPTY
+       ========================================= */
+
+    .empty {
+
+      text-align: center;
+
+      padding: 60px 20px;
+
+      color: #718298;
+
+    }
+
+
+    .empty-icon {
+
+      font-size: 40px;
+
+      margin-bottom: 12px;
+
+    }
+
+
+    /* =========================================
+       TOAST
+       ========================================= */
+
+    #toast {
+
+      position: fixed;
+
+      bottom: 20px;
+
+      left: 50%;
+
+      transform:
+        translateX(-50%)
+        translateY(20px);
+
+      background: #142a42;
+
+      border:
+        1px solid
+        rgba(255,255,255,0.1);
+
+      color: white;
+
+      padding: 12px 17px;
+
+      border-radius: 12px;
+
+      font-size: 13px;
+
+      opacity: 0;
+
+      pointer-events: none;
+
+      transition: .25s;
+
+      z-index: 999;
+
+    }
+
+
+    #toast.show {
+
+      opacity: 1;
+
+      transform:
+        translateX(-50%)
+        translateY(0);
+
+    }
+
+
+    .error {
+
+      color: #ff8585;
+
+      font-size: 13px;
+
+      margin-top: 10px;
+
+      line-height: 1.4;
+
+    }
+
+
+    @media(max-width:600px) {
+
+      body {
+
+        padding: 13px;
+
+      }
+
+      header {
+
+        align-items: flex-start;
+
+      }
+
+      .top-actions {
+
+        align-items: stretch;
+
+        flex-direction: column;
+
+      }
+
+      .primary {
+
+        width: 100%;
+
+      }
+
+      .modal-box {
+
+        padding: 20px;
+
+      }
+
+    }
+
+  </style>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     LOGIN
+     ===================================================== -->
+
+<section id="loginScreen">
+
+  <div class="login-box">
+
+    <div class="brand">
+
+      <div class="brand-icon">
+        ★
+      </div>
+
+      <div>
+
+        <h1>
+          TapReview
+        </h1>
+
+        <p>
+          Admin Dashboard
+        </p>
+
+      </div>
+
+    </div>
+
+
+    <br>
+
+
+    <h1>
+      Welcome back
+    </h1>
+
+
+    <p>
+      Sign in to manage your businesses,
+      cards and customer feedback links.
+    </p>
+
+
+    <label>
+      Email
+    </label>
+
+    <input
+      type="email"
+      id="loginEmail"
+      placeholder="Your admin email"
+      autocomplete="email"
+    >
+
+
+    <label>
+      Password
+    </label>
+
+    <input
+      type="password"
+      id="loginPassword"
+      placeholder="Your password"
+      autocomplete="current-password"
+    >
+
+
+    <button
+      class="primary"
+      id="loginButton"
+      style="width:100%;margin-top:18px;"
+    >
+      Sign in
+    </button>
+
+
+    <div
+      id="loginError"
+      class="error">
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     DASHBOARD
+     ===================================================== -->
+
+<div
+  id="dashboard"
+  class="container">
+
+
+  <header>
+
+    <div class="brand">
+
+      <div class="brand-icon">
+        ★
+      </div>
+
+      <div>
+
+        <h1>
+          TapReview
+        </h1>
+
+        <p>
+          Business Management
+        </p>
+
+      </div>
+
+    </div>
+
+
+    <button
+      class="logout"
+      id="logoutButton">
+
+      Log out
+
+    </button>
+
+  </header>
+
+
+  <div class="top-actions">
+
+    <div>
+
+      <h2>
+        Your businesses
+      </h2>
+
+    </div>
+
+
+    <button
+      class="primary"
+      id="addBusinessButton">
+
+      + Add business
+
+    </button>
+
+  </div>
+
+
+  <div
+    id="businessGrid"
+    class="business-grid">
+
+  </div>
+
+</div>
+
+
+
+<!-- =====================================================
+     BUSINESS MODAL
+     ===================================================== -->
+
+<div
+  class="modal"
+  id="businessModal">
+
+
+  <div class="modal-box">
+
+
+    <div class="modal-header">
+
+      <h2 id="businessModalTitle">
+        Add business
+      </h2>
+
+      <button
+        class="close"
+        id="closeBusinessModal">
+
+        ×
+
+      </button>
+
+    </div>
+
+
+    <label>
+      Business name *
+    </label>
+
+    <input
+      id="businessNameInput"
+      type="text"
+      placeholder="Example Restaurant"
+    >
+
+
+    <label>
+      Logo URL
+    </label>
+
+    <input
+      id="logoInput"
+      type="url"
+      placeholder="https://..."
+    >
+
+
+    <label>
+      Google review URL
+    </label>
+
+    <input
+      id="googleInput"
+      type="url"
+      placeholder="https://g.page/r/..."
+    >
+
+
+    <label>
+      WhatsApp number
+    </label>
+
+    <input
+      id="whatsappInput"
+      type="text"
+      placeholder="0555123456"
+    >
+
+
+    <label>
+      Primary color
+    </label>
+
+    <input
+      id="colorInput"
+      type="text"
+      placeholder="#0d1b2d"
+      value="#0d1b2d"
+    >
+
+
+    <div
+      id="businessError"
+      class="error">
+    </div>
+
+
+    <div class="modal-buttons">
+
+      <button
+        class="secondary"
+        id="cancelBusiness">
+
+        Cancel
+
+      </button>
+
+
+      <button
+        class="primary"
+        id="saveBusiness">
+
+        Save business
+
+      </button>
+
+    </div>
+
+
+  </div>
+
+</div>
+
+
+
+<!-- =====================================================
+     CARD MODAL
+     ===================================================== -->
+
+<div
+  class="modal"
+  id="cardModal">
+
+
+  <div class="modal-box">
+
+
+    <div class="modal-header">
+
+      <h2>
+        Create card
+      </h2>
+
+      <button
+        class="close"
+        id="closeCardModal">
+
+        ×
+
+      </button>
+
+    </div>
+
+
+    <p
+      id="cardBusinessName"
+      style="
+        color:#93a2b5;
+        font-size:13px;
+        margin-bottom:15px;
+      ">
+    </p>
+
+
+    <label>
+      Card code
+    </label>
+
+    <input
+      id="cardCodeInput"
+      type="text"
+      placeholder="Automatically generated"
+    >
+
+
+    <p
+      style="
+        color:#718298;
+        font-size:11px;
+        line-height:1.5;
+        margin-top:8px;
+      ">
+
+      Leave this empty and TapReview will
+      automatically generate a unique card code.
+
+    </p>
+
+
+    <div
+      id="cardError"
+      class="error">
+    </div>
+
+
+    <div class="modal-buttons">
+
+      <button
+        class="secondary"
+        id="cancelCard">
+
+        Cancel
+
+      </button>
+
+
+      <button
+        class="primary"
+        id="saveCard">
+
+        Create card
+
+      </button>
+
+    </div>
+
+
+  </div>
+
+</div>
+
+
+
+<!-- =====================================================
+     TOAST
+     ===================================================== -->
+
+<div id="toast"></div>
+
+
+
+<script>
+
+
+/* =========================================================
+   SUPABASE CONFIGURATION
+   ========================================================= */
+
+const SUPABASE_URL =
+  "https://mcujzqtfbwjttjieagas.supabase.co";
+
+
+const SUPABASE_KEY =
+  "sb_publishable_4eVDX1IKZj7ClhpcjfiQFQ_hQ5Hr81k";
+
+
+const {
+  createClient
+} = window.supabase;
+
+
+const supabase =
+  createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+  );
+
+
+
+/* =========================================================
+   GLOBAL VARIABLES
+   ========================================================= */
+
+let editingBusinessId = null;
+
+let selectedBusinessId = null;
+
+
+
+/* =========================================================
+   ELEMENTS
+   ========================================================= */
+
+const loginScreen =
+  document.getElementById(
+    "loginScreen"
+  );
+
+
+const dashboard =
+  document.getElementById(
+    "dashboard"
+  );
+
+
+const loginEmail =
+  document.getElementById(
+    "loginEmail"
+  );
+
+
+const loginPassword =
+  document.getElementById(
+    "loginPassword"
+  );
+
+
+const loginButton =
+  document.getElementById(
+    "loginButton"
+  );
+
+
+const loginError =
+  document.getElementById(
+    "loginError"
+  );
+
+
+const businessGrid =
+  document.getElementById(
+    "businessGrid"
+  );
+
+
+const businessModal =
+  document.getElementById(
+    "businessModal"
+  );
+
+
+const cardModal =
+  document.getElementById(
+    "cardModal"
+  );
+
+
+
+/* =========================================================
+   TOAST
+   ========================================================= */
+
+function showToast(
+  message
+) {
+
+  const toast =
+    document.getElementById(
+      "toast"
+    );
+
+
+  toast.textContent =
+    message;
+
+
+  toast.classList.add(
+    "show"
+  );
+
+
+  setTimeout(
+    () => {
+
+      toast.classList.remove(
+        "show"
+      );
+
+    },
+    2500
+  );
+
+}
+
+
+
+/* =========================================================
+   LOGIN
+   ========================================================= */
+
+loginButton.addEventListener(
+  "click",
+  async () => {
+
+    loginError.textContent =
+      "";
+
+
+    const email =
+      loginEmail.value.trim();
+
+
+    const password =
+      loginPassword.value;
+
+
+    if (
+      !email ||
+      !password
+    ) {
+
+      loginError.textContent =
+        "Enter your email and password.";
+
+      return;
+
+    }
+
+
+    loginButton.disabled =
+      true;
+
+
+    loginButton.textContent =
+      "Signing in...";
+
+
+    const {
+      error
+    } =
+      await supabase.auth.signInWithPassword({
+
+        email,
+
+        password
+
+      });
+
+
+    loginButton.disabled =
+      false;
+
+
+    loginButton.textContent =
+      "Sign in";
+
+
+    if (error) {
+
+      loginError.textContent =
+        error.message;
+
+      return;
+
+    }
+
+
+    showDashboard();
+
+  }
+);
+
+
+
+/* =========================================================
+   ENTER KEY LOGIN
+   ========================================================= */
+
+loginPassword.addEventListener(
+  "keydown",
+  event => {
+
+    if (
+      event.key === "Enter"
+    ) {
+
+      loginButton.click();
+
+    }
+
+  }
+);
+
+
+
+/* =========================================================
+   CHECK CURRENT SESSION
+   ========================================================= */
+
+async function checkSession() {
+
+  const {
+    data
+  } =
+    await supabase.auth.getSession();
+
+
+  if (
+    data.session
+  ) {
+
+    showDashboard();
+
+  }
+
+}
+
+
+
+/* =========================================================
+   SHOW DASHBOARD
+   ========================================================= */
+
+function showDashboard() {
+
+  loginScreen.style.display =
+    "none";
+
+
+  dashboard.style.display =
+    "block";
+
+
+  loadBusinesses();
+
+}
+
+
+
+/* =========================================================
+   LOGOUT
+   ========================================================= */
+
+document
+  .getElementById(
+    "logoutButton"
+  )
+  .addEventListener(
+    "click",
+    async () => {
+
+      await supabase.auth.signOut();
+
+      dashboard.style.display =
+        "none";
+
+
+      loginScreen.style.display =
+        "flex";
+
+    }
+  );
+
+
+
+/* =========================================================
+   LOAD BUSINESSES
+   ========================================================= */
+
+async function loadBusinesses() {
+
+  businessGrid.innerHTML =
+    `
+      <div class="empty">
+        Loading businesses...
+      </div>
+    `;
+
+
+  const {
+    data,
+    error
+  } =
+    await supabase
+      .from("businesses")
+      .select("*")
+      .order(
+        "created_at",
+        {
+          ascending: false
+        }
+      );
+
+
+  if (error) {
+
+    businessGrid.innerHTML =
+      `
+        <div class="empty">
+          <div class="empty-icon">⚠️</div>
+          <div>
+            ${escapeHtml(error.message)}
+          </div>
+        </div>
+      `;
+
+    return;
+
+  }
+
+
+  if (
+    !data ||
+    data.length === 0
+  ) {
+
+    businessGrid.innerHTML =
+      `
+        <div class="empty">
+          <div class="empty-icon">🏪</div>
+          <div>
+            No businesses yet.
+          </div>
+          <div style="margin-top:7px;font-size:12px;">
+            Add your first business above.
+          </div>
+        </div>
+      `;
+
+    return;
+
+  }
+
+
+  businessGrid.innerHTML =
+    "";
+
+
+  for (
+    const business of data
+  ) {
+
+    await renderBusiness(
+      business
+    );
+
+  }
+
+}
+
+
+
+/* =========================================================
+   RENDER BUSINESS
+   ========================================================= */
+
+async function renderBusiness(
+  business
+) {
+
+  const {
+    data: cards,
+    error
+  } =
+    await supabase
+      .from("cards")
+      .select("*")
+      .eq(
+        "business_id",
+        business.id
+      )
+      .order(
+        "created_at",
+        {
+          ascending: false
+        }
+      );
+
+
+  const cardList =
+    cards || [];
+
+
+  const logo =
+    business.logo_url
+      ? `
+        <img
+          src="${escapeAttribute(
+            business.logo_url
+          )}"
+          alt=""
+        >
+      `
+      : "🏪";
+
+
+  const date =
+    business.created_at
+      ? new Date(
+          business.created_at
+        ).toLocaleDateString()
+      : "—";
+
+
+  const article =
+    document.createElement(
+      "article"
+    );
+
+
+  article.className =
+    "business-card";
+
+
+  article.innerHTML = `
+
+    <div class="business-top">
+
+      <div class="business-logo">
+
+        ${logo}
+
+      </div>
+
+      <div>
+
+        <div class="business-name">
+
+          ${escapeHtml(
+            business.name
+          )}
+
+        </div>
+
+        <div class="business-date">
+
+          Created ${date}
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div class="info">
+
+      <div class="info-label">
+        WhatsApp
+      </div>
+
+      <div class="info-value">
+
+        ${escapeHtml(
+          business.whatsapp_number ||
+          "Not configured"
+        )}
+
+      </div>
+
+    </div>
+
+
+    <div class="info">
+
+      <div class="info-label">
+        Google review
+      </div>
+
+      <div class="info-value">
+
+        ${escapeHtml(
+          business.google_review_url ||
+          "Not configured"
+        )}
+
+      </div>
+
+    </div>
+
+
+    <div class="cards-title">
+
+      <strong>
+        NFC / QR Cards
+      </strong>
+
+      <span class="card-count">
+
+        ${cardList.length} card${
+          cardList.length === 1
+            ? ""
+            : "s"
+        }
+
+      </span>
+
+    </div>
+
+
+    <div class="cards-container">
+
+      ${
+        cardList.length === 0
+
+        ? `
+          <div style="
+            color:#718298;
+            font-size:12px;
+            padding:8px 0;
+          ">
+            No cards yet.
+          </div>
+        `
+
+        : cardList
+          .map(
+            card =>
+              createMiniCard(
+                card
+              )
+          )
+          .join("")
+      }
+
+    </div>
+
+
+    <button
+      class="primary"
+      style="width:100%;margin-top:14px;"
+      onclick="openCardModal(
+        '${business.id}',
+        '${escapeAttribute(
+          business.name
+        )}'
+      )">
+
+      + Create card
+
+    </button>
+
+
+    <button
+      class="small-btn"
+      style="width:100%;margin-top:8px;"
+      onclick="editBusiness(
+        '${business.id}'
+      )">
+
+      ✏️ Edit business
+
+    </button>
+
+  `;
+
+
+  businessGrid.appendChild(
+    article
+  );
+
+}
+
+
+
+/* =========================================================
+   CREATE MINI CARD HTML
+   ========================================================= */
+
+function createMiniCard(
+  card
+) {
+
+  const baseURL =
+    window.location.origin +
+    window.location.pathname
+      .replace(
+        /\/[^/]*$/,
+        "/"
+      );
+
+
+  const cardURL =
+    `${baseURL}?card=${encodeURIComponent(
+      card.card_code
+    )}`;
+
+
+  const status =
+    card.active
+      ? `
+        <div class="status active">
+          ● Active
+        </div>
+      `
+      : `
+        <div class="status inactive">
+          ● Inactive
+        </div>
+      `;
+
+
+  return `
+
+    <div class="mini-card">
+
+      <div class="mini-left">
+
+        <div class="code">
+
+          ${escapeHtml(
+            card.card_code
+          )}
+
+        </div>
+
+        ${status}
+
+      </div>
+
+
+      <div class="mini-actions">
+
+        <button
+          class="small-btn"
+          onclick="copyURL(
+            '${escapeAttribute(
+              cardURL
+            )}'
+          )">
+
+          🔗
+
+        </button>
+
+
+        <button
+          class="small-btn"
+          onclick="toggleCard(
+            '${card.id}',
+            ${card.active}
+          )">
+
+          ${card.active
+            ? "⏸"
+            : "▶"}
+
+        </button>
+
+      </div>
+
+    </div>
+
+  `;
+
+}
+
+
+
+/* =========================================================
+   COPY URL
+   ========================================================= */
+
+async function copyURL(
+  url
+) {
+
+  try {
+
+    await navigator.clipboard.writeText(
+      url
+    );
+
+    showToast(
+      "Card URL copied!"
+    );
+
+  }
+
+  catch {
+
+    prompt(
+      "Copy this card URL:",
+      url
+    );
+
+  }
+
+}
+
+
+
+/* =========================================================
+   OPEN BUSINESS MODAL
+   ========================================================= */
+
+document
+  .getElementById(
+    "addBusinessButton"
+  )
+  .addEventListener(
+    "click",
+    () => {
+
+      editingBusinessId =
+        null;
+
+
+      document.getElementById(
+        "businessModalTitle"
+      ).textContent =
+        "Add business";
+
+
+      clearBusinessForm();
+
+
+      businessModal.classList.add(
+        "show"
+      );
+
+    }
+  );
+
+
+
+/* =========================================================
+   CLOSE BUSINESS MODAL
+   ========================================================= */
+
+function closeBusinessModal() {
+
+  businessModal.classList.remove(
+    "show"
+  );
+
+}
+
+
+document
+  .getElementById(
+    "closeBusinessModal"
+  )
+  .addEventListener(
+    "click",
+    closeBusinessModal
+  );
+
+
+document
+  .getElementById(
+    "cancelBusiness"
+  )
+  .addEventListener(
+    "click",
+    closeBusinessModal
+  );
+
+
+
+/* =========================================================
+   CLEAR BUSINESS FORM
+   ========================================================= */
+
+function clearBusinessForm() {
+
+  document.getElementById(
+    "businessNameInput"
+  ).value = "";
+
+
+  document.getElementById(
+    "logoInput"
+  ).value = "";
+
+
+  document.getElementById(
+    "googleInput"
+  ).value = "";
+
+
+  document.getElementById(
+    "whatsappInput"
+  ).value = "";
+
+
+  document.getElementById(
+    "colorInput"
+  ).value = "#0d1b2d";
+
+
+  document.getElementById(
+    "businessError"
+  ).textContent = "";
+
+}
+
+
+
+/* =========================================================
+   SAVE BUSINESS
+   ========================================================= */
+
+document
+  .getElementById(
+    "saveBusiness"
+  )
+  .addEventListener(
+    "click",
+    async () => {
+
+      const name =
+        document
+          .getElementById(
+            "businessNameInput"
+          )
+          .value
+          .trim();
+
+
+      const logo =
+        document
+          .getElementById(
+            "logoInput"
+          )
+          .value
+          .trim();
+
+
+      const google =
+        document
+          .getElementById(
+            "googleInput"
+          )
+          .value
+          .trim();
+
+
+      const whatsapp =
+        document
+          .getElementById(
+            "whatsappInput"
+          )
+          .value
+          .trim();
+
+
+      const color =
+        document
+          .getElementById(
+            "colorInput"
+          )
+          .value
+          .trim();
+
+
+      const errorBox =
+        document.getElementById(
+          "businessError"
+        );
+
+
+      errorBox.textContent =
+        "";
+
+
+      if (!name) {
+
+        errorBox.textContent =
+          "Business name is required.";
+
+        return;
+
+      }
+
+
+      const button =
+        document.getElementById(
+          "saveBusiness"
+        );
+
+
+      button.disabled =
+        true;
+
+
+      button.textContent =
+        "Saving...";
+
+
+      const payload = {
+
+        name,
+
+        logo_url:
+          logo || null,
+
+        google_review_url:
+          google || null,
+
+        whatsapp_number:
+          whatsapp || null,
+
+        primary_color:
+          color || "#0d1b2d"
+
+      };
+
+
+      let result;
+
+
+      if (
+        editingBusinessId
+      ) {
+
+        result =
+          await supabase
+            .from("businesses")
+            .update(payload)
+            .eq(
+              "id",
+              editingBusinessId
+            );
+
+      }
+
+      else {
+
+        result =
+          await supabase
+            .from("businesses")
+            .insert(
+              payload
+            );
+
+      }
+
+
+      button.disabled =
+        false;
+
+
+      button.textContent =
+        "Save business";
+
+
+      if (result.error) {
+
+        errorBox.textContent =
+          result.error.message;
+
+        return;
+
+      }
+
+
+      closeBusinessModal();
+
+
+      showToast(
+        editingBusinessId
+          ? "Business updated!"
+          : "Business created!"
+      );
+
+
+      loadBusinesses();
+
+    }
+  );
+
+
+
+/* =========================================================
+   EDIT BUSINESS
+   ========================================================= */
+
+async function editBusiness(
+  id
+) {
+
+  const {
+    data,
+    error
+  } =
+    await supabase
+      .from("businesses")
+      .select("*")
+      .eq(
+        "id",
+        id
+      )
+      .single();
+
+
+  if (error) {
+
+    showToast(
+      error.message
+    );
+
+    return;
+
+  }
+
+
+  editingBusinessId =
+    id;
+
+
+  document.getElementById(
+    "businessModalTitle"
+  ).textContent =
+    "Edit business";
+
+
+  document.getElementById(
+    "businessNameInput"
+  ).value =
+    data.name || "";
+
+
+  document.getElementById(
+    "logoInput"
+  ).value =
+    data.logo_url || "";
+
+
+  document.getElementById(
+    "googleInput"
+  ).value =
+    data.google_review_url || "";
+
+
+  document.getElementById(
+    "whatsappInput"
+  ).value =
+    data.whatsapp_number || "";
+
+
+  document.getElementById(
+    "colorInput"
+  ).value =
+    data.primary_color ||
+    "#0d1b2d";
+
+
+  document.getElementById(
+    "businessError"
+  ).textContent =
+    "";
+
+
+  businessModal.classList.add(
+    "show"
+  );
+
+}
+
+
+
+/* =========================================================
+   OPEN CARD MODAL
+   ========================================================= */
+
+function openCardModal(
+  businessId,
+  businessName
+) {
+
+  selectedBusinessId =
+    businessId;
+
+
+  document.getElementById(
+    "cardBusinessName"
+  ).textContent =
+    `Business: ${businessName}`;
+
+
+  document.getElementById(
+    "cardCodeInput"
+  ).value =
+    generateCardCode();
+
+
+  document.getElementById(
+    "cardError"
+  ).textContent =
+    "";
+
+
+  cardModal.classList.add(
+    "show"
+  );
+
+}
+
+
+
+/* =========================================================
+   GENERATE CARD CODE
+   ========================================================= */
+
+function generateCardCode() {
+
+  const characters =
+    "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+
+
+  let code =
+    "TR-";
+
+
+  for (
+    let i = 0;
+    i < 6;
+    i++
+  ) {
+
+    code +=
+      characters[
+        Math.floor(
+          Math.random() *
+          characters.length
+        )
+      ];
+
+  }
+
+
+  return code;
+
+}
+
+
+
+/* =========================================================
+   CLOSE CARD MODAL
+   ========================================================= */
+
+function closeCardModal() {
+
+  cardModal.classList.remove(
+    "show"
+  );
+
+}
+
+
+document
+  .getElementById(
+    "closeCardModal"
+  )
+  .addEventListener(
+    "click",
+    closeCardModal
+  );
+
+
+document
+  .getElementById(
+    "cancelCard"
+  )
+  .addEventListener(
+    "click",
+    closeCardModal
+  );
+
+
+
+/* =========================================================
+   SAVE CARD
+   ========================================================= */
+
+document
+  .getElementById(
+    "saveCard"
+  )
+  .addEventListener(
+    "click",
+    async () => {
+
+      if (
+        !selectedBusinessId
+      ) {
+
+        return;
+
+      }
+
+
+      let code =
+        document
+          .getElementById(
+            "cardCodeInput"
+          )
+          .value
+          .trim()
+          .toUpperCase();
+
+
+      const errorBox =
+        document.getElementById(
+          "cardError"
+        );
+
+
+      errorBox.textContent =
+        "";
+
+
+      if (!code) {
+
+        code =
+          generateCardCode();
+
+      }
+
+
+      const button =
+        document.getElementById(
+          "saveCard"
+        );
+
+
+      button.disabled =
+        true;
+
+
+      button.textContent =
+        "Creating...";
+
+
+      const {
+        error
+      } =
+        await supabase
+          .from("cards")
+          .insert({
+
+            business_id:
+              selectedBusinessId,
+
+            card_code:
+              code,
+
+            active:
+              true
+
+          });
+
+
+      button.disabled =
+        false;
+
+
+      button.textContent =
+        "Create card";
+
+
+      if (error) {
+
+        if (
+          error.code === "23505"
+        ) {
+
+          errorBox.textContent =
+            "That card code already exists. Generate another one.";
+
+        }
+
+        else {
+
+          errorBox.textContent =
+            error.message;
+
+        }
+
+        return;
+
+      }
+
+
+      closeCardModal();
+
+
+      showToast(
+        `Card ${code} created!`
+      );
+
+
+      loadBusinesses();
+
+    }
+  );
+
+
+
+/* =========================================================
+   TOGGLE CARD
+   ========================================================= */
+
+async function toggleCard(
+  id,
+  currentStatus
+) {
+
+  const {
+    error
+  } =
+    await supabase
+      .from("cards")
+      .update({
+
+        active:
+          !currentStatus
+
+      })
+      .eq(
+        "id",
+        id
+      );
+
+
+  if (error) {
+
+    showToast(
+      error.message
+    );
+
+    return;
+
+  }
+
+
+  showToast(
+    currentStatus
+      ? "Card deactivated"
+      : "Card activated"
+  );
+
+
+  loadBusinesses();
+
+}
+
+
+
+/* =========================================================
+   HTML SECURITY HELPERS
+   ========================================================= */
+
+function escapeHtml(
+  value
+) {
+
+  return String(
+    value ?? ""
+  )
+  .replace(
+    /&/g,
+    "&amp;"
+  )
+  .replace(
+    /</g,
+    "&lt;"
+  )
+  .replace(
+    />/g,
+    "&gt;"
+  )
+  .replace(
+    /"/g,
+    "&quot;"
+  )
+  .replace(
+    /'/g,
+    "&#039;"
+  );
+
+}
+
+
+function escapeAttribute(
+  value
+) {
+
+  return String(
+    value ?? ""
+  )
+  .replace(
+    /\\/g,
+    "\\\\"
+  )
+  .replace(
+    /'/g,
+    "\\'"
+  )
+  .replace(
+    /"/g,
+    "&quot;"
+  );
+
+}
+
+
+
+/* =========================================================
+   START
+   ========================================================= */
+
+checkSession();
+
+
+</script>
+
+
+</body>
+</html>
