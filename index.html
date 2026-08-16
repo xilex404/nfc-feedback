@@ -202,7 +202,6 @@ button{
 .logo img{
   width:100%;
   height:100%;
-
   object-fit:cover;
 }
 
@@ -388,7 +387,7 @@ button{
 }
 
 
-/* Absolutely no browser blue focus rectangle */
+/* NO BLUE MOBILE/TABLET FOCUS BOX */
 
 .star:focus{
   outline:none !important;
@@ -397,7 +396,7 @@ button{
 }
 
 
-/* Keep accessibility focus for keyboard users */
+/* Keyboard accessibility */
 
 .star:focus-visible{
   outline:
@@ -560,6 +559,8 @@ button{
   align-items:center;
   justify-content:center;
 
+  gap:11px;
+
   font-size:
     clamp(17px,4.3vw,21px);
 
@@ -572,7 +573,9 @@ button{
   transition:
     transform .16s ease,
     box-shadow .2s ease,
-    opacity .2s ease;
+    opacity .2s ease,
+    background .25s ease,
+    color .25s ease;
 
   -webkit-tap-highlight-color:transparent;
 
@@ -623,6 +626,71 @@ button{
 
   box-shadow:
     0 14px 35px rgba(0,0,0,.25);
+}
+
+
+/* =========================================================
+   WHATSAPP ACTIVE STATE
+   ========================================================= */
+
+.private.opening{
+  background:
+    linear-gradient(
+      135deg,
+      #20c76a,
+      #119b50
+    );
+
+  color:#ffffff;
+
+  border-color:
+    rgba(255,255,255,.22);
+
+  box-shadow:
+    0 14px 40px
+    rgba(20,190,90,.28);
+
+  cursor:wait;
+
+  transform:scale(.985);
+}
+
+
+.private.opening:hover{
+  transform:scale(.985);
+}
+
+
+.private:disabled{
+  pointer-events:none;
+}
+
+
+.whatsapp-spinner{
+  width:20px;
+  height:20px;
+
+  border-radius:50%;
+
+  border:
+    2.5px solid
+    rgba(255,255,255,.35);
+
+  border-top-color:#fff;
+
+  animation:
+    whatsappSpin .7s linear infinite;
+
+  flex-shrink:0;
+}
+
+
+@keyframes whatsappSpin{
+
+  to{
+    transform:rotate(360deg);
+  }
+
 }
 
 
@@ -691,62 +759,135 @@ textarea:focus{
   margin-top:auto;
 
   padding:
-    38px
+    44px
     0
-    max(18px,env(safe-area-inset-bottom));
+    max(20px,env(safe-area-inset-bottom));
 }
 
 
 .brand-line{
-  width:80px;
+  width:105px;
   height:1px;
 
   background:
     linear-gradient(
       90deg,
       transparent,
-      rgba(255,200,61,.65),
+      rgba(220,228,238,.70),
       transparent
     );
 
-  margin-bottom:18px;
+  margin-bottom:20px;
+
+  box-shadow:
+    0 0 12px rgba(220,228,238,.08);
 }
 
 
+/*
+=========================================================
+SMART REVIEW — PREMIUM SILVER WORDMARK
+=========================================================
+*/
+
 .smart-review{
-  color:#ffc83d;
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "SF Pro Display",
+    "Segoe UI",
+    Roboto,
+    Arial,
+    sans-serif;
 
   font-size:
-    clamp(21px,5.5vw,29px);
+    clamp(29px,8vw,43px);
 
-  font-weight:900;
+  font-weight:850;
 
   letter-spacing:
-    3px;
-
-  text-transform:uppercase;
+    3.8px;
 
   line-height:1;
 
+  text-transform:uppercase;
+
+  text-align:center;
+
+  /*
+    Metallic silver gradient
+  */
+
+  background:
+    linear-gradient(
+      180deg,
+      #ffffff 0%,
+      #eef2f6 22%,
+      #aeb8c4 52%,
+      #f8fafc 76%,
+      #b7c1cc 100%
+    );
+
+  -webkit-background-clip:text;
+  background-clip:text;
+
+  -webkit-text-fill-color:transparent;
+
+  color:transparent;
+
   text-shadow:
-    0 5px 25px
-    rgba(255,200,61,.14);
+    0 8px 28px
+    rgba(255,255,255,.08);
+
+  filter:
+    drop-shadow(
+      0 4px 14px
+      rgba(0,0,0,.30)
+    );
+
+  animation:
+    brandEnter .7s .2s
+    cubic-bezier(.2,.8,.2,1)
+    both;
+}
+
+
+@keyframes brandEnter{
+
+  from{
+    opacity:0;
+    transform:
+      translateY(10px)
+      scale(.96);
+    letter-spacing:5px;
+  }
+
+  to{
+    opacity:1;
+    transform:
+      translateY(0)
+      scale(1);
+    letter-spacing:3.8px;
+  }
+
 }
 
 
 .smart-review-sub{
-  margin-top:8px;
+  margin-top:10px;
 
-  color:#72839a;
+  color:#8492a4;
 
   font-size:
     clamp(11px,3vw,14px);
 
   font-weight:650;
 
-  letter-spacing:2.2px;
+  letter-spacing:2.4px;
 
   text-transform:uppercase;
+
+  text-align:center;
 }
 
 
@@ -843,6 +984,11 @@ textarea:focus{
     width:59px;
     height:68px;
     font-size:55px;
+  }
+
+  .smart-review{
+    font-size:28px;
+    letter-spacing:3px;
   }
 
 }
@@ -1206,8 +1352,6 @@ async function loadCard(){
     );
 
 
-  /* No card code */
-
   if(!cardCode){
 
     businessName.textContent =
@@ -1452,13 +1596,6 @@ stars.forEach(
           );
 
 
-        /* =================================================
-           HIGHLIGHT STARS
-
-           Keep this logic exactly simple:
-           every star <= selected rating becomes gold.
-           ================================================= */
-
         stars.forEach(
           s => {
 
@@ -1473,16 +1610,18 @@ stars.forEach(
         );
 
 
-        /* =================================================
-           RATING TEXT
-           ================================================= */
-
         const ratingLabels = {
+
           1:"We'd like to do better.",
+
           2:"Thanks for telling us.",
+
           3:"Thanks for your feedback.",
+
           4:"Great to hear!",
+
           5:"Amazing! We're thrilled!"
+
         };
 
 
@@ -1491,20 +1630,10 @@ stars.forEach(
           `${selectedRating} out of 5 stars`;
 
 
-        /* =================================================
-           SHOW MESSAGE
-           ================================================= */
-
         message.classList.remove(
           "show"
         );
 
-
-        /*
-          Small timeout lets the browser
-          replay the entrance animation
-          even when the user changes rating.
-        */
 
         requestAnimationFrame(
           () => {
@@ -1543,6 +1672,11 @@ stars.forEach(
 
           feedbackMessage.value =
             "";
+
+
+          /* Reset WhatsApp button if user changes rating */
+
+          resetWhatsAppButton();
 
         }
 
@@ -1598,141 +1732,204 @@ stars.forEach(
 
 
 /* =========================================================
+   WHATSAPP BUTTON
+   ========================================================= */
+
+const sendPrivateButton =
+  document.getElementById(
+    "sendPrivate"
+  );
+
+
+/* =========================================================
+   RESET WHATSAPP BUTTON
+   ========================================================= */
+
+function resetWhatsAppButton(){
+
+  sendPrivateButton.disabled =
+    false;
+
+  sendPrivateButton.classList.remove(
+    "opening"
+  );
+
+  sendPrivateButton.innerHTML =
+    "💬 Send privately";
+
+}
+
+
+/* =========================================================
    SEND PRIVATE FEEDBACK TO WHATSAPP
    ========================================================= */
 
-document
-  .getElementById(
-    "sendPrivate"
-  )
-  .addEventListener(
-    "click",
-    () => {
+sendPrivateButton.addEventListener(
+  "click",
+  () => {
 
-      const text =
-        feedbackMessage
-          .value
-          .trim();
+    /* =====================================================
+       PREVENT DOUBLE TAP
+       ===================================================== */
 
+    if(
+      sendPrivateButton.disabled
+    ){
 
-      /* =====================================================
-         CHECK BUSINESS
-         ===================================================== */
+      return;
 
-      if(!currentBusiness){
-
-        alert(
-          "Business information is unavailable."
-        );
-
-        return;
-
-      }
+    }
 
 
-      /* =====================================================
-         CHECK WHATSAPP
-         ===================================================== */
-
-      if(
-        !currentBusiness.whatsapp_number
-      ){
-
-        alert(
-          "WhatsApp contact is not configured for this business."
-        );
-
-        return;
-
-      }
+    const text =
+      feedbackMessage
+        .value
+        .trim();
 
 
-      /* =====================================================
-         CLEAN WHATSAPP NUMBER
-         ===================================================== */
+    /* =====================================================
+       CHECK BUSINESS
+       ===================================================== */
 
-      let number =
-        String(
-          currentBusiness.whatsapp_number
-        )
-        .replace(
-          /\D/g,
-          ""
-        );
+    if(!currentBusiness){
 
+      alert(
+        "Business information is unavailable."
+      );
 
-      /*
-        Algeria:
+      return;
 
-        0555123456
-
-        becomes:
-
-        213555123456
-      */
-
-      if(number.startsWith("0")){
-
-        number =
-          "213" +
-          number.substring(1);
-
-      }
+    }
 
 
-      /* =====================================================
-         MESSAGE
-         ===================================================== */
+    /* =====================================================
+       CHECK WHATSAPP
+       ===================================================== */
 
-      const businessName =
-        currentBusiness.name ||
-        "Business";
+    if(
+      !currentBusiness.whatsapp_number
+    ){
+
+      alert(
+        "WhatsApp contact is not configured for this business."
+      );
+
+      return;
+
+    }
 
 
-      let whatsappMessage =
+    /* =====================================================
+       CLEAN WHATSAPP NUMBER
+       ===================================================== */
+
+    let number =
+      String(
+        currentBusiness.whatsapp_number
+      )
+      .replace(
+        /\D/g,
+        ""
+      );
+
+
+    /*
+      Algeria:
+
+      0555123456
+
+      becomes:
+
+      213555123456
+    */
+
+    if(number.startsWith("0")){
+
+      number =
+        "213" +
+        number.substring(1);
+
+    }
+
+
+    /* =====================================================
+       MESSAGE
+       ===================================================== */
+
+    const businessName =
+      currentBusiness.name ||
+      "Business";
+
+
+    let whatsappMessage =
 `🔒 Private feedback — ${businessName}
 
 ⭐ Rating: ${selectedRating}/5`;
 
 
-      if(text.length > 0){
+    if(text.length > 0){
 
-        whatsappMessage +=
+      whatsappMessage +=
 `
 
 💬 Customer feedback:
 ${text}`;
 
-      }
-
-
-      /* =====================================================
-         ENCODE
-         ===================================================== */
-
-      const encodedMessage =
-        encodeURIComponent(
-          whatsappMessage
-        );
-
-
-      /* =====================================================
-         WHATSAPP URL
-         ===================================================== */
-
-      const whatsappURL =
-        `https://wa.me/${number}?text=${encodedMessage}`;
-
-
-      /* =====================================================
-         OPEN
-         ===================================================== */
-
-      window.location.href =
-        whatsappURL;
-
     }
-  );
+
+
+    /* =====================================================
+       ENCODE
+       ===================================================== */
+
+    const encodedMessage =
+      encodeURIComponent(
+        whatsappMessage
+      );
+
+
+    /* =====================================================
+       WHATSAPP URL
+       ===================================================== */
+
+    const whatsappURL =
+      `https://wa.me/${number}?text=${encodedMessage}`;
+
+
+    /* =====================================================
+       PREMIUM ACTIVE STATE
+       ===================================================== */
+
+    sendPrivateButton.disabled =
+      true;
+
+    sendPrivateButton.classList.add(
+      "opening"
+    );
+
+    sendPrivateButton.innerHTML = `
+      <span class="whatsapp-spinner"></span>
+      <span>Opening WhatsApp…</span>
+    `;
+
+
+    /*
+      Give the browser a moment to paint
+      the green active state before navigating.
+    */
+
+    setTimeout(
+      () => {
+
+        window.location.href =
+          whatsappURL;
+
+      },
+      180
+    );
+
+  }
+);
 
 
 /* =========================================================
