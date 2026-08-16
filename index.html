@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Loading...</title>
+  <title>Customer Feedback</title>
 
   <style>
     * {
@@ -17,36 +17,52 @@
       min-height: 100vh;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
         Roboto, Arial, sans-serif;
+
       background: #07111f;
       color: white;
+
       display: flex;
       justify-content: center;
       align-items: center;
+
       padding: 20px;
     }
 
     .card {
       width: 100%;
       max-width: 430px;
+
       background: #0d1b2d;
+
       border: 1px solid rgba(255,255,255,0.08);
       border-radius: 28px;
+
       padding: 34px 24px 28px;
+
       text-align: center;
-      box-shadow: 0 25px 70px rgba(0,0,0,0.35);
+
+      box-shadow:
+        0 25px 70px rgba(0,0,0,0.35);
     }
 
     .logo {
       width: 78px;
       height: 78px;
+
       border-radius: 22px;
+
       margin: 0 auto 18px;
+
       background: #132a45;
+
       display: flex;
       align-items: center;
       justify-content: center;
+
       font-size: 34px;
+
       border: 1px solid rgba(255,255,255,0.1);
+
       overflow: hidden;
     }
 
@@ -79,10 +95,17 @@
     .star {
       border: none;
       background: transparent;
+
       color: #536174;
+
       font-size: 43px;
+
       cursor: pointer;
-      transition: transform 0.15s ease, color 0.15s ease;
+
+      transition:
+        transform 0.15s ease,
+        color 0.15s ease;
+
       padding: 2px;
     }
 
@@ -96,14 +119,19 @@
 
     .rating-text {
       min-height: 24px;
+
       color: #b8c3d1;
+
       font-size: 14px;
+
       margin-bottom: 24px;
     }
 
     .message {
       display: none;
+
       text-align: left;
+
       animation: appear 0.25s ease;
     }
 
@@ -130,23 +158,39 @@
 
     .message p {
       color: #aab7c7;
+
       font-size: 14px;
       line-height: 1.5;
+
       margin-bottom: 18px;
     }
 
     .button {
       display: block;
+
       width: 100%;
+
       padding: 15px 18px;
+
       border-radius: 15px;
+
       border: none;
+
       text-decoration: none;
+
       font-size: 15px;
+
       font-weight: 700;
+
       cursor: pointer;
+
       margin-top: 11px;
-      transition: transform 0.15s ease, opacity 0.15s ease;
+
+      text-align: center;
+
+      transition:
+        transform 0.15s ease,
+        opacity 0.15s ease;
     }
 
     .button:active {
@@ -166,19 +210,31 @@
     .private {
       background: #1b3049;
       color: white;
+
       border: 1px solid rgba(255,255,255,0.1);
     }
 
     .small {
       margin-top: 22px;
+
       color: #66758a;
+
       font-size: 11px;
     }
 
+    .loading {
+      color: #9eacbd;
+      font-size: 15px;
+    }
+
     .error {
-      color: #ff8c8c;
-      font-size: 14px;
+      color: #ff8f8f;
+      font-size: 15px;
       line-height: 1.5;
+    }
+
+    .hidden {
+      display: none;
     }
   </style>
 </head>
@@ -187,59 +243,67 @@
 
   <main class="card">
 
-    <div class="logo" id="logo">🍽️</div>
+    <div class="logo" id="logo">
+      🍽️
+    </div>
 
-    <h1 id="businessName">Loading...</h1>
+    <h1 id="businessName">
+      Loading...
+    </h1>
 
-    <p class="subtitle">
-      How was your experience with us?
+    <p class="subtitle" id="subtitle">
+      <span class="loading">Loading your experience...</span>
     </p>
 
-    <div class="stars" id="stars">
+    <div id="feedbackArea" class="hidden">
 
-      <button class="star" data-rating="1">★</button>
-      <button class="star" data-rating="2">★</button>
-      <button class="star" data-rating="3">★</button>
-      <button class="star" data-rating="4">★</button>
-      <button class="star" data-rating="5">★</button>
+      <div class="stars" id="stars">
+
+        <button class="star" data-rating="1">★</button>
+        <button class="star" data-rating="2">★</button>
+        <button class="star" data-rating="3">★</button>
+        <button class="star" data-rating="4">★</button>
+        <button class="star" data-rating="5">★</button>
+
+      </div>
+
+      <div class="rating-text" id="ratingText">
+        Tap a star to rate your experience
+      </div>
+
+      <section class="message" id="message">
+
+        <h2 id="messageTitle"></h2>
+
+        <p id="messageText"></p>
+
+        <a
+          id="googleButton"
+          class="button google"
+          href="#"
+          target="_blank"
+          rel="noopener">
+          ⭐ Share your experience on Google
+        </a>
+
+        <a
+          id="whatsappButton"
+          class="button whatsapp"
+          href="#"
+          target="_blank"
+          rel="noopener">
+          💬 Contact us on WhatsApp
+        </a>
+
+        <button
+          class="button private"
+          onclick="showPrivateFeedback()">
+          📝 Send private feedback
+        </button>
+
+      </section>
 
     </div>
-
-    <div class="rating-text" id="ratingText">
-      Tap a star to rate your experience
-    </div>
-
-    <section class="message" id="message">
-
-      <h2 id="messageTitle"></h2>
-
-      <p id="messageText"></p>
-
-      <a
-        class="button google"
-        id="googleButton"
-        href="#"
-        target="_blank"
-        rel="noopener">
-        ⭐ Share your experience on Google
-      </a>
-
-      <a
-        class="button whatsapp"
-        id="whatsappButton"
-        href="#"
-        target="_blank"
-        rel="noopener">
-        💬 Contact us on WhatsApp
-      </a>
-
-      <button
-        class="button private"
-        onclick="showPrivateFeedback()">
-        📝 Send private feedback
-      </button>
-
-    </section>
 
     <div class="small">
       Your feedback helps us improve.
@@ -247,346 +311,435 @@
 
   </main>
 
-  <script>
 
-    /*
-      ==========================================
-      SUPABASE CONFIGURATION
-      ==========================================
-    */
+<script>
 
-    const SUPABASE_URL =
-      "https://mcujzqtfbwjttjieagas.supabase.co";
+/* =========================================================
+   SUPABASE CONFIGURATION
+   ========================================================= */
 
-    const SUPABASE_KEY =
-      "sb_publishable_4eVDX1IKZj7ClhpcjfiQFQ_hQ5Hr81k";
+const SUPABASE_URL =
+  "https://mcujzqtfbwjttjieagas.supabase.co";
 
-
-    /*
-      ==========================================
-      GET CARD CODE FROM URL
-      ==========================================
-
-      Example:
-
-      ?card=TEST001
-
-      Later your NFC card will simply open:
-
-      your-domain.com/?card=ABC123
-    */
-
-    const params = new URLSearchParams(window.location.search);
-
-    const cardCode = params.get("card") || "TEST001";
+const SUPABASE_KEY =
+  "sb_publishable_4eVDX1IKZj7ClhpcjfiQFQ_hQ5Hr81k";
 
 
-    /*
-      ==========================================
-      PAGE ELEMENTS
-      ==========================================
-    */
+/* =========================================================
+   GET CARD CODE FROM URL
+   Supports:
 
-    const businessName =
-      document.getElementById("businessName");
+   ?card=TEST001
+
+   and also:
+
+   /TEST001
+   ========================================================= */
+
+function getCardCode() {
+
+  const params = new URLSearchParams(window.location.search);
+
+  const queryCard = params.get("card");
+
+  if (queryCard) {
+    return queryCard.trim();
+  }
+
+  const pathParts =
+    window.location.pathname
+      .split("/")
+      .filter(Boolean);
+
+  const lastPart =
+    pathParts[pathParts.length - 1];
+
+  if (
+    lastPart &&
+    lastPart !== "nfc-feedback" &&
+    lastPart !== "index.html"
+  ) {
+    return decodeURIComponent(lastPart).trim();
+  }
+
+  return null;
+}
+
+
+/* =========================================================
+   SUPABASE REQUEST
+   ========================================================= */
+
+async function supabaseRequest(endpoint) {
+
+  const response = await fetch(
+    `${SUPABASE_URL}/rest/v1/${endpoint}`,
+    {
+      method: "GET",
+
+      headers: {
+        "apikey": SUPABASE_KEY,
+        "Authorization": `Bearer ${SUPABASE_KEY}`,
+        "Content-Type": "application/json"
+      }
+    }
+  );
+
+  if (!response.ok) {
+
+    const errorText = await response.text();
+
+    throw new Error(
+      `Supabase error ${response.status}: ${errorText}`
+    );
+  }
+
+  return response.json();
+}
+
+
+/* =========================================================
+   LOAD CARD
+   ========================================================= */
+
+async function loadCard() {
+
+  const cardCode = getCardCode();
+
+  const businessName =
+    document.getElementById("businessName");
+
+  const subtitle =
+    document.getElementById("subtitle");
+
+  const feedbackArea =
+    document.getElementById("feedbackArea");
+
+
+  /* No card code */
+
+  if (!cardCode) {
+
+    businessName.textContent =
+      "Card not found";
+
+    subtitle.innerHTML =
+      `<span class="error">
+        No card code was provided.
+      </span>`;
+
+    return;
+  }
+
+
+  try {
+
+    /* -----------------------------------------------------
+       STEP 1 — Find card
+       ----------------------------------------------------- */
+
+    const cards =
+      await supabaseRequest(
+        `cards?card_code=eq.${encodeURIComponent(cardCode)}&select=*`
+      );
+
+
+    if (!cards.length) {
+
+      throw new Error(
+        "This card does not exist."
+      );
+    }
+
+
+    const card = cards[0];
+
+
+    /* -----------------------------------------------------
+       STEP 2 — Check active
+       ----------------------------------------------------- */
+
+    if (!card.active) {
+
+      businessName.textContent =
+        "Card inactive";
+
+      subtitle.innerHTML =
+        `<span class="error">
+          This card has been deactivated.
+        </span>`;
+
+      return;
+    }
+
+
+    /* -----------------------------------------------------
+       STEP 3 — Find business
+       ----------------------------------------------------- */
+
+    const businesses =
+      await supabaseRequest(
+        `businesses?id=eq.${encodeURIComponent(card.business_id)}&select=*`
+      );
+
+
+    if (!businesses.length) {
+
+      throw new Error(
+        "Business connected to this card was not found."
+      );
+    }
+
+
+    const business =
+      businesses[0];
+
+
+    /* -----------------------------------------------------
+       STEP 4 — Apply business information
+       ----------------------------------------------------- */
+
+    businessName.textContent =
+      business.name || "Your Business";
+
+
+    subtitle.textContent =
+      "How was your experience with us?";
+
+
+    /* -----------------------------------------------------
+       LOGO
+       ----------------------------------------------------- */
 
     const logo =
       document.getElementById("logo");
 
+    if (business.logo_url) {
+
+      logo.innerHTML = "";
+
+      const image =
+        document.createElement("img");
+
+      image.src =
+        business.logo_url;
+
+      image.alt =
+        business.name || "Business logo";
+
+      logo.appendChild(image);
+    }
+
+
+    /* -----------------------------------------------------
+       PRIMARY COLOR
+       ----------------------------------------------------- */
+
+    if (business.primary_color) {
+
+      document.documentElement.style
+        .setProperty(
+          "--primary-color",
+          business.primary_color
+        );
+    }
+
+
+    /* -----------------------------------------------------
+       GOOGLE BUTTON
+       ----------------------------------------------------- */
+
     const googleButton =
       document.getElementById("googleButton");
+
+    if (business.google_review_url) {
+
+      googleButton.href =
+        business.google_review_url;
+
+    } else {
+
+      googleButton.href =
+        "https://www.google.com/maps";
+    }
+
+
+    /* -----------------------------------------------------
+       WHATSAPP BUTTON
+       ----------------------------------------------------- */
 
     const whatsappButton =
       document.getElementById("whatsappButton");
 
 
-    /*
-      ==========================================
-      LOAD CARD
-      ==========================================
-    */
+    if (business.whatsapp_number) {
 
-    async function loadCard() {
-
-      try {
-
-        const cardResponse = await fetch(
-          `${SUPABASE_URL}/rest/v1/cards?card_code=eq.${encodeURIComponent(cardCode)}&active=eq.true&select=business_id`,
-          {
-            headers: {
-              "apikey": SUPABASE_KEY,
-              "Authorization": `Bearer ${SUPABASE_KEY}`
-            }
-          }
-        );
-
-        if (!cardResponse.ok) {
-          throw new Error("Could not connect to the card database.");
-        }
-
-        const cards = await cardResponse.json();
+      let number =
+        String(business.whatsapp_number)
+          .replace(/\D/g, "");
 
 
-        if (!cards.length) {
+      /* Algeria number conversion:
+         0555xxxxxx
+         -> 213555xxxxxx
+      */
 
-          businessName.textContent = "Card not found";
+      if (number.startsWith("0")) {
 
-          document.querySelector(".subtitle").innerHTML =
-            `<span class="error">
-              This card is inactive or does not exist.
-            </span>`;
-
-          document.getElementById("stars").style.display = "none";
-
-          return;
-        }
-
-
-        const businessId = cards[0].business_id;
-
-
-        /*
-          ==========================================
-          LOAD BUSINESS
-          ==========================================
-        */
-
-        const businessResponse = await fetch(
-          `${SUPABASE_URL}/rest/v1/businesses?id=eq.${encodeURIComponent(businessId)}&select=id,name,logo_url,google_review_url,whatsapp_number,primary_color`,
-          {
-            headers: {
-              "apikey": SUPABASE_KEY,
-              "Authorization": `Bearer ${SUPABASE_KEY}`
-            }
-          }
-        );
-
-
-        if (!businessResponse.ok) {
-          throw new Error("Could not load business information.");
-        }
-
-
-        const businesses = await businessResponse.json();
-
-
-        if (!businesses.length) {
-
-          businessName.textContent = "Business not found";
-
-          document.querySelector(".subtitle").innerHTML =
-            `<span class="error">
-              This card is not connected to a business.
-            </span>`;
-
-          document.getElementById("stars").style.display = "none";
-
-          return;
-        }
-
-
-        const business = businesses[0];
-
-
-        /*
-          ==========================================
-          DISPLAY BUSINESS
-          ==========================================
-        */
-
-        businessName.textContent =
-          business.name || "Your Business";
-
-        document.title =
-          `${business.name || "Business"} — Your Experience`;
-
-
-        /*
-          LOGO
-        */
-
-        if (business.logo_url) {
-
-          logo.innerHTML =
-            `<img src="${business.logo_url}" alt="Business logo">`;
-
-        }
-
-
-        /*
-          PRIMARY COLOR
-        */
-
-        if (business.primary_color) {
-
-          document.documentElement.style.setProperty(
-            "--primary-color",
-            business.primary_color
-          );
-
-        }
-
-
-        /*
-          GOOGLE
-        */
-
-        if (business.google_review_url) {
-
-          googleButton.href =
-            business.google_review_url;
-
-        } else {
-
-          googleButton.style.display = "none";
-
-        }
-
-
-        /*
-          WHATSAPP
-        */
-
-        if (business.whatsapp_number) {
-
-          let number =
-            String(business.whatsapp_number)
-              .replace(/\D/g, "");
-
-          whatsappButton.href =
-            `https://wa.me/${number}`;
-
-        } else {
-
-          whatsappButton.style.display = "none";
-
-        }
-
-      } catch (error) {
-
-        console.error(error);
-
-        businessName.textContent =
-          "Something went wrong";
-
-        document.querySelector(".subtitle").innerHTML =
-          `<span class="error">
-            We couldn't load this business.
-            Please try again.
-          </span>`;
-
+        number =
+          "213" + number.substring(1);
       }
 
+
+      if (!number.startsWith("213") &&
+          number.length <= 10) {
+
+        number =
+          "213" + number;
+      }
+
+
+      whatsappButton.href =
+        `https://wa.me/${number}`;
+
+    } else {
+
+      whatsappButton.classList.add("hidden");
     }
 
 
-    /*
-      ==========================================
-      STAR RATING
-      ==========================================
-    */
+    /* -----------------------------------------------------
+       SHOW PAGE
+       ----------------------------------------------------- */
 
-    const stars =
-      document.querySelectorAll(".star");
+    feedbackArea.classList.remove("hidden");
 
-    const ratingText =
-      document.getElementById("ratingText");
+  }
 
-    const message =
-      document.getElementById("message");
+  catch (error) {
 
-    const messageTitle =
-      document.getElementById("messageTitle");
+    console.error(error);
 
-    const messageText =
-      document.getElementById("messageText");
+    businessName.textContent =
+      "Card not found";
 
+    subtitle.innerHTML =
+      `<span class="error">
+        This card is inactive or does not exist.
+      </span>`;
 
-    const texts = {
-
-      1: "We're sorry your experience wasn't great.",
-
-      2: "We're sorry we didn't meet your expectations.",
-
-      3: "Thanks for the feedback. We'd love to improve.",
-
-      4: "We're glad you had a good experience!",
-
-      5: "We're thrilled you enjoyed your experience!"
-
-    };
+  }
+}
 
 
-    stars.forEach(star => {
+/* =========================================================
+   STAR RATING
+   ========================================================= */
 
-      star.addEventListener("click", () => {
+const stars =
+  document.querySelectorAll(".star");
 
-        const rating =
-          Number(star.dataset.rating);
+const ratingText =
+  document.getElementById("ratingText");
 
+const message =
+  document.getElementById("message");
 
-        stars.forEach(s => {
+const messageTitle =
+  document.getElementById("messageTitle");
 
-          s.classList.toggle(
-            "active",
-            Number(s.dataset.rating) <= rating
-          );
-
-        });
-
-
-        ratingText.textContent =
-          `${rating} out of 5 stars`;
+const messageText =
+  document.getElementById("messageText");
 
 
-        messageTitle.textContent =
-          texts[rating];
+const texts = {
+
+  1:
+    "We're sorry your experience wasn't great.",
+
+  2:
+    "We're sorry we didn't meet your expectations.",
+
+  3:
+    "Thanks for the feedback. We'd love to improve.",
+
+  4:
+    "We're glad you had a good experience!",
+
+  5:
+    "We're thrilled you enjoyed your experience!"
+
+};
 
 
-        if (rating <= 3) {
+stars.forEach(star => {
 
-          messageText.textContent =
-            "We'd really appreciate the chance to hear what went wrong and make things right.";
+  star.addEventListener("click", () => {
 
-        } else {
-
-          messageText.textContent =
-            "Thank you for taking the time to rate us. If you'd like, you can share your experience publicly or contact us directly.";
-
-        }
+    const rating =
+      Number(star.dataset.rating);
 
 
-        message.classList.add("show");
+    /* Highlight stars */
 
-      });
+    stars.forEach(s => {
+
+      s.classList.toggle(
+        "active",
+        Number(s.dataset.rating) <= rating
+      );
 
     });
 
 
-    /*
-      ==========================================
-      PRIVATE FEEDBACK
-      ==========================================
-    */
+    ratingText.textContent =
+      `${rating} out of 5 stars`;
 
-    function showPrivateFeedback() {
 
-      alert(
-        "Private feedback form coming next!"
-      );
+    messageTitle.textContent =
+      texts[rating];
+
+
+    if (rating <= 3) {
+
+      messageText.textContent =
+        "We'd really appreciate the chance to hear what went wrong and make things right.";
+
+    } else {
+
+      messageText.textContent =
+        "Thank you for taking the time to rate us. If you'd like, you can share your experience publicly or contact us directly.";
 
     }
 
 
-    /*
-      ==========================================
-      START
-      ==========================================
-    */
+    message.classList.add("show");
 
-    loadCard();
+  });
 
-  </script>
+});
+
+
+/* =========================================================
+   PRIVATE FEEDBACK
+   ========================================================= */
+
+function showPrivateFeedback() {
+
+  alert(
+    "Private feedback form coming next! We'll connect this to your database so the business receives the message."
+  );
+
+}
+
+
+/* =========================================================
+   START
+   ========================================================= */
+
+loadCard();
+
+</script>
 
 </body>
 </html>
