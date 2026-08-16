@@ -749,7 +749,7 @@ button{
 
 
 /* =========================================================
-   GOOGLE CTA — GOLD PREMIUM BUTTON
+   GOOGLE CTA
    ========================================================= */
 
 .google-area{
@@ -780,175 +780,49 @@ button{
 
   border-radius:21px;
 
-  position:relative;
-  overflow:hidden;
-  isolation:isolate;
-
   background:
     linear-gradient(
-      135deg,
-      #b98920 0%,
-      #f0c862 24%,
-      #ffe9a8 45%,
-      #f0c862 60%,
-      #d8a935 78%,
-      #a97a1c 100%
+      180deg,
+      #ffffff,
+      #f4f5f7
     );
-
-  background-size:220% 220%;
 
   border:
     1px solid
-    #e9c165;
+    #d2d5d9;
 
-  color:#1a2a44;
+  color:#202124;
 
   font-size:
     clamp(17px,4.4vw,21px);
 
-  font-weight:850;
+  font-weight:800;
 
   box-shadow:
 
-    0 16px 34px
-    rgba(180,132,26,.35),
+    0 13px 30px
+    rgba(16,32,57,.14),
 
-    0 3px 10px
-    rgba(180,132,26,.22),
-
-    inset 0 1px 0
-    rgba(255,255,255,.55);
+    0 3px 8px
+    rgba(16,32,57,.08);
 
   transition:
     transform .16s ease,
-    box-shadow .25s ease;
+    box-shadow .20s ease;
 
   -webkit-tap-highlight-color:transparent;
-
-  animation:
-    goldFlow 5s ease-in-out infinite,
-    goldGlow 2.6s ease-in-out infinite;
-
-}
-
-
-@keyframes goldFlow{
-
-  0%{
-    background-position:0% 50%;
-  }
-
-  50%{
-    background-position:100% 50%;
-  }
-
-  100%{
-    background-position:0% 50%;
-  }
-
-}
-
-
-@keyframes goldGlow{
-
-  0%,100%{
-
-    box-shadow:
-
-      0 16px 34px
-      rgba(180,132,26,.35),
-
-      0 3px 10px
-      rgba(180,132,26,.22),
-
-      inset 0 1px 0
-      rgba(255,255,255,.55);
-
-  }
-
-  50%{
-
-    box-shadow:
-
-      0 18px 42px
-      rgba(214,166,43,.5),
-
-      0 4px 14px
-      rgba(214,166,43,.32),
-
-      inset 0 1px 0
-      rgba(255,255,255,.7);
-
-  }
-
-}
-
-
-/* shimmering sweep of light across the button */
-
-.google-button::after{
-
-  content:"";
-
-  position:absolute;
-
-  top:0;
-  left:-60%;
-
-  width:45%;
-  height:100%;
-
-  background:
-    linear-gradient(
-      100deg,
-      rgba(255,255,255,0) 0%,
-      rgba(255,255,255,.75) 50%,
-      rgba(255,255,255,0) 100%
-    );
-
-  transform:skewX(-20deg);
-
-  z-index:1;
-
-  animation:
-    shineSweep 3.2s ease-in-out infinite;
-
-}
-
-
-@keyframes shineSweep{
-
-  0%{
-
-    left:-60%;
-
-  }
-
-  35%,100%{
-
-    left:130%;
-
-  }
-
-}
-
-
-.google-button span{
-
-  position:relative;
-  z-index:2;
 
 }
 
 
 .google-button:hover{
 
-  transform:translateY(-2px) scale(1.01);
+  transform:translateY(-2px);
 
   box-shadow:
 
-    0 22px 46px
-    rgba(214,166,43,.5);
+    0 18px 38px
+    rgba(16,32,57,.18);
 
 }
 
@@ -966,10 +840,10 @@ button{
 
 .google-g{
 
-  width:34px;
-  height:34px;
+  width:31px;
+  height:31px;
 
-  flex:0 0 34px;
+  flex:0 0 31px;
 
   border-radius:50%;
 
@@ -980,15 +854,8 @@ button{
   background:white;
 
   position:relative;
-  z-index:2;
 
   overflow:hidden;
-
-  box-shadow:
-    0 3px 10px
-    rgba(0,0,0,.25),
-    0 0 0 3px
-    rgba(255,255,255,.4);
 
 }
 
@@ -1036,13 +903,13 @@ button{
 
 .google-note{
 
-  margin-top:11px;
+  margin-top:9px;
 
-  color:#a9832f;
+  color:#8a95a3;
 
   font-size:11px;
 
-  font-weight:750;
+  font-weight:650;
 
   letter-spacing:.4px;
 
