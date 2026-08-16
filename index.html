@@ -1,12 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0"
+>
 
 <title>Customer Feedback</title>
 
+
 <style>
+
+/* =========================================================
+   RESET
+========================================================= */
 
 *{
   box-sizing:border-box;
@@ -19,7 +29,10 @@ html{
 }
 
 body{
+
   min-height:100vh;
+  min-height:100dvh;
+
   font-family:
     -apple-system,
     BlinkMacSystemFont,
@@ -31,53 +44,85 @@ body{
   background:
     radial-gradient(
       circle at 50% -10%,
-      rgba(255,200,61,.10),
+      rgba(255,200,61,.12),
       transparent 38%
     ),
     linear-gradient(
       180deg,
       #050d18 0%,
-      #07111f 45%,
+      #07111f 50%,
       #050c16 100%
     );
 
-  color:white;
+  color:#fff;
 
   display:flex;
+
   justify-content:center;
   align-items:center;
 
-  padding:20px;
+  padding:
+    clamp(10px, 2.5vw, 24px);
 
   overflow-x:hidden;
+
+  -webkit-tap-highlight-color:transparent;
 }
 
 
 /* =========================================================
-   MAIN CARD
+   MAIN CUSTOMER CARD
 ========================================================= */
 
 .card{
-  width:100%;
-  max-width:440px;
+
+  width:
+    min(
+      94vw,
+      560px
+    );
+
+  min-height:
+    min(
+      88vh,
+      760px
+    );
+
+  min-height:
+    min(
+      88dvh,
+      760px
+    );
+
+  display:flex;
+
+  flex-direction:column;
+
+  justify-content:center;
 
   background:
     linear-gradient(
       145deg,
       rgba(18,39,63,.98),
-      rgba(9,23,39,.98)
+      rgba(8,22,38,.99)
     );
 
-  border:1px solid rgba(255,255,255,.09);
+  border:
+    1px solid
+    rgba(255,255,255,.09);
 
-  border-radius:30px;
+  border-radius:
+    clamp(25px, 5vw, 34px);
 
-  padding:36px 25px 29px;
+  padding:
+    clamp(35px, 7vw, 58px)
+    clamp(22px, 6vw, 48px)
+    clamp(28px, 6vw, 45px);
 
   text-align:center;
 
   box-shadow:
-    0 30px 90px rgba(0,0,0,.48),
+    0 35px 100px rgba(0,0,0,.50),
     0 0 0 1px rgba(255,255,255,.015);
 
   position:relative;
@@ -86,26 +131,35 @@ body{
 }
 
 
-/* premium light */
+/* =========================================================
+   PREMIUM LIGHT
+========================================================= */
 
 .card::before{
+
   content:"";
 
   position:absolute;
 
-  width:260px;
-  height:260px;
+  width:
+    clamp(220px, 60vw, 360px);
 
-  top:-170px;
+  height:
+    clamp(220px, 60vw, 360px);
+
+  top:
+    clamp(-190px, -25vw, -120px);
+
   left:50%;
 
-  transform:translateX(-50%);
+  transform:
+    translateX(-50%);
 
   background:#ffc83d;
 
   opacity:.055;
 
-  filter:blur(50px);
+  filter:blur(55px);
 
   pointer-events:none;
 }
@@ -116,12 +170,19 @@ body{
 ========================================================= */
 
 .logo{
-  width:80px;
-  height:80px;
 
-  border-radius:23px;
+  width:
+    clamp(82px, 21vw, 112px);
 
-  margin:0 auto 18px;
+  height:
+    clamp(82px, 21vw, 112px);
+
+  border-radius:
+    clamp(23px, 5vw, 30px);
+
+  margin:
+    0 auto
+    clamp(20px, 4vw, 27px);
 
   background:
     linear-gradient(
@@ -131,48 +192,88 @@ body{
     );
 
   display:flex;
+
   align-items:center;
   justify-content:center;
 
-  font-size:34px;
+  font-size:
+    clamp(36px, 8vw, 50px);
 
-  border:1px solid rgba(255,255,255,.11);
+  border:
+    1px solid
+    rgba(255,255,255,.12);
 
   overflow:hidden;
 
   box-shadow:
-    0 12px 30px rgba(0,0,0,.25);
+    0 15px 35px
+    rgba(0,0,0,.30);
+
+  flex-shrink:0;
 }
 
+
 .logo img{
+
   width:100%;
   height:100%;
+
   object-fit:cover;
 }
 
 
 /* =========================================================
-   TEXT
+   BUSINESS NAME
 ========================================================= */
 
 h1{
-  font-size:26px;
 
-  margin-bottom:8px;
+  font-size:
+    clamp(27px, 6vw, 36px);
 
-  letter-spacing:-.5px;
+  line-height:1.15;
+
+  margin-bottom:
+    clamp(9px, 2vw, 13px);
+
+  letter-spacing:-.7px;
 
   font-weight:800;
+
+  word-break:break-word;
 }
 
+
+/* =========================================================
+   SUBTITLE
+========================================================= */
+
 .subtitle{
+
   color:#9eacbd;
 
-  font-size:15px;
+  font-size:
+    clamp(15px, 3.8vw, 18px);
 
   line-height:1.5;
 
-  margin-bottom:29px;
+  margin-bottom:
+    clamp(28px, 6vw, 38px);
+
+  max-width:430px;
+
+  margin-left:auto;
+  margin-right:auto;
+}
+
+
+/* =========================================================
+   FEEDBACK AREA
+========================================================= */
+
+#feedbackArea{
+
+  width:100%;
 }
 
 
@@ -181,35 +282,30 @@ h1{
 ========================================================= */
 
 .stars{
+
   display:flex;
 
   justify-content:center;
 
   align-items:center;
 
-  gap:4px;
+  gap:
+    clamp(1px, 1vw, 6px);
 
-  margin-bottom:13px;
+  margin-bottom:
+    clamp(14px, 3vw, 18px);
 
-  padding:4px 0;
-
-  /*
-    Important for mobile:
-    prevents the browser's native touch highlight
-    from visually interfering with the selected star.
-  */
+  padding:5px 0;
 
   -webkit-tap-highlight-color:transparent;
 }
 
 
-/* STAR BUTTON */
+/* =========================================================
+   STAR BUTTON
+========================================================= */
 
 .star{
-
-  /*
-    Remove browser/native button styling.
-  */
 
   appearance:none;
   -webkit-appearance:none;
@@ -221,68 +317,61 @@ h1{
 
   color:#536174;
 
-  font-size:43px;
+  font-size:
+    clamp(48px, 12vw, 64px);
 
   line-height:1;
 
   cursor:pointer;
 
-  padding:5px;
+  padding:
+    clamp(4px, 1vw, 7px);
 
   margin:0;
 
-  width:52px;
-  height:58px;
+  width:
+    clamp(55px, 14vw, 72px);
+
+  height:
+    clamp(64px, 15vw, 78px);
 
   display:flex;
+
   align-items:center;
   justify-content:center;
 
-  /*
-    Prevent mobile browser tap highlight.
-  */
-
   -webkit-tap-highlight-color:transparent;
-
-  /*
-    Prevent accidental text selection.
-  */
 
   user-select:none;
   -webkit-user-select:none;
 
-  /*
-    Smooth persistent transition.
-  */
+  opacity:1 !important;
 
   transition:
     color .20s ease,
     transform .20s cubic-bezier(.2,.9,.3,1.35),
     filter .20s ease;
-
-  /*
-    Make sure browser doesn't fade it.
-  */
-
-  opacity:1 !important;
 }
 
 
-/* Hover */
+/* =========================================================
+   HOVER
+========================================================= */
 
 @media (hover:hover){
 
   .star:hover{
+
     color:#ffe08a;
 
     transform:
-      translateY(-3px)
-      scale(1.10);
+      translateY(-4px)
+      scale(1.08);
 
     filter:
       drop-shadow(
-        0 5px 10px
-        rgba(255,200,61,.22)
+        0 5px 11px
+        rgba(255,200,61,.25)
       );
   }
 
@@ -293,36 +382,26 @@ h1{
    SELECTED STARS
 ========================================================= */
 
-/*
-  THIS is the important fix.
-
-  The gold state is controlled by a permanent class,
-  NOT :active.
-
-  So once the customer taps a star, it stays gold.
-*/
-
 .star.selected{
+
   color:#ffc83d !important;
 
   opacity:1 !important;
 
   filter:
     drop-shadow(
-      0 4px 9px
-      rgba(255,200,61,.24)
+      0 5px 11px
+      rgba(255,200,61,.25)
     );
 }
 
 
-/*
-  Tiny premium animation.
-
-  Only the star that was actually clicked gets
-  the pop animation.
-*/
+/* =========================================================
+   STAR POP ANIMATION
+========================================================= */
 
 .star.selected.pop{
+
   animation:
     starPop
     .42s
@@ -351,20 +430,15 @@ h1{
 }
 
 
-/*
-  Small glow on selected stars.
-*/
-
-.star.selected::selection{
-  background:transparent;
-}
-
-
-/* keyboard focus */
+/* =========================================================
+   FOCUS
+========================================================= */
 
 .star:focus-visible{
+
   outline:
-    2px solid rgba(255,200,61,.7);
+    2px solid
+    rgba(255,200,61,.7);
 
   outline-offset:3px;
 
@@ -377,13 +451,17 @@ h1{
 ========================================================= */
 
 .rating-text{
-  min-height:24px;
+
+  min-height:
+    clamp(24px, 5vw, 29px);
 
   color:#b8c3d1;
 
-  font-size:14px;
+  font-size:
+    clamp(14px, 3.5vw, 17px);
 
-  margin-bottom:23px;
+  margin-bottom:
+    clamp(25px, 5vw, 33px);
 
   transition:
     opacity .2s ease,
@@ -396,6 +474,7 @@ h1{
 ========================================================= */
 
 .message{
+
   display:none;
 
   text-align:left;
@@ -408,6 +487,7 @@ h1{
 
 
 .message.show{
+
   display:block;
 }
 
@@ -415,35 +495,57 @@ h1{
 @keyframes messageAppear{
 
   from{
+
     opacity:0;
-    transform:translateY(9px);
+
+    transform:
+      translateY(10px);
   }
 
   to{
+
     opacity:1;
-    transform:translateY(0);
+
+    transform:
+      translateY(0);
   }
 
 }
 
 
+/* =========================================================
+   MESSAGE TITLE
+========================================================= */
+
 .message h2{
-  font-size:19px;
 
-  margin-bottom:8px;
+  font-size:
+    clamp(20px, 4.8vw, 24px);
 
-  letter-spacing:-.2px;
+  line-height:1.25;
+
+  margin-bottom:
+    clamp(9px, 2vw, 12px);
+
+  letter-spacing:-.25px;
 }
 
 
+/* =========================================================
+   MESSAGE TEXT
+========================================================= */
+
 .message p{
+
   color:#aab7c7;
 
-  font-size:14px;
+  font-size:
+    clamp(14px, 3.5vw, 17px);
 
-  line-height:1.5;
+  line-height:1.55;
 
-  margin-bottom:18px;
+  margin-bottom:
+    clamp(18px, 4vw, 23px);
 }
 
 
@@ -455,25 +557,32 @@ textarea{
 
   width:100%;
 
-  min-height:130px;
+  min-height:
+    clamp(140px, 30vw, 175px);
 
   resize:vertical;
 
-  padding:14px;
+  padding:
+    clamp(15px, 3.5vw, 19px);
 
-  border-radius:15px;
+  border-radius:
+    clamp(15px, 4vw, 18px);
 
   border:
-    1px solid rgba(255,255,255,.10);
+    1px solid
+    rgba(255,255,255,.10);
 
   background:
-    rgba(4,13,24,.75);
+    rgba(4,13,24,.78);
 
   color:white;
 
   font-family:inherit;
 
-  font-size:14px;
+  font-size:
+    clamp(15px, 3.8vw, 17px);
+
+  line-height:1.5;
 
   outline:none;
 
@@ -486,6 +595,7 @@ textarea{
 
 
 textarea::placeholder{
+
   color:#65758a;
 }
 
@@ -511,23 +621,35 @@ textarea:focus{
 
   width:100%;
 
-  padding:15px 18px;
+  min-height:
+    clamp(54px, 13vw, 64px);
 
-  border-radius:15px;
+  padding:
+    15px 18px;
+
+  border-radius:
+    clamp(15px, 4vw, 18px);
 
   border:none;
 
   text-decoration:none;
 
-  font-size:15px;
+  font-size:
+    clamp(15px, 3.8vw, 18px);
 
   font-weight:750;
 
   cursor:pointer;
 
-  margin-top:11px;
+  margin-top:12px;
 
   text-align:center;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
 
   transition:
     transform .15s ease,
@@ -537,11 +659,14 @@ textarea:focus{
 
 
 .button:active{
+
   transform:scale(.985);
 }
 
 
-/* GOOGLE */
+/* =========================================================
+   GOOGLE BUTTON
+========================================================= */
 
 .google{
 
@@ -555,46 +680,55 @@ textarea:focus{
   color:#111827;
 
   box-shadow:
-    0 8px 22px rgba(0,0,0,.20);
+    0 9px 25px
+    rgba(0,0,0,.22);
 }
 
 
 .google:hover{
 
   box-shadow:
-    0 11px 28px rgba(0,0,0,.28);
+    0 13px 32px
+    rgba(0,0,0,.30);
 
-  transform:translateY(-1px);
+  transform:
+    translateY(-2px);
 }
 
 
-/* PRIVATE */
+/* =========================================================
+   PRIVATE BUTTON
+========================================================= */
 
 .private{
 
   background:
     linear-gradient(
       135deg,
-      #213b59,
-      #172e48
+      #24415f,
+      #172f49
     );
 
   color:white;
 
   border:
-    1px solid rgba(255,255,255,.07);
+    1px solid
+    rgba(255,255,255,.08);
 
   box-shadow:
-    0 8px 22px rgba(0,0,0,.20);
+    0 9px 25px
+    rgba(0,0,0,.22);
 }
 
 
 .private:hover{
 
-  transform:translateY(-1px);
+  transform:
+    translateY(-2px);
 
   box-shadow:
-    0 11px 28px rgba(0,0,0,.28);
+    0 13px 32px
+    rgba(0,0,0,.30);
 }
 
 
@@ -604,66 +738,109 @@ textarea:focus{
 
 .small{
 
-  margin-top:23px;
+  margin-top:
+    clamp(24px, 5vw, 32px);
 
   color:#66758a;
 
-  font-size:11px;
+  font-size:
+    clamp(11px, 2.7vw, 13px);
 
   letter-spacing:.1px;
 }
 
 
+/* =========================================================
+   ERROR
+========================================================= */
+
 .error{
+
   color:#ff8f8f;
 }
 
 
+/* =========================================================
+   HIDDEN
+========================================================= */
+
 .hidden{
+
   display:none !important;
 }
 
 
 /* =========================================================
-   MOBILE
+   VERY SMALL PHONES
 ========================================================= */
 
-@media(max-width:480px){
+@media(max-width:360px){
 
   body{
-    padding:14px;
+
+    padding:8px;
   }
 
   .card{
+
+    width:96vw;
+
+    min-height:
+      92dvh;
+
     padding:
-      32px
-      20px
-      26px;
-
-    border-radius:27px;
+      28px 14px 23px;
   }
 
-  .logo{
-    width:74px;
-    height:74px;
-  }
+  .stars{
 
-  h1{
-    font-size:24px;
+    gap:0;
   }
 
   .star{
 
-    font-size:40px;
+    width:52px;
 
-    width:49px;
-    height:56px;
-
-    padding:4px;
+    font-size:46px;
   }
 
-  .stars{
-    gap:1px;
+}
+
+
+/* =========================================================
+   TABLETS
+========================================================= */
+
+@media(min-width:600px){
+
+  body{
+
+    padding:24px;
+  }
+
+  .card{
+
+    width:
+      min(88vw, 600px);
+
+    min-height:
+      min(82dvh, 800px);
+  }
+
+}
+
+
+/* =========================================================
+   LARGE DESKTOP
+========================================================= */
+
+@media(min-width:1000px){
+
+  .card{
+
+    width:560px;
+
+    min-height:760px;
   }
 
 }
@@ -680,6 +857,7 @@ textarea:focus{
   *::after{
 
     animation-duration:.01ms !important;
+
     animation-iteration-count:1 !important;
 
     transition-duration:.01ms !important;
@@ -715,9 +893,15 @@ textarea:focus{
   ====================================================== -->
 
   <h1 id="businessName">
+
     Loading...
+
   </h1>
 
+
+  <!-- =====================================================
+       SUBTITLE
+  ====================================================== -->
 
   <p
     class="subtitle"
@@ -900,6 +1084,10 @@ textarea:focus{
   </div>
 
 
+  <!-- =====================================================
+       FOOTER
+  ====================================================== -->
+
   <div class="small">
 
     Your feedback helps us improve.
@@ -952,9 +1140,11 @@ async function supabaseGet(endpoint){
     await fetch(
       `${SUPABASE_URL}/rest/v1/${endpoint}`,
       {
+
         method:"GET",
 
         headers:{
+
           "apikey":
             SUPABASE_KEY,
 
@@ -963,7 +1153,9 @@ async function supabaseGet(endpoint){
 
           "Content-Type":
             "application/json"
+
         }
+
       }
     );
 
@@ -1020,7 +1212,9 @@ async function loadCard(){
     );
 
 
-  /* NO CARD CODE */
+  /* =======================================================
+     NO CARD CODE
+  ======================================================== */
 
   if(!cardCode){
 
@@ -1305,24 +1499,13 @@ stars.forEach(
           );
 
 
-        /*
-          First update ALL selected stars.
-
-          This guarantees that 1 star means:
-
-          ⭐☆☆☆☆
-
-          and 5 stars means:
-
-          ⭐⭐⭐⭐⭐
-        */
+        /* Update persistent gold state */
 
         updateStars();
 
 
         /*
-          Remove old animation class from
-          every star first.
+          Remove old pop animation.
         */
 
         stars.forEach(
@@ -1337,19 +1520,15 @@ stars.forEach(
 
 
         /*
-          Force browser reflow.
-
-          This allows the same animation to
-          replay every time the user selects
-          another rating.
+          Force reflow so animation can
+          replay on every click.
         */
 
         void this.offsetWidth;
 
 
         /*
-          Animate the star the customer
-          actually clicked.
+          Animate clicked star.
         */
 
         this.classList.add(
@@ -1390,12 +1569,8 @@ stars.forEach(
             .remove("hidden");
 
 
-          /*
-            Clear comment when selecting
-            a private rating.
-          */
-
-          feedbackMessage.value = "";
+          feedbackMessage.value =
+            "";
 
         }
 
@@ -1462,12 +1637,6 @@ document
     "click",
     function(){
 
-      /*
-        COMMENT IS OPTIONAL.
-
-        Empty comment is completely valid.
-      */
-
       const text =
         feedbackMessage
           .value
@@ -1490,7 +1659,7 @@ document
 
 
       /* ===================================================
-         CHECK WHATSAPP NUMBER
+         CHECK WHATSAPP
       ==================================================== */
 
       if(!currentBusiness.whatsapp_number){
@@ -1505,7 +1674,7 @@ document
 
 
       /* ===================================================
-         CLEAN WHATSAPP NUMBER
+         CLEAN NUMBER
       ==================================================== */
 
       let number =
@@ -1523,7 +1692,7 @@ document
 
         0555123456
 
-        becomes:
+        ↓
 
         213555123456
       */
@@ -1538,7 +1707,7 @@ document
 
 
       /* ===================================================
-         CREATE MESSAGE
+         MESSAGE
       ==================================================== */
 
       const businessName =
@@ -1551,11 +1720,6 @@ document
 
 ⭐ Rating: ${selectedRating}/5`;
 
-
-      /*
-        Add customer comment ONLY
-        when one was written.
-      */
 
       if(text.length > 0){
 
@@ -1587,7 +1751,7 @@ ${text}`;
 
 
       /*
-        Nothing is saved to Supabase.
+        Nothing is saved in Supabase.
 
         The customer goes directly to WhatsApp.
       */
@@ -1607,5 +1771,6 @@ loadCard();
 
 </script>
 
+
 </body>
-</html>
+  </html>
