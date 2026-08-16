@@ -1,330 +1,364 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Customer Feedback</title>
+  <title>Customer Feedback</title>
 
-<style>
-*{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
-}
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-:root{
-  --primary:#ffc83d;
-  --background:#07111f;
-  --panel:#0d1b2d;
-  --logo-bg:#132a45;
-}
+    body {
+      min-height: 100vh;
+      font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Roboto,
+        Arial,
+        sans-serif;
 
-body{
-  min-height:100vh;
-  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
-  background:var(--background);
-  color:white;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  padding:20px;
-}
+      background: #07111f;
+      color: white;
 
-button,
-input,
-textarea{
-  font:inherit;
-}
+      display: flex;
+      justify-content: center;
+      align-items: center;
 
-.card{
-  width:100%;
-  max-width:430px;
-  background:var(--panel);
-  border:1px solid rgba(255,255,255,.08);
-  border-radius:28px;
-  padding:34px 24px 28px;
-  text-align:center;
-  box-shadow:0 25px 70px rgba(0,0,0,.35);
-}
+      padding: 20px;
+    }
 
-.logo{
-  width:78px;
-  height:78px;
-  border-radius:22px;
-  margin:0 auto 18px;
-  background:var(--logo-bg);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:34px;
-  border:1px solid rgba(255,255,255,.1);
-  overflow:hidden;
-}
+    .card {
+      width: 100%;
+      max-width: 430px;
 
-.logo img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-}
+      background: #0d1b2d;
 
-h1{
-  font-size:25px;
-  margin-bottom:8px;
-  letter-spacing:-.4px;
-}
+      border: 1px solid rgba(255,255,255,0.08);
 
-.subtitle{
-  color:#9eacbd;
-  font-size:15px;
-  line-height:1.5;
-  margin-bottom:30px;
-}
+      border-radius: 28px;
 
-.stars{
-  display:flex;
-  justify-content:center;
-  gap:7px;
-  margin-bottom:14px;
-}
+      padding: 34px 24px 28px;
 
-.star{
-  appearance:none;
-  -webkit-appearance:none;
+      text-align: center;
 
-  border:none;
-  outline:none;
+      box-shadow:
+        0 25px 70px rgba(0,0,0,0.35);
+    }
 
-  background:transparent;
+    .logo {
+      width: 78px;
+      height: 78px;
 
-  color:#536174;
+      border-radius: 22px;
 
-  font-size:43px;
-  line-height:1;
+      margin: 0 auto 18px;
 
-  cursor:pointer;
+      background: #132a45;
 
-  padding:4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
 
-  transform:scale(1);
+      font-size: 34px;
 
-  transition:
-    color .12s ease,
-    transform .12s cubic-bezier(.2,.8,.3,1),
-    filter .12s ease;
-  
-  -webkit-tap-highlight-color:transparent;
-  touch-action:manipulation;
-}
+      border: 1px solid rgba(255,255,255,0.1);
 
-.star:hover{
-  transform:scale(1.10);
-}
+      overflow: hidden;
+    }
 
-.star.active{
-  color:var(--primary);
+    .logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
 
-  transform:scale(1.08);
+    h1 {
+      font-size: 25px;
+      margin-bottom: 8px;
+      letter-spacing: -0.4px;
+    }
 
-  filter:
-    drop-shadow(
-      0 0 7px
-      color-mix(
-        in srgb,
-        var(--primary) 55%,
-        transparent
-      )
-    );
-}
+    .subtitle {
+      color: #9eacbd;
+      font-size: 15px;
+      line-height: 1.5;
+      margin-bottom: 30px;
+    }
 
-/*
-  The star that was just clicked
-  gets a quick premium "pop".
-*/
+    /* =====================================================
+       STARS
+       ===================================================== */
 
-.star.selected-pop{
-  animation:starPop .28s cubic-bezier(.2,.9,.3,1);
-}
+    .stars {
+      display: flex;
+      justify-content: center;
+      gap: 7px;
+      margin-bottom: 14px;
+    }
 
-@keyframes starPop{
+    .star {
+      border: none;
+      background: transparent;
 
-  0%{
-    transform:scale(.82);
-  }
+      color: #536174;
 
-  45%{
-    transform:scale(1.28);
-  }
+      font-size: 43px;
+      line-height: 1;
 
-  75%{
-    transform:scale(1.04);
-  }
+      cursor: pointer;
 
-  100%{
-    transform:scale(1.08);
-  }
+      padding: 2px;
 
-}
+      outline: none;
 
-.rating-text{
-  min-height:24px;
-  color:#b8c3d1;
-  font-size:14px;
-  margin-bottom:24px;
-  transition:
-    opacity .15s ease,
-    transform .15s ease;
-}
+      -webkit-tap-highlight-color: transparent;
+      appearance: none;
+    }
 
-.rating-text.rating-change{
-  animation:ratingChange .2s ease;
-}
+    /*
+      The actual star stays completely stable.
+      Only the inner span animates.
+    */
 
-@keyframes ratingChange{
+    .star span {
+      display: inline-block;
 
-  0%{
-    opacity:.3;
-    transform:translateY(3px);
-  }
+      color: inherit;
 
-  100%{
-    opacity:1;
-    transform:translateY(0);
-  }
+      transition:
+        color 0.15s ease,
+        transform 0.15s ease;
+    }
 
-}
+    .star:hover span {
+      transform: scale(1.08);
+    }
 
-.message{
-  display:none;
-  text-align:left;
-  animation:appear .25s ease;
-}
+    .star.active {
+      color: #ffc83d;
+    }
 
-.message.show{
-  display:block;
-}
+    .star.active span {
+      transform: scale(1.04);
+    }
 
-@keyframes appear{
+    /*
+      Small pop when the customer selects a star.
+    */
 
-  from{
-    opacity:0;
-    transform:translateY(8px);
-  }
+    .star.pop span {
+      animation: starPop 0.22s ease-out;
+    }
 
-  to{
-    opacity:1;
-    transform:translateY(0);
-  }
+    @keyframes starPop {
 
-}
+      0% {
+        transform: scale(1.04);
+      }
 
-.message h2{
-  font-size:19px;
-  margin-bottom:8px;
-}
+      45% {
+        transform: scale(1.22);
+      }
 
-.message p{
-  color:#aab7c7;
-  font-size:14px;
-  line-height:1.5;
-  margin-bottom:18px;
-}
+      100% {
+        transform: scale(1.04);
+      }
 
-textarea{
-  width:100%;
-  min-height:130px;
-  resize:vertical;
-  padding:14px;
-  border:1px solid rgba(255,255,255,.1);
-  border-radius:15px;
-  background:#07111f;
-  color:white;
-  font-family:inherit;
-  font-size:14px;
-  outline:none;
-  margin-bottom:10px;
-}
+    }
 
-textarea:focus{
-  border-color:var(--primary);
-}
+    .rating-text {
+      min-height: 24px;
 
-.button{
-  display:block;
-  width:100%;
-  padding:15px 18px;
-  border-radius:15px;
-  border:none;
-  text-decoration:none;
-  font-size:15px;
-  font-weight:700;
-  cursor:pointer;
-  margin-top:11px;
-  text-align:center;
-  transition:
-    transform .15s ease,
-    opacity .15s ease;
-}
+      color: #b8c3d1;
 
-.button:active{
-  transform:scale(.98);
-}
+      font-size: 14px;
 
-.button:disabled{
-  opacity:.6;
-  cursor:wait;
-}
+      margin-bottom: 24px;
+    }
 
-.google{
-  background:white;
-  color:#111827;
-}
+    .message {
+      display: none;
 
-.private{
-  background:#1b3049;
-  color:white;
-}
+      text-align: left;
 
-.small{
-  margin-top:22px;
-  color:#66758a;
-  font-size:11px;
-}
+      animation: appear 0.25s ease;
+    }
 
-.error{
-  color:#ff8f8f;
-}
+    .message.show {
+      display: block;
+    }
 
-.hidden{
-  display:none!important;
-}
+    @keyframes appear {
 
-</style>
+      from {
+        opacity: 0;
+        transform: translateY(8px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+    }
+
+    .message h2 {
+      font-size: 19px;
+      margin-bottom: 8px;
+    }
+
+    .message p {
+      color: #aab7c7;
+
+      font-size: 14px;
+
+      line-height: 1.5;
+
+      margin-bottom: 18px;
+    }
+
+    textarea {
+
+      width: 100%;
+
+      min-height: 130px;
+
+      resize: vertical;
+
+      padding: 14px;
+
+      border-radius: 15px;
+
+      border:
+        1px solid rgba(255,255,255,0.1);
+
+      background: #07111f;
+
+      color: white;
+
+      font-family: inherit;
+
+      font-size: 14px;
+
+      outline: none;
+
+      margin-bottom: 10px;
+    }
+
+    textarea:focus {
+      border-color: #607994;
+    }
+
+    .button {
+
+      display: block;
+
+      width: 100%;
+
+      padding: 15px 18px;
+
+      border-radius: 15px;
+
+      border: none;
+
+      text-decoration: none;
+
+      font-size: 15px;
+
+      font-weight: 700;
+
+      cursor: pointer;
+
+      margin-top: 11px;
+
+      text-align: center;
+
+      transition:
+        transform 0.15s ease,
+        opacity 0.15s ease;
+    }
+
+    .button:active {
+      transform: scale(0.98);
+    }
+
+    .google {
+      background: white;
+      color: #111827;
+    }
+
+    .private {
+      background: #1b3049;
+      color: white;
+    }
+
+    .small {
+      margin-top: 22px;
+      color: #66758a;
+      font-size: 11px;
+    }
+
+    .error {
+      color: #ff8f8f;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+  </style>
 </head>
+
 
 <body>
 
+
 <main class="card">
+
+
+  <!-- LOGO -->
 
   <div
     class="logo"
     id="logo">
+
     🍽️
+
   </div>
+
+
+  <!-- BUSINESS NAME -->
 
   <h1 id="businessName">
     Loading...
   </h1>
 
+
+  <!-- SUBTITLE -->
+
   <p
     class="subtitle"
     id="subtitle">
+
     Loading your experience...
+
   </p>
+
+
+  <!-- FEEDBACK AREA -->
 
   <div
     id="feedbackArea"
     class="hidden">
+
+
+    <!-- STARS -->
 
     <div
       class="stars"
@@ -333,62 +367,91 @@ textarea:focus{
       <button
         class="star"
         type="button"
-        data-rating="1"
-        aria-label="1 star">
-        ★
+        data-rating="1">
+
+        <span>★</span>
+
       </button>
+
 
       <button
         class="star"
         type="button"
-        data-rating="2"
-        aria-label="2 stars">
-        ★
+        data-rating="2">
+
+        <span>★</span>
+
       </button>
+
 
       <button
         class="star"
         type="button"
-        data-rating="3"
-        aria-label="3 stars">
-        ★
+        data-rating="3">
+
+        <span>★</span>
+
       </button>
+
 
       <button
         class="star"
         type="button"
-        data-rating="4"
-        aria-label="4 stars">
-        ★
+        data-rating="4">
+
+        <span>★</span>
+
       </button>
+
 
       <button
         class="star"
         type="button"
-        data-rating="5"
-        aria-label="5 stars">
-        ★
+        data-rating="5">
+
+        <span>★</span>
+
       </button>
 
     </div>
+
+
+    <!-- RATING TEXT -->
 
     <div
       class="rating-text"
       id="ratingText">
+
       Tap a star to rate your experience
+
     </div>
+
+
+    <!-- MESSAGE -->
 
     <section
       class="message"
       id="message">
 
-      <h2 id="messageTitle"></h2>
 
-      <p id="messageText"></p>
+      <h2
+        id="messageTitle">
+      </h2>
+
+
+      <p
+        id="messageText">
+      </p>
+
+
+      <!-- ==========================================
+           3–5 STARS → GOOGLE
+           ========================================== -->
 
       <div
         id="googleArea"
         class="hidden">
+
 
         <a
           id="googleButton"
@@ -396,42 +459,61 @@ textarea:focus{
           href="#"
           target="_blank"
           rel="noopener">
+
           ⭐ Leave us a Google review
+
         </a>
 
+
       </div>
+
+
+      <!-- ==========================================
+           1–2 STARS → PRIVATE WHATSAPP
+           ========================================== -->
 
       <div
         id="privateArea"
         class="hidden">
 
+
         <textarea
           id="feedbackMessage"
-          placeholder="Tell us what went wrong or how we can improve...">
-        </textarea>
+          placeholder="Tell us what went wrong or how we can improve..."></textarea>
+
 
         <button
           id="sendPrivate"
           class="button private"
           type="button">
+
           💬 Send privately
+
         </button>
+
 
       </div>
 
+
     </section>
 
+
   </div>
 
-  <div
-    class="small">
+
+  <div class="small">
+
     Your feedback helps us improve.
+
   </div>
+
 
 </main>
 
 
+
 <script>
+
 
 /* =========================================================
    SUPABASE CONFIG
@@ -440,84 +522,23 @@ textarea:focus{
 const SUPABASE_URL =
   "https://mcujzqtfbwjttjieagas.supabase.co";
 
+
 const SUPABASE_KEY =
   "sb_publishable_4eVDX1IKZj7ClhpcjfiQFQ_hQ5Hr81k";
-
-
-/* =========================================================
-   ELEMENTS
-   ========================================================= */
-
-const businessName =
-  document.getElementById("businessName");
-
-const subtitle =
-  document.getElementById("subtitle");
-
-const logo =
-  document.getElementById("logo");
-
-const feedbackArea =
-  document.getElementById("feedbackArea");
-
-const ratingText =
-  document.getElementById("ratingText");
-
-const message =
-  document.getElementById("message");
-
-const messageTitle =
-  document.getElementById("messageTitle");
-
-const messageText =
-  document.getElementById("messageText");
-
-const googleArea =
-  document.getElementById("googleArea");
-
-const googleButton =
-  document.getElementById("googleButton");
-
-const privateArea =
-  document.getElementById("privateArea");
-
-const feedbackMessage =
-  document.getElementById("feedbackMessage");
-
-const sendPrivate =
-  document.getElementById("sendPrivate");
-
-const stars =
-  document.querySelectorAll(".star");
-
-
-/* =========================================================
-   VARIABLES
-   ========================================================= */
-
-let currentBusiness = null;
-let selectedRating = null;
 
 
 /* =========================================================
    GET CARD CODE
    ========================================================= */
 
-function getCardCode(){
+function getCardCode() {
 
   const params =
     new URLSearchParams(
       window.location.search
     );
 
-  const code =
-    params.get("card");
-
-  if(!code){
-    return null;
-  }
-
-  return code.trim().toUpperCase();
+  return params.get("card");
 
 }
 
@@ -526,26 +547,33 @@ function getCardCode(){
    SUPABASE GET
    ========================================================= */
 
-async function supabaseGet(endpoint){
+async function supabaseGet(endpoint) {
 
   const response =
     await fetch(
       `${SUPABASE_URL}/rest/v1/${endpoint}`,
       {
-        method:"GET",
 
-        headers:{
-          "apikey":SUPABASE_KEY,
+        method: "GET",
+
+        headers: {
+
+          "apikey":
+            SUPABASE_KEY,
+
           "Authorization":
             `Bearer ${SUPABASE_KEY}`,
+
           "Content-Type":
             "application/json"
+
         }
+
       }
     );
 
 
-  if(!response.ok){
+  if (!response.ok) {
 
     const error =
       await response.text();
@@ -561,135 +589,77 @@ async function supabaseGet(endpoint){
 
 
 /* =========================================================
-   APPLY BUSINESS
+   VARIABLES
    ========================================================= */
 
-function applyBusinessSettings(business){
+let currentBusiness = null;
 
-  currentBusiness =
-    business;
-
-
-  const name =
-    business.name ||
-    "Your Business";
-
-
-  businessName.textContent =
-    name;
-
-
-  document.title =
-    `${name} — Your Experience`;
-
-
-  /* LOGO */
-
-  if(business.logo_url){
-
-    logo.innerHTML = "";
-
-    const image =
-      document.createElement("img");
-
-    image.src =
-      business.logo_url;
-
-    image.alt =
-      `${name} logo`;
-
-    image.onerror =
-      function(){
-        logo.innerHTML = "🍽️";
-      };
-
-    logo.appendChild(image);
-
-  }
-
-
-  /* PRIMARY COLOR */
-
-  if(
-    business.primary_color &&
-    /^#[0-9A-Fa-f]{6}$/.test(
-      business.primary_color
-    )
-  ){
-
-    document.documentElement
-      .style
-      .setProperty(
-        "--primary",
-        business.primary_color
-      );
-
-  }
-
-
-  /* GOOGLE */
-
-  if(
-    business.google_review_url
-  ){
-
-    googleButton.href =
-      business.google_review_url;
-
-  }
-
-
-  subtitle.textContent =
-    "How was your experience with us?";
-
-
-  feedbackArea
-    .classList
-    .remove("hidden");
-
-}
+let selectedRating = null;
 
 
 /* =========================================================
    LOAD CARD
    ========================================================= */
 
-async function loadCard(){
+async function loadCard() {
 
   const cardCode =
     getCardCode();
 
 
-  if(!cardCode){
+  const businessName =
+    document.getElementById(
+      "businessName"
+    );
+
+
+  const subtitle =
+    document.getElementById(
+      "subtitle"
+    );
+
+
+  const feedbackArea =
+    document.getElementById(
+      "feedbackArea"
+    );
+
+
+  /* No card code */
+
+  if (!cardCode) {
 
     businessName.textContent =
       "Card not found";
+
 
     subtitle.innerHTML =
       `<span class="error">
         No card code was provided.
       </span>`;
 
+
     return;
 
   }
 
 
-  try{
+  try {
+
+    /* ==========================================
+       FIND CARD
+       ========================================== */
 
     const cards =
       await supabaseGet(
-        `cards?card_code=eq.${encodeURIComponent(cardCode)}&active=eq.true&select=id,business_id,card_code,active`
+        `cards?card_code=eq.${encodeURIComponent(cardCode)}&active=eq.true&select=*`
       );
 
 
-    if(
-      !cards ||
-      cards.length === 0
-    ){
+    if (!cards.length) {
 
       throw new Error(
-        "Card not found."
+        "Card not found"
       );
 
     }
@@ -699,58 +669,127 @@ async function loadCard(){
       cards[0];
 
 
-    if(!card.business_id){
-
-      throw new Error(
-        "Card is not connected to a business."
-      );
-
-    }
-
+    /* ==========================================
+       FIND BUSINESS
+       ========================================== */
 
     const businesses =
       await supabaseGet(
-        `businesses?id=eq.${encodeURIComponent(card.business_id)}&select=id,name,logo_url,google_review_url,whatsapp_number,primary_color`
+        `businesses?id=eq.${encodeURIComponent(card.business_id)}&select=*`
       );
 
 
-    if(
-      !businesses ||
-      businesses.length === 0
-    ){
+    if (!businesses.length) {
 
       throw new Error(
-        "Business not found."
+        "Business not found"
       );
 
     }
 
 
-    applyBusinessSettings(
-      businesses[0]
-    );
+    currentBusiness =
+      businesses[0];
+
+
+    /* ==========================================
+       BUSINESS NAME
+       ========================================== */
+
+    businessName.textContent =
+      currentBusiness.name ||
+      "Your Business";
+
+
+    document.title =
+      `${currentBusiness.name || "Business"} — Your Experience`;
+
+
+    subtitle.textContent =
+      "How was your experience with us?";
+
+
+    /* ==========================================
+       LOGO
+       ========================================== */
+
+    if (
+      currentBusiness.logo_url
+    ) {
+
+      const logo =
+        document.getElementById(
+          "logo"
+        );
+
+
+      logo.innerHTML =
+        "";
+
+
+      const image =
+        document.createElement(
+          "img"
+        );
+
+
+      image.src =
+        currentBusiness.logo_url;
+
+
+      image.alt =
+        currentBusiness.name ||
+        "Business logo";
+
+
+      logo.appendChild(
+        image
+      );
+
+    }
+
+
+    /* ==========================================
+       GOOGLE REVIEW LINK
+       ========================================== */
+
+    const googleButton =
+      document.getElementById(
+        "googleButton"
+      );
+
+
+    googleButton.href =
+      currentBusiness.google_review_url ||
+      "https://www.google.com/maps";
+
+
+    /* ==========================================
+       SHOW PAGE
+       ========================================== */
+
+    feedbackArea
+      .classList
+      .remove("hidden");
 
   }
 
-  catch(error){
+
+  catch (error) {
 
     console.error(
-      "Customer page error:",
       error
     );
 
 
     businessName.textContent =
-      "Card unavailable";
+      "Card not found";
+
 
     subtitle.innerHTML =
       `<span class="error">
         This card is inactive or does not exist.
       </span>`;
-
-    feedbackArea
-      .classList
-      .add("hidden");
 
   }
 
@@ -758,7 +797,59 @@ async function loadCard(){
 
 
 /* =========================================================
-   STAR CLICK — FAST PREMIUM ANIMATION
+   STAR SYSTEM
+   ========================================================= */
+
+const stars =
+  document.querySelectorAll(
+    ".star"
+  );
+
+
+const ratingText =
+  document.getElementById(
+    "ratingText"
+  );
+
+
+const message =
+  document.getElementById(
+    "message"
+  );
+
+
+const messageTitle =
+  document.getElementById(
+    "messageTitle"
+  );
+
+
+const messageText =
+  document.getElementById(
+    "messageText"
+  );
+
+
+const googleArea =
+  document.getElementById(
+    "googleArea"
+  );
+
+
+const privateArea =
+  document.getElementById(
+    "privateArea"
+  );
+
+
+const feedbackMessage =
+  document.getElementById(
+    "feedbackMessage"
+  );
+
+
+/* =========================================================
+   STAR CLICK
    ========================================================= */
 
 stars.forEach(
@@ -766,36 +857,23 @@ stars.forEach(
 
     star.addEventListener(
       "click",
-      function(event){
+      () => {
 
-        event.preventDefault();
-
-
-        const rating =
+        selectedRating =
           Number(
             star.dataset.rating
           );
 
 
-        /*
-          Update the rating FIRST.
-
-          This happens immediately on the
-          same click event before any other
-          UI work.
-        */
-
-        selectedRating =
-          rating;
-
-
-        /* REMOVE OLD POP ANIMATIONS */
+        /* ==========================================
+           REMOVE PREVIOUS POP ANIMATION
+           ========================================== */
 
         stars.forEach(
           currentStar => {
 
             currentStar.classList.remove(
-              "selected-pop"
+              "pop"
             );
 
           }
@@ -803,19 +881,16 @@ stars.forEach(
 
 
         /*
-          Force a browser reflow.
-
-          This allows the same star to
-          animate again if the customer
-          taps it repeatedly.
+          Force a tiny reflow so the animation
+          can restart every time the customer clicks.
         */
 
         void star.offsetWidth;
 
 
-        /*
-          Highlight the stars immediately.
-        */
+        /* ==========================================
+           HIGHLIGHT STARS
+           ========================================== */
 
         stars.forEach(
           currentStar => {
@@ -828,45 +903,33 @@ stars.forEach(
 
             currentStar.classList.toggle(
               "active",
-              currentRating <= rating
+              currentRating <= selectedRating
             );
 
           }
         );
 
 
-        /*
-          Pop ONLY the star that was
-          actually tapped.
-        */
+        /* ==========================================
+           POP THE STAR THAT WAS CLICKED
+           ========================================== */
 
         star.classList.add(
-          "selected-pop"
+          "pop"
         );
 
 
-        /*
-          Update rating text.
-        */
+        /* ==========================================
+           RATING TEXT
+           ========================================== */
 
         ratingText.textContent =
-          `${rating} out of 5 stars`;
+          `${selectedRating} out of 5 stars`;
 
 
-        ratingText.classList.remove(
-          "rating-change"
-        );
-
-        void ratingText.offsetWidth;
-
-        ratingText.classList.add(
-          "rating-change"
-        );
-
-
-        /*
-          Show feedback area.
-        */
+        /* ==========================================
+           SHOW MESSAGE
+           ========================================== */
 
         message.classList.add(
           "show"
@@ -877,27 +940,35 @@ stars.forEach(
            1–2 STARS
            ========================================== */
 
-        if(
-          rating <= 2
-        ){
+        if (
+          selectedRating <= 2
+        ) {
 
           messageTitle.textContent =
             "We're sorry about your experience.";
 
+
           messageText.textContent =
             "Tell us what went wrong and we'll do our best to make things right.";
+
 
           googleArea
             .classList
             .add("hidden");
 
+
           privateArea
             .classList
             .remove("hidden");
 
-          feedbackMessage.value = "";
 
-          return;
+          /*
+            Clear previous comment
+            when selecting 1 or 2 stars.
+          */
+
+          feedbackMessage.value =
+            "";
 
         }
 
@@ -906,41 +977,48 @@ stars.forEach(
            3–5 STARS
            ========================================== */
 
-        privateArea
-          .classList
-          .add("hidden");
+        else {
 
-        googleArea
-          .classList
-          .remove("hidden");
+          privateArea
+            .classList
+            .add("hidden");
 
 
-        if(
-          rating === 3
-        ){
+          googleArea
+            .classList
+            .remove("hidden");
 
-          messageTitle.textContent =
-            "Thanks for your feedback!";
+
+          if (
+            selectedRating === 3
+          ) {
+
+            messageTitle.textContent =
+              "Thanks for your feedback!";
+
+          }
+
+          else if (
+            selectedRating === 4
+          ) {
+
+            messageTitle.textContent =
+              "We're glad you enjoyed your experience!";
+
+          }
+
+          else {
+
+            messageTitle.textContent =
+              "We're thrilled you loved it! ❤️";
+
+          }
+
+
+          messageText.textContent =
+            "Thank you! We'd really appreciate you sharing your experience on Google.";
 
         }
-        else if(
-          rating === 4
-        ){
-
-          messageTitle.textContent =
-            "We're glad you enjoyed your experience!";
-
-        }
-        else{
-
-          messageTitle.textContent =
-            "We're thrilled you loved it! ❤️";
-
-        }
-
-
-        messageText.textContent =
-          "Thank you! We'd really appreciate you sharing your experience on Google.";
 
       }
     );
@@ -950,108 +1028,157 @@ stars.forEach(
 
 
 /* =========================================================
-   SEND PRIVATE WHATSAPP
+   SEND PRIVATE FEEDBACK TO WHATSAPP
    ========================================================= */
 
-sendPrivate.addEventListener(
-  "click",
-  function(){
+document
+  .getElementById(
+    "sendPrivate"
+  )
+  .addEventListener(
+    "click",
+    () => {
 
-    const text =
-      feedbackMessage.value.trim();
+      /*
+        The comment is OPTIONAL.
 
+        Empty comment is still allowed.
+      */
 
-    if(!currentBusiness){
-
-      alert(
-        "Business information is unavailable."
-      );
-
-      return;
-
-    }
-
-
-    if(
-      !currentBusiness.whatsapp_number
-    ){
-
-      alert(
-        "WhatsApp contact is not configured for this business."
-      );
-
-      return;
-
-    }
+      const text =
+        feedbackMessage
+          .value
+          .trim();
 
 
-    sendPrivate.disabled =
-      true;
+      /* ==========================================
+         CHECK BUSINESS
+         ========================================== */
 
-    sendPrivate.textContent =
-      "Opening WhatsApp...";
+      if (
+        !currentBusiness
+      ) {
 
+        alert(
+          "Business information is unavailable."
+        );
 
-    let number =
-      String(
-        currentBusiness.whatsapp_number
-      )
-      .replace(
-        /\D/g,
-        ""
-      );
+        return;
 
-
-    if(
-      number.startsWith("0")
-    ){
-
-      number =
-        "213" +
-        number.substring(1);
-
-    }
+      }
 
 
-    const name =
-      currentBusiness.name ||
-      "Business";
+      /* ==========================================
+         CHECK WHATSAPP NUMBER
+         ========================================== */
+
+      if (
+        !currentBusiness.whatsapp_number
+      ) {
+
+        alert(
+          "WhatsApp contact is not configured for this business."
+        );
+
+        return;
+
+      }
 
 
-    let whatsappMessage =
-`🔒 Private feedback — ${name}
+      /* ==========================================
+         CLEAN WHATSAPP NUMBER
+         ========================================== */
+
+      let number =
+        String(
+          currentBusiness.whatsapp_number
+        )
+        .replace(
+          /\D/g,
+          ""
+        );
+
+
+      /*
+        Algeria example:
+
+        0555123456
+
+        becomes:
+
+        213555123456
+      */
+
+      if (
+        number.startsWith("0")
+      ) {
+
+        number =
+          "213" +
+          number.substring(1);
+
+      }
+
+
+      /* ==========================================
+         CREATE BASE MESSAGE
+         ========================================== */
+
+      const businessName =
+        currentBusiness.name ||
+        "Business";
+
+
+      let whatsappMessage =
+`🔒 Private feedback — ${businessName}
 
 ⭐ Rating: ${selectedRating}/5`;
 
 
-    if(
-      text.length > 0
-    ){
+      /* ==========================================
+         ADD COMMENT ONLY IF PROVIDED
+         ========================================== */
 
-      whatsappMessage +=
+      if (
+        text.length > 0
+      ) {
+
+        whatsappMessage +=
 `
 
 💬 Customer feedback:
 ${text}`;
 
+      }
+
+
+      /* ==========================================
+         ENCODE MESSAGE
+         ========================================== */
+
+      const encodedMessage =
+        encodeURIComponent(
+          whatsappMessage
+        );
+
+
+      /* ==========================================
+         CREATE WHATSAPP URL
+         ========================================== */
+
+      const whatsappURL =
+        `https://wa.me/${number}?text=${encodedMessage}`;
+
+
+      /* ==========================================
+         OPEN WHATSAPP
+         ========================================== */
+
+      window.location.href =
+        whatsappURL;
+
     }
-
-
-    const encodedMessage =
-      encodeURIComponent(
-        whatsappMessage
-      );
-
-
-    const whatsappURL =
-      `https://wa.me/${number}?text=${encodedMessage}`;
-
-
-    window.location.href =
-      whatsappURL;
-
-  }
-);
+  );
 
 
 /* =========================================================
@@ -1060,7 +1187,9 @@ ${text}`;
 
 loadCard();
 
+
 </script>
+
 
 </body>
 </html>
