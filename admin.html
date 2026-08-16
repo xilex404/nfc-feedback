@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TapReview Admin</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Arial, sans-serif;
+      background: #07111f;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .box {
+      width: 100%;
+      max-width: 420px;
+      background: #0d1b2d;
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: 24px;
+      padding: 28px;
+      box-shadow: 0 25px 70px rgba(0,0,0,.4);
+    }
+
+    h1 {
+      margin: 0 0 8px;
+      font-size: 27px;
+    }
+
+    p {
+      color: #9eacbd;
+      line-height: 1.5;
+      font-size: 14px;
+      margin-bottom: 25px;
+    }
+
+    label {
+      display: block;
+      margin: 15px 0 7px;
+      color: #aebaca;
+      font-size: 13px;
+    }
+
+    input {
+      width: 100%;
+      padding: 14px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: #07111f;
+      color: white;
+      font-size: 15px;
+      outline: none;
+    }
+
+    input:focus {
+      border-color: #ffc83d;
+    }
+
+    button {
+      width: 100%;
+      margin-top: 20px;
+      padding: 14px;
+      border: 0;
+      border-radius: 12px;
+      background: #ffc83d;
+      color: #07111f;
+      font-size: 15px;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    button:disabled {
+      opacity: .6;
+      cursor: wait;
+    }
+
+    #message {
+      margin-top: 15px;
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .success {
+      color: #62e6a2;
+    }
+
+    .error {
+      color: #ff8585;
+    }
+
+    #dashboard {
+      display: none;
+    }
+
+    .logged {
+      background: rgba(98,230,162,.08);
+      border: 1px solid rgba(98,230,162,.2);
+      padding: 18px;
+      border-radius: 15px;
+      margin-top: 20px;
+      color: #62e6a2;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="box">
+
+    <div id="login">
+
+      <h1>TapReview</h1>
+
+      <p>
+        Admin Dashboard<br>
+        Sign in to manage your businesses and cards.
+      </p>
+
+      <label for="email">
+        Email
+      </label>
+
+      <input
+        id="email"
+        type="email"
+        autocomplete="email"
+        placeholder="Your admin email"
+      >
+
+      <label for="password">
+        Password
+      </label>
+
+      <input
+        id="password"
+        type="password"
+        autocomplete="current-password"
+        placeholder="Your password"
+      >
+
+      <button id="loginButton" type="button">
+        Sign in
+      </button>
+
+      <div id="message"></div>
+
+    </div>
+
+
+    <div id="dashboard">
+
+      <h1>You're in 🔥</h1>
+
+      <p>
+        Your TapReview admin login is working correctly.
+      </p>
+
+      <div class="logged">
+        ✅ Supabase authentication successful.
+      </div>
+
+      <button id="logoutButton" type="button">
+        Log out
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <!-- Supabase library -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <script>
+
+    const SUPABASE_URL =
+      "https://mcujzqtfbwjttjieagas.supabase.co";
+
+    const SUPABASE_KEY =
+      "sb_publishable_4eVDX1IKZj7ClhpcjfiQFQ_hQ5Hr81k";
+
+
+    const supabaseClient =
+      window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_KEY
+      );
+
+
+    const login =
+      document.getElementById("login");
+
+    const dashboard =
+      document.getElementById("dashboard");
+
+    const email =
+      document.getElementById("email");
+
+    const password =
+      document.getElementById("password");
+
+    const loginButton =
+      document.getElementById("loginButton");
+
+    const logoutButton =
+      document.getElementById("logoutButton");
+
+    const message =
+      document.getElementById("message");
+
+
+    function showMessage(text, type) {
+
+      message.textContent = text;
+
+      message.className = type || "";
+
+    }
+
+
+    async function loginUser() {
+
+      const emailValue =
+        email.value.trim();
+
+      const passwordValue =
+        password.value;
+
+
+      if (!emailValue || !passwordValue) {
+
+        showMessage(
+          "Please enter your email and password.",
+          "error"
+        );
+
+        return;
+
+      }
+
+
+      loginButton.disabled = true;
+
+      loginButton.textContent =
+        "Signing in...";
+
+      showMessage("", "");
+
+
+      try {
+
+        const result =
+          await supabaseClient.auth.signInWithPassword({
+            email: emailValue,
+            password: passwordValue
+          });
+
+
+        if (result.error) {
+
+          throw result.error;
+
+        }
+
+
+        login.style.display =
+          "none";
+
+        dashboard.style.display =
+          "block";
+
+
+      } catch (error) {
+
+        console.error(error);
+
+        showMessage(
+          error.message ||
+          "Login failed.",
+          "error"
+        );
+
+      } finally {
+
+        loginButton.disabled =
+          false;
+
+        loginButton.textContent =
+          "Sign in";
+
+      }
+
+    }
+
+
+    loginButton.addEventListener(
+      "click",
+      loginUser
+    );
+
+
+    password.addEventListener(
+      "keydown",
+      function(event) {
+
+        if (event.key === "Enter") {
+
+          loginUser();
+
+        }
+
+      }
+    );
+
+
+    logoutButton.addEventListener(
+      "click",
+      async function() {
+
+        await supabaseClient.auth.signOut();
+
+        dashboard.style.display =
+          "none";
+
+        login.style.display =
+          "block";
+
+        password.value = "";
+
+      }
+    );
+
+
+    async function checkExistingLogin() {
+
+      const result =
+        await supabaseClient.auth.getSession();
+
+
+      if (result.data.session) {
+
+        login.style.display =
+          "none";
+
+        dashboard.style.display =
+          "block";
+
+      }
+
+    }
+
+
+    checkExistingLogin();
+
+  </script>
+
+</body>
+</html>
