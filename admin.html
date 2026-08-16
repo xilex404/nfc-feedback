@@ -381,9 +381,16 @@ header{
 
 @media(max-width:600px){
   body{padding:13px}
-  .dashboard-title{flex-direction:column;align-items:stretch}
-  .dashboard-title .primary{width:100%}
-  header{align-items:flex-start}
+  .dashboard-title{
+    flex-direction:column;
+    align-items:stretch
+  }
+  .dashboard-title .primary{
+    width:100%
+  }
+  header{
+    align-items:flex-start
+  }
 }
 </style>
 </head>
@@ -495,10 +502,7 @@ header{
 
 <!-- BUSINESS MODAL -->
 
-<div
-  id="businessModal"
-  class="modal"
->
+<div id="businessModal" class="modal">
 
   <div class="modal-box">
 
@@ -517,7 +521,6 @@ header{
 
     </div>
 
-
     <label>Business name *</label>
 
     <input
@@ -525,7 +528,6 @@ header{
       type="text"
       placeholder="Restaurant name"
     >
-
 
     <label>Logo URL</label>
 
@@ -535,7 +537,6 @@ header{
       placeholder="https://..."
     >
 
-
     <label>Google review URL</label>
 
     <input
@@ -544,7 +545,6 @@ header{
       placeholder="https://g.page/..."
     >
 
-
     <label>WhatsApp number</label>
 
     <input
@@ -552,7 +552,6 @@ header{
       type="text"
       placeholder="0555123456"
     >
-
 
     <label>Primary color</label>
 
@@ -563,9 +562,7 @@ header{
       placeholder="#0d1b2d"
     >
 
-
     <div id="businessError"></div>
-
 
     <div class="modal-actions">
 
@@ -592,10 +589,7 @@ header{
 
 <!-- CARD MODAL -->
 
-<div
-  id="cardModal"
-  class="modal"
->
+<div id="cardModal" class="modal">
 
   <div class="modal-box">
 
@@ -612,7 +606,6 @@ header{
 
     </div>
 
-
     <p
       id="cardBusiness"
       style="
@@ -622,7 +615,6 @@ header{
       "
     ></p>
 
-
     <label>Card code</label>
 
     <input
@@ -631,9 +623,7 @@ header{
       placeholder="TR-XXXXXX"
     >
 
-
     <div id="cardError"></div>
-
 
     <div class="modal-actions">
 
@@ -709,9 +699,7 @@ const businessGrid =
 function message(text,type){
 
   loginMessage.textContent = text;
-
-  loginMessage.className =
-    type || "";
+  loginMessage.className = type || "";
 
 }
 
@@ -743,7 +731,7 @@ async function login(){
 
   try{
 
-    const { data,error } =
+    const { error } =
       await supabaseClient.auth
         .signInWithPassword({
           email:emailValue,
@@ -891,9 +879,7 @@ async function loadBusinesses(){
 }
 
 
-async function renderBusiness(
-  business
-){
+async function renderBusiness(business){
 
   const { data:cards,error } =
     await supabaseClient
@@ -909,26 +895,18 @@ async function renderBusiness(
       );
 
   if(error){
-
     console.error(error);
-
   }
 
-  const cardList =
-    cards || [];
-
+  const cardList = cards || [];
 
   const article =
-    document.createElement(
-      "div"
-    );
+    document.createElement("div");
 
   article.className =
     "business";
 
-
-  let logoHTML =
-    "🏪";
+  let logoHTML = "🏪";
 
   if(business.logo_url){
 
@@ -941,7 +919,6 @@ async function renderBusiness(
       >`;
 
   }
-
 
   let cardsHTML = "";
 
@@ -968,7 +945,6 @@ async function renderBusiness(
         .join("");
 
   }
-
 
   article.innerHTML = `
 
@@ -1061,24 +1037,38 @@ async function renderBusiness(
 
   `;
 
-
-  businessGrid.appendChild(
-    article
-  );
+  businessGrid.appendChild(article);
 
 }
 
 
+/*
+  IMPORTANT:
+  Card links now point to the CUSTOMER PAGE.
+
+  admin.html:
+  /nfc-feedback/admin.html
+
+  customer page:
+  /nfc-feedback/?card=TR-XXXXXX
+*/
+
 function createCardHTML(card){
 
-  const url =
+  const customerPage =
     window.location.origin +
-    window.location.pathname +
+    window.location.pathname
+      .replace(
+        "admin.html",
+        ""
+      );
+
+  const url =
+    customerPage +
     "?card=" +
     encodeURIComponent(
       card.card_code
     );
-
 
   return `
 
@@ -1123,6 +1113,16 @@ function createCardHTML(card){
 
         <button
           class="small"
+          onclick="openCard(
+            '${escapeJs(url)}'
+          )"
+        >
+          👁
+        </button>
+
+
+        <button
+          class="small"
           onclick="toggleCard(
             '${card.id}',
             ${card.active}
@@ -1153,7 +1153,7 @@ async function copyUrl(url){
     );
 
     toast(
-      "Card URL copied!"
+      "Customer card URL copied!"
     );
 
   }catch{
@@ -1164,6 +1164,16 @@ async function copyUrl(url){
     );
 
   }
+
+}
+
+
+function openCard(url){
+
+  window.open(
+    url,
+    "_blank"
+  );
 
 }
 
@@ -1295,12 +1305,10 @@ async function saveBusiness(){
       .value
       .trim();
 
-
   const errorBox =
     document.getElementById(
       "businessError"
     );
-
 
   if(!name){
 
@@ -1313,7 +1321,6 @@ async function saveBusiness(){
     return;
   }
 
-
   const button =
     document.getElementById(
       "saveBusiness"
@@ -1323,7 +1330,6 @@ async function saveBusiness(){
 
   button.textContent =
     "Saving...";
-
 
   const payload = {
 
@@ -1343,9 +1349,7 @@ async function saveBusiness(){
 
   };
 
-
   let result;
-
 
   if(editingBusinessId){
 
@@ -1367,12 +1371,10 @@ async function saveBusiness(){
 
   }
 
-
   button.disabled = false;
 
   button.textContent =
     "Save business";
-
 
   if(result.error){
 
@@ -1384,7 +1386,6 @@ async function saveBusiness(){
 
     return;
   }
-
 
   closeBusinessModal();
 
@@ -1408,7 +1409,6 @@ async function editBusiness(id){
       .eq("id",id)
       .single();
 
-
   if(error){
 
     toast(error.message);
@@ -1416,46 +1416,38 @@ async function editBusiness(id){
     return;
   }
 
-
   editingBusinessId = id;
-
 
   document.getElementById(
     "businessModalTitle"
   ).textContent =
     "Edit business";
 
-
   document.getElementById(
     "businessName"
   ).value =
     data.name || "";
-
 
   document.getElementById(
     "logoUrl"
   ).value =
     data.logo_url || "";
 
-
   document.getElementById(
     "googleUrl"
   ).value =
     data.google_review_url || "";
-
 
   document.getElementById(
     "whatsapp"
   ).value =
     data.whatsapp_number || "";
 
-
   document.getElementById(
     "primaryColor"
   ).value =
     data.primary_color ||
     "#0d1b2d";
-
 
   document.getElementById(
     "businessModal"
@@ -1559,7 +1551,6 @@ async function saveCard(){
     return;
   }
 
-
   const code =
     document
       .getElementById(
@@ -1569,12 +1560,10 @@ async function saveCard(){
       .trim()
       .toUpperCase();
 
-
   const errorBox =
     document.getElementById(
       "cardError"
     );
-
 
   if(!code){
 
@@ -1587,7 +1576,6 @@ async function saveCard(){
     return;
   }
 
-
   const button =
     document.getElementById(
       "saveCard"
@@ -1597,7 +1585,6 @@ async function saveCard(){
 
   button.textContent =
     "Creating...";
-
 
   const { error } =
     await supabaseClient
@@ -1614,12 +1601,10 @@ async function saveCard(){
 
       });
 
-
   button.disabled = false;
 
   button.textContent =
     "Create card";
-
 
   if(error){
 
@@ -1640,7 +1625,6 @@ async function saveCard(){
 
     return;
   }
-
 
   closeCardModal();
 
@@ -1666,7 +1650,6 @@ async function toggleCard(
       })
       .eq("id",id);
 
-
   if(error){
 
     toast(error.message);
@@ -1674,13 +1657,11 @@ async function toggleCard(
     return;
   }
 
-
   toast(
     currentStatus
       ? "Card deactivated"
       : "Card activated"
   );
-
 
   await loadBusinesses();
 
@@ -1737,4 +1718,4 @@ checkSession();
 </script>
 
 </body>
-  </html>
+</html>
