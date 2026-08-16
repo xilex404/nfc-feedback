@@ -19,28 +19,32 @@
 <style>
 
 /* =========================================================
-   SMART REVIEW — PREMIUM MOBILE UI
+   SMART REVIEW — PREMIUM UI
    ========================================================= */
 
 :root{
 
   --navy:#061b3a;
   --navy-2:#08264d;
-  --navy-3:#0d376b;
+  --navy-3:#0c376d;
 
   --blue:#165dff;
-  --blue-light:#4285ff;
+  --blue-2:#2878ff;
 
   --gold:#d99213;
-  --gold-light:#ffcf55;
-  --gold-dark:#a86600;
+  --gold-2:#f2b52b;
+  --gold-light:#ffd45a;
+  --gold-dark:#a96700;
 
   --white:#ffffff;
   --ink:#071b3c;
 
-  --muted:#65758c;
+  --muted:#61728a;
 
-  --soft:#f5f7fa;
+  --surface:#f7f9fc;
+
+  --shadow:
+    0 18px 45px rgba(6,27,58,.12);
 
 }
 
@@ -57,16 +61,12 @@
 
 html,
 body{
-
   width:100%;
   min-height:100%;
-
 }
 
 html{
-
   background:var(--navy);
-
 }
 
 body{
@@ -83,12 +83,12 @@ body{
     Arial,
     sans-serif;
 
-  -webkit-font-smoothing:antialiased;
-  text-rendering:optimizeLegibility;
+  color:var(--ink);
 
   background:#fff;
 
-  color:var(--ink);
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
 
   overflow-x:hidden;
 
@@ -124,9 +124,12 @@ body{
 
   width:100%;
 
-  min-height:405px;
+  min-height:435px;
 
-  color:#fff;
+  padding:
+    max(24px,env(safe-area-inset-top))
+    18px
+    105px;
 
   display:flex;
 
@@ -136,31 +139,33 @@ body{
 
   text-align:center;
 
-  padding:
-
-    max(25px,env(safe-area-inset-top))
-    18px
-    100px;
+  color:#fff;
 
   background:
 
     radial-gradient(
-      circle at 50% 5%,
+      circle at 50% 8%,
       rgba(255,255,255,.10),
+      transparent 27%
+    ),
+
+    radial-gradient(
+      circle at 15% 55%,
+      rgba(38,117,255,.14),
       transparent 30%
     ),
 
     radial-gradient(
-      circle at 50% 105%,
-      rgba(30,111,255,.30),
-      transparent 55%
+      circle at 85% 70%,
+      rgba(255,202,67,.07),
+      transparent 28%
     ),
 
     linear-gradient(
       180deg,
       #061b3a 0%,
-      #08264d 65%,
-      #092e5c 100%
+      #08264d 55%,
+      #092d5b 100%
     );
 
 }
@@ -178,13 +183,13 @@ body{
 
   pointer-events:none;
 
-  opacity:.18;
+  opacity:.16;
 
   background-image:
 
     radial-gradient(
-      rgba(255,255,255,.16) .7px,
-      transparent .7px
+      rgba(255,255,255,.18) .65px,
+      transparent .65px
     );
 
   background-size:13px 13px;
@@ -193,7 +198,7 @@ body{
     linear-gradient(
       to bottom,
       black,
-      transparent 82%
+      transparent 86%
     );
 
 }
@@ -210,18 +215,17 @@ body{
   width:260px;
   height:260px;
 
-  top:-160px;
-
   left:50%;
+  top:-160px;
 
   transform:translateX(-50%);
 
-  background:
-    rgba(38,117,255,.18);
-
-  filter:blur(55px);
-
   border-radius:50%;
+
+  background:
+    rgba(255,255,255,.055);
+
+  filter:blur(10px);
 
   pointer-events:none;
 
@@ -229,20 +233,17 @@ body{
 
 
 /* =========================================================
-   GOOGLE MARK
+   GOOGLE ICON
    ========================================================= */
 
 .google-mark{
 
   position:relative;
 
-  z-index:2;
+  z-index:3;
 
-  width:
-    clamp(86px,24vw,112px);
-
-  height:
-    clamp(86px,24vw,112px);
+  width:94px;
+  height:94px;
 
   border-radius:50%;
 
@@ -253,20 +254,18 @@ body{
   align-items:center;
   justify-content:center;
 
-  margin-top:3px;
-
-  margin-bottom:19px;
+  margin-top:7px;
+  margin-bottom:20px;
 
   box-shadow:
 
-    0 15px 34px
-    rgba(0,0,0,.30),
+    0 16px 38px rgba(0,0,0,.30),
 
     0 0 0 3px
     rgba(217,146,19,.95),
 
-    0 0 0 6px
-    rgba(255,202,67,.22);
+    0 0 0 7px
+    rgba(255,202,67,.18);
 
   animation:
     googleEnter .7s
@@ -276,23 +275,24 @@ body{
 }
 
 
-/* little shine */
-
 .google-mark::after{
 
   content:"";
 
   position:absolute;
 
-  inset:8px;
+  inset:-12px;
 
   border-radius:50%;
 
   border:
     1px solid
-    rgba(255,255,255,.9);
+    rgba(255,202,67,.20);
 
-  opacity:.65;
+  animation:
+    googlePulse 3s
+    ease-in-out
+    infinite;
 
 }
 
@@ -301,10 +301,9 @@ body{
 
   font-family:Arial,sans-serif;
 
-  font-size:
-    clamp(53px,14vw,72px);
+  font-size:61px;
 
-  font-weight:800;
+  font-weight:900;
 
   line-height:1;
 
@@ -330,23 +329,32 @@ body{
 @keyframes googleEnter{
 
   from{
-
     opacity:0;
-
     transform:
       translateY(-20px)
       scale(.78);
-
   }
 
   to{
-
     opacity:1;
-
     transform:
       translateY(0)
       scale(1);
+  }
 
+}
+
+
+@keyframes googlePulse{
+
+  0%,100%{
+    opacity:.25;
+    transform:scale(.96);
+  }
+
+  50%{
+    opacity:.7;
+    transform:scale(1.04);
   }
 
 }
@@ -360,30 +368,27 @@ body{
 
   position:relative;
 
-  z-index:2;
+  z-index:3;
 
-  max-width:560px;
+  max-width:760px;
 
   font-size:
-    clamp(23px,6.3vw,34px);
+    clamp(24px,6.8vw,36px);
 
-  line-height:1.13;
+  line-height:1.10;
 
   font-weight:900;
 
   letter-spacing:-.8px;
 
-  text-transform:uppercase;
-
   text-shadow:
-    0 4px 18px
-    rgba(0,0,0,.30);
+    0 4px 18px rgba(0,0,0,.30);
 
 }
 
 
 /* =========================================================
-   HERO RATING
+   HERO STARS
    ========================================================= */
 
 .hero-rating{
@@ -394,16 +399,14 @@ body{
 
   width:100%;
 
+  margin-top:27px;
+
   display:flex;
 
   align-items:center;
-
   justify-content:center;
 
-  gap:
-    clamp(7px,2vw,17px);
-
-  margin-top:25px;
+  gap:12px;
 
 }
 
@@ -411,16 +414,17 @@ body{
 .rating-line{
 
   width:
-    clamp(25px,11vw,85px);
+    clamp(24px,12vw,90px);
 
   height:2px;
 
-  background:
+  border-radius:20px;
 
+  background:
     linear-gradient(
       90deg,
       transparent,
-      rgba(38,129,255,.95)
+      rgba(38,129,255,.9)
     );
 
 }
@@ -429,10 +433,9 @@ body{
 .rating-line.right{
 
   background:
-
     linear-gradient(
       90deg,
-      rgba(38,129,255,.95),
+      rgba(38,129,255,.9),
       transparent
     );
 
@@ -444,10 +447,8 @@ body{
   display:flex;
 
   align-items:center;
-  justify-content:center;
 
-  gap:
-    clamp(3px,1vw,8px);
+  gap:5px;
 
 }
 
@@ -455,7 +456,7 @@ body{
 .hero-star{
 
   font-size:
-    clamp(30px,8vw,49px);
+    clamp(31px,8.5vw,52px);
 
   line-height:1;
 
@@ -463,15 +464,44 @@ body{
 
   text-shadow:
 
-    0 4px 5px
-    rgba(0,0,0,.45),
+    0 3px 5px rgba(0,0,0,.45),
 
-    0 0 15px
-    rgba(255,202,67,.25);
+    0 0 16px rgba(255,202,67,.18);
 
-  transform:
-    perspective(300px)
-    rotateX(7deg);
+  animation:
+    heroStarFloat 3s
+    ease-in-out
+    infinite;
+
+}
+
+
+.hero-star:nth-child(2){
+  animation-delay:.08s;
+}
+
+.hero-star:nth-child(3){
+  animation-delay:.16s;
+}
+
+.hero-star:nth-child(4){
+  animation-delay:.24s;
+}
+
+.hero-star:nth-child(5){
+  animation-delay:.32s;
+}
+
+
+@keyframes heroStarFloat{
+
+  0%,100%{
+    transform:translateY(0);
+  }
+
+  50%{
+    transform:translateY(-3px);
+  }
 
 }
 
@@ -486,25 +516,25 @@ body{
 
   z-index:4;
 
-  left:-5%;
+  left:-8%;
 
-  bottom:55px;
+  bottom:47px;
 
-  width:110%;
+  width:116%;
 
-  height:65px;
+  height:72px;
 
   background:
 
     linear-gradient(
       180deg,
-      #0c63ff,
-      #164fd1
+      #1767ff,
+      #124dcc
     );
 
   clip-path:
     ellipse(
-      69% 55%
+      69% 58%
       at 50% 100%
     );
 
@@ -517,19 +547,19 @@ body{
 
   z-index:5;
 
-  left:-5%;
+  left:-8%;
 
-  bottom:-1px;
+  bottom:-2px;
 
-  width:110%;
+  width:116%;
 
-  height:105px;
+  height:102px;
 
   background:#fff;
 
   clip-path:
     ellipse(
-      73% 58%
+      73% 61%
       at 50% 100%
     );
 
@@ -537,7 +567,7 @@ body{
 
 
 /* =========================================================
-   CONTENT
+   MAIN CONTENT
    ========================================================= */
 
 .content{
@@ -545,8 +575,6 @@ body{
   position:relative;
 
   z-index:10;
-
-  background:#fff;
 
   width:100%;
 
@@ -556,19 +584,19 @@ body{
   min-height:
     calc(100dvh - 400px);
 
-  margin-top:-23px;
+  margin-top:-26px;
 
   padding:
-
-    0
-    18px
-    max(30px,env(safe-area-inset-bottom));
+    0 18px
+    max(32px,env(safe-area-inset-bottom));
 
   display:flex;
 
   flex-direction:column;
 
   align-items:center;
+
+  background:#fff;
 
 }
 
@@ -587,13 +615,7 @@ body{
 
   align-items:center;
 
-  justify-content:center;
-
   text-align:center;
-
-  position:relative;
-
-  margin-top:-2px;
 
 }
 
@@ -605,10 +627,10 @@ body{
 .logo-frame{
 
   width:
-    clamp(170px,48vw,215px);
+    clamp(170px,52vw,225px);
 
   height:
-    clamp(170px,48vw,215px);
+    clamp(170px,52vw,225px);
 
   position:relative;
 
@@ -617,7 +639,7 @@ body{
   align-items:center;
   justify-content:center;
 
-  margin-bottom:19px;
+  margin-bottom:18px;
 
 }
 
@@ -637,28 +659,53 @@ body{
   background:
 
     linear-gradient(var(--gold),var(--gold))
-      left top / 64px 4px no-repeat,
+      left top / 66px 4px no-repeat,
 
     linear-gradient(var(--gold),var(--gold))
-      left top / 4px 64px no-repeat,
+      left top / 4px 66px no-repeat,
 
     linear-gradient(var(--gold),var(--gold))
-      right top / 64px 4px no-repeat,
+      right top / 66px 4px no-repeat,
 
     linear-gradient(var(--gold),var(--gold))
-      right top / 4px 64px no-repeat,
+      right top / 4px 66px no-repeat,
 
     linear-gradient(var(--gold),var(--gold))
-      left bottom / 64px 4px no-repeat,
+      left bottom / 66px 4px no-repeat,
 
     linear-gradient(var(--gold),var(--gold))
-      left bottom / 4px 64px no-repeat,
+      left bottom / 4px 66px no-repeat,
 
     linear-gradient(var(--gold),var(--gold))
-      right bottom / 64px 4px no-repeat,
+      right bottom / 66px 4px no-repeat,
 
     linear-gradient(var(--gold),var(--gold))
-      right bottom / 4px 64px no-repeat;
+      right bottom / 4px 66px no-repeat;
+
+  filter:
+    drop-shadow(
+      0 3px 4px
+      rgba(169,103,0,.10)
+    );
+
+}
+
+
+/* subtle inner frame */
+
+.logo-frame::after{
+
+  content:"";
+
+  position:absolute;
+
+  inset:10px;
+
+  border-radius:28px;
+
+  border:
+    1px solid
+    rgba(217,146,19,.07);
 
 }
 
@@ -670,10 +717,10 @@ body{
 .client-logo{
 
   width:
-    clamp(120px,35vw,158px);
+    clamp(120px,38vw,165px);
 
   height:
-    clamp(120px,35vw,158px);
+    clamp(120px,38vw,165px);
 
   border-radius:25px;
 
@@ -689,7 +736,7 @@ body{
     linear-gradient(
       145deg,
       #ffffff,
-      #f0f3f7
+      #f1f4f8
     );
 
   border:
@@ -698,15 +745,39 @@ body{
 
   box-shadow:
 
-    0 15px 35px
+    0 16px 35px
     rgba(7,27,60,.13),
 
-    0 2px 5px
-    rgba(7,27,60,.05);
+    0 2px 6px
+    rgba(7,27,60,.06);
 
-  font-size:52px;
+  font-size:54px;
 
-  color:#0b315f;
+  color:var(--navy-3);
+
+  position:relative;
+
+  z-index:2;
+
+}
+
+
+.client-logo::after{
+
+  content:"";
+
+  position:absolute;
+
+  inset:0;
+
+  pointer-events:none;
+
+  background:
+    linear-gradient(
+      125deg,
+      rgba(255,255,255,.6),
+      transparent 35%
+    );
 
 }
 
@@ -717,6 +788,10 @@ body{
   height:100%;
 
   object-fit:cover;
+
+  position:relative;
+
+  z-index:2;
 
 }
 
@@ -729,18 +804,18 @@ body{
 
   width:100%;
 
-  max-width:700px;
+  max-width:850px;
+
+  color:var(--navy);
 
   font-size:
-    clamp(29px,8vw,42px);
+    clamp(29px,8vw,43px);
 
-  line-height:1.08;
+  line-height:1.05;
 
   font-weight:900;
 
   letter-spacing:-1px;
-
-  color:var(--navy);
 
   text-align:center;
 
@@ -751,41 +826,33 @@ body{
 }
 
 
-/* =========================================================
-   SUBTITLE
-   ========================================================= */
-
 .subtitle{
 
-  width:100%;
-
-  max-width:600px;
-
-  color:#53657d;
+  color:#586a82;
 
   font-size:
-    clamp(16px,4.5vw,20px);
+    clamp(16px,4.4vw,20px);
+
+  line-height:1.45;
 
   font-weight:600;
 
   text-align:center;
 
-  line-height:1.45;
-
-  margin-bottom:28px;
+  margin-bottom:27px;
 
 }
 
 
 /* =========================================================
-   FEEDBACK
+   FEEDBACK AREA
    ========================================================= */
 
 .feedback-area{
 
   width:100%;
 
-  max-width:680px;
+  max-width:720px;
 
   display:flex;
 
@@ -806,21 +873,13 @@ body{
 @keyframes contentEnter{
 
   from{
-
     opacity:0;
-
-    transform:
-      translateY(20px);
-
+    transform:translateY(20px);
   }
 
   to{
-
     opacity:1;
-
-    transform:
-      translateY(0);
-
+    transform:translateY(0);
   }
 
 }
@@ -839,13 +898,13 @@ body{
   font-size:
     clamp(22px,6vw,30px);
 
-  line-height:1.18;
+  line-height:1.15;
 
   font-weight:850;
 
   letter-spacing:-.5px;
 
-  margin-bottom:18px;
+  margin-bottom:16px;
 
 }
 
@@ -860,21 +919,16 @@ body{
 
   display:flex;
 
+  align-items:center;
   justify-content:center;
 
-  align-items:center;
-
   gap:
-    clamp(2px,1vw,10px);
+    clamp(2px,1.5vw,12px);
 
-  margin-bottom:7px;
+  margin-bottom:8px;
 
 }
 
-
-/* =========================================================
-   STAR BUTTON
-   ========================================================= */
 
 .star{
 
@@ -882,17 +936,17 @@ body{
   -webkit-appearance:none;
 
   border:0 !important;
-  outline:none !important;
+  outline:0 !important;
 
   background:transparent !important;
 
   box-shadow:none !important;
 
   width:
-    clamp(58px,16vw,84px);
+    clamp(55px,15.5vw,88px);
 
   height:
-    clamp(65px,17vw,92px);
+    clamp(64px,17vw,94px);
 
   padding:0;
 
@@ -902,15 +956,13 @@ body{
   justify-content:center;
 
   font-size:
-    clamp(58px,16vw,82px);
+    clamp(56px,15.5vw,86px);
 
   line-height:1;
 
-  color:#c9d0d9;
+  color:#cbd1d9;
 
   cursor:pointer;
-
-  position:relative;
 
   user-select:none;
 
@@ -926,7 +978,7 @@ body{
 
     filter .18s ease,
 
-    transform .15s
+    transform .14s
     cubic-bezier(.2,.9,.25,1.4);
 
 }
@@ -953,7 +1005,7 @@ body{
 
     drop-shadow(
       0 5px 6px
-      rgba(150,90,0,.25)
+      rgba(150,90,0,.27)
     );
 
   animation:
@@ -970,7 +1022,7 @@ body{
   }
 
   45%{
-    transform:scale(1.20);
+    transform:scale(1.19);
   }
 
   72%{
@@ -997,12 +1049,14 @@ body{
 
 .rating-text{
 
-  min-height:28px;
+  min-height:27px;
 
-  color:#65758c;
+  color:#68788e;
 
   font-size:
-    clamp(15px,4.1vw,18px);
+    clamp(15px,4vw,18px);
+
+  line-height:1.4;
 
   font-weight:650;
 
@@ -1019,12 +1073,10 @@ body{
 
   width:100%;
 
-  text-align:center;
-
   display:none;
 
   animation:
-    messageEnter .4s
+    messageEnter .42s
     cubic-bezier(.2,.8,.2,1)
     both;
 
@@ -1041,29 +1093,17 @@ body{
 @keyframes messageEnter{
 
   from{
-
     opacity:0;
-
-    transform:
-      translateY(14px);
-
+    transform:translateY(14px) scale(.985);
   }
 
   to{
-
     opacity:1;
-
-    transform:
-      translateY(0);
-
+    transform:translateY(0) scale(1);
   }
 
 }
 
-
-/* =========================================================
-   MESSAGE TITLE
-   ========================================================= */
 
 .message h2{
 
@@ -1072,7 +1112,7 @@ body{
   font-size:
     clamp(23px,6vw,31px);
 
-  line-height:1.18;
+  line-height:1.17;
 
   font-weight:900;
 
@@ -1083,64 +1123,32 @@ body{
 }
 
 
-/* =========================================================
-   MESSAGE TEXT
-   ========================================================= */
-
 .message p{
+
+  max-width:650px;
+
+  margin:
+    0 auto 20px;
 
   color:#61728a;
 
   font-size:
-    clamp(16px,4.4vw,19px);
+    clamp(16px,4.3vw,19px);
 
   line-height:1.52;
-
-  max-width:620px;
-
-  margin:
-    0 auto 20px;
 
 }
 
 
 /* =========================================================
-   GOOGLE AREA
+   GOOGLE CTA AREA
    ========================================================= */
 
 #googleArea{
 
   width:100%;
 
-  animation:
-    googleAreaEnter .45s
-    cubic-bezier(.2,.8,.2,1)
-    both;
-
-}
-
-
-@keyframes googleAreaEnter{
-
-  from{
-
-    opacity:0;
-
-    transform:
-      translateY(10px)
-      scale(.98);
-
-  }
-
-  to{
-
-    opacity:1;
-
-    transform:
-      translateY(0)
-      scale(1);
-
-  }
+  margin-top:4px;
 
 }
 
@@ -1162,21 +1170,21 @@ body{
   display:flex;
 
   align-items:center;
-
   justify-content:center;
 
   text-decoration:none;
 
-  padding:18px 22px;
+  padding:
+    17px 20px;
 
   font-size:
-    clamp(18px,4.8vw,22px);
+    clamp(18px,4.7vw,22px);
+
+  line-height:1.2;
 
   font-weight:900;
 
   cursor:pointer;
-
-  margin-top:10px;
 
   position:relative;
 
@@ -1188,7 +1196,7 @@ body{
 
     box-shadow .22s ease,
 
-    background .22s ease;
+    filter .22s ease;
 
   -webkit-tap-highlight-color:transparent;
 
@@ -1197,103 +1205,25 @@ body{
 }
 
 
-.button:active{
-
-  transform:
-    scale(.975);
-
-}
-
-
-/* =========================================================
-   PREMIUM GOOGLE BUTTON
-   ========================================================= */
-
-.google{
-
-  color:#fff;
-
-  background:
-
-    linear-gradient(
-      135deg,
-      #0a2d59 0%,
-      #0d407a 52%,
-      #08294f 100%
-    );
-
-  border:
-
-    2px solid
-    rgba(217,146,19,.88);
-
-  box-shadow:
-
-    0 12px 28px
-    rgba(7,27,60,.22),
-
-    0 0 0 3px
-    rgba(217,146,19,.08);
-
-  animation:
-    googleAttention 3.2s
-    ease-in-out
-    infinite;
-
-}
-
-
-/* gold accent line */
-
-.google::before{
+.button::before{
 
   content:"";
 
   position:absolute;
-
-  left:0;
-  right:0;
 
   top:0;
+  left:-120%;
 
-  height:4px;
+  width:70%;
+  height:100%;
 
-  background:
-
-    linear-gradient(
-      90deg,
-      var(--gold-dark),
-      var(--gold-light),
-      var(--gold-dark)
-    );
-
-}
-
-
-/* moving shine */
-
-.google::after{
-
-  content:"";
-
-  position:absolute;
-
-  top:-20%;
-
-  left:-45%;
-
-  width:35%;
-
-  height:140%;
-
-  transform:skewX(-20deg);
+  transform:skewX(-22deg);
 
   background:
-
     linear-gradient(
       90deg,
       transparent,
-      rgba(255,255,255,.24),
+      rgba(255,255,255,.38),
       transparent
     );
 
@@ -1309,65 +1239,98 @@ body{
 
   0%,
   55%{
-
-    left:-45%;
-
+    left:-120%;
   }
 
-  75%{
-
-    left:120%;
-
+  72%{
+    left:140%;
   }
 
   100%{
-
-    left:120%;
-
+    left:140%;
   }
 
 }
 
 
-@keyframes googleAttention{
+.button:active{
 
-  0%,
-  72%,
-  100%{
+  transform:scale(.975);
 
-    transform:translateY(0);
+}
+
+
+/* =========================================================
+   GOOGLE BUTTON — HIGH VISIBILITY
+   ========================================================= */
+
+.google{
+
+  color:#fff;
+
+  background:
+
+    linear-gradient(
+      135deg,
+      #d89412 0%,
+      #f1b52b 48%,
+      #c77d08 100%
+    );
+
+  border:
+    1px solid
+    rgba(255,255,255,.25);
+
+  box-shadow:
+
+    0 14px 30px
+    rgba(184,117,5,.28),
+
+    0 5px 0
+    rgba(143,87,0,.35);
+
+  min-height:76px;
+
+  letter-spacing:-.2px;
+
+  animation:
+    googleButtonGlow 2.8s
+    ease-in-out
+    infinite;
+
+}
+
+
+.google:hover{
+
+  filter:brightness(1.04);
+
+}
+
+
+@keyframes googleButtonGlow{
+
+  0%,100%{
 
     box-shadow:
 
-      0 12px 28px
-      rgba(7,27,60,.22),
+      0 14px 30px
+      rgba(184,117,5,.26),
 
-      0 0 0 3px
-      rgba(217,146,19,.08);
+      0 5px 0
+      rgba(143,87,0,.35);
 
   }
 
-  76%{
-
-    transform:
-      translateY(-2px)
-      scale(1.015);
+  50%{
 
     box-shadow:
 
-      0 16px 34px
-      rgba(7,27,60,.28),
+      0 18px 38px
+      rgba(184,117,5,.38),
 
-      0 0 0 5px
-      rgba(217,146,19,.15);
-
-  }
-
-  81%{
-
-    transform:
-      translateY(0)
-      scale(1);
+      0 5px 0
+      rgba(143,87,0,.35);
 
   }
 
@@ -1375,7 +1338,7 @@ body{
 
 
 /* =========================================================
-   WHATSAPP NORMAL
+   PRIVATE BUTTON
    ========================================================= */
 
 .private{
@@ -1387,20 +1350,19 @@ body{
     linear-gradient(
       135deg,
       #123e6d,
-      #09294d
+      #08294f
     );
 
   box-shadow:
 
-    0 11px 26px
-    rgba(7,27,60,.18);
+    0 13px 30px
+    rgba(7,27,60,.22),
+
+    0 4px 0
+    rgba(3,17,35,.22);
 
 }
 
-
-/* =========================================================
-   WHATSAPP ACTIVE
-   ========================================================= */
 
 .private.sending{
 
@@ -1414,8 +1376,8 @@ body{
 
   box-shadow:
 
-    0 13px 30px
-    rgba(20,150,75,.28);
+    0 14px 30px
+    rgba(20,150,75,.30);
 
   pointer-events:none;
 
@@ -1423,7 +1385,7 @@ body{
 
 
 /* =========================================================
-   TEXTAREA
+   PRIVATE TEXTAREA
    ========================================================= */
 
 textarea{
@@ -1436,7 +1398,7 @@ textarea{
 
   padding:18px;
 
-  border-radius:20px;
+  border-radius:19px;
 
   border:
     1.5px solid
@@ -1448,13 +1410,21 @@ textarea{
 
   outline:none;
 
+  font-family:inherit;
+
   font-size:18px;
 
   line-height:1.5;
 
-  margin-bottom:8px;
+  margin-bottom:9px;
 
   -webkit-appearance:none;
+
+  transition:
+
+    border-color .2s ease,
+
+    box-shadow .2s ease;
 
 }
 
@@ -1492,12 +1462,13 @@ textarea:focus{
   flex-direction:column;
 
   align-items:center;
-
   justify-content:center;
 
   margin-top:38px;
 
-  padding-top:23px;
+  padding:
+    23px 0
+    4px;
 
   border-top:
     1px solid
@@ -1506,18 +1477,16 @@ textarea:focus{
 }
 
 
-/* =========================================================
-   MINI LINE
-   ========================================================= */
+/* animated line */
 
 .brand-mini-line{
 
   width:
-    clamp(100px,27vw,155px);
+    clamp(100px,29vw,160px);
 
   height:3px;
 
-  margin-bottom:14px;
+  margin-bottom:15px;
 
   border-radius:20px;
 
@@ -1531,53 +1500,31 @@ textarea:focus{
       transparent
     );
 
-  position:relative;
-
-  overflow:hidden;
-
-}
-
-
-.brand-mini-line::after{
-
-  content:"";
-
-  position:absolute;
-
-  top:0;
-
-  left:-50%;
-
-  width:40%;
-
-  height:100%;
-
-  background:
-    rgba(255,255,255,.8);
-
-  filter:blur(2px);
+  background-size:200% 100%;
 
   animation:
-    lineShine 3.5s
+    brandingLine 3s
     ease-in-out
     infinite;
 
 }
 
 
-@keyframes lineShine{
+@keyframes brandingLine{
 
   0%{
-
-    left:-50%;
-
+    background-position:0% 50%;
+    opacity:.65;
   }
 
-  60%,
+  50%{
+    background-position:100% 50%;
+    opacity:1;
+  }
+
   100%{
-
-    left:120%;
-
+    background-position:0% 50%;
+    opacity:.65;
   }
 
 }
@@ -1589,8 +1536,10 @@ textarea:focus{
 
 .smart-review{
 
+  position:relative;
+
   font-size:
-    clamp(31px,8.5vw,45px);
+    clamp(30px,8.5vw,46px);
 
   line-height:1;
 
@@ -1602,16 +1551,16 @@ textarea:focus{
 
     linear-gradient(
       110deg,
-      #a86c08 0%,
-      #e3a51e 18%,
-      #fff 35%,
-      #c5ced9 48%,
-      #356a9f 70%,
+      #9d6507 0%,
+      #d99213 17%,
+      #f3c24c 29%,
+      #ffffff 43%,
+      #b9c3d0 55%,
+      #37628f 73%,
       #061b3a 100%
     );
 
-  background-size:
-    240% 100%;
+  background-size:220% 100%;
 
   -webkit-background-clip:text;
   background-clip:text;
@@ -1619,84 +1568,99 @@ textarea:focus{
   color:transparent;
 
   filter:
-
     drop-shadow(
       0 4px 8px
-      rgba(7,27,60,.13)
+      rgba(7,27,60,.12)
     );
 
   animation:
-    smartShimmer 5s
+    smartLogoShine 4.5s
     ease-in-out
     infinite;
 
 }
 
 
-@keyframes smartShimmer{
+.smart-review::after{
 
-  0%{
+  content:"";
 
-    background-position:
-      0% 50%;
+  position:absolute;
 
+  left:0;
+  right:0;
+
+  bottom:-7px;
+
+  height:2px;
+
+  border-radius:10px;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(217,146,19,.7),
+      transparent
+    );
+
+  transform:scaleX(.65);
+
+  animation:
+    logoUnderline 2.8s
+    ease-in-out
+    infinite;
+
+}
+
+
+@keyframes smartLogoShine{
+
+  0%,
+  55%{
+    background-position:0% 50%;
   }
 
-  50%{
-
-    background-position:
-      100% 50%;
-
+  75%{
+    background-position:100% 50%;
   }
 
   100%{
-
-    background-position:
-      0% 50%;
-
+    background-position:100% 50%;
   }
 
 }
 
 
-/* =========================================================
-   SMART REVIEW SUBTITLE
-   ========================================================= */
+@keyframes logoUnderline{
+
+  0%,100%{
+    opacity:.45;
+    transform:scaleX(.55);
+  }
+
+  50%{
+    opacity:1;
+    transform:scaleX(.9);
+  }
+
+}
+
 
 .smart-review-sub{
 
-  margin-top:8px;
+  margin-top:13px;
 
   color:#6b788a;
 
   font-size:
     clamp(10px,2.8vw,13px);
 
-  font-weight:750;
+  font-weight:800;
 
   letter-spacing:2px;
 
   text-transform:uppercase;
-
-}
-
-
-/* =========================================================
-   ERROR
-   ========================================================= */
-
-.error{
-
-  color:#d83b3b !important;
-
-  font-weight:700;
-
-}
-
-
-.hidden{
-
-  display:none !important;
 
 }
 
@@ -1723,7 +1687,7 @@ textarea:focus{
 
   border-radius:50%;
 
-  background:#d99213;
+  background:var(--gold);
 
   animation:
     loadingPulse 1s
@@ -1733,38 +1697,45 @@ textarea:focus{
 
 
 .loading-dot:nth-child(2){
-
   animation-delay:.15s;
-
 }
 
-
 .loading-dot:nth-child(3){
-
   animation-delay:.30s;
-
 }
 
 
 @keyframes loadingPulse{
 
-  0%,
-  80%,
-  100%{
-
+  0%,80%,100%{
     opacity:.25;
-
     transform:scale(.7);
-
   }
 
   40%{
-
     opacity:1;
-
     transform:scale(1);
-
   }
+
+}
+
+
+/* =========================================================
+   ERROR
+   ========================================================= */
+
+.error{
+
+  color:#d83b3b !important;
+
+  font-weight:750;
+
+}
+
+
+.hidden{
+
+  display:none !important;
 
 }
 
@@ -1777,7 +1748,7 @@ textarea:focus{
 
   .hero{
 
-    min-height:370px;
+    min-height:400px;
 
     padding-left:14px;
     padding-right:14px;
@@ -1787,7 +1758,15 @@ textarea:focus{
 
   .google-mark{
 
-    margin-bottom:17px;
+    width:88px;
+    height:88px;
+
+  }
+
+
+  .google-letter{
+
+    font-size:57px;
 
   }
 
@@ -1796,38 +1775,38 @@ textarea:focus{
 
     font-size:22px;
 
-    max-width:340px;
-
   }
 
 
   .hero-rating{
 
-    margin-top:21px;
+    margin-top:23px;
 
   }
 
 
   .content{
 
-    padding-left:15px;
-    padding-right:15px;
+    padding-left:14px;
+    padding-right:14px;
+
+    margin-top:-24px;
 
   }
 
 
   .logo-frame{
 
-    width:155px;
-    height:155px;
+    width:158px;
+    height:158px;
 
   }
 
 
   .client-logo{
 
-    width:110px;
-    height:110px;
+    width:112px;
+    height:112px;
 
   }
 
@@ -1835,13 +1814,6 @@ textarea:focus{
   .business-name{
 
     font-size:28px;
-
-  }
-
-
-  .rating-question{
-
-    font-size:21px;
 
   }
 
@@ -1858,7 +1830,7 @@ textarea:focus{
 
   .button{
 
-    min-height:70px;
+    min-height:72px;
 
   }
 
@@ -1869,46 +1841,25 @@ textarea:focus{
    TALL PHONES
    ========================================================= */
 
-@media(height >= 800px){
+@media(height >= 800px) and (width < 700px){
 
   .hero{
 
-    min-height:425px;
+    min-height:455px;
 
   }
 
 
   .content{
 
-    margin-top:-27px;
-
-  }
-
-
-  .client-brand{
-
-    margin-top:-4px;
+    margin-top:-30px;
 
   }
 
 
   .logo-frame{
 
-    margin-bottom:21px;
-
-  }
-
-
-  .business-name{
-
-    margin-bottom:9px;
-
-  }
-
-
-  .subtitle{
-
-    margin-bottom:30px;
+    margin-bottom:19px;
 
   }
 
@@ -1923,14 +1874,7 @@ textarea:focus{
 
   .hero{
 
-    min-height:500px;
-
-  }
-
-
-  .content{
-
-    margin-top:-36px;
+    min-height:510px;
 
     padding-left:40px;
     padding-right:40px;
@@ -1938,9 +1882,12 @@ textarea:focus{
   }
 
 
-  .client-brand{
+  .content{
 
-    margin-top:-5px;
+    margin-top:-38px;
+
+    padding-left:40px;
+    padding-right:40px;
 
   }
 
@@ -1963,15 +1910,15 @@ textarea:focus{
 
   .stars{
 
-    gap:10px;
+    gap:12px;
 
   }
 
 
   .star{
 
-    width:84px;
-    height:90px;
+    width:82px;
+    height:92px;
 
     font-size:82px;
 
@@ -1980,7 +1927,7 @@ textarea:focus{
 
   .button{
 
-    min-height:76px;
+    min-height:78px;
 
   }
 
@@ -2008,6 +1955,7 @@ textarea:focus{
 }
 
 </style>
+
 </head>
 
 
@@ -2016,293 +1964,272 @@ textarea:focus{
 <div class="app">
 
 
+<!-- =======================================================
+     HERO
+     ======================================================= -->
+
+<section class="hero">
+
+
+  <div class="google-mark">
+
+    <div class="google-letter">
+      G
+    </div>
+
+  </div>
+
+
+  <h1 class="hero-title">
+    LAISSEZ-NOUS VOTRE AVIS SUR GOOGLE
+  </h1>
+
+
+  <div class="hero-rating">
+
+    <div class="rating-line"></div>
+
+    <div class="hero-stars">
+
+      <span class="hero-star">★</span>
+      <span class="hero-star">★</span>
+      <span class="hero-star">★</span>
+      <span class="hero-star">★</span>
+      <span class="hero-star">★</span>
+
+    </div>
+
+    <div class="rating-line right"></div>
+
+  </div>
+
+
+  <div class="wave-blue"></div>
+
+  <div class="wave"></div>
+
+</section>
+
+
+
+<!-- =======================================================
+     MAIN
+     ======================================================= -->
+
+<main class="content">
+
+
   <!-- =====================================================
-       HERO
+       CLIENT
        ===================================================== -->
 
-  <section class="hero">
+  <section class="client-brand">
 
 
-    <!-- GOOGLE -->
+    <div class="logo-frame">
 
-    <div class="google-mark">
-
-      <div class="google-letter">
-        G
+      <div
+        class="client-logo"
+        id="logo"
+        aria-label="Business logo"
+      >
+        🍽️
       </div>
 
     </div>
 
 
-    <!-- TITLE -->
-
-    <h1 class="hero-title">
-      LAISSEZ-NOUS VOTRE AVIS SUR GOOGLE
-    </h1>
-
-
-    <!-- STARS -->
-
-    <div class="hero-rating">
-
-      <div class="rating-line"></div>
-
-      <div class="hero-stars">
-
-        <span class="hero-star">★</span>
-        <span class="hero-star">★</span>
-        <span class="hero-star">★</span>
-        <span class="hero-star">★</span>
-        <span class="hero-star">★</span>
-
-      </div>
-
-      <div class="rating-line right"></div>
-
-    </div>
+    <h2
+      class="business-name"
+      id="businessName"
+    >
+      Loading...
+    </h2>
 
 
-    <!-- WAVE -->
+    <p
+      class="subtitle"
+      id="subtitle"
+    >
 
-    <div class="wave-blue"></div>
+      <span class="loading-dot"></span>
+      <span class="loading-dot"></span>
+      <span class="loading-dot"></span>
 
-    <div class="wave"></div>
+    </p>
 
   </section>
 
 
 
   <!-- =====================================================
-       MAIN CONTENT
+       FEEDBACK
        ===================================================== -->
 
-  <main class="content">
+  <section
+    id="feedbackArea"
+    class="feedback-area hidden"
+  >
+
+
+    <div class="rating-question">
+      Comment avez-vous vécu votre expérience ?
+    </div>
+
+
+    <div
+      class="stars"
+      id="stars"
+      role="radiogroup"
+      aria-label="Évaluez votre expérience"
+    >
+
+      <button
+        type="button"
+        class="star"
+        data-rating="1"
+        aria-label="1 étoile"
+      >★</button>
+
+      <button
+        type="button"
+        class="star"
+        data-rating="2"
+        aria-label="2 étoiles"
+      >★</button>
+
+      <button
+        type="button"
+        class="star"
+        data-rating="3"
+        aria-label="3 étoiles"
+      >★</button>
+
+      <button
+        type="button"
+        class="star"
+        data-rating="4"
+        aria-label="4 étoiles"
+      >★</button>
+
+      <button
+        type="button"
+        class="star"
+        data-rating="5"
+        aria-label="5 étoiles"
+      >★</button>
+
+    </div>
+
+
+    <div
+      class="rating-text"
+      id="ratingText"
+    >
+      Touchez une étoile pour commencer
+    </div>
+
 
 
     <!-- ===================================================
-         CLIENT BRAND
-         =================================================== -->
-
-    <section class="client-brand">
-
-
-      <div class="logo-frame">
-
-        <div
-          class="client-logo"
-          id="logo"
-          aria-label="Business logo"
-        >
-          🍽️
-        </div>
-
-      </div>
-
-
-      <h2
-        class="business-name"
-        id="businessName"
-      >
-        Loading...
-      </h2>
-
-
-      <p
-        class="subtitle"
-        id="subtitle"
-      >
-
-        <span class="loading-dot"></span>
-        <span class="loading-dot"></span>
-        <span class="loading-dot"></span>
-
-      </p>
-
-    </section>
-
-
-
-    <!-- ===================================================
-         FEEDBACK
+         MESSAGE
          =================================================== -->
 
     <section
-      id="feedbackArea"
-      class="feedback-area hidden"
+      class="message"
+      id="message"
     >
 
 
-      <div class="rating-question">
-        Comment avez-vous vécu votre expérience ?
-      </div>
+      <h2 id="messageTitle"></h2>
+
+      <p id="messageText"></p>
 
 
-      <!-- STARS -->
 
-      <div
-        class="stars"
-        id="stars"
-        role="radiogroup"
-        aria-label="Évaluez votre expérience"
-      >
-
-        <button
-          type="button"
-          class="star"
-          data-rating="1"
-          aria-label="1 étoile"
-        >★</button>
-
-
-        <button
-          type="button"
-          class="star"
-          data-rating="2"
-          aria-label="2 étoiles"
-        >★</button>
-
-
-        <button
-          type="button"
-          class="star"
-          data-rating="3"
-          aria-label="3 étoiles"
-        >★</button>
-
-
-        <button
-          type="button"
-          class="star"
-          data-rating="4"
-          aria-label="4 étoiles"
-        >★</button>
-
-
-        <button
-          type="button"
-          class="star"
-          data-rating="5"
-          aria-label="5 étoiles"
-        >★</button>
-
-      </div>
-
-
-      <!-- RATING TEXT -->
+      <!-- =================================================
+           GOOGLE
+           ================================================= -->
 
       <div
-        class="rating-text"
-        id="ratingText"
+        id="googleArea"
+        class="hidden"
       >
-        Touchez une étoile pour commencer
+
+        <a
+          id="googleButton"
+          class="button google"
+          href="#"
+          target="_blank"
+          rel="noopener"
+        >
+
+          ⭐ &nbsp; Écrire mon avis sur Google
+
+        </a>
+
       </div>
 
 
 
       <!-- =================================================
-           MESSAGE
+           PRIVATE
            ================================================= -->
 
-      <section
-        class="message"
-        id="message"
+      <div
+        id="privateArea"
+        class="hidden"
       >
 
 
-        <h2 id="messageTitle"></h2>
+        <textarea
+          id="feedbackMessage"
+          placeholder="Dites-nous ce qui s'est passé ou comment nous pouvons nous améliorer..."
+          aria-label="Votre commentaire privé"
+        ></textarea>
 
 
-        <p id="messageText"></p>
-
-
-
-        <!-- ===============================================
-             GOOGLE
-             =============================================== -->
-
-        <div
-          id="googleArea"
-          class="hidden"
+        <button
+          type="button"
+          id="sendPrivate"
+          class="button private"
         >
 
-          <a
-            id="googleButton"
-            class="button google"
-            href="#"
-            target="_blank"
-            rel="noopener"
-          >
+          💬 &nbsp; Envoyer mon retour
 
-            ⭐ Écrire mon avis sur Google
-
-          </a>
-
-        </div>
+        </button>
 
 
-
-        <!-- ===============================================
-             PRIVATE FEEDBACK
-             =============================================== -->
-
-        <div
-          id="privateArea"
-          class="hidden"
-        >
-
-
-          <textarea
-            id="feedbackMessage"
-            placeholder="Dites-nous ce qui s'est passé ou comment nous pouvons nous améliorer..."
-            aria-label="Votre commentaire privé"
-          ></textarea>
-
-
-          <button
-            type="button"
-            id="sendPrivate"
-            class="button private"
-          >
-
-            💬 Envoyer mon retour
-
-          </button>
-
-
-        </div>
-
-
-      </section>
+      </div>
 
 
     </section>
 
 
-
-    <!-- ===================================================
-         SMART REVIEW
-         =================================================== -->
-
-    <footer class="brand-footer">
+  </section>
 
 
-      <div class="brand-mini-line"></div>
+
+  <!-- =====================================================
+       BRANDING
+       ===================================================== -->
+
+  <footer class="brand-footer">
+
+    <div class="brand-mini-line"></div>
+
+    <div class="smart-review">
+      Smart Review
+    </div>
+
+    <div class="smart-review-sub">
+      Better feedback. Better businesses.
+    </div>
+
+  </footer>
 
 
-      <div class="smart-review">
-        Smart Review
-      </div>
-
-
-      <div class="smart-review-sub">
-        Better feedback. Better businesses.
-      </div>
-
-
-    </footer>
-
-
-  </main>
+</main>
 
 </div>
 
@@ -2323,7 +2250,7 @@ const SUPABASE_KEY =
 
 
 /* =========================================================
-   GET CARD CODE
+   CARD CODE
    ========================================================= */
 
 function getCardCode(){
@@ -2351,18 +2278,14 @@ async function supabaseGet(endpoint){
         method:"GET",
 
         headers:{
-
-          "apikey":
-            SUPABASE_KEY,
+          "apikey":SUPABASE_KEY,
 
           "Authorization":
             `Bearer ${SUPABASE_KEY}`,
 
           "Content-Type":
             "application/json"
-
         }
-
       }
     );
 
@@ -2419,10 +2342,6 @@ async function loadCard(){
     );
 
 
-  /* =======================================================
-     NO CARD
-     ======================================================= */
-
   if(!cardCode){
 
     businessName.textContent =
@@ -2433,7 +2352,6 @@ async function loadCard(){
       `<span class="error">
         Aucun code de carte n'a été fourni.
       </span>`;
-
 
     return;
 
@@ -2556,7 +2474,7 @@ async function loadCard(){
 
 
     /* =====================================================
-       GOOGLE REVIEW
+       GOOGLE REVIEW URL
        ===================================================== */
 
     const googleButton =
@@ -2571,7 +2489,7 @@ async function loadCard(){
 
 
     /* =====================================================
-       SHOW
+       SHOW UI
        ===================================================== */
 
     feedbackArea
@@ -2583,9 +2501,7 @@ async function loadCard(){
 
   catch(error){
 
-    console.error(
-      error
-    );
+    console.error(error);
 
 
     businessName.textContent =
@@ -2603,7 +2519,7 @@ async function loadCard(){
 
 
 /* =========================================================
-   STAR ELEMENTS
+   ELEMENTS
    ========================================================= */
 
 const stars =
@@ -2672,9 +2588,9 @@ stars.forEach(
           );
 
 
-        /* =================================================
+        /* ================================================
            HIGHLIGHT
-           ================================================= */
+           ================================================ */
 
         stars.forEach(
           s => {
@@ -2692,9 +2608,9 @@ stars.forEach(
         );
 
 
-        /* =================================================
-           RATING LABEL
-           ================================================= */
+        /* ================================================
+           TEXT
+           ================================================ */
 
         const ratingLabels = {
 
@@ -2722,9 +2638,9 @@ stars.forEach(
           ];
 
 
-        /* =================================================
+        /* ================================================
            MESSAGE ANIMATION
-           ================================================= */
+           ================================================ */
 
         message.classList.remove(
           "show"
@@ -2748,9 +2664,9 @@ stars.forEach(
         );
 
 
-        /* =================================================
+        /* ================================================
            1–2 STARS
-           ================================================= */
+           ================================================ */
 
         if(
           selectedRating <= 2
@@ -2766,43 +2682,34 @@ stars.forEach(
 
           googleArea
             .classList
-            .add(
-              "hidden"
-            );
+            .add("hidden");
 
 
           privateArea
             .classList
-            .remove(
-              "hidden"
-            );
+            .remove("hidden");
 
 
           feedbackMessage.value =
             "";
 
-
         }
 
 
-        /* =================================================
+        /* ================================================
            3–5 STARS
-           ================================================= */
+           ================================================ */
 
         else{
 
           privateArea
             .classList
-            .add(
-              "hidden"
-            );
+            .add("hidden");
 
 
           googleArea
             .classList
-            .remove(
-              "hidden"
-            );
+            .remove("hidden");
 
 
           if(
@@ -2868,9 +2775,9 @@ document
           .trim();
 
 
-      /* =====================================================
+      /* ===================================================
          CHECK BUSINESS
-         ===================================================== */
+         =================================================== */
 
       if(
         !currentBusiness
@@ -2885,9 +2792,9 @@ document
       }
 
 
-      /* =====================================================
+      /* ===================================================
          CHECK WHATSAPP
-         ===================================================== */
+         =================================================== */
 
       if(
         !currentBusiness.whatsapp_number
@@ -2902,9 +2809,9 @@ document
       }
 
 
-      /* =====================================================
+      /* ===================================================
          CLEAN NUMBER
-         ===================================================== */
+         =================================================== */
 
       let number =
         String(
@@ -2927,9 +2834,9 @@ document
       }
 
 
-      /* =====================================================
+      /* ===================================================
          BUILD MESSAGE
-         ===================================================== */
+         =================================================== */
 
       const businessName =
         currentBusiness.name ||
@@ -2955,9 +2862,9 @@ ${text}`;
       }
 
 
-      /* =====================================================
+      /* ===================================================
          BUTTON ANIMATION
-         ===================================================== */
+         =================================================== */
 
       button.classList.add(
         "sending"
@@ -2965,12 +2872,12 @@ ${text}`;
 
 
       button.innerHTML =
-        "✓ Ouverture de WhatsApp…";
+        "✓ &nbsp; Ouverture de WhatsApp…";
 
 
-      /* =====================================================
+      /* ===================================================
          URL
-         ===================================================== */
+         =================================================== */
 
       const encodedMessage =
         encodeURIComponent(
@@ -2982,9 +2889,9 @@ ${text}`;
         `https://wa.me/${number}?text=${encodedMessage}`;
 
 
-      /* =====================================================
+      /* ===================================================
          OPEN
-         ===================================================== */
+         =================================================== */
 
       setTimeout(
         () => {
