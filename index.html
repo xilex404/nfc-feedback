@@ -29,7 +29,6 @@ body{
   justify-content:center;
   align-items:center;
   padding:20px;
-  transition:background .3s ease;
 }
 
 button,
@@ -90,21 +89,81 @@ h1{
 }
 
 .star{
+  appearance:none;
+  -webkit-appearance:none;
+
   border:none;
+  outline:none;
+
   background:transparent;
+
   color:#536174;
+
   font-size:43px;
+  line-height:1;
+
   cursor:pointer;
-  padding:2px;
-  transition:transform .15s ease,color .15s ease;
+
+  padding:4px;
+
+  transform:scale(1);
+
+  transition:
+    color .12s ease,
+    transform .12s cubic-bezier(.2,.8,.3,1),
+    filter .12s ease;
+  
+  -webkit-tap-highlight-color:transparent;
+  touch-action:manipulation;
 }
 
 .star:hover{
-  transform:scale(1.12);
+  transform:scale(1.10);
 }
 
 .star.active{
   color:var(--primary);
+
+  transform:scale(1.08);
+
+  filter:
+    drop-shadow(
+      0 0 7px
+      color-mix(
+        in srgb,
+        var(--primary) 55%,
+        transparent
+      )
+    );
+}
+
+/*
+  The star that was just clicked
+  gets a quick premium "pop".
+*/
+
+.star.selected-pop{
+  animation:starPop .28s cubic-bezier(.2,.9,.3,1);
+}
+
+@keyframes starPop{
+
+  0%{
+    transform:scale(.82);
+  }
+
+  45%{
+    transform:scale(1.28);
+  }
+
+  75%{
+    transform:scale(1.04);
+  }
+
+  100%{
+    transform:scale(1.08);
+  }
+
 }
 
 .rating-text{
@@ -112,6 +171,27 @@ h1{
   color:#b8c3d1;
   font-size:14px;
   margin-bottom:24px;
+  transition:
+    opacity .15s ease,
+    transform .15s ease;
+}
+
+.rating-text.rating-change{
+  animation:ratingChange .2s ease;
+}
+
+@keyframes ratingChange{
+
+  0%{
+    opacity:.3;
+    transform:translateY(3px);
+  }
+
+  100%{
+    opacity:1;
+    transform:translateY(0);
+  }
+
 }
 
 .message{
@@ -125,6 +205,7 @@ h1{
 }
 
 @keyframes appear{
+
   from{
     opacity:0;
     transform:translateY(8px);
@@ -134,6 +215,7 @@ h1{
     opacity:1;
     transform:translateY(0);
   }
+
 }
 
 .message h2{
@@ -179,7 +261,9 @@ textarea:focus{
   cursor:pointer;
   margin-top:11px;
   text-align:center;
-  transition:transform .15s ease,opacity .15s ease;
+  transition:
+    transform .15s ease,
+    opacity .15s ease;
 }
 
 .button:active{
@@ -213,14 +297,6 @@ textarea:focus{
 
 .hidden{
   display:none!important;
-}
-
-.loading{
-  opacity:.7;
-}
-
-.success{
-  color:#62e6a2;
 }
 
 </style>
@@ -257,35 +333,40 @@ textarea:focus{
       <button
         class="star"
         type="button"
-        data-rating="1">
+        data-rating="1"
+        aria-label="1 star">
         ★
       </button>
 
       <button
         class="star"
         type="button"
-        data-rating="2">
+        data-rating="2"
+        aria-label="2 stars">
         ★
       </button>
 
       <button
         class="star"
         type="button"
-        data-rating="3">
+        data-rating="3"
+        aria-label="3 stars">
         ★
       </button>
 
       <button
         class="star"
         type="button"
-        data-rating="4">
+        data-rating="4"
+        aria-label="4 stars">
         ★
       </button>
 
       <button
         class="star"
         type="button"
-        data-rating="5">
+        data-rating="5"
+        aria-label="5 stars">
         ★
       </button>
 
@@ -305,8 +386,6 @@ textarea:focus{
 
       <p id="messageText"></p>
 
-      <!-- 3–5 STARS -->
-
       <div
         id="googleArea"
         class="hidden">
@@ -321,8 +400,6 @@ textarea:focus{
         </a>
 
       </div>
-
-      <!-- 1–2 STARS -->
 
       <div
         id="privateArea"
@@ -347,8 +424,7 @@ textarea:focus{
   </div>
 
   <div
-    class="small"
-    id="footerText">
+    class="small">
     Your feedback helps us improve.
   </div>
 
@@ -358,7 +434,7 @@ textarea:focus{
 <script>
 
 /* =========================================================
-   SUPABASE
+   SUPABASE CONFIG
    ========================================================= */
 
 const SUPABASE_URL =
@@ -420,7 +496,6 @@ const stars =
    ========================================================= */
 
 let currentBusiness = null;
-
 let selectedRating = null;
 
 
@@ -448,7 +523,7 @@ function getCardCode(){
 
 
 /* =========================================================
-   SUPABASE REQUEST
+   SUPABASE GET
    ========================================================= */
 
 async function supabaseGet(endpoint){
@@ -486,7 +561,7 @@ async function supabaseGet(endpoint){
 
 
 /* =========================================================
-   APPLY BUSINESS SETTINGS
+   APPLY BUSINESS
    ========================================================= */
 
 function applyBusinessSettings(business){
@@ -495,14 +570,14 @@ function applyBusinessSettings(business){
     business;
 
 
-  /* BUSINESS NAME */
-
   const name =
     business.name ||
     "Your Business";
 
+
   businessName.textContent =
     name;
+
 
   document.title =
     `${name} — Your Experience`;
@@ -552,7 +627,7 @@ function applyBusinessSettings(business){
   }
 
 
-  /* GOOGLE URL */
+  /* GOOGLE */
 
   if(
     business.google_review_url
@@ -564,10 +639,9 @@ function applyBusinessSettings(business){
   }
 
 
-  /* SHOW CUSTOMER AREA */
-
   subtitle.textContent =
     "How was your experience with us?";
+
 
   feedbackArea
     .classList
@@ -577,7 +651,7 @@ function applyBusinessSettings(business){
 
 
 /* =========================================================
-   LOAD CARD + BUSINESS
+   LOAD CARD
    ========================================================= */
 
 async function loadCard(){
@@ -585,8 +659,6 @@ async function loadCard(){
   const cardCode =
     getCardCode();
 
-
-  /* NO CARD CODE */
 
   if(!cardCode){
 
@@ -605,14 +677,6 @@ async function loadCard(){
 
   try{
 
-    /*
-      First find the active card.
-
-      Example:
-
-      ?card=TR-ABC123
-    */
-
     const cards =
       await supabaseGet(
         `cards?card_code=eq.${encodeURIComponent(cardCode)}&active=eq.true&select=id,business_id,card_code,active`
@@ -625,7 +689,7 @@ async function loadCard(){
     ){
 
       throw new Error(
-        "Card not found or inactive."
+        "Card not found."
       );
 
     }
@@ -635,12 +699,10 @@ async function loadCard(){
       cards[0];
 
 
-    /* FIND BUSINESS */
-
     if(!card.business_id){
 
       throw new Error(
-        "This card is not connected to a business."
+        "Card is not connected to a business."
       );
 
     }
@@ -664,12 +726,8 @@ async function loadCard(){
     }
 
 
-    const business =
-      businesses[0];
-
-
     applyBusinessSettings(
-      business
+      businesses[0]
     );
 
   }
@@ -700,7 +758,7 @@ async function loadCard(){
 
 
 /* =========================================================
-   STAR SYSTEM
+   STAR CLICK — FAST PREMIUM ANIMATION
    ========================================================= */
 
 stars.forEach(
@@ -708,33 +766,107 @@ stars.forEach(
 
     star.addEventListener(
       "click",
-      function(){
+      function(event){
 
-        selectedRating =
+        event.preventDefault();
+
+
+        const rating =
           Number(
             star.dataset.rating
           );
 
 
-        /* HIGHLIGHT STARS */
+        /*
+          Update the rating FIRST.
+
+          This happens immediately on the
+          same click event before any other
+          UI work.
+        */
+
+        selectedRating =
+          rating;
+
+
+        /* REMOVE OLD POP ANIMATIONS */
 
         stars.forEach(
           currentStar => {
 
-            currentStar.classList.toggle(
-              "active",
-              Number(
-                currentStar.dataset.rating
-              ) <= selectedRating
+            currentStar.classList.remove(
+              "selected-pop"
             );
 
           }
         );
 
 
-        ratingText.textContent =
-          `${selectedRating} out of 5 stars`;
+        /*
+          Force a browser reflow.
 
+          This allows the same star to
+          animate again if the customer
+          taps it repeatedly.
+        */
+
+        void star.offsetWidth;
+
+
+        /*
+          Highlight the stars immediately.
+        */
+
+        stars.forEach(
+          currentStar => {
+
+            const currentRating =
+              Number(
+                currentStar.dataset.rating
+              );
+
+
+            currentStar.classList.toggle(
+              "active",
+              currentRating <= rating
+            );
+
+          }
+        );
+
+
+        /*
+          Pop ONLY the star that was
+          actually tapped.
+        */
+
+        star.classList.add(
+          "selected-pop"
+        );
+
+
+        /*
+          Update rating text.
+        */
+
+        ratingText.textContent =
+          `${rating} out of 5 stars`;
+
+
+        ratingText.classList.remove(
+          "rating-change"
+        );
+
+        void ratingText.offsetWidth;
+
+        ratingText.classList.add(
+          "rating-change"
+        );
+
+
+        /*
+          Show feedback area.
+        */
 
         message.classList.add(
           "show"
@@ -746,7 +878,7 @@ stars.forEach(
            ========================================== */
 
         if(
-          selectedRating <= 2
+          rating <= 2
         ){
 
           messageTitle.textContent =
@@ -754,7 +886,6 @@ stars.forEach(
 
           messageText.textContent =
             "Tell us what went wrong and we'll do our best to make things right.";
-
 
           googleArea
             .classList
@@ -764,14 +895,7 @@ stars.forEach(
             .classList
             .remove("hidden");
 
-
-          /*
-            Reset the comment every time
-            they choose 1 or 2 stars.
-          */
-
           feedbackMessage.value = "";
-
 
           return;
 
@@ -792,7 +916,7 @@ stars.forEach(
 
 
         if(
-          selectedRating === 3
+          rating === 3
         ){
 
           messageTitle.textContent =
@@ -800,7 +924,7 @@ stars.forEach(
 
         }
         else if(
-          selectedRating === 4
+          rating === 4
         ){
 
           messageTitle.textContent =
@@ -833,20 +957,9 @@ sendPrivate.addEventListener(
   "click",
   function(){
 
-    /*
-      The comment is OPTIONAL.
-
-      Empty comment is completely valid.
-
-      The customer does NOT need to type
-      anything for WhatsApp to open.
-    */
-
     const text =
       feedbackMessage.value.trim();
 
-
-    /* BUSINESS CHECK */
 
     if(!currentBusiness){
 
@@ -858,8 +971,6 @@ sendPrivate.addEventListener(
 
     }
 
-
-    /* WHATSAPP CHECK */
 
     if(
       !currentBusiness.whatsapp_number
@@ -874,16 +985,12 @@ sendPrivate.addEventListener(
     }
 
 
-    /* PREVENT DOUBLE CLICKS */
-
     sendPrivate.disabled =
       true;
 
     sendPrivate.textContent =
       "Opening WhatsApp...";
 
-
-    /* CLEAN NUMBER */
 
     let number =
       String(
@@ -894,14 +1001,6 @@ sendPrivate.addEventListener(
         ""
       );
 
-
-    /*
-      Algeria:
-
-      0555123456
-      ↓
-      213555123456
-    */
 
     if(
       number.startsWith("0")
@@ -914,17 +1013,6 @@ sendPrivate.addEventListener(
     }
 
 
-    /*
-      If someone entered:
-
-      +213555123456
-
-      the + is removed automatically.
-    */
-
-
-    /* CREATE MESSAGE */
-
     const name =
       currentBusiness.name ||
       "Business";
@@ -935,12 +1023,6 @@ sendPrivate.addEventListener(
 
 ⭐ Rating: ${selectedRating}/5`;
 
-
-    /*
-      Only add the comment
-      when the customer actually
-      wrote one.
-    */
 
     if(
       text.length > 0
@@ -955,28 +1037,15 @@ ${text}`;
     }
 
 
-    /* ENCODE */
-
     const encodedMessage =
       encodeURIComponent(
         whatsappMessage
       );
 
 
-    /* WHATSAPP URL */
-
     const whatsappURL =
       `https://wa.me/${number}?text=${encodedMessage}`;
 
-
-    /*
-      IMPORTANT:
-
-      Nothing is saved to Supabase.
-
-      The message goes directly
-      to WhatsApp.
-    */
 
     window.location.href =
       whatsappURL;
