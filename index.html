@@ -15,7 +15,7 @@
 
 /* =========================================================
    SMART REVIEW
-   CARD-MATCHED UI
+   PREMIUM NFC REVIEW UI
    ========================================================= */
 
 :root{
@@ -156,7 +156,9 @@ body{
 }
 
 
-/* subtle premium texture */
+/* =========================================================
+   PREMIUM TEXTURE
+   ========================================================= */
 
 .hero::before{
 
@@ -534,7 +536,9 @@ body{
 }
 
 
-/* corner frame */
+/* =========================================================
+   CORNER FRAME
+   ========================================================= */
 
 .logo-frame{
 
@@ -555,8 +559,6 @@ body{
 
 }
 
-
-/* four gold corner pieces */
 
 .logo-frame::before,
 .logo-frame::after{
@@ -870,8 +872,6 @@ body{
 }
 
 
-/* absolutely kill mobile focus box */
-
 .star:focus,
 .star:focus-visible,
 .star:active{
@@ -884,8 +884,6 @@ body{
 
 }
 
-
-/* selected */
 
 .star.active{
 
@@ -1088,7 +1086,7 @@ textarea:focus{
 
 
 /* =========================================================
-   BUTTON
+   ALL BUTTONS
    ========================================================= */
 
 .button{
@@ -1144,33 +1142,153 @@ textarea:focus{
 }
 
 
-/* Google */
+/* =========================================================
+   GOOGLE REVIEW — PREMIUM CTA
+   ========================================================= */
 
 .google{
 
-  color:#111827;
+  color:#fff;
 
   background:
 
     linear-gradient(
       135deg,
-      #ffffff,
-      #edf1f5
+      #061b3a 0%,
+      #0b315f 55%,
+      #123e72 100%
     );
 
   border:
-    1px solid
-    rgba(7,27,60,.10);
+    2px solid
+    rgba(255,202,67,.75);
+
+  min-height:76px;
+
+  padding:20px 24px;
+
+  font-size:
+    clamp(18px,4.8vw,23px);
+
+  font-weight:900;
+
+  letter-spacing:-.2px;
 
   box-shadow:
 
-    0 10px 25px
-    rgba(7,27,60,.13);
+    0 12px 30px
+    rgba(6,27,58,.25),
+
+    0 0 0 1px
+    rgba(217,146,19,.15),
+
+    0 0 22px
+    rgba(255,202,67,.12);
+
+  position:relative;
+
+  overflow:hidden;
+
+  transform:translateZ(0);
 
 }
 
 
-/* WhatsApp normal */
+/* Google button shine */
+
+.google::before{
+
+  content:"";
+
+  position:absolute;
+
+  top:0;
+
+  left:-120%;
+
+  width:65%;
+
+  height:100%;
+
+  background:
+
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(255,255,255,.22),
+      transparent
+    );
+
+  transform:skewX(-20deg);
+
+  animation:
+    googleShine 3.8s
+    ease-in-out
+    infinite;
+
+  pointer-events:none;
+
+}
+
+
+.google::after{
+
+  content:"";
+
+  position:absolute;
+
+  inset:3px;
+
+  border-radius:14px;
+
+  border:
+    1px solid
+    rgba(255,202,67,.18);
+
+  pointer-events:none;
+
+}
+
+
+@keyframes googleShine{
+
+  0%{
+    left:-120%;
+  }
+
+  35%,
+  100%{
+    left:140%;
+  }
+
+}
+
+
+.google:hover{
+
+  transform:translateY(-2px);
+
+  box-shadow:
+
+    0 16px 35px
+    rgba(6,27,58,.30),
+
+    0 0 28px
+    rgba(255,202,67,.18);
+
+}
+
+
+.google:active{
+
+  transform:scale(.97);
+
+}
+
+
+/* =========================================================
+   WHATSAPP NORMAL
+   ========================================================= */
 
 .private{
 
@@ -1192,7 +1310,9 @@ textarea:focus{
 }
 
 
-/* WhatsApp active */
+/* =========================================================
+   WHATSAPP ACTIVE
+   ========================================================= */
 
 .private.sending{
 
@@ -1288,6 +1408,8 @@ textarea:focus{
       #061b3a 100%
     );
 
+  background-size:200% 100%;
+
   -webkit-background-clip:text;
   background-clip:text;
 
@@ -1299,6 +1421,54 @@ textarea:focus{
       0 4px 8px
       rgba(7,27,60,.12)
     );
+
+  animation:
+    smartReviewShine 5s
+    ease-in-out
+    infinite;
+
+}
+
+
+@keyframes smartReviewShine{
+
+  0%,
+  20%{
+
+    background-position:0% 50%;
+
+    filter:
+      drop-shadow(
+        0 4px 8px
+        rgba(7,27,60,.12)
+      );
+
+  }
+
+  50%{
+
+    background-position:100% 50%;
+
+    filter:
+      drop-shadow(
+        0 5px 12px
+        rgba(217,146,19,.22)
+      );
+
+  }
+
+  80%,
+  100%{
+
+    background-position:0% 50%;
+
+    filter:
+      drop-shadow(
+        0 4px 8px
+        rgba(7,27,60,.12)
+      );
+
+  }
 
 }
 
@@ -1459,6 +1629,18 @@ textarea:focus{
 
   }
 
+
+  .google{
+
+    min-height:72px;
+
+    font-size:18px;
+
+    padding-left:16px;
+    padding-right:16px;
+
+  }
+
 }
 
 
@@ -1559,8 +1741,6 @@ textarea:focus{
   <section class="hero">
 
 
-    <!-- GOOGLE -->
-
     <div class="google-mark">
 
       <div class="google-letter">
@@ -1570,14 +1750,10 @@ textarea:focus{
     </div>
 
 
-    <!-- TITLE -->
-
     <h1 class="hero-title">
       LAISSEZ-NOUS VOTRE AVIS SUR GOOGLE
     </h1>
 
-
-    <!-- STARS -->
 
     <div class="hero-rating">
 
@@ -1598,8 +1774,6 @@ textarea:focus{
     </div>
 
 
-    <!-- BLUE / WHITE WAVE -->
-
     <div class="wave-blue"></div>
 
     <div class="wave"></div>
@@ -1614,10 +1788,6 @@ textarea:focus{
 
   <main class="content">
 
-
-    <!-- ===================================================
-         CLIENT BRAND
-         =================================================== -->
 
     <section class="client-brand">
 
@@ -1658,10 +1828,6 @@ textarea:focus{
 
 
 
-    <!-- ===================================================
-         FEEDBACK
-         =================================================== -->
-
     <section
       id="feedbackArea"
       class="feedback-area hidden"
@@ -1672,8 +1838,6 @@ textarea:focus{
         Comment avez-vous vécu votre expérience ?
       </div>
 
-
-      <!-- STARS -->
 
       <div
         class="stars"
@@ -1724,8 +1888,6 @@ textarea:focus{
       </div>
 
 
-      <!-- RATING TEXT -->
-
       <div
         class="rating-text"
         id="ratingText"
@@ -1734,10 +1896,6 @@ textarea:focus{
       </div>
 
 
-
-      <!-- =================================================
-           MESSAGE
-           ================================================= -->
 
       <section
         class="message"
@@ -1752,9 +1910,7 @@ textarea:focus{
 
 
 
-        <!-- ===============================================
-             GOOGLE
-             =============================================== -->
+        <!-- GOOGLE -->
 
         <div
           id="googleArea"
@@ -1777,9 +1933,7 @@ textarea:focus{
 
 
 
-        <!-- ===============================================
-             PRIVATE FEEDBACK
-             =============================================== -->
+        <!-- PRIVATE FEEDBACK -->
 
         <div
           id="privateArea"
@@ -1954,10 +2108,6 @@ async function loadCard(){
       "feedbackArea"
     );
 
-
-  /* =======================================================
-     NO CARD
-     ======================================================= */
 
   if(!cardCode){
 
@@ -2208,10 +2358,6 @@ stars.forEach(
           );
 
 
-        /* =================================================
-           HIGHLIGHT
-           ================================================= */
-
         stars.forEach(
           s => {
 
@@ -2227,10 +2373,6 @@ stars.forEach(
           }
         );
 
-
-        /* =================================================
-           RATING LABEL
-           ================================================= */
 
         const ratingLabels = {
 
@@ -2257,10 +2399,6 @@ stars.forEach(
             selectedRating
           ];
 
-
-        /* =================================================
-           REPLAY MESSAGE ANIMATION
-           ================================================= */
 
         message.classList.remove(
           "show"
@@ -2405,10 +2543,6 @@ document
           .trim();
 
 
-      /* =====================================================
-         CHECK BUSINESS
-         ===================================================== */
-
       if(
         !currentBusiness
       ){
@@ -2421,10 +2555,6 @@ document
 
       }
 
-
-      /* =====================================================
-         CHECK WHATSAPP
-         ===================================================== */
 
       if(
         !currentBusiness.whatsapp_number
@@ -2546,4 +2676,4 @@ loadCard();
 </script>
 
 </body>
-        </html>
+</html>
