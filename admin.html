@@ -107,12 +107,6 @@ input:focus{border-color:#ffc83d}
   line-height:1.5;
 }
 
-.success{
-  color:#62e6a2;
-  font-size:13px;
-  margin-top:12px;
-}
-
 header{
   display:flex;
   justify-content:space-between;
@@ -244,7 +238,11 @@ header{
 }
 
 .cards-head strong{font-size:13px}
-.count{color:#ffc83d;font-size:12px}
+
+.count{
+  color:#ffc83d;
+  font-size:12px;
+}
 
 .card-row{
   display:flex;
@@ -322,7 +320,9 @@ header{
   margin-bottom:15px;
 }
 
-.modal-head h2{font-size:20px}
+.modal-head h2{
+  font-size:20px;
+}
 
 .close{
   border:0;
@@ -341,7 +341,9 @@ header{
   margin-top:20px;
 }
 
-.modal-actions>*{flex:1}
+.modal-actions>*{
+  flex:1;
+}
 
 .secondary{
   border:1px solid rgba(255,255,255,.1);
@@ -381,23 +383,24 @@ header{
 
 @media(max-width:600px){
   body{padding:13px}
+
   .dashboard-title{
     flex-direction:column;
-    align-items:stretch
+    align-items:stretch;
   }
+
   .dashboard-title .primary{
-    width:100%
+    width:100%;
   }
+
   header{
-    align-items:flex-start
+    align-items:flex-start;
   }
 }
 </style>
 </head>
 
 <body>
-
-<!-- LOGIN -->
 
 <div id="loginScreen" class="login-wrap">
 
@@ -446,8 +449,6 @@ header{
 </div>
 
 
-<!-- DASHBOARD -->
-
 <div id="dashboard" class="container hidden">
 
   <header>
@@ -457,6 +458,7 @@ header{
       <div class="brand-logo">★</div>
 
       <div>
+
         <div class="brand-name">
           TapReview
         </div>
@@ -464,6 +466,7 @@ header{
         <div class="brand-sub">
           Admin Dashboard
         </div>
+
       </div>
 
     </div>
@@ -499,8 +502,6 @@ header{
 
 </div>
 
-
-<!-- BUSINESS MODAL -->
 
 <div id="businessModal" class="modal">
 
@@ -587,8 +588,6 @@ header{
 </div>
 
 
-<!-- CARD MODAL -->
-
 <div id="cardModal" class="modal">
 
   <div class="modal-box">
@@ -608,11 +607,7 @@ header{
 
     <p
       id="cardBusiness"
-      style="
-        color:#94a3b5;
-        font-size:13px;
-        margin-bottom:15px;
-      "
+      style="color:#94a3b5;font-size:13px;margin-bottom:15px"
     ></p>
 
     <label>Card code</label>
@@ -651,8 +646,6 @@ header{
 <div id="toast" class="toast"></div>
 
 
-<!-- SUPABASE -->
-
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <script>
@@ -668,6 +661,25 @@ const supabaseClient =
     SUPABASE_URL,
     SUPABASE_KEY
   );
+
+
+/*
+====================================================
+IMPORTANT
+====================================================
+
+This is the CUSTOMER website.
+
+Every NFC / QR card will open:
+
+https://xilex404.github.io/nfc-feedback/?card=XXXXX
+
+It will NEVER use admin.html.
+====================================================
+*/
+
+const CUSTOMER_BASE_URL =
+  "https://xilex404.github.io/nfc-feedback/";
 
 
 let editingBusinessId = null;
@@ -723,20 +735,15 @@ async function login(){
   }
 
   loginButton.disabled = true;
-
-  loginButton.textContent =
-    "Signing in...";
-
-  message("","");
+  loginButton.textContent = "Signing in...";
 
   try{
 
-    const { error } =
-      await supabaseClient.auth
-        .signInWithPassword({
-          email:emailValue,
-          password:passwordValue
-        });
+    const {error} =
+      await supabaseClient.auth.signInWithPassword({
+        email:emailValue,
+        password:passwordValue
+      });
 
     if(error){
       throw error;
@@ -749,18 +756,17 @@ async function login(){
     console.error(error);
 
     message(
-      error.message ||
-      "Login failed.",
+      error.message || "Login failed.",
       "error"
     );
 
   }finally{
 
     loginButton.disabled = false;
+    loginButton.textContent = "Sign in";
 
-    loginButton.textContent =
-      "Sign in";
   }
+
 }
 
 
@@ -772,7 +778,7 @@ loginButton.addEventListener(
 
 password.addEventListener(
   "keydown",
-  e => {
+  function(e){
 
     if(e.key === "Enter"){
       login();
@@ -784,23 +790,18 @@ password.addEventListener(
 
 async function showDashboard(){
 
-  loginScreen.classList.add(
-    "hidden"
-  );
-
-  dashboard.classList.remove(
-    "hidden"
-  );
+  loginScreen.classList.add("hidden");
+  dashboard.classList.remove("hidden");
 
   await loadBusinesses();
+
 }
 
 
 async function checkSession(){
 
-  const { data } =
-    await supabaseClient.auth
-      .getSession();
+  const {data} =
+    await supabaseClient.auth.getSession();
 
   if(data.session){
     showDashboard();
@@ -810,33 +811,26 @@ async function checkSession(){
 
 
 document
-  .getElementById("logoutButton")
-  .addEventListener(
-    "click",
-    async () => {
+.getElementById("logoutButton")
+.addEventListener(
+  "click",
+  async function(){
 
-      await supabaseClient.auth.signOut();
+    await supabaseClient.auth.signOut();
 
-      dashboard.classList.add(
-        "hidden"
-      );
+    dashboard.classList.add("hidden");
+    loginScreen.classList.remove("hidden");
 
-      loginScreen.classList.remove(
-        "hidden"
-      );
-
-    }
-  );
+  }
+);
 
 
 async function loadBusinesses(){
 
   businessGrid.innerHTML =
-    `<div class="empty">
-      Loading...
-    </div>`;
+    `<div class="empty">Loading...</div>`;
 
-  const { data,error } =
+  const {data,error} =
     await supabaseClient
       .from("businesses")
       .select("*")
@@ -871,17 +865,16 @@ async function loadBusinesses(){
 
   for(const business of data){
 
-    await renderBusiness(
-      business
-    );
+    await renderBusiness(business);
 
   }
+
 }
 
 
 async function renderBusiness(business){
 
-  const { data:cards,error } =
+  const {data:cards,error} =
     await supabaseClient
       .from("cards")
       .select("*")
@@ -903,8 +896,7 @@ async function renderBusiness(business){
   const article =
     document.createElement("div");
 
-  article.className =
-    "business";
+  article.className = "business";
 
   let logoHTML = "🏪";
 
@@ -912,9 +904,7 @@ async function renderBusiness(business){
 
     logoHTML =
       `<img
-        src="${escapeHtml(
-          business.logo_url
-        )}"
+        src="${escapeHtml(business.logo_url)}"
         alt=""
       >`;
 
@@ -925,13 +915,7 @@ async function renderBusiness(business){
   if(cardList.length === 0){
 
     cardsHTML =
-      `<div
-        style="
-          color:#718298;
-          font-size:12px;
-          padding:8px 0;
-        "
-      >
+      `<div style="color:#718298;font-size:12px;padding:8px 0">
         No cards yet.
       </div>`;
 
@@ -939,9 +923,9 @@ async function renderBusiness(business){
 
     cardsHTML =
       cardList
-        .map(card =>
-          createCardHTML(card)
-        )
+        .map(function(card){
+          return createCardHTML(card);
+        })
         .join("");
 
   }
@@ -957,9 +941,7 @@ async function renderBusiness(business){
       <div>
 
         <div class="business-name">
-          ${escapeHtml(
-            business.name
-          )}
+          ${escapeHtml(business.name)}
         </div>
 
       </div>
@@ -1017,9 +999,7 @@ async function renderBusiness(business){
       class="primary full"
       onclick="openCardModal(
         '${business.id}',
-        '${escapeJs(
-          business.name
-        )}'
+        '${escapeJs(business.name)}'
       )"
     >
       + Create card
@@ -1043,28 +1023,26 @@ async function renderBusiness(business){
 
 
 /*
-  IMPORTANT:
-  Card links now point to the CUSTOMER PAGE.
+====================================================
+CARD URL
+====================================================
 
-  admin.html:
-  /nfc-feedback/admin.html
+THIS is the important part.
 
-  customer page:
-  /nfc-feedback/?card=TR-XXXXXX
+The URL is built directly from CUSTOMER_BASE_URL.
+
+Example:
+
+https://xilex404.github.io/nfc-feedback/?card=TR-ABC123
+
+There is NO admin.html in this URL.
+====================================================
 */
 
 function createCardHTML(card){
 
-  const customerPage =
-    window.location.origin +
-    window.location.pathname
-      .replace(
-        "admin.html",
-        ""
-      );
-
   const url =
-    customerPage +
+    CUSTOMER_BASE_URL +
     "?card=" +
     encodeURIComponent(
       card.card_code
@@ -1077,9 +1055,7 @@ function createCardHTML(card){
       <div>
 
         <div class="card-code">
-          ${escapeHtml(
-            card.card_code
-          )}
+          ${escapeHtml(card.card_code)}
         </div>
 
         <div class="status ${
@@ -1148,18 +1124,16 @@ async function copyUrl(url){
 
   try{
 
-    await navigator.clipboard.writeText(
-      url
-    );
+    await navigator.clipboard.writeText(url);
 
     toast(
       "Customer card URL copied!"
     );
 
-  }catch{
+  }catch(error){
 
     window.prompt(
-      "Copy this URL:",
+      "Copy this customer URL:",
       url
     );
 
@@ -1219,91 +1193,72 @@ function openBusinessModal(){
 
 
 document
-  .getElementById(
-    "addBusinessButton"
-  )
-  .addEventListener(
-    "click",
-    openBusinessModal
-  );
+.getElementById("addBusinessButton")
+.addEventListener(
+  "click",
+  openBusinessModal
+);
 
 
 function closeBusinessModal(){
 
   document
-    .getElementById(
-      "businessModal"
-    )
+    .getElementById("businessModal")
     .classList.remove("show");
 
 }
 
 
 document
-  .getElementById("closeBusiness")
-  .addEventListener(
-    "click",
-    closeBusinessModal
-  );
+.getElementById("closeBusiness")
+.addEventListener(
+  "click",
+  closeBusinessModal
+);
 
 
 document
-  .getElementById("cancelBusiness")
-  .addEventListener(
-    "click",
-    closeBusinessModal
-  );
+.getElementById("cancelBusiness")
+.addEventListener(
+  "click",
+  closeBusinessModal
+);
 
 
 document
-  .getElementById("saveBusiness")
-  .addEventListener(
-    "click",
-    saveBusiness
-  );
+.getElementById("saveBusiness")
+.addEventListener(
+  "click",
+  saveBusiness
+);
 
 
 async function saveBusiness(){
 
   const name =
-    document
-      .getElementById(
-        "businessName"
-      )
-      .value
-      .trim();
+    document.getElementById(
+      "businessName"
+    ).value.trim();
 
   const logo =
-    document
-      .getElementById(
-        "logoUrl"
-      )
-      .value
-      .trim();
+    document.getElementById(
+      "logoUrl"
+    ).value.trim();
 
   const google =
-    document
-      .getElementById(
-        "googleUrl"
-      )
-      .value
-      .trim();
+    document.getElementById(
+      "googleUrl"
+    ).value.trim();
 
   const whatsapp =
-    document
-      .getElementById(
-        "whatsapp"
-      )
-      .value
-      .trim();
+    document.getElementById(
+      "whatsapp"
+    ).value.trim();
 
   const color =
-    document
-      .getElementById(
-        "primaryColor"
-      )
-      .value
-      .trim();
+    document.getElementById(
+      "primaryColor"
+    ).value.trim();
 
   const errorBox =
     document.getElementById(
@@ -1312,13 +1267,13 @@ async function saveBusiness(){
 
   if(!name){
 
-    errorBox.className =
-      "error";
+    errorBox.className = "error";
 
     errorBox.textContent =
       "Business name is required.";
 
     return;
+
   }
 
   const button =
@@ -1327,9 +1282,7 @@ async function saveBusiness(){
     );
 
   button.disabled = true;
-
-  button.textContent =
-    "Saving...";
+  button.textContent = "Saving...";
 
   const payload = {
 
@@ -1372,19 +1325,16 @@ async function saveBusiness(){
   }
 
   button.disabled = false;
-
-  button.textContent =
-    "Save business";
+  button.textContent = "Save business";
 
   if(result.error){
 
-    errorBox.className =
-      "error";
-
+    errorBox.className = "error";
     errorBox.textContent =
       result.error.message;
 
     return;
+
   }
 
   closeBusinessModal();
@@ -1402,7 +1352,7 @@ async function saveBusiness(){
 
 async function editBusiness(id){
 
-  const { data,error } =
+  const {data,error} =
     await supabaseClient
       .from("businesses")
       .select("*")
@@ -1414,6 +1364,7 @@ async function editBusiness(id){
     toast(error.message);
 
     return;
+
   }
 
   editingBusinessId = id;
@@ -1489,28 +1440,26 @@ function openCardModal(
 function closeCardModal(){
 
   document
-    .getElementById(
-      "cardModal"
-    )
+    .getElementById("cardModal")
     .classList.remove("show");
 
 }
 
 
 document
-  .getElementById("closeCard")
-  .addEventListener(
-    "click",
-    closeCardModal
-  );
+.getElementById("closeCard")
+.addEventListener(
+  "click",
+  closeCardModal
+);
 
 
 document
-  .getElementById("cancelCard")
-  .addEventListener(
-    "click",
-    closeCardModal
-  );
+.getElementById("cancelCard")
+.addEventListener(
+  "click",
+  closeCardModal
+);
 
 
 function generateCode(){
@@ -1538,11 +1487,11 @@ function generateCode(){
 
 
 document
-  .getElementById("saveCard")
-  .addEventListener(
-    "click",
-    saveCard
-  );
+.getElementById("saveCard")
+.addEventListener(
+  "click",
+  saveCard
+);
 
 
 async function saveCard(){
@@ -1552,13 +1501,11 @@ async function saveCard(){
   }
 
   const code =
-    document
-      .getElementById(
-        "cardCode"
-      )
-      .value
-      .trim()
-      .toUpperCase();
+    document.getElementById(
+      "cardCode"
+    ).value
+    .trim()
+    .toUpperCase();
 
   const errorBox =
     document.getElementById(
@@ -1567,13 +1514,13 @@ async function saveCard(){
 
   if(!code){
 
-    errorBox.className =
-      "error";
+    errorBox.className = "error";
 
     errorBox.textContent =
       "Enter a card code.";
 
     return;
+
   }
 
   const button =
@@ -1582,11 +1529,9 @@ async function saveCard(){
     );
 
   button.disabled = true;
+  button.textContent = "Creating...";
 
-  button.textContent =
-    "Creating...";
-
-  const { error } =
+  const {error} =
     await supabaseClient
       .from("cards")
       .insert({
@@ -1602,14 +1547,11 @@ async function saveCard(){
       });
 
   button.disabled = false;
-
-  button.textContent =
-    "Create card";
+  button.textContent = "Create card";
 
   if(error){
 
-    errorBox.className =
-      "error";
+    errorBox.className = "error";
 
     if(error.code === "23505"){
 
@@ -1624,13 +1566,12 @@ async function saveCard(){
     }
 
     return;
+
   }
 
   closeCardModal();
 
-  toast(
-    "Card created!"
-  );
+  toast("Card created!");
 
   await loadBusinesses();
 
@@ -1642,7 +1583,7 @@ async function toggleCard(
   currentStatus
 ){
 
-  const { error } =
+  const {error} =
     await supabaseClient
       .from("cards")
       .update({
@@ -1655,6 +1596,7 @@ async function toggleCard(
     toast(error.message);
 
     return;
+
   }
 
   toast(
@@ -1677,15 +1619,15 @@ function toast(text){
 
   element.textContent = text;
 
-  element.classList.add(
-    "show"
-  );
+  element.classList.add("show");
 
   setTimeout(
-    () => {
+    function(){
+
       element.classList.remove(
         "show"
       );
+
     },
     2500
   );
@@ -1710,6 +1652,7 @@ function escapeJs(value){
   return String(value ?? "")
     .replace(/\\/g,"\\\\")
     .replace(/'/g,"\\'");
+
 }
 
 
