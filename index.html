@@ -1,46 +1,27 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
 
 <meta charset="UTF-8">
 
 <meta
   name="viewport"
-  content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+  content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=1.0, user-scalable=no"
+>
+
+<meta
+  name="theme-color"
+  content="#07182d"
 >
 
 <title>Smart Review</title>
+
 
 <style>
 
 /* =========================================================
    SMART REVIEW
-   CARD-MATCHED UI
-   ========================================================= */
-
-:root{
-
-  --navy:#061b3a;
-  --navy-2:#08264d;
-  --navy-3:#0b315f;
-
-  --blue:#165dff;
-  --blue-light:#2675ff;
-
-  --gold:#d99213;
-  --gold-light:#ffca43;
-  --gold-dark:#a96600;
-
-  --white:#ffffff;
-  --ink:#071b3c;
-
-  --muted:#60708a;
-
-}
-
-
-/* =========================================================
-   RESET
+   CARD-INSPIRED DIGITAL EXPERIENCE
    ========================================================= */
 
 *{
@@ -49,18 +30,15 @@
   padding:0;
 }
 
-html,
-body{
+html{
   width:100%;
   min-height:100%;
-}
-
-html{
-  background:#061b3a;
+  background:#07182d;
 }
 
 body{
 
+  width:100%;
   min-height:100vh;
   min-height:100dvh;
 
@@ -69,19 +47,29 @@ body{
     BlinkMacSystemFont,
     "Segoe UI",
     Roboto,
-    Helvetica,
     Arial,
     sans-serif;
+
+  background:#07182d;
+
+  color:#111827;
+
+  overflow-x:hidden;
 
   -webkit-font-smoothing:antialiased;
   text-rendering:optimizeLegibility;
 
-  background:#fff;
+  overscroll-behavior:none;
+}
 
-  color:var(--ink);
+button,
+textarea,
+a{
+  font:inherit;
+}
 
-  overflow-x:hidden;
-
+button{
+  -webkit-tap-highlight-color:transparent;
 }
 
 
@@ -91,74 +79,60 @@ body{
 
 .app{
 
+  position:relative;
+
   width:100%;
   min-height:100vh;
   min-height:100dvh;
 
-  position:relative;
-
   overflow:hidden;
 
-  background:#fff;
-
+  background:
+    linear-gradient(
+      180deg,
+      #07182d 0%,
+      #0a213c 34%,
+      #ffffff 62%,
+      #ffffff 100%
+    );
 }
 
 
 /* =========================================================
-   NAVY HEADER
+   NAVY BACKGROUND LIGHT
    ========================================================= */
 
-.hero{
+.navy-light{
 
-  position:relative;
+  position:absolute;
 
-  width:100%;
+  width:520px;
+  height:520px;
 
-  min-height:
-    clamp(380px,48vh,520px);
+  left:50%;
+  top:-310px;
+
+  transform:translateX(-50%);
+
+  border-radius:50%;
 
   background:
-
     radial-gradient(
-      circle at 50% 12%,
-      rgba(255,255,255,.08),
-      transparent 28%
-    ),
-
-    radial-gradient(
-      circle at 50% 100%,
-      rgba(32,102,210,.25),
-      transparent 55%
-    ),
-
-    linear-gradient(
-      180deg,
-      #061b3a 0%,
-      #08264d 100%
+      circle,
+      rgba(255,210,91,.17) 0%,
+      rgba(255,210,91,.06) 27%,
+      transparent 68%
     );
 
-  color:white;
-
-  display:flex;
-
-  flex-direction:column;
-
-  align-items:center;
-
-  text-align:center;
-
-  padding:
-
-    max(24px,env(safe-area-inset-top))
-    20px
-    90px;
-
+  pointer-events:none;
 }
 
 
-/* subtle premium texture */
+/* =========================================================
+   SUBTLE CARD TEXTURE
+   ========================================================= */
 
-.hero::before{
+.app::before{
 
   content:"";
 
@@ -171,512 +145,156 @@ body{
   opacity:.18;
 
   background-image:
-
     radial-gradient(
-      rgba(255,255,255,.14) .7px,
+      rgba(255,255,255,.18) .6px,
       transparent .7px
     );
 
-  background-size:13px 13px;
+  background-size:7px 7px;
 
   mask-image:
     linear-gradient(
       to bottom,
-      black,
-      transparent 80%
+      black 0%,
+      transparent 58%
     );
 
 }
 
 
 /* =========================================================
-   GOOGLE BADGE
+   MAIN
    ========================================================= */
 
-.google-mark{
+.main{
 
   position:relative;
-
   z-index:2;
-
-  width:
-    clamp(82px,22vw,112px);
-
-  height:
-    clamp(82px,22vw,112px);
-
-  border-radius:50%;
-
-  background:#fff;
-
-  display:flex;
-
-  align-items:center;
-  justify-content:center;
-
-  margin-top:4px;
-
-  margin-bottom:18px;
-
-  box-shadow:
-
-    0 12px 30px
-    rgba(0,0,0,.28),
-
-    0 0 0 3px
-    rgba(217,146,19,.9),
-
-    0 0 0 5px
-    rgba(255,202,67,.35);
-
-  animation:
-    googleEnter .65s
-    cubic-bezier(.2,.8,.2,1)
-    both;
-
-}
-
-
-.google-letter{
-
-  font-family:
-    Arial,
-    sans-serif;
-
-  font-size:
-    clamp(50px,13vw,70px);
-
-  font-weight:800;
-
-  line-height:1;
-
-  background:
-
-    conic-gradient(
-      from -35deg,
-      #4285f4 0deg 80deg,
-      #34a853 80deg 170deg,
-      #fbbc05 170deg 245deg,
-      #ea4335 245deg 320deg,
-      #4285f4 320deg 360deg
-    );
-
-  -webkit-background-clip:text;
-  background-clip:text;
-
-  color:transparent;
-
-}
-
-
-@keyframes googleEnter{
-
-  from{
-    opacity:0;
-    transform:
-      translateY(-18px)
-      scale(.82);
-  }
-
-  to{
-    opacity:1;
-    transform:
-      translateY(0)
-      scale(1);
-  }
-
-}
-
-
-/* =========================================================
-   HEADER TITLE
-   ========================================================= */
-
-.hero-title{
-
-  position:relative;
-
-  z-index:2;
-
-  font-size:
-    clamp(22px,6vw,34px);
-
-  line-height:1.12;
-
-  font-weight:850;
-
-  letter-spacing:-.7px;
-
-  max-width:900px;
-
-  text-transform:uppercase;
-
-  text-shadow:
-    0 3px 15px
-    rgba(0,0,0,.28);
-
-}
-
-
-/* =========================================================
-   GOLD DIVIDER + STARS
-   ========================================================= */
-
-.hero-rating{
-
-  position:relative;
-
-  z-index:3;
 
   width:100%;
+  min-height:100vh;
+  min-height:100dvh;
 
   display:flex;
-
+  flex-direction:column;
   align-items:center;
-
-  justify-content:center;
-
-  gap:
-    clamp(8px,2vw,22px);
-
-  margin-top:27px;
-
-}
-
-
-.rating-line{
-
-  width:
-    clamp(30px,13vw,100px);
-
-  height:2px;
-
-  background:
-    linear-gradient(
-      90deg,
-      transparent,
-      #2681ff
-    );
-
-  opacity:.95;
-
-}
-
-
-.rating-line.right{
-
-  background:
-    linear-gradient(
-      90deg,
-      #2681ff,
-      transparent
-    );
-
-}
-
-
-.hero-stars{
-
-  display:flex;
-
-  align-items:center;
-
-  justify-content:center;
-
-  gap:
-    clamp(3px,1vw,10px);
-
-}
-
-
-.hero-star{
-
-  font-size:
-    clamp(30px,8vw,53px);
-
-  line-height:1;
-
-  color:var(--gold-light);
-
-  text-shadow:
-
-    0 3px 4px
-    rgba(0,0,0,.45),
-
-    0 0 12px
-    rgba(255,190,45,.22);
-
-  transform:
-
-    perspective(300px)
-    rotateX(7deg);
-
-}
-
-
-/* =========================================================
-   BLUE WAVE
-   ========================================================= */
-
-.wave{
-
-  position:absolute;
-
-  z-index:5;
-
-  left:-5%;
-
-  bottom:-1px;
-
-  width:110%;
-
-  height:105px;
-
-  background:#fff;
-
-  clip-path:
-
-    ellipse(
-      72% 58%
-      at 50% 100%
-    );
-
-}
-
-
-.wave-blue{
-
-  position:absolute;
-
-  z-index:4;
-
-  left:-5%;
-
-  bottom:62px;
-
-  width:110%;
-
-  height:58px;
-
-  background:
-
-    linear-gradient(
-      180deg,
-      #0c63ff,
-      #164fd1
-    );
-
-  clip-path:
-
-    ellipse(
-      68% 55%
-      at 50% 100%
-    );
-
-}
-
-
-/* =========================================================
-   MAIN WHITE AREA
-   ========================================================= */
-
-.content{
-
-  position:relative;
-
-  z-index:10;
-
-  background:#fff;
-
-  min-height:
-    calc(100vh - 430px);
-
-  min-height:
-    calc(100dvh - 430px);
-
-  margin-top:-18px;
 
   padding:
-
-    0
-    22px
-    max(28px,env(safe-area-inset-bottom));
-
-  display:flex;
-
-  flex-direction:column;
-
-  align-items:center;
+    max(28px,env(safe-area-inset-top))
+    20px
+    max(20px,env(safe-area-inset-bottom));
 
 }
 
 
 /* =========================================================
-   CLIENT LOGO AREA
+   BUSINESS HEADER
    ========================================================= */
 
-.client-brand{
+.business{
 
   width:100%;
+  max-width:680px;
 
   display:flex;
-
   flex-direction:column;
-
   align-items:center;
 
-  justify-content:center;
+  text-align:center;
 
-  margin-top:-10px;
+  color:white;
 
-  position:relative;
+  padding-top:8px;
 
 }
 
 
-/* corner frame */
+/* =========================================================
+   BUSINESS LOGO
+   ========================================================= */
 
-.logo-frame{
+.logo{
 
   width:
-    clamp(155px,46vw,215px);
+    clamp(104px,28vw,150px);
 
   height:
-    clamp(155px,46vw,215px);
+    clamp(104px,28vw,150px);
 
-  position:relative;
-
-  display:flex;
-
-  align-items:center;
-  justify-content:center;
-
-  margin-bottom:20px;
-
-}
-
-
-/* four gold corner pieces */
-
-.logo-frame::before,
-.logo-frame::after{
-
-  content:"";
-
-  position:absolute;
-
-  inset:0;
-
-  pointer-events:none;
-
-}
-
-
-.logo-frame::before{
-
-  background:
-
-    linear-gradient(
-      var(--gold),
-      var(--gold)
-    ) left top / 62px 4px no-repeat,
-
-    linear-gradient(
-      var(--gold),
-      var(--gold)
-    ) left top / 4px 62px no-repeat,
-
-    linear-gradient(
-      var(--gold),
-      var(--gold)
-    ) right top / 62px 4px no-repeat,
-
-    linear-gradient(
-      var(--gold),
-      var(--gold)
-    ) right top / 4px 62px no-repeat,
-
-    linear-gradient(
-      var(--gold),
-      var(--gold)
-    ) left bottom / 62px 4px no-repeat,
-
-    linear-gradient(
-      var(--gold),
-      var(--gold)
-    ) left bottom / 4px 62px no-repeat,
-
-    linear-gradient(
-      var(--gold),
-      var(--gold)
-    ) right bottom / 62px 4px no-repeat,
-
-    linear-gradient(
-      var(--gold),
-      var(--gold)
-    ) right bottom / 4px 62px no-repeat;
-
-}
-
-
-.logo-frame::after{
-
-  border-radius:24px;
-
-  box-shadow:
-    inset 0 0 0 1px
-    rgba(217,146,19,.04);
-
-}
-
-
-.client-logo{
-
-  width:
-    clamp(112px,34vw,160px);
-
-  height:
-    clamp(112px,34vw,160px);
-
-  border-radius:22px;
+  border-radius:
+    clamp(27px,7vw,40px);
 
   display:flex;
-
   align-items:center;
   justify-content:center;
 
   overflow:hidden;
 
-  background:
+  margin-bottom:20px;
 
+  background:
     linear-gradient(
       145deg,
-      #fdfdfd,
-      #f3f5f8
+      #173b61,
+      #0b2038
     );
 
   border:
     1px solid
-    rgba(7,27,60,.08);
+    rgba(255,255,255,.20);
 
   box-shadow:
 
-    0 12px 30px
-    rgba(7,27,60,.10);
+    0 24px 65px
+    rgba(0,0,0,.35),
 
-  font-size:50px;
+    0 0 0 7px
+    rgba(255,255,255,.035),
 
-  color:#0b315f;
+    inset 0 1px 0
+    rgba(255,255,255,.16);
+
+  font-size:54px;
+
+  animation:
+    logoIn .65s
+    cubic-bezier(.2,.85,.2,1)
+    both;
 
 }
 
 
-.client-logo img{
+.logo img{
 
   width:100%;
   height:100%;
 
   object-fit:cover;
+
+}
+
+
+@keyframes logoIn{
+
+  from{
+
+    opacity:0;
+
+    transform:
+      translateY(-20px)
+      scale(.86);
+
+  }
+
+  to{
+
+    opacity:1;
+
+    transform:
+      translateY(0)
+      scale(1);
+
+  }
 
 }
 
@@ -687,82 +305,136 @@ body{
 
 .business-name{
 
-  font-size:
-    clamp(27px,7vw,40px);
+  width:100%;
 
-  line-height:1.08;
+  font-size:
+    clamp(30px,8vw,48px);
+
+  line-height:1.05;
 
   font-weight:850;
 
-  letter-spacing:-.9px;
+  letter-spacing:-1.5px;
 
-  color:var(--navy);
-
-  text-align:center;
-
-  max-width:900px;
+  color:#ffffff;
 
   overflow-wrap:anywhere;
 
-  margin-bottom:9px;
+  margin-bottom:10px;
 
-}
-
-
-.subtitle{
-
-  color:#53657d;
-
-  font-size:
-    clamp(16px,4.3vw,20px);
-
-  font-weight:600;
-
-  text-align:center;
-
-  line-height:1.45;
-
-  margin-bottom:26px;
+  text-shadow:
+    0 5px 25px
+    rgba(0,0,0,.20);
 
 }
 
 
 /* =========================================================
-   FEEDBACK AREA
+   SUBTITLE
    ========================================================= */
 
-.feedback-area{
+.subtitle{
+
+  color:#c3d0df;
+
+  font-size:
+    clamp(16px,4.5vw,21px);
+
+  line-height:1.4;
+
+  max-width:600px;
+
+  margin-bottom:32px;
+
+}
+
+
+/* =========================================================
+   WAVE TRANSITION
+   ========================================================= */
+
+.wave{
+
+  position:absolute;
+
+  z-index:1;
+
+  left:-5%;
+
+  width:110%;
+
+  height:150px;
+
+  top:
+    clamp(370px,43vh,510px);
+
+  pointer-events:none;
+
+  overflow:hidden;
+
+}
+
+
+.wave svg{
+
+  display:block;
 
   width:100%;
+  height:100%;
 
-  max-width:700px;
+}
+
+
+/* =========================================================
+   FEEDBACK PANEL
+   ========================================================= */
+
+.feedback{
+
+  position:relative;
+  z-index:3;
+
+  width:100%;
+  max-width:680px;
+
+  margin-top:
+    clamp(35px,8vh,95px);
 
   display:flex;
-
   flex-direction:column;
-
   align-items:center;
 
   text-align:center;
 
+  color:#102039;
+
   animation:
-    contentEnter .55s
+    feedbackIn .65s
+    .1s
     cubic-bezier(.2,.8,.2,1)
     both;
 
 }
 
 
-@keyframes contentEnter{
+@keyframes feedbackIn{
 
   from{
+
     opacity:0;
-    transform:translateY(18px);
+
+    transform:
+      translateY(28px);
+
   }
 
   to{
+
     opacity:1;
-    transform:translateY(0);
+
+    transform:
+      translateY(0);
+
   }
 
 }
@@ -772,18 +444,48 @@ body{
    QUESTION
    ========================================================= */
 
-.rating-question{
-
-  color:var(--navy);
+.question{
 
   font-size:
-    clamp(21px,5.5vw,29px);
+    clamp(22px,6vw,31px);
 
-  font-weight:800;
+  line-height:1.15;
 
-  letter-spacing:-.4px;
+  font-weight:850;
 
-  margin-bottom:16px;
+  letter-spacing:-.6px;
+
+  color:#102039;
+
+  margin-bottom:22px;
+
+}
+
+
+/* =========================================================
+   GOLD DECORATIVE LINE
+   ========================================================= */
+
+.gold-line{
+
+  width:92px;
+  height:3px;
+
+  border-radius:999px;
+
+  background:
+    linear-gradient(
+      90deg,
+      #b98920,
+      #ffd66b,
+      #b98920
+    );
+
+  margin-bottom:25px;
+
+  box-shadow:
+    0 3px 12px
+    rgba(194,145,35,.20);
 
 }
 
@@ -799,13 +501,12 @@ body{
   display:flex;
 
   justify-content:center;
-
   align-items:center;
 
   gap:
-    clamp(2px,1.2vw,12px);
+    clamp(1px,1.5vw,12px);
 
-  margin-bottom:9px;
+  margin-bottom:12px;
 
 }
 
@@ -815,66 +516,64 @@ body{
   appearance:none;
   -webkit-appearance:none;
 
-  border:0 !important;
-
+  border:none !important;
   outline:none !important;
 
   background:transparent !important;
 
-  box-shadow:none !important;
-
   width:
-    clamp(52px,14vw,84px);
+    clamp(58px,16vw,94px);
 
   height:
-    clamp(58px,15vw,90px);
+    clamp(65px,17vw,100px);
 
   padding:0;
   margin:0;
 
   display:flex;
-
   align-items:center;
   justify-content:center;
 
+  color:#b7c0ca;
+
   font-size:
-    clamp(52px,14vw,82px);
+    clamp(55px,15vw,86px);
 
   line-height:1;
-
-  color:#cbd1d9;
 
   cursor:pointer;
 
   position:relative;
 
-  border-radius:0;
+  border-radius:20px;
+
+  transition:
+    color .20s ease,
+    transform .16s
+      cubic-bezier(.2,.8,.2,1),
+    filter .20s ease;
 
   user-select:none;
-
   -webkit-user-select:none;
 
-  -webkit-tap-highlight-color:transparent;
+  -webkit-touch-callout:none;
 
   touch-action:manipulation;
 
-  transition:
-
-    color .18s ease,
-
-    filter .18s ease,
-
-    transform .14s
-    cubic-bezier(.2,.9,.25,1.4);
+  box-shadow:none !important;
 
 }
 
 
-/* absolutely kill mobile focus box */
+.star:hover{
+
+  transform:translateY(-2px) scale(1.05);
+
+}
+
 
 .star:focus,
-.star:focus-visible,
-.star:active{
+.star:focus-visible{
 
   outline:none !important;
 
@@ -885,17 +584,25 @@ body{
 }
 
 
-/* selected */
+.star:active{
+
+  transform:scale(.82) !important;
+
+  background:transparent !important;
+
+}
+
+
+/* GOLD STAR */
 
 .star.active{
 
-  color:var(--gold);
+  color:#e7b62f;
 
   filter:
-
     drop-shadow(
-      0 5px 5px
-      rgba(150,90,0,.25)
+      0 6px 12px
+      rgba(214,166,43,.27)
     );
 
   animation:
@@ -908,47 +615,48 @@ body{
 @keyframes starPop{
 
   0%{
-    transform:scale(.68);
+
+    transform:scale(.70);
+
   }
 
-  45%{
-    transform:scale(1.20);
+  52%{
+
+    transform:scale(1.18);
+
   }
 
-  72%{
+  78%{
+
     transform:scale(.94);
+
   }
 
   100%{
+
     transform:scale(1);
+
   }
-
-}
-
-
-.star:active{
-
-  transform:scale(.84);
 
 }
 
 
 /* =========================================================
-   RATING TEXT
+   RATING LABEL
    ========================================================= */
 
 .rating-text{
 
-  min-height:26px;
+  min-height:29px;
 
-  color:#68788e;
+  color:#718096;
 
   font-size:
-    clamp(15px,4vw,18px);
+    clamp(15px,4vw,19px);
 
   font-weight:650;
 
-  margin-bottom:18px;
+  margin-bottom:24px;
 
 }
 
@@ -963,10 +671,12 @@ body{
 
   display:none;
 
-  text-align:center;
+  padding:
+    0
+    4px;
 
   animation:
-    messageEnter .4s
+    messageIn .4s
     cubic-bezier(.2,.8,.2,1)
     both;
 
@@ -980,16 +690,24 @@ body{
 }
 
 
-@keyframes messageEnter{
+@keyframes messageIn{
 
   from{
+
     opacity:0;
-    transform:translateY(13px);
+
+    transform:
+      translateY(14px);
+
   }
 
   to{
+
     opacity:1;
-    transform:translateY(0);
+
+    transform:
+      translateY(0);
+
   }
 
 }
@@ -997,10 +715,10 @@ body{
 
 .message h2{
 
-  color:var(--navy);
+  color:#102039;
 
   font-size:
-    clamp(22px,5.7vw,30px);
+    clamp(22px,5.8vw,30px);
 
   line-height:1.18;
 
@@ -1008,108 +726,416 @@ body{
 
   letter-spacing:-.5px;
 
-  margin-bottom:8px;
+  margin-bottom:9px;
 
 }
 
 
 .message p{
 
-  color:#61728a;
+  color:#64748b;
 
   font-size:
     clamp(16px,4.2vw,19px);
 
   line-height:1.5;
 
-  max-width:620px;
+  max-width:600px;
 
   margin:
-    0 auto 18px;
+    0 auto 20px;
 
 }
 
 
 /* =========================================================
-   TEXTAREA
+   GOOGLE CTA — GOLD PREMIUM BUTTON
    ========================================================= */
+
+.google-area{
+
+  width:100%;
+
+}
+
+
+.google-button{
+
+  width:100%;
+
+  min-height:76px;
+
+  padding:
+    14px
+    20px;
+
+  display:flex;
+
+  align-items:center;
+  justify-content:center;
+
+  gap:15px;
+
+  text-decoration:none;
+
+  border-radius:21px;
+
+  position:relative;
+  overflow:hidden;
+  isolation:isolate;
+
+  background:
+    linear-gradient(
+      135deg,
+      #b98920 0%,
+      #f0c862 24%,
+      #ffe9a8 45%,
+      #f0c862 60%,
+      #d8a935 78%,
+      #a97a1c 100%
+    );
+
+  background-size:220% 220%;
+
+  border:
+    1px solid
+    #e9c165;
+
+  color:#1a2a44;
+
+  font-size:
+    clamp(17px,4.4vw,21px);
+
+  font-weight:850;
+
+  box-shadow:
+
+    0 16px 34px
+    rgba(180,132,26,.35),
+
+    0 3px 10px
+    rgba(180,132,26,.22),
+
+    inset 0 1px 0
+    rgba(255,255,255,.55);
+
+  transition:
+    transform .16s ease,
+    box-shadow .25s ease;
+
+  -webkit-tap-highlight-color:transparent;
+
+  animation:
+    goldFlow 5s ease-in-out infinite,
+    goldGlow 2.6s ease-in-out infinite;
+
+}
+
+
+@keyframes goldFlow{
+
+  0%{
+    background-position:0% 50%;
+  }
+
+  50%{
+    background-position:100% 50%;
+  }
+
+  100%{
+    background-position:0% 50%;
+  }
+
+}
+
+
+@keyframes goldGlow{
+
+  0%,100%{
+
+    box-shadow:
+
+      0 16px 34px
+      rgba(180,132,26,.35),
+
+      0 3px 10px
+      rgba(180,132,26,.22),
+
+      inset 0 1px 0
+      rgba(255,255,255,.55);
+
+  }
+
+  50%{
+
+    box-shadow:
+
+      0 18px 42px
+      rgba(214,166,43,.5),
+
+      0 4px 14px
+      rgba(214,166,43,.32),
+
+      inset 0 1px 0
+      rgba(255,255,255,.7);
+
+  }
+
+}
+
+
+/* shimmering sweep of light across the button */
+
+.google-button::after{
+
+  content:"";
+
+  position:absolute;
+
+  top:0;
+  left:-60%;
+
+  width:45%;
+  height:100%;
+
+  background:
+    linear-gradient(
+      100deg,
+      rgba(255,255,255,0) 0%,
+      rgba(255,255,255,.75) 50%,
+      rgba(255,255,255,0) 100%
+    );
+
+  transform:skewX(-20deg);
+
+  z-index:1;
+
+  animation:
+    shineSweep 3.2s ease-in-out infinite;
+
+}
+
+
+@keyframes shineSweep{
+
+  0%{
+
+    left:-60%;
+
+  }
+
+  35%,100%{
+
+    left:130%;
+
+  }
+
+}
+
+
+.google-button span{
+
+  position:relative;
+  z-index:2;
+
+}
+
+
+.google-button:hover{
+
+  transform:translateY(-2px) scale(1.01);
+
+  box-shadow:
+
+    0 22px 46px
+    rgba(214,166,43,.5);
+
+}
+
+
+.google-button:active{
+
+  transform:scale(.975);
+
+}
+
+
+/* =========================================================
+   REALISTIC GOOGLE G MARK
+   ========================================================= */
+
+.google-g{
+
+  width:34px;
+  height:34px;
+
+  flex:0 0 34px;
+
+  border-radius:50%;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  background:white;
+
+  position:relative;
+  z-index:2;
+
+  overflow:hidden;
+
+  box-shadow:
+    0 3px 10px
+    rgba(0,0,0,.25),
+    0 0 0 3px
+    rgba(255,255,255,.4);
+
+}
+
+
+/*
+   Multicolor G constructed from the Google palette.
+   It remains inside the white button surface.
+*/
+
+.google-g::before{
+
+  content:"G";
+
+  font-family:
+    Arial,
+    sans-serif;
+
+  font-size:31px;
+
+  line-height:1;
+
+  font-weight:700;
+
+  background:
+    conic-gradient(
+      from 45deg,
+      #4285f4 0deg 92deg,
+      #34a853 92deg 180deg,
+      #fbbc05 180deg 252deg,
+      #ea4335 252deg 325deg,
+      #4285f4 325deg 360deg
+    );
+
+  -webkit-background-clip:text;
+  background-clip:text;
+
+  color:transparent;
+
+}
+
+
+/* =========================================================
+   GOOGLE MICRO LABEL
+   ========================================================= */
+
+.google-note{
+
+  margin-top:11px;
+
+  color:#a9832f;
+
+  font-size:11px;
+
+  font-weight:750;
+
+  letter-spacing:.4px;
+
+}
+
+
+/* =========================================================
+   PRIVATE FEEDBACK
+   ========================================================= */
+
+.private-area{
+
+  width:100%;
+
+}
+
 
 textarea{
 
   width:100%;
 
-  min-height:145px;
+  min-height:150px;
 
   resize:none;
 
-  padding:17px;
+  padding:18px;
 
-  border-radius:18px;
+  border-radius:20px;
 
   border:
-    1.5px solid
-    rgba(7,27,60,.12);
+    1px solid #d8dde4;
 
-  background:#f6f8fb;
+  background:
+    #f8fafc;
 
-  color:var(--ink);
+  color:#152238;
 
-  outline:none;
-
-  font-size:18px;
+  font-size:
+    clamp(16px,4.2vw,19px);
 
   line-height:1.5;
 
-  margin-bottom:8px;
+  outline:none;
 
   -webkit-appearance:none;
+
+  -webkit-tap-highlight-color:transparent;
 
 }
 
 
 textarea::placeholder{
 
-  color:#7c899a;
+  color:#8b97a8;
 
 }
 
 
 textarea:focus{
 
-  border-color:
-    rgba(22,93,255,.55);
+  border-color:#c5a347;
 
   box-shadow:
-
     0 0 0 4px
-    rgba(22,93,255,.08);
+    rgba(197,163,71,.10);
 
 }
 
 
 /* =========================================================
-   BUTTON
+   PRIVATE BUTTON
    ========================================================= */
 
-.button{
+.private-button{
 
   width:100%;
 
-  min-height:66px;
+  min-height:70px;
 
-  border-radius:18px;
+  margin-top:12px;
 
   border:none;
 
-  display:flex;
+  border-radius:20px;
 
-  align-items:center;
+  background:
+    linear-gradient(
+      135deg,
+      #102b49,
+      #173e63
+    );
 
-  justify-content:center;
-
-  text-decoration:none;
-
-  padding:17px 20px;
+  color:white;
 
   font-size:
     clamp(17px,4.4vw,21px);
@@ -1118,147 +1144,90 @@ textarea:focus{
 
   cursor:pointer;
 
-  margin-top:10px;
+  box-shadow:
+
+    0 15px 32px
+    rgba(16,43,73,.23);
 
   transition:
-
     transform .16s ease,
-
-    box-shadow .22s ease,
-
-    background .22s ease,
-
-    opacity .2s ease;
+    background .25s ease,
+    box-shadow .25s ease;
 
   -webkit-tap-highlight-color:transparent;
-
-  touch-action:manipulation;
 
 }
 
 
-.button:active{
+.private-button:active{
 
   transform:scale(.975);
 
 }
 
 
-/* Google */
-
-.google{
-
-  color:#111827;
+.private-button.sending{
 
   background:
-
     linear-gradient(
       135deg,
-      #ffffff,
-      #edf1f5
+      #17834b,
+      #20a861
     );
 
-  border:
-    1px solid
-    rgba(7,27,60,.10);
-
   box-shadow:
-
-    0 10px 25px
-    rgba(7,27,60,.13);
+    0 15px 34px
+    rgba(23,131,75,.25);
 
 }
 
 
-/* WhatsApp normal */
+.private-button.sending::after{
 
-.private{
-
-  color:#fff;
-
-  background:
-
-    linear-gradient(
-      135deg,
-      #123e6d,
-      #09294d
-    );
-
-  box-shadow:
-
-    0 10px 25px
-    rgba(7,27,60,.18);
-
-}
-
-
-/* WhatsApp active */
-
-.private.sending{
-
-  background:
-
-    linear-gradient(
-      135deg,
-      #159447,
-      #087a37
-    );
-
-  box-shadow:
-
-    0 12px 28px
-    rgba(20,150,75,.28);
-
-  pointer-events:none;
+  content:"";
 
 }
 
 
 /* =========================================================
-   SMART REVIEW BRANDING
+   SMART REVIEW BRAND
    ========================================================= */
 
-.brand-footer{
+.smart-brand{
 
   width:100%;
 
+  max-width:680px;
+
+  margin-top:auto;
+
+  padding-top:34px;
+
   display:flex;
-
   flex-direction:column;
-
   align-items:center;
 
-  justify-content:center;
-
-  margin-top:32px;
-
-  padding-top:21px;
-
-  border-top:
-    1px solid
-    rgba(7,27,60,.12);
+  text-align:center;
 
 }
 
 
-.brand-mini-line{
+.brand-divider{
 
-  width:
-    clamp(90px,25vw,150px);
+  width:120px;
+  height:2px;
 
-  height:3px;
+  border-radius:999px;
 
-  margin-bottom:14px;
-
-  border-radius:20px;
+  margin-bottom:17px;
 
   background:
-
     linear-gradient(
       90deg,
       transparent,
-      var(--gold),
-      var(--blue),
+      #b28a2e,
+      #d9dce0,
+      #193957,
       transparent
     );
 
@@ -1268,24 +1237,24 @@ textarea:focus{
 .smart-review{
 
   font-size:
-    clamp(29px,8vw,44px);
+    clamp(30px,8vw,44px);
 
   line-height:1;
 
-  font-weight:850;
+  font-weight:900;
 
-  letter-spacing:-1.2px;
+  letter-spacing:
+    2.2px;
 
   background:
-
     linear-gradient(
-      110deg,
-      #a86c08 0%,
-      #e3a51e 20%,
-      #f3f5f8 43%,
-      #b9c3d0 58%,
-      #123e72 78%,
-      #061b3a 100%
+      100deg,
+      #8d681b 0%,
+      #d8b34e 24%,
+      #f1f2f3 43%,
+      #bfc5cb 55%,
+      #365875 73%,
+      #102e4d 100%
     );
 
   -webkit-background-clip:text;
@@ -1293,30 +1262,91 @@ textarea:focus{
 
   color:transparent;
 
-  filter:
-
-    drop-shadow(
-      0 4px 8px
-      rgba(7,27,60,.12)
-    );
+  text-shadow:
+    0 7px 25px
+    rgba(24,47,70,.10);
 
 }
 
 
 .smart-review-sub{
 
-  margin-top:7px;
+  margin-top:9px;
 
-  color:#6b788a;
+  color:#7b8796;
 
   font-size:
-    clamp(10px,2.8vw,13px);
+    clamp(11px,3vw,14px);
 
-  font-weight:750;
+  font-weight:700;
 
   letter-spacing:2px;
 
   text-transform:uppercase;
+
+}
+
+
+/* =========================================================
+   LOADING
+   ========================================================= */
+
+.loading{
+
+  display:flex;
+
+  align-items:center;
+  justify-content:center;
+
+  gap:5px;
+
+}
+
+
+.dot{
+
+  width:7px;
+  height:7px;
+
+  border-radius:50%;
+
+  background:#d8b34e;
+
+  animation:
+    dotPulse 1s infinite ease-in-out;
+
+}
+
+
+.dot:nth-child(2){
+
+  animation-delay:.15s;
+
+}
+
+
+.dot:nth-child(3){
+
+  animation-delay:.30s;
+
+}
+
+
+@keyframes dotPulse{
+
+  0%,80%,100%{
+
+    opacity:.25;
+    transform:scale(.75);
+
+  }
+
+  40%{
+
+    opacity:1;
+    transform:scale(1);
+
+  }
 
 }
 
@@ -1327,9 +1357,7 @@ textarea:focus{
 
 .error{
 
-  color:#d83b3b !important;
-
-  font-weight:700;
+  color:#ffb0b0;
 
 }
 
@@ -1342,120 +1370,57 @@ textarea:focus{
 
 
 /* =========================================================
-   LOADING
-   ========================================================= */
-
-.loading{
-
-  color:#9db0c9;
-
-}
-
-
-.loading-dot{
-
-  display:inline-block;
-
-  width:7px;
-  height:7px;
-
-  margin:0 3px;
-
-  border-radius:50%;
-
-  background:#d99213;
-
-  animation:
-    loadingPulse 1s
-    infinite ease-in-out;
-
-}
-
-
-.loading-dot:nth-child(2){
-  animation-delay:.15s;
-}
-
-.loading-dot:nth-child(3){
-  animation-delay:.30s;
-}
-
-
-@keyframes loadingPulse{
-
-  0%,80%,100%{
-    opacity:.25;
-    transform:scale(.7);
-  }
-
-  40%{
-    opacity:1;
-    transform:scale(1);
-  }
-
-}
-
-
-/* =========================================================
    SMALL PHONES
    ========================================================= */
 
 @media(max-width:390px){
 
-  .hero{
-
-    min-height:355px;
+  .main{
 
     padding-left:15px;
     padding-right:15px;
 
   }
 
+  .logo{
 
-  .hero-title{
+    width:104px;
+    height:104px;
 
-    font-size:21px;
-
-  }
-
-
-  .hero-rating{
-
-    margin-top:22px;
+    margin-bottom:16px;
 
   }
 
+  .business-name{
 
-  .content{
-
-    padding-left:16px;
-    padding-right:16px;
+    font-size:30px;
 
   }
 
+  .subtitle{
 
-  .logo-frame{
-
-    width:145px;
-    height:145px;
+    margin-bottom:23px;
 
   }
 
+  .feedback{
 
-  .client-logo{
-
-    width:105px;
-    height:105px;
+    margin-top:25px;
 
   }
-
 
   .star{
 
-    width:56px;
-    height:63px;
+    width:58px;
+    height:67px;
 
-    font-size:54px;
+    font-size:55px;
+
+  }
+
+  .stars{
+
+    gap:0;
 
   }
 
@@ -1463,28 +1428,58 @@ textarea:focus{
 
 
 /* =========================================================
-   TALL PHONES
+   LANDSCAPE
    ========================================================= */
 
-@media(height >= 800px){
+@media(
+  orientation:landscape
+) and (max-height:600px){
 
-  .hero{
+  .main{
 
-    min-height:425px;
-
-  }
-
-
-  .content{
-
-    margin-top:-25px;
+    padding-top:15px;
 
   }
 
+  .logo{
 
-  .client-brand{
+    width:75px;
+    height:75px;
 
-    margin-top:-5px;
+    border-radius:22px;
+
+    margin-bottom:10px;
+
+  }
+
+  .business-name{
+
+    font-size:27px;
+
+  }
+
+  .subtitle{
+
+    margin-bottom:12px;
+
+  }
+
+  .feedback{
+
+    margin-top:5px;
+
+  }
+
+  .star{
+
+    height:62px;
+    font-size:53px;
+
+  }
+
+  .smart-brand{
+
+    padding-top:15px;
 
   }
 
@@ -1495,28 +1490,38 @@ textarea:focus{
    TABLETS / DESKTOP
    ========================================================= */
 
-@media(width >= 700px){
+@media(min-width:700px){
 
-  .hero{
+  .main{
 
-    min-height:500px;
-
-  }
-
-
-  .content{
-
-    margin-top:-35px;
-
-    padding-left:40px;
-    padding-right:40px;
+    padding-top:45px;
 
   }
 
+  .business-name{
 
-  .client-brand{
+    font-size:48px;
 
-    margin-top:-5px;
+  }
+
+  .feedback{
+
+    margin-top:80px;
+
+  }
+
+  .stars{
+
+    gap:8px;
+
+  }
+
+  .star{
+
+    width:90px;
+    height:95px;
+
+    font-size:84px;
 
   }
 
@@ -1544,103 +1549,77 @@ textarea:focus{
 }
 
 </style>
+
 </head>
 
 
 <body>
 
+
 <div class="app">
 
-
-  <!-- =====================================================
-       NAVY CARD HEADER
-       ===================================================== -->
-
-  <section class="hero">
-
-
-    <!-- GOOGLE -->
-
-    <div class="google-mark">
-
-      <div class="google-letter">
-        G
-      </div>
-
-    </div>
-
-
-    <!-- TITLE -->
-
-    <h1 class="hero-title">
-      LAISSEZ-NOUS VOTRE AVIS SUR GOOGLE
-    </h1>
-
-
-    <!-- STARS -->
-
-    <div class="hero-rating">
-
-      <div class="rating-line"></div>
-
-      <div class="hero-stars">
-
-        <span class="hero-star">★</span>
-        <span class="hero-star">★</span>
-        <span class="hero-star">★</span>
-        <span class="hero-star">★</span>
-        <span class="hero-star">★</span>
-
-      </div>
-
-      <div class="rating-line right"></div>
-
-    </div>
-
-
-    <!-- BLUE / WHITE WAVE -->
-
-    <div class="wave-blue"></div>
-
-    <div class="wave"></div>
-
-  </section>
-
+  <div class="navy-light"></div>
 
 
   <!-- =====================================================
-       WHITE CONTENT
+       NAVY / WHITE CARD-STYLE WAVE
        ===================================================== -->
 
-  <main class="content">
+  <div class="wave">
+
+    <svg
+      viewBox="0 0 1200 180"
+      preserveAspectRatio="none"
+      aria-hidden="true"
+    >
+
+      <path
+        d="
+          M0,65
+          C130,120 260,145 410,108
+          C570,68 670,25 830,70
+          C990,115 1080,145 1200,90
+          L1200,180
+          L0,180
+          Z
+        "
+        fill="#ffffff"
+      />
+
+    </svg>
+
+  </div>
+
+
+  <main class="main">
 
 
     <!-- ===================================================
-         CLIENT BRAND
+         BUSINESS
          =================================================== -->
 
-    <section class="client-brand">
+    <section class="business">
 
 
-      <div class="logo-frame">
+      <div
+        class="logo"
+        id="logo"
+        aria-label="Business logo"
+      >
 
-        <div
-          class="client-logo"
-          id="logo"
-          aria-label="Business logo"
-        >
-          🍽️
-        </div>
+        🍽️
 
       </div>
 
 
-      <h2
+      <h1
         class="business-name"
         id="businessName"
       >
+
         Loading...
-      </h2>
+
+      </h1>
 
 
       <p
@@ -1648,14 +1627,18 @@ textarea:focus{
         id="subtitle"
       >
 
-        <span class="loading-dot"></span>
-        <span class="loading-dot"></span>
-        <span class="loading-dot"></span>
+        <span class="loading">
+
+          <span class="dot"></span>
+          <span class="dot"></span>
+          <span class="dot"></span>
+
+        </span>
 
       </p>
 
-    </section>
 
+    </section>
 
 
     <!-- ===================================================
@@ -1664,13 +1647,18 @@ textarea:focus{
 
     <section
       id="feedbackArea"
-      class="feedback-area hidden"
+      class="feedback hidden"
     >
 
 
-      <div class="rating-question">
-        Comment avez-vous vécu votre expérience ?
+      <div class="question">
+
+        How was your experience?
+
       </div>
+
+
+      <div class="gold-line"></div>
 
 
       <!-- STARS -->
@@ -1679,60 +1667,81 @@ textarea:focus{
         class="stars"
         id="stars"
         role="radiogroup"
-        aria-label="Évaluez votre expérience"
+        aria-label="Rate your experience"
       >
+
 
         <button
           type="button"
           class="star"
           data-rating="1"
-          aria-label="1 étoile"
-        >★</button>
+          aria-label="1 star"
+        >
+
+          ★
+
+        </button>
 
 
         <button
           type="button"
           class="star"
           data-rating="2"
-          aria-label="2 étoiles"
-        >★</button>
+          aria-label="2 stars"
+        >
+
+          ★
+
+        </button>
 
 
         <button
           type="button"
           class="star"
           data-rating="3"
-          aria-label="3 étoiles"
-        >★</button>
+          aria-label="3 stars"
+        >
+
+          ★
+
+        </button>
 
 
         <button
           type="button"
           class="star"
           data-rating="4"
-          aria-label="4 étoiles"
-        >★</button>
+          aria-label="4 stars"
+        >
+
+          ★
+
+        </button>
 
 
         <button
           type="button"
           class="star"
           data-rating="5"
-          aria-label="5 étoiles"
-        >★</button>
+          aria-label="5 stars"
+        >
+
+          ★
+
+        </button>
+
 
       </div>
 
-
-      <!-- RATING TEXT -->
 
       <div
         class="rating-text"
         id="ratingText"
       >
-        Touchez une étoile pour commencer
-      </div>
 
+        Tap a star to rate your experience
+
+      </div>
 
 
       <!-- =================================================
@@ -1745,11 +1754,14 @@ textarea:focus{
       >
 
 
-        <h2 id="messageTitle"></h2>
+        <h2
+          id="messageTitle"
+        ></h2>
 
 
-        <p id="messageText"></p>
-
+        <p
+          id="messageText"
+        ></p>
 
 
         <!-- ===============================================
@@ -1758,23 +1770,41 @@ textarea:focus{
 
         <div
           id="googleArea"
-          class="hidden"
+          class="google-area hidden"
         >
+
 
           <a
             id="googleButton"
-            class="button google"
+            class="google-button"
             href="#"
             target="_blank"
             rel="noopener"
           >
 
-            ⭐ Écrire mon avis sur Google
+            <span
+              class="google-g"
+              aria-hidden="true"
+            ></span>
+
+
+            <span>
+
+              Share your experience on Google
+
+            </span>
 
           </a>
 
-        </div>
 
+          <div class="google-note">
+
+            Your review helps this business grow.
+
+          </div>
+
+
+        </div>
 
 
         <!-- ===============================================
@@ -1783,24 +1813,24 @@ textarea:focus{
 
         <div
           id="privateArea"
-          class="hidden"
+          class="private-area hidden"
         >
 
 
           <textarea
             id="feedbackMessage"
-            placeholder="Dites-nous ce qui s'est passé ou comment nous pouvons nous améliorer..."
-            aria-label="Votre commentaire privé"
+            placeholder="Tell us what went wrong or how we can improve..."
+            aria-label="Private feedback"
           ></textarea>
 
 
           <button
             type="button"
             id="sendPrivate"
-            class="button private"
+            class="private-button"
           >
 
-            💬 Envoyer mon retour
+            💬 Send privately
 
           </button>
 
@@ -1814,24 +1844,27 @@ textarea:focus{
     </section>
 
 
-
     <!-- ===================================================
-         SMART REVIEW
+         SMART REVIEW BRAND
          =================================================== -->
 
-    <footer class="brand-footer">
+    <footer class="smart-brand">
 
 
-      <div class="brand-mini-line"></div>
+      <div class="brand-divider"></div>
 
 
       <div class="smart-review">
+
         Smart Review
+
       </div>
 
 
       <div class="smart-review-sub">
+
         Better feedback. Better businesses.
+
       </div>
 
 
@@ -1884,6 +1917,7 @@ async function supabaseGet(endpoint){
     await fetch(
       `${SUPABASE_URL}/rest/v1/${endpoint}`,
       {
+
         method:"GET",
 
         headers:{
@@ -1956,18 +1990,18 @@ async function loadCard(){
 
 
   /* =======================================================
-     NO CARD
+     NO CARD CODE
      ======================================================= */
 
   if(!cardCode){
 
     businessName.textContent =
-      "Carte introuvable";
+      "Card not found";
 
 
     subtitle.innerHTML =
       `<span class="error">
-        Aucun code de carte n'a été fourni.
+        No card code was provided.
       </span>`;
 
 
@@ -1977,7 +2011,6 @@ async function loadCard(){
 
 
   try{
-
 
     /* =====================================================
        FIND CARD
@@ -2031,7 +2064,7 @@ async function loadCard(){
 
     businessName.textContent =
       currentBusiness.name ||
-      "Votre établissement";
+      "Your Business";
 
 
     document.title =
@@ -2039,16 +2072,14 @@ async function loadCard(){
 
 
     subtitle.textContent =
-      "Votre opinion compte pour nous.";
+      "Your opinion matters to us.";
 
 
     /* =====================================================
-       CLIENT LOGO
+       LOGO
        ===================================================== */
 
-    if(
-      currentBusiness.logo_url
-    ){
+    if(currentBusiness.logo_url){
 
       const logo =
         document.getElementById(
@@ -2072,7 +2103,7 @@ async function loadCard(){
 
       image.alt =
         currentBusiness.name ||
-        "Logo";
+        "Business logo";
 
 
       image.onerror =
@@ -2092,7 +2123,7 @@ async function loadCard(){
 
 
     /* =====================================================
-       GOOGLE REVIEW
+       GOOGLE REVIEW URL
        ===================================================== */
 
     const googleButton =
@@ -2107,7 +2138,7 @@ async function loadCard(){
 
 
     /* =====================================================
-       SHOW
+       SHOW FEEDBACK
        ===================================================== */
 
     feedbackArea
@@ -2125,12 +2156,12 @@ async function loadCard(){
 
 
     businessName.textContent =
-      "Carte introuvable";
+      "Card not found";
 
 
     subtitle.innerHTML =
       `<span class="error">
-        Cette carte est inactive ou n'existe pas.
+        This card is inactive or does not exist.
       </span>`;
 
   }
@@ -2139,7 +2170,7 @@ async function loadCard(){
 
 
 /* =========================================================
-   STAR ELEMENTS
+   ELEMENTS
    ========================================================= */
 
 const stars =
@@ -2191,7 +2222,7 @@ const feedbackMessage =
 
 
 /* =========================================================
-   STAR CLICK
+   STAR SYSTEM
    ========================================================= */
 
 stars.forEach(
@@ -2208,59 +2239,56 @@ stars.forEach(
           );
 
 
-        /* =================================================
-           HIGHLIGHT
-           ================================================= */
+        /* ===============================================
+           HIGHLIGHT STARS
+           =============================================== */
 
         stars.forEach(
           s => {
 
             s.classList.toggle(
               "active",
-
               Number(
                 s.dataset.rating
               ) <= selectedRating
-
             );
 
           }
         );
 
 
-        /* =================================================
-           RATING LABEL
-           ================================================= */
+        /* ===============================================
+           RATING TEXT
+           =============================================== */
 
         const ratingLabels = {
 
           1:
-            "Nous aimerions faire mieux.",
+            "We're sorry. We'd like to do better.",
 
           2:
-            "Merci de nous l'avoir signalé.",
+            "Thanks for telling us.",
 
           3:
-            "Merci pour votre retour.",
+            "Thanks for your feedback.",
 
           4:
-            "Ravi de l'entendre !",
+            "Great to hear!",
 
           5:
-            "Incroyable ! Merci beaucoup !"
+            "Amazing! We're thrilled!"
 
         };
 
 
         ratingText.textContent =
-          ratingLabels[
-            selectedRating
-          ];
+          ratingLabels[selectedRating] ||
+          `${selectedRating} out of 5 stars`;
 
 
-        /* =================================================
+        /* ===============================================
            REPLAY MESSAGE ANIMATION
-           ================================================= */
+           =============================================== */
 
         message.classList.remove(
           "show"
@@ -2284,92 +2312,76 @@ stars.forEach(
         );
 
 
-        /* =================================================
+        /* ===============================================
            1–2 STARS
-           ================================================= */
+           =============================================== */
 
-        if(
-          selectedRating <= 2
-        ){
+        if(selectedRating <= 2){
 
           messageTitle.textContent =
-            "Nous sommes désolés pour votre expérience.";
+            "We're sorry about your experience.";
 
 
           messageText.textContent =
-            "Dites-nous ce qui s'est passé. Votre retour nous permet de nous améliorer.";
+            "Tell us what went wrong and we'll do our best to make things right.";
 
 
           googleArea
             .classList
-            .add(
-              "hidden"
-            );
+            .add("hidden");
 
 
           privateArea
             .classList
-            .remove(
-              "hidden"
-            );
+            .remove("hidden");
 
 
           feedbackMessage.value =
             "";
 
-
         }
 
 
-        /* =================================================
+        /* ===============================================
            3–5 STARS
-           ================================================= */
+           =============================================== */
 
         else{
 
-
           privateArea
             .classList
-            .add(
-              "hidden"
-            );
+            .add("hidden");
 
 
           googleArea
             .classList
-            .remove(
-              "hidden"
-            );
+            .remove("hidden");
 
 
-          if(
-            selectedRating === 3
-          ){
+          if(selectedRating === 3){
 
             messageTitle.textContent =
-              "Merci pour votre retour !";
+              "Thanks for your feedback!";
 
           }
 
-          else if(
-            selectedRating === 4
-          ){
+          else if(selectedRating === 4){
 
             messageTitle.textContent =
-              "Nous sommes ravis !";
+              "We're glad you enjoyed it!";
 
           }
 
           else{
 
             messageTitle.textContent =
-              "Merci ! Nous sommes ravis que vous ayez adoré ! ❤️";
+              "We're thrilled you loved it! ❤️";
 
           }
 
 
           messageText.textContent =
-            "Votre avis peut aider d'autres clients. Nous apprécierions beaucoup votre avis sur Google.";
+            "Thank you! We'd really appreciate you sharing your experience on Google.";
 
         }
 
@@ -2381,7 +2393,7 @@ stars.forEach(
 
 
 /* =========================================================
-   PRIVATE WHATSAPP
+   PRIVATE WHATSAPP FEEDBACK
    ========================================================= */
 
 document
@@ -2405,16 +2417,14 @@ document
           .trim();
 
 
-      /* =====================================================
+      /* ===================================================
          CHECK BUSINESS
-         ===================================================== */
+         =================================================== */
 
-      if(
-        !currentBusiness
-      ){
+      if(!currentBusiness){
 
         alert(
-          "Les informations de l'établissement sont indisponibles."
+          "Business information is unavailable."
         );
 
         return;
@@ -2422,16 +2432,16 @@ document
       }
 
 
-      /* =====================================================
+      /* ===================================================
          CHECK WHATSAPP
-         ===================================================== */
+         =================================================== */
 
       if(
         !currentBusiness.whatsapp_number
       ){
 
         alert(
-          "Le numéro WhatsApp n'est pas configuré."
+          "WhatsApp contact is not configured for this business."
         );
 
         return;
@@ -2439,9 +2449,9 @@ document
       }
 
 
-      /* =====================================================
+      /* ===================================================
          CLEAN NUMBER
-         ===================================================== */
+         =================================================== */
 
       let number =
         String(
@@ -2453,9 +2463,11 @@ document
         );
 
 
-      if(
-        number.startsWith("0")
-      ){
+      /* ===================================================
+         ALGERIA NUMBER
+         =================================================== */
+
+      if(number.startsWith("0")){
 
         number =
           "213" +
@@ -2464,9 +2476,9 @@ document
       }
 
 
-      /* =====================================================
-         BUILD MESSAGE
-         ===================================================== */
+      /* ===================================================
+         MESSAGE
+         =================================================== */
 
       const businessName =
         currentBusiness.name ||
@@ -2474,40 +2486,25 @@ document
 
 
       let whatsappMessage =
-`🔒 Retour privé — ${businessName}
+`🔒 Private feedback — ${businessName}
 
-⭐ Note : ${selectedRating}/5`;
+⭐ Rating: ${selectedRating}/5`;
 
 
-      if(
-        text.length > 0
-      ){
+      if(text.length > 0){
 
         whatsappMessage +=
 `
 
-💬 Commentaire du client :
+💬 Customer feedback:
 ${text}`;
 
       }
 
 
-      /* =====================================================
-         BUTTON ANIMATION
-         ===================================================== */
-
-      button.classList.add(
-        "sending"
-      );
-
-
-      button.innerHTML =
-        "✓ Ouverture de WhatsApp…";
-
-
-      /* =====================================================
-         URL
-         ===================================================== */
+      /* ===================================================
+         ENCODE
+         =================================================== */
 
       const encodedMessage =
         encodeURIComponent(
@@ -2515,13 +2512,34 @@ ${text}`;
         );
 
 
+      /* ===================================================
+         URL
+         =================================================== */
+
       const whatsappURL =
         `https://wa.me/${number}?text=${encodedMessage}`;
 
 
-      /* =====================================================
+      /* ===================================================
+         ACTIVE BUTTON STATE
+         =================================================== */
+
+      button.classList.add(
+        "sending"
+      );
+
+
+      button.textContent =
+        "✓ Opening WhatsApp…";
+
+
+      button.disabled =
+        true;
+
+
+      /* ===================================================
          OPEN
-         ===================================================== */
+         =================================================== */
 
       setTimeout(
         () => {
@@ -2530,7 +2548,7 @@ ${text}`;
             whatsappURL;
 
         },
-        450
+        350
       );
 
     }
@@ -2544,6 +2562,7 @@ ${text}`;
 loadCard();
 
 </script>
+
 
 </body>
 </html>
