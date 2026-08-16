@@ -1,46 +1,19 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
-
 <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0,
+               viewport-fit=cover,
+               maximum-scale=1.0,
+               user-scalable=no">
 
-<meta
-  name="viewport"
-  content="width=device-width, initial-scale=1.0, viewport-fit=cover"
->
-
-<title>Smart Review</title>
+<title>Customer Feedback</title>
 
 <style>
 
 /* =========================================================
-   SMART REVIEW
-   CARD-MATCHED UI
-   ========================================================= */
-
-:root{
-
-  --navy:#061b3a;
-  --navy-2:#08264d;
-  --navy-3:#0b315f;
-
-  --blue:#165dff;
-  --blue-light:#2675ff;
-
-  --gold:#d99213;
-  --gold-light:#ffca43;
-  --gold-dark:#a96600;
-
-  --white:#ffffff;
-  --ink:#071b3c;
-
-  --muted:#60708a;
-
-}
-
-
-/* =========================================================
-   RESET
+   SMART REVIEW — CARD-MATCHED DIGITAL EXPERIENCE
    ========================================================= */
 
 *{
@@ -56,11 +29,10 @@ body{
 }
 
 html{
-  background:#061b3a;
+  background:#071a33;
 }
 
 body{
-
   min-height:100vh;
   min-height:100dvh;
 
@@ -69,19 +41,35 @@ body{
     BlinkMacSystemFont,
     "Segoe UI",
     Roboto,
-    Helvetica,
     Arial,
     sans-serif;
+
+  color:#101b31;
+
+  overflow-x:hidden;
 
   -webkit-font-smoothing:antialiased;
   text-rendering:optimizeLegibility;
 
-  background:#fff;
+  background:
+    linear-gradient(
+      180deg,
+      #061a34 0%,
+      #092b50 45%,
+      #f7f8fb 45.1%,
+      #ffffff 100%
+    );
+}
 
-  color:var(--ink);
+button,
+a,
+textarea{
+  font:inherit;
+}
 
-  overflow-x:hidden;
-
+button,
+a{
+  -webkit-tap-highlight-color:transparent;
 }
 
 
@@ -90,17 +78,16 @@ body{
    ========================================================= */
 
 .app{
-
-  width:100%;
   min-height:100vh;
   min-height:100dvh;
+
+  width:100%;
 
   position:relative;
 
   overflow:hidden;
 
   background:#fff;
-
 }
 
 
@@ -109,173 +96,184 @@ body{
    ========================================================= */
 
 .hero{
+  width:100%;
+
+  min-height:47vh;
+  min-height:47dvh;
 
   position:relative;
 
-  width:100%;
-
-  min-height:
-    clamp(380px,48vh,520px);
-
-  background:
-
-    radial-gradient(
-      circle at 50% 12%,
-      rgba(255,255,255,.08),
-      transparent 28%
-    ),
-
-    radial-gradient(
-      circle at 50% 100%,
-      rgba(32,102,210,.25),
-      transparent 55%
-    ),
-
-    linear-gradient(
-      180deg,
-      #061b3a 0%,
-      #08264d 100%
-    );
-
-  color:white;
+  padding:
+    max(34px, env(safe-area-inset-top))
+    22px
+    115px;
 
   display:flex;
-
   flex-direction:column;
-
   align-items:center;
+  justify-content:flex-start;
 
   text-align:center;
 
-  padding:
+  color:#fff;
 
-    max(24px,env(safe-area-inset-top))
-    20px
-    90px;
-
-}
-
-
-/* subtle premium texture */
-
-.hero::before{
-
-  content:"";
-
-  position:absolute;
-
-  inset:0;
-
-  pointer-events:none;
-
-  opacity:.18;
-
-  background-image:
-
+  background:
     radial-gradient(
-      rgba(255,255,255,.14) .7px,
-      transparent .7px
-    );
-
-  background-size:13px 13px;
-
-  mask-image:
+      circle at 50% 18%,
+      rgba(255,255,255,.10),
+      transparent 25%
+    ),
+    radial-gradient(
+      circle at 50% 0%,
+      rgba(27,98,180,.20),
+      transparent 55%
+    ),
     linear-gradient(
-      to bottom,
-      black,
-      transparent 80%
+      180deg,
+      #071b36 0%,
+      #082b51 100%
     );
 
+  overflow:hidden;
 }
 
 
 /* =========================================================
-   GOOGLE BADGE
+   SUBTLE HEADER LIGHT
+   ========================================================= */
+
+.hero::before{
+  content:"";
+
+  position:absolute;
+
+  width:260px;
+  height:260px;
+
+  top:-140px;
+  left:50%;
+
+  transform:translateX(-50%);
+
+  border-radius:50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(255,193,7,.14),
+      transparent 68%
+    );
+
+  pointer-events:none;
+}
+
+
+/* =========================================================
+   GOOGLE MARK
    ========================================================= */
 
 .google-mark{
+  width:108px;
+  height:108px;
 
-  position:relative;
-
-  z-index:2;
-
-  width:
-    clamp(82px,22vw,112px);
-
-  height:
-    clamp(82px,22vw,112px);
+  margin-top:4px;
+  margin-bottom:20px;
 
   border-radius:50%;
 
   background:#fff;
 
   display:flex;
-
   align-items:center;
   justify-content:center;
 
-  margin-top:4px;
-
-  margin-bottom:18px;
+  position:relative;
 
   box-shadow:
-
-    0 12px 30px
-    rgba(0,0,0,.28),
-
-    0 0 0 3px
-    rgba(217,146,19,.9),
-
-    0 0 0 5px
-    rgba(255,202,67,.35);
+    0 15px 38px rgba(0,0,0,.30),
+    0 0 0 2px rgba(255,255,255,.25);
 
   animation:
-    googleEnter .65s
-    cubic-bezier(.2,.8,.2,1)
-    both;
-
+    googleEnter .65s cubic-bezier(.2,.8,.2,1) both;
 }
 
 
-.google-letter{
+/*
+   Clean Google-style G.
 
-  font-family:
-    Arial,
-    sans-serif;
+   The colored pieces are deliberately built
+   with CSS instead of using a random icon/font.
+*/
 
-  font-size:
-    clamp(50px,13vw,70px);
+.google-g{
+  width:65px;
+  height:65px;
 
-  font-weight:800;
+  border-radius:50%;
 
-  line-height:1;
+  position:relative;
 
   background:
-
     conic-gradient(
-      from -35deg,
-      #4285f4 0deg 80deg,
-      #34a853 80deg 170deg,
-      #fbbc05 170deg 245deg,
-      #ea4335 245deg 320deg,
-      #4285f4 320deg 360deg
+      from -45deg,
+      #4285f4 0deg 90deg,
+      #34a853 90deg 180deg,
+      #fbbc05 180deg 270deg,
+      #ea4335 270deg 360deg
     );
 
-  -webkit-background-clip:text;
-  background-clip:text;
+  -webkit-mask:
+    radial-gradient(
+      circle,
+      transparent 0 23px,
+      #000 24px
+    );
 
-  color:transparent;
-
+  mask:
+    radial-gradient(
+      circle,
+      transparent 0 23px,
+      #000 24px
+    );
 }
 
+
+/*
+   Google-style horizontal blue bar
+*/
+
+.google-g::after{
+  content:"";
+
+  position:absolute;
+
+  right:-1px;
+  top:28px;
+
+  width:31px;
+  height:13px;
+
+  background:#4285f4;
+
+  border-radius:
+    0 8px 8px 0;
+
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.15);
+}
+
+
+/* =========================================================
+   GOOGLE ENTER
+   ========================================================= */
 
 @keyframes googleEnter{
 
   from{
     opacity:0;
     transform:
-      translateY(-18px)
-      scale(.82);
+      translateY(-15px)
+      scale(.88);
   }
 
   to{
@@ -289,502 +287,272 @@ body{
 
 
 /* =========================================================
-   HEADER TITLE
+   HERO TITLE
    ========================================================= */
 
 .hero-title{
-
-  position:relative;
-
-  z-index:2;
-
   font-size:
-    clamp(22px,6vw,34px);
+    clamp(25px,6.8vw,42px);
 
   line-height:1.12;
 
   font-weight:850;
 
-  letter-spacing:-.7px;
+  letter-spacing:-.8px;
 
-  max-width:900px;
+  max-width:850px;
+
+  margin-bottom:24px;
 
   text-transform:uppercase;
-
-  text-shadow:
-    0 3px 15px
-    rgba(0,0,0,.28);
-
 }
 
 
 /* =========================================================
-   GOLD DIVIDER + STARS
+   HERO DIVIDER
    ========================================================= */
 
-.hero-rating{
-
-  position:relative;
-
-  z-index:3;
-
+.hero-stars{
   width:100%;
 
   display:flex;
-
   align-items:center;
-
   justify-content:center;
 
   gap:
-    clamp(8px,2vw,22px);
+    clamp(8px,2vw,18px);
 
-  margin-top:27px;
-
+  margin-bottom:15px;
 }
 
-
-.rating-line{
-
+.hero-line{
   width:
-    clamp(30px,13vw,100px);
+    clamp(35px,12vw,100px);
 
-  height:2px;
+  height:1px;
 
   background:
     linear-gradient(
       90deg,
       transparent,
-      #2681ff
+      rgba(255,255,255,.85)
     );
-
-  opacity:.95;
-
 }
 
-
-.rating-line.right{
-
+.hero-line.right{
   background:
     linear-gradient(
       90deg,
-      #2681ff,
+      rgba(255,255,255,.85),
       transparent
     );
-
 }
-
-
-.hero-stars{
-
-  display:flex;
-
-  align-items:center;
-
-  justify-content:center;
-
-  gap:
-    clamp(3px,1vw,10px);
-
-}
-
 
 .hero-star{
+  color:#ffb300;
 
   font-size:
-    clamp(30px,8vw,53px);
+    clamp(29px,8vw,48px);
 
   line-height:1;
 
-  color:var(--gold-light);
-
   text-shadow:
-
-    0 3px 4px
-    rgba(0,0,0,.45),
-
-    0 0 12px
-    rgba(255,190,45,.22);
-
-  transform:
-
-    perspective(300px)
-    rotateX(7deg);
-
+    0 5px 14px rgba(255,179,0,.28);
 }
 
 
 /* =========================================================
-   BLUE WAVE
+   WAVY DIVIDER
    ========================================================= */
 
 .wave{
-
   position:absolute;
 
-  z-index:5;
-
-  left:-5%;
+  left:-3%;
+  right:-3%;
 
   bottom:-1px;
 
-  width:110%;
+  width:106%;
+  height:115px;
 
-  height:105px;
+  z-index:5;
 
-  background:#fff;
-
-  clip-path:
-
-    ellipse(
-      72% 58%
-      at 50% 100%
-    );
-
+  pointer-events:none;
 }
 
 
-.wave-blue{
+/* White wave */
 
-  position:absolute;
-
-  z-index:4;
-
-  left:-5%;
-
-  bottom:62px;
-
-  width:110%;
-
-  height:58px;
-
-  background:
-
-    linear-gradient(
-      180deg,
-      #0c63ff,
-      #164fd1
-    );
-
-  clip-path:
-
-    ellipse(
-      68% 55%
-      at 50% 100%
-    );
-
-}
-
-
-/* =========================================================
-   MAIN WHITE AREA
-   ========================================================= */
-
-.content{
-
-  position:relative;
-
-  z-index:10;
-
-  background:#fff;
-
-  min-height:
-    calc(100vh - 430px);
-
-  min-height:
-    calc(100dvh - 430px);
-
-  margin-top:-18px;
-
-  padding:
-
-    0
-    22px
-    max(28px,env(safe-area-inset-bottom));
-
-  display:flex;
-
-  flex-direction:column;
-
-  align-items:center;
-
-}
-
-
-/* =========================================================
-   CLIENT LOGO AREA
-   ========================================================= */
-
-.client-brand{
-
-  width:100%;
-
-  display:flex;
-
-  flex-direction:column;
-
-  align-items:center;
-
-  justify-content:center;
-
-  margin-top:-10px;
-
-  position:relative;
-
-}
-
-
-/* corner frame */
-
-.logo-frame{
-
-  width:
-    clamp(155px,46vw,215px);
-
-  height:
-    clamp(155px,46vw,215px);
-
-  position:relative;
-
-  display:flex;
-
-  align-items:center;
-  justify-content:center;
-
-  margin-bottom:20px;
-
-}
-
-
-/* four gold corner pieces */
-
-.logo-frame::before,
-.logo-frame::after{
-
-  content:"";
-
+.wave-white{
   position:absolute;
 
   inset:0;
 
-  pointer-events:none;
+  background:#fff;
 
+  clip-path:
+    polygon(
+      0 43%,
+      8% 37%,
+      17% 27%,
+      27% 15%,
+      38% 5%,
+      50% 0%,
+      61% 3%,
+      71% 12%,
+      81% 23%,
+      91% 30%,
+      100% 25%,
+      100% 100%,
+      0 100%
+    );
 }
 
 
-.logo-frame::before{
+/* Blue edge */
 
-  background:
+.wave-blue{
+  position:absolute;
 
-    linear-gradient(
-      var(--gold),
-      var(--gold)
-    ) left top / 62px 4px no-repeat,
+  inset:0;
 
-    linear-gradient(
-      var(--gold),
-      var(--gold)
-    ) left top / 4px 62px no-repeat,
+  transform:
+    translateY(-6px);
 
-    linear-gradient(
-      var(--gold),
-      var(--gold)
-    ) right top / 62px 4px no-repeat,
+  background:#2165d7;
 
-    linear-gradient(
-      var(--gold),
-      var(--gold)
-    ) right top / 4px 62px no-repeat,
-
-    linear-gradient(
-      var(--gold),
-      var(--gold)
-    ) left bottom / 62px 4px no-repeat,
-
-    linear-gradient(
-      var(--gold),
-      var(--gold)
-    ) left bottom / 4px 62px no-repeat,
-
-    linear-gradient(
-      var(--gold),
-      var(--gold)
-    ) right bottom / 62px 4px no-repeat,
-
-    linear-gradient(
-      var(--gold),
-      var(--gold)
-    ) right bottom / 4px 62px no-repeat;
-
+  clip-path:
+    polygon(
+      0 43%,
+      8% 37%,
+      17% 27%,
+      27% 15%,
+      38% 5%,
+      50% 0%,
+      61% 3%,
+      71% 12%,
+      81% 23%,
+      91% 30%,
+      100% 25%,
+      100% 100%,
+      0 100%
+    );
 }
 
 
-.logo-frame::after{
+/* =========================================================
+   CONTENT AREA
+   ========================================================= */
 
-  border-radius:24px;
+.content{
+  width:100%;
 
-  box-shadow:
-    inset 0 0 0 1px
-    rgba(217,146,19,.04);
+  min-height:53vh;
+  min-height:53dvh;
 
-}
+  margin-top:-2px;
 
+  padding:
+    20px
+    22px
+    max(25px,env(safe-area-inset-bottom));
 
-.client-logo{
-
-  width:
-    clamp(112px,34vw,160px);
-
-  height:
-    clamp(112px,34vw,160px);
-
-  border-radius:22px;
+  background:#fff;
 
   display:flex;
+  flex-direction:column;
+  align-items:center;
 
+  text-align:center;
+
+  position:relative;
+  z-index:10;
+}
+
+
+/* =========================================================
+   BUSINESS
+   ========================================================= */
+
+.business-logo{
+  width:100px;
+  height:100px;
+
+  margin-top:-18px;
+
+  margin-bottom:17px;
+
+  border-radius:27px;
+
+  background:#fff;
+
+  border:
+    1px solid rgba(8,27,55,.10);
+
+  box-shadow:
+    0 12px 32px rgba(12,31,56,.13);
+
+  display:flex;
   align-items:center;
   justify-content:center;
 
   overflow:hidden;
 
-  background:
-
-    linear-gradient(
-      145deg,
-      #fdfdfd,
-      #f3f5f8
-    );
-
-  border:
-    1px solid
-    rgba(7,27,60,.08);
-
-  box-shadow:
-
-    0 12px 30px
-    rgba(7,27,60,.10);
-
-  font-size:50px;
-
-  color:#0b315f;
-
+  font-size:44px;
 }
 
-
-.client-logo img{
-
+.business-logo img{
   width:100%;
   height:100%;
 
   object-fit:cover;
-
 }
 
 
-/* =========================================================
-   BUSINESS NAME
-   ========================================================= */
-
 .business-name{
+  color:#081a35;
 
   font-size:
-    clamp(27px,7vw,40px);
-
-  line-height:1.08;
+    clamp(27px,7vw,43px);
 
   font-weight:850;
 
-  letter-spacing:-.9px;
+  line-height:1.12;
 
-  color:var(--navy);
+  letter-spacing:-.8px;
 
-  text-align:center;
-
-  max-width:900px;
+  margin-bottom:8px;
 
   overflow-wrap:anywhere;
-
-  margin-bottom:9px;
-
 }
 
 
 .subtitle{
-
-  color:#53657d;
+  color:#64738a;
 
   font-size:
-    clamp(16px,4.3vw,20px);
-
-  font-weight:600;
-
-  text-align:center;
+    clamp(16px,4.2vw,20px);
 
   line-height:1.45;
 
-  margin-bottom:26px;
-
+  margin-bottom:27px;
 }
 
 
 /* =========================================================
-   FEEDBACK AREA
-   ========================================================= */
-
-.feedback-area{
-
-  width:100%;
-
-  max-width:700px;
-
-  display:flex;
-
-  flex-direction:column;
-
-  align-items:center;
-
-  text-align:center;
-
-  animation:
-    contentEnter .55s
-    cubic-bezier(.2,.8,.2,1)
-    both;
-
-}
-
-
-@keyframes contentEnter{
-
-  from{
-    opacity:0;
-    transform:translateY(18px);
-  }
-
-  to{
-    opacity:1;
-    transform:translateY(0);
-  }
-
-}
-
-
-/* =========================================================
-   QUESTION
+   RATING QUESTION
    ========================================================= */
 
 .rating-question{
-
-  color:var(--navy);
+  color:#081a35;
 
   font-size:
-    clamp(21px,5.5vw,29px);
+    clamp(20px,5vw,27px);
 
   font-weight:800;
 
-  letter-spacing:-.4px;
-
-  margin-bottom:16px;
-
+  margin-bottom:13px;
 }
 
 
@@ -793,129 +561,116 @@ body{
    ========================================================= */
 
 .stars{
-
   width:100%;
 
   display:flex;
 
+  align-items:center;
   justify-content:center;
 
-  align-items:center;
-
   gap:
-    clamp(2px,1.2vw,12px);
+    clamp(1px,1.4vw,10px);
 
-  margin-bottom:9px;
-
+  margin-bottom:10px;
 }
 
 
 .star{
-
   appearance:none;
   -webkit-appearance:none;
 
-  border:0 !important;
-
+  border:none !important;
   outline:none !important;
 
   background:transparent !important;
 
-  box-shadow:none !important;
+  color:#b8c2cf;
 
   width:
-    clamp(52px,14vw,84px);
+    clamp(52px,14vw,82px);
 
   height:
-    clamp(58px,15vw,90px);
+    clamp(58px,15vw,88px);
 
   padding:0;
+
   margin:0;
 
   display:flex;
-
   align-items:center;
   justify-content:center;
 
   font-size:
-    clamp(52px,14vw,82px);
+    clamp(51px,14vw,78px);
 
   line-height:1;
-
-  color:#cbd1d9;
 
   cursor:pointer;
 
   position:relative;
 
-  border-radius:0;
+  border-radius:15px;
 
-  user-select:none;
-
-  -webkit-user-select:none;
+  box-shadow:none !important;
 
   -webkit-tap-highlight-color:transparent;
+
+  user-select:none;
+  -webkit-user-select:none;
 
   touch-action:manipulation;
 
   transition:
-
     color .18s ease,
-
-    filter .18s ease,
-
-    transform .14s
-    cubic-bezier(.2,.9,.25,1.4);
-
+    transform .18s cubic-bezier(.2,.8,.2,1),
+    filter .18s ease;
 }
 
 
-/* absolutely kill mobile focus box */
+/* Remove mobile blue square */
 
 .star:focus,
-.star:focus-visible,
 .star:active{
-
   outline:none !important;
 
   background:transparent !important;
 
   box-shadow:none !important;
-
 }
 
 
-/* selected */
+/* Gold */
 
 .star.active{
-
-  color:var(--gold);
+  color:#f5ae00;
 
   filter:
-
     drop-shadow(
-      0 5px 5px
-      rgba(150,90,0,.25)
+      0 5px 10px
+      rgba(245,174,0,.24)
     );
 
   animation:
-    starPop .34s
-    cubic-bezier(.2,.9,.25,1.4);
+    starPop .34s cubic-bezier(.2,.9,.25,1.4);
+}
 
+
+.star:active{
+  transform:scale(.84);
 }
 
 
 @keyframes starPop{
 
   0%{
-    transform:scale(.68);
+    transform:scale(.70);
   }
 
-  45%{
-    transform:scale(1.20);
+  55%{
+    transform:scale(1.16);
   }
 
-  72%{
+  78%{
     transform:scale(.94);
   }
 
@@ -926,30 +681,21 @@ body{
 }
 
 
-.star:active{
-
-  transform:scale(.84);
-
-}
-
-
 /* =========================================================
    RATING TEXT
    ========================================================= */
 
 .rating-text{
+  min-height:28px;
 
-  min-height:26px;
-
-  color:#68788e;
+  color:#69788d;
 
   font-size:
     clamp(15px,4vw,18px);
 
   font-weight:650;
 
-  margin-bottom:18px;
-
+  margin-bottom:21px;
 }
 
 
@@ -958,25 +704,21 @@ body{
    ========================================================= */
 
 .message{
-
   width:100%;
+
+  max-width:650px;
 
   display:none;
 
   text-align:center;
 
   animation:
-    messageEnter .4s
-    cubic-bezier(.2,.8,.2,1)
-    both;
-
+    messageEnter .4s cubic-bezier(.2,.8,.2,1) both;
 }
 
 
 .message.show{
-
   display:block;
-
 }
 
 
@@ -984,7 +726,7 @@ body{
 
   from{
     opacity:0;
-    transform:translateY(13px);
+    transform:translateY(12px);
   }
 
   to{
@@ -996,37 +738,230 @@ body{
 
 
 .message h2{
-
-  color:var(--navy);
+  color:#081a35;
 
   font-size:
-    clamp(22px,5.7vw,30px);
+    clamp(21px,5.3vw,29px);
 
-  line-height:1.18;
+  line-height:1.2;
 
   font-weight:850;
 
-  letter-spacing:-.5px;
-
-  margin-bottom:8px;
-
+  margin-bottom:9px;
 }
 
 
 .message p{
+  color:#66758a;
 
-  color:#61728a;
+  font-size:
+    clamp(15px,4vw,18px);
+
+  line-height:1.5;
+
+  margin:
+    0 auto 19px;
+
+  max-width:590px;
+}
+
+
+/* =========================================================
+   GOOGLE BUTTON — PREMIUM / HIGH VISIBILITY
+   ========================================================= */
+
+.google{
+  width:100%;
+
+  min-height:72px;
+
+  position:relative;
+
+  overflow:hidden;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  gap:12px;
+
+  padding:18px 22px;
+
+  border-radius:20px;
+
+  border:
+    1px solid rgba(20,75,150,.18);
+
+  text-decoration:none;
+
+  color:#fff;
+
+  font-size:
+    clamp(17px,4.5vw,21px);
+
+  font-weight:850;
+
+  background:
+    linear-gradient(
+      135deg,
+      #0b63ce 0%,
+      #1769d5 48%,
+      #0a55b6 100%
+    );
+
+  box-shadow:
+    0 14px 30px rgba(17,82,170,.25),
+    inset 0 1px 0 rgba(255,255,255,.20);
+
+  transition:
+    transform .18s ease,
+    box-shadow .2s ease;
+}
+
+
+.google::before{
+  content:"";
+
+  position:absolute;
+
+  top:0;
+  left:-100%;
+
+  width:55%;
+  height:100%;
+
+  background:
+    linear-gradient(
+      100deg,
+      transparent,
+      rgba(255,255,255,.18),
+      transparent
+    );
+
+  transform:skewX(-20deg);
+
+  animation:
+    buttonShine 3.2s infinite;
+}
+
+
+@keyframes buttonShine{
+
+  0%{
+    left:-100%;
+  }
+
+  35%,
+  100%{
+    left:140%;
+  }
+
+}
+
+
+.google:hover{
+  transform:translateY(-2px);
+
+  box-shadow:
+    0 18px 38px rgba(17,82,170,.32),
+    inset 0 1px 0 rgba(255,255,255,.22);
+}
+
+
+.google:active{
+  transform:scale(.975);
+}
+
+
+.google-icon{
+  width:34px;
+  height:34px;
+
+  flex:0 0 34px;
+
+  border-radius:50%;
+
+  background:#fff;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  position:relative;
+
+  z-index:2;
+}
+
+
+.google-icon .google-g{
+  width:23px;
+  height:23px;
+
+  -webkit-mask:
+    radial-gradient(
+      circle,
+      transparent 0 8px,
+      #000 9px
+    );
+
+  mask:
+    radial-gradient(
+      circle,
+      transparent 0 8px,
+      #000 9px
+    );
+}
+
+
+.google-icon .google-g::after{
+  top:10px;
+
+  width:12px;
+  height:5px;
+}
+
+
+/* =========================================================
+   PRIVATE FEEDBACK
+   ========================================================= */
+
+.private{
+  margin-top:12px;
+
+  width:100%;
+
+  min-height:68px;
+
+  border:none;
+
+  border-radius:19px;
+
+  color:#fff;
+
+  background:
+    linear-gradient(
+      135deg,
+      #122d50,
+      #0a203d
+    );
 
   font-size:
     clamp(16px,4.2vw,19px);
 
-  line-height:1.5;
+  font-weight:800;
 
-  max-width:620px;
+  cursor:pointer;
 
-  margin:
-    0 auto 18px;
+  box-shadow:
+    0 12px 28px rgba(9,31,57,.18);
 
+  transition:
+    transform .16s ease;
+}
+
+
+.private:active{
+  transform:scale(.975);
 }
 
 
@@ -1035,7 +970,6 @@ body{
    ========================================================= */
 
 textarea{
-
   width:100%;
 
   min-height:145px;
@@ -1044,173 +978,39 @@ textarea{
 
   padding:17px;
 
+  margin-bottom:8px;
+
   border-radius:18px;
 
   border:
-    1.5px solid
-    rgba(7,27,60,.12);
+    1px solid #d9e0e9;
 
-  background:#f6f8fb;
+  background:#f8fafc;
 
-  color:var(--ink);
+  color:#10203a;
 
-  outline:none;
-
-  font-size:18px;
+  font-size:
+    clamp(16px,4vw,18px);
 
   line-height:1.5;
 
-  margin-bottom:8px;
+  outline:none;
 
   -webkit-appearance:none;
-
 }
 
 
 textarea::placeholder{
-
-  color:#7c899a;
-
+  color:#8b98a9;
 }
 
 
 textarea:focus{
-
-  border-color:
-    rgba(22,93,255,.55);
+  border-color:#2770d7;
 
   box-shadow:
-
     0 0 0 4px
-    rgba(22,93,255,.08);
-
-}
-
-
-/* =========================================================
-   BUTTON
-   ========================================================= */
-
-.button{
-
-  width:100%;
-
-  min-height:66px;
-
-  border-radius:18px;
-
-  border:none;
-
-  display:flex;
-
-  align-items:center;
-
-  justify-content:center;
-
-  text-decoration:none;
-
-  padding:17px 20px;
-
-  font-size:
-    clamp(17px,4.4vw,21px);
-
-  font-weight:850;
-
-  cursor:pointer;
-
-  margin-top:10px;
-
-  transition:
-
-    transform .16s ease,
-
-    box-shadow .22s ease,
-
-    background .22s ease,
-
-    opacity .2s ease;
-
-  -webkit-tap-highlight-color:transparent;
-
-  touch-action:manipulation;
-
-}
-
-
-.button:active{
-
-  transform:scale(.975);
-
-}
-
-
-/* Google */
-
-.google{
-
-  color:#111827;
-
-  background:
-
-    linear-gradient(
-      135deg,
-      #ffffff,
-      #edf1f5
-    );
-
-  border:
-    1px solid
-    rgba(7,27,60,.10);
-
-  box-shadow:
-
-    0 10px 25px
-    rgba(7,27,60,.13);
-
-}
-
-
-/* WhatsApp normal */
-
-.private{
-
-  color:#fff;
-
-  background:
-
-    linear-gradient(
-      135deg,
-      #123e6d,
-      #09294d
-    );
-
-  box-shadow:
-
-    0 10px 25px
-    rgba(7,27,60,.18);
-
-}
-
-
-/* WhatsApp active */
-
-.private.sending{
-
-  background:
-
-    linear-gradient(
-      135deg,
-      #159447,
-      #087a37
-    );
-
-  box-shadow:
-
-    0 12px 28px
-    rgba(20,150,75,.28);
-
-  pointer-events:none;
-
+    rgba(39,112,215,.09);
 }
 
 
@@ -1219,105 +1019,93 @@ textarea:focus{
    ========================================================= */
 
 .brand-footer{
-
   width:100%;
 
+  margin-top:auto;
+
+  padding:
+    34px
+    0
+    max(14px,env(safe-area-inset-bottom));
+
   display:flex;
-
   flex-direction:column;
-
   align-items:center;
 
-  justify-content:center;
-
-  margin-top:32px;
-
-  padding-top:21px;
-
-  border-top:
-    1px solid
-    rgba(7,27,60,.12);
-
+  text-align:center;
 }
 
 
-.brand-mini-line{
+.brand-line{
+  width:min(330px,72%);
 
-  width:
-    clamp(90px,25vw,150px);
+  height:1px;
 
-  height:3px;
-
-  margin-bottom:14px;
-
-  border-radius:20px;
+  margin-bottom:17px;
 
   background:
-
     linear-gradient(
       90deg,
       transparent,
-      var(--gold),
-      var(--blue),
+      #d18b00 25%,
+      #16457d 50%,
+      #d18b00 75%,
       transparent
     );
-
 }
 
 
 .smart-review{
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
 
   font-size:
-    clamp(29px,8vw,44px);
-
-  line-height:1;
+    clamp(27px,7vw,40px);
 
   font-weight:850;
 
-  letter-spacing:-1.2px;
+  letter-spacing:
+    -.7px;
+
+  line-height:1;
 
   background:
-
     linear-gradient(
-      110deg,
-      #a86c08 0%,
-      #e3a51e 20%,
-      #f3f5f8 43%,
-      #b9c3d0 58%,
-      #123e72 78%,
-      #061b3a 100%
+      100deg,
+      #b87500 0%,
+      #e7b84b 22%,
+      #183d6b 48%,
+      #9fa9b5 68%,
+      #c48712 88%,
+      #18385e 100%
     );
 
   -webkit-background-clip:text;
   background-clip:text;
 
-  color:transparent;
+  -webkit-text-fill-color:transparent;
 
-  filter:
-
-    drop-shadow(
-      0 4px 8px
-      rgba(7,27,60,.12)
-    );
-
+  text-shadow:
+    0 8px 25px rgba(18,52,88,.08);
 }
 
 
 .smart-review-sub{
+  margin-top:9px;
 
-  margin-top:7px;
-
-  color:#6b788a;
+  color:#718096;
 
   font-size:
     clamp(10px,2.8vw,13px);
 
-  font-weight:750;
+  font-weight:700;
 
-  letter-spacing:2px;
+  letter-spacing:1.8px;
 
   text-transform:uppercase;
-
 }
 
 
@@ -1326,18 +1114,12 @@ textarea:focus{
    ========================================================= */
 
 .error{
-
-  color:#d83b3b !important;
-
-  font-weight:700;
-
+  color:#d83a3a;
 }
 
 
 .hidden{
-
   display:none !important;
-
 }
 
 
@@ -1345,30 +1127,20 @@ textarea:focus{
    LOADING
    ========================================================= */
 
-.loading{
-
-  color:#9db0c9;
-
-}
-
-
 .loading-dot{
-
   display:inline-block;
 
   width:7px;
   height:7px;
 
-  margin:0 3px;
-
   border-radius:50%;
 
-  background:#d99213;
+  background:#2165d7;
+
+  margin:0 3px;
 
   animation:
-    loadingPulse 1s
-    infinite ease-in-out;
-
+    loadingPulse 1s infinite ease-in-out;
 }
 
 
@@ -1376,8 +1148,9 @@ textarea:focus{
   animation-delay:.15s;
 }
 
+
 .loading-dot:nth-child(3){
-  animation-delay:.30s;
+  animation-delay:.3s;
 }
 
 
@@ -1385,7 +1158,7 @@ textarea:focus{
 
   0%,80%,100%{
     opacity:.25;
-    transform:scale(.7);
+    transform:scale(.75);
   }
 
   40%{
@@ -1403,89 +1176,49 @@ textarea:focus{
 @media(max-width:390px){
 
   .hero{
-
-    min-height:355px;
-
-    padding-left:15px;
-    padding-right:15px;
-
-  }
-
-
-  .hero-title{
-
-    font-size:21px;
-
-  }
-
-
-  .hero-rating{
-
-    margin-top:22px;
-
-  }
-
-
-  .content{
+    min-height:45vh;
+    min-height:45dvh;
 
     padding-left:16px;
     padding-right:16px;
-
   }
 
-
-  .logo-frame{
-
-    width:145px;
-    height:145px;
-
+  .google-mark{
+    width:92px;
+    height:92px;
   }
 
-
-  .client-logo{
-
-    width:105px;
-    height:105px;
-
-  }
-
-
-  .star{
-
+  .google-g{
     width:56px;
-    height:63px;
+    height:56px;
 
-    font-size:54px;
+    -webkit-mask:
+      radial-gradient(
+        circle,
+        transparent 0 20px,
+        #000 21px
+      );
 
+    mask:
+      radial-gradient(
+        circle,
+        transparent 0 20px,
+        #000 21px
+      );
   }
 
-}
-
-
-/* =========================================================
-   TALL PHONES
-   ========================================================= */
-
-@media(height >= 800px){
-
-  .hero{
-
-    min-height:425px;
-
+  .hero-title{
+    font-size:25px;
   }
 
+  .business-logo{
+    width:88px;
+    height:88px;
+  }
 
   .content{
-
-    margin-top:-25px;
-
-  }
-
-
-  .client-brand{
-
-    margin-top:-5px;
-
+    padding-left:16px;
+    padding-right:16px;
   }
 
 }
@@ -1495,29 +1228,26 @@ textarea:focus{
    TABLETS / DESKTOP
    ========================================================= */
 
-@media(width >= 700px){
+@media(min-width:700px){
 
   .hero{
+    min-height:48vh;
+    min-height:48dvh;
 
-    min-height:500px;
-
+    padding-top:55px;
   }
 
-
   .content{
-
-    margin-top:-35px;
+    min-height:52vh;
+    min-height:52dvh;
 
     padding-left:40px;
     padding-right:40px;
-
   }
 
-
-  .client-brand{
-
-    margin-top:-5px;
-
+  .business-logo{
+    width:115px;
+    height:115px;
   }
 
 }
@@ -1532,13 +1262,9 @@ textarea:focus{
   *,
   *::before,
   *::after{
-
     animation-duration:.01ms !important;
-
     animation-iteration-count:1 !important;
-
     transition-duration:.01ms !important;
-
   }
 
 }
@@ -1553,56 +1279,48 @@ textarea:focus{
 
 
   <!-- =====================================================
-       NAVY CARD HEADER
+       NAVY GOOGLE HEADER
        ===================================================== -->
 
   <section class="hero">
 
 
-    <!-- GOOGLE -->
-
     <div class="google-mark">
 
-      <div class="google-letter">
-        G
-      </div>
+      <div class="google-g"></div>
 
     </div>
 
-
-    <!-- TITLE -->
 
     <h1 class="hero-title">
       LAISSEZ-NOUS VOTRE AVIS SUR GOOGLE
     </h1>
 
 
-    <!-- STARS -->
+    <div class="hero-stars">
 
-    <div class="hero-rating">
+      <span class="hero-line"></span>
 
-      <div class="rating-line"></div>
+      <span class="hero-star">★</span>
+      <span class="hero-star">★</span>
+      <span class="hero-star">★</span>
+      <span class="hero-star">★</span>
+      <span class="hero-star">★</span>
 
-      <div class="hero-stars">
-
-        <span class="hero-star">★</span>
-        <span class="hero-star">★</span>
-        <span class="hero-star">★</span>
-        <span class="hero-star">★</span>
-        <span class="hero-star">★</span>
-
-      </div>
-
-      <div class="rating-line right"></div>
+      <span class="hero-line right"></span>
 
     </div>
 
 
-    <!-- BLUE / WHITE WAVE -->
+    <!-- CARD-STYLE WAVE -->
 
-    <div class="wave-blue"></div>
+    <div class="wave">
 
-    <div class="wave"></div>
+      <div class="wave-blue"></div>
+
+      <div class="wave-white"></div>
+
+    </div>
 
   </section>
 
@@ -1615,61 +1333,53 @@ textarea:focus{
   <main class="content">
 
 
-    <!-- ===================================================
-         CLIENT BRAND
-         =================================================== -->
+    <!-- BUSINESS LOGO -->
 
-    <section class="client-brand">
-
-
-      <div class="logo-frame">
-
-        <div
-          class="client-logo"
-          id="logo"
-          aria-label="Business logo"
-        >
-          🍽️
-        </div>
-
-      </div>
+    <div
+      class="business-logo"
+      id="logo"
+      aria-label="Business logo"
+    >
+      🍽️
+    </div>
 
 
-      <h2
-        class="business-name"
-        id="businessName"
-      >
-        Loading...
-      </h2>
+    <!-- BUSINESS NAME -->
+
+    <h2
+      class="business-name"
+      id="businessName"
+    >
+      Loading...
+    </h2>
 
 
-      <p
-        class="subtitle"
-        id="subtitle"
-      >
+    <!-- SUBTITLE -->
 
-        <span class="loading-dot"></span>
-        <span class="loading-dot"></span>
-        <span class="loading-dot"></span>
-
-      </p>
-
-    </section>
+    <p
+      class="subtitle"
+      id="subtitle"
+    >
+      <span class="loading-dot"></span>
+      <span class="loading-dot"></span>
+      <span class="loading-dot"></span>
+    </p>
 
 
 
     <!-- ===================================================
-         FEEDBACK
+         FEEDBACK AREA
          =================================================== -->
 
     <section
       id="feedbackArea"
-      class="feedback-area hidden"
+      class="hidden"
+      style="width:100%;max-width:650px;"
     >
 
 
       <div class="rating-question">
-        Comment avez-vous vécu votre expérience ?
+        How was your experience?
       </div>
 
 
@@ -1679,46 +1389,42 @@ textarea:focus{
         class="stars"
         id="stars"
         role="radiogroup"
-        aria-label="Évaluez votre expérience"
+        aria-label="Rate your experience"
       >
 
         <button
           type="button"
           class="star"
           data-rating="1"
-          aria-label="1 étoile"
+          aria-label="1 star"
         >★</button>
-
 
         <button
           type="button"
           class="star"
           data-rating="2"
-          aria-label="2 étoiles"
+          aria-label="2 stars"
         >★</button>
-
 
         <button
           type="button"
           class="star"
           data-rating="3"
-          aria-label="3 étoiles"
+          aria-label="3 stars"
         >★</button>
-
 
         <button
           type="button"
           class="star"
           data-rating="4"
-          aria-label="4 étoiles"
+          aria-label="4 stars"
         >★</button>
-
 
         <button
           type="button"
           class="star"
           data-rating="5"
-          aria-label="5 étoiles"
+          aria-label="5 stars"
         >★</button>
 
       </div>
@@ -1730,7 +1436,7 @@ textarea:focus{
         class="rating-text"
         id="ratingText"
       >
-        Touchez une étoile pour commencer
+        Tap a star to rate your experience
       </div>
 
 
@@ -1744,32 +1450,33 @@ textarea:focus{
         id="message"
       >
 
-
         <h2 id="messageTitle"></h2>
-
 
         <p id="messageText"></p>
 
 
 
-        <!-- ===============================================
-             GOOGLE
-             =============================================== -->
+        <!-- GOOGLE -->
 
-        <div
-          id="googleArea"
-          class="hidden"
-        >
+        <div id="googleArea">
 
           <a
             id="googleButton"
-            class="button google"
+            class="google"
             href="#"
             target="_blank"
             rel="noopener"
           >
 
-            ⭐ Écrire mon avis sur Google
+            <span class="google-icon">
+
+              <span class="google-g"></span>
+
+            </span>
+
+            <span>
+              Leave an honest Google review
+            </span>
 
           </a>
 
@@ -1777,66 +1484,53 @@ textarea:focus{
 
 
 
-        <!-- ===============================================
-             PRIVATE FEEDBACK
-             =============================================== -->
+        <!-- PRIVATE FEEDBACK -->
 
         <div
           id="privateArea"
           class="hidden"
         >
 
-
           <textarea
             id="feedbackMessage"
-            placeholder="Dites-nous ce qui s'est passé ou comment nous pouvons nous améliorer..."
-            aria-label="Votre commentaire privé"
+            placeholder="Tell us what went wrong or how we can improve..."
+            aria-label="Private feedback"
           ></textarea>
 
 
           <button
             type="button"
             id="sendPrivate"
-            class="button private"
+            class="private"
           >
-
-            💬 Envoyer mon retour
-
+            💬 Send privately
           </button>
-
 
         </div>
 
-
       </section>
-
 
     </section>
 
 
 
-    <!-- ===================================================
+    <!-- =====================================================
          SMART REVIEW
-         =================================================== -->
+         ===================================================== -->
 
     <footer class="brand-footer">
 
-
-      <div class="brand-mini-line"></div>
-
+      <div class="brand-line"></div>
 
       <div class="smart-review">
         Smart Review
       </div>
 
-
       <div class="smart-review-sub">
         Better feedback. Better businesses.
       </div>
 
-
     </footer>
-
 
   </main>
 
@@ -1852,7 +1546,6 @@ textarea:focus{
 
 const SUPABASE_URL =
   "https://mcujzqtfbwjttjieagas.supabase.co";
-
 
 const SUPABASE_KEY =
   "sb_publishable_4eVDX1IKZj7ClhpcjfiQFQ_hQ5Hr81k";
@@ -1887,7 +1580,6 @@ async function supabaseGet(endpoint){
         method:"GET",
 
         headers:{
-
           "apikey":
             SUPABASE_KEY,
 
@@ -1896,9 +1588,7 @@ async function supabaseGet(endpoint){
 
           "Content-Type":
             "application/json"
-
         }
-
       }
     );
 
@@ -1955,21 +1645,15 @@ async function loadCard(){
     );
 
 
-  /* =======================================================
-     NO CARD
-     ======================================================= */
-
   if(!cardCode){
 
     businessName.textContent =
-      "Carte introuvable";
-
+      "Card not found";
 
     subtitle.innerHTML =
       `<span class="error">
-        Aucun code de carte n'a été fourni.
+        No card code was provided.
       </span>`;
-
 
     return;
 
@@ -1977,7 +1661,6 @@ async function loadCard(){
 
 
   try{
-
 
     /* =====================================================
        FIND CARD
@@ -2031,7 +1714,7 @@ async function loadCard(){
 
     businessName.textContent =
       currentBusiness.name ||
-      "Votre établissement";
+      "Your Business";
 
 
     document.title =
@@ -2039,16 +1722,14 @@ async function loadCard(){
 
 
     subtitle.textContent =
-      "Votre opinion compte pour nous.";
+      "Your opinion matters to us.";
 
 
     /* =====================================================
-       CLIENT LOGO
+       BUSINESS LOGO
        ===================================================== */
 
-    if(
-      currentBusiness.logo_url
-    ){
+    if(currentBusiness.logo_url){
 
       const logo =
         document.getElementById(
@@ -2056,8 +1737,7 @@ async function loadCard(){
         );
 
 
-      logo.innerHTML =
-        "";
+      logo.innerHTML = "";
 
 
       const image =
@@ -2072,7 +1752,7 @@ async function loadCard(){
 
       image.alt =
         currentBusiness.name ||
-        "Logo";
+        "Business logo";
 
 
       image.onerror =
@@ -2092,7 +1772,7 @@ async function loadCard(){
 
 
     /* =====================================================
-       GOOGLE REVIEW
+       GOOGLE REVIEW LINK
        ===================================================== */
 
     const googleButton =
@@ -2107,7 +1787,7 @@ async function loadCard(){
 
 
     /* =====================================================
-       SHOW
+       SHOW PAGE
        ===================================================== */
 
     feedbackArea
@@ -2119,18 +1799,16 @@ async function loadCard(){
 
   catch(error){
 
-    console.error(
-      error
-    );
+    console.error(error);
 
 
     businessName.textContent =
-      "Carte introuvable";
+      "Card not found";
 
 
     subtitle.innerHTML =
       `<span class="error">
-        Cette carte est inactive ou n'existe pas.
+        This card is inactive or does not exist.
       </span>`;
 
   }
@@ -2139,7 +1817,7 @@ async function loadCard(){
 
 
 /* =========================================================
-   STAR ELEMENTS
+   STAR SYSTEM
    ========================================================= */
 
 const stars =
@@ -2201,66 +1879,55 @@ stars.forEach(
       "click",
       () => {
 
-
         selectedRating =
           Number(
             star.dataset.rating
           );
 
 
-        /* =================================================
-           HIGHLIGHT
-           ================================================= */
+        /* HIGHLIGHT */
 
         stars.forEach(
           s => {
 
             s.classList.toggle(
               "active",
-
               Number(
                 s.dataset.rating
               ) <= selectedRating
-
             );
 
           }
         );
 
 
-        /* =================================================
-           RATING LABEL
-           ================================================= */
+        /* RATING TEXT */
 
         const ratingLabels = {
 
           1:
-            "Nous aimerions faire mieux.",
+            "We're sorry your experience wasn't better.",
 
           2:
-            "Merci de nous l'avoir signalé.",
+            "Thanks for telling us.",
 
           3:
-            "Merci pour votre retour.",
+            "Thanks for your feedback.",
 
           4:
-            "Ravi de l'entendre !",
+            "Great to hear!",
 
           5:
-            "Incroyable ! Merci beaucoup !"
+            "Amazing! We're thrilled!"
 
         };
 
 
         ratingText.textContent =
-          ratingLabels[
-            selectedRating
-          ];
+          ratingLabels[selectedRating];
 
 
-        /* =================================================
-           REPLAY MESSAGE ANIMATION
-           ================================================= */
+        /* REPLAY MESSAGE ANIMATION */
 
         message.classList.remove(
           "show"
@@ -2270,14 +1937,8 @@ stars.forEach(
         requestAnimationFrame(
           () => {
 
-            requestAnimationFrame(
-              () => {
-
-                message.classList.add(
-                  "show"
-                );
-
-              }
+            message.classList.add(
+              "show"
             );
 
           }
@@ -2285,91 +1946,60 @@ stars.forEach(
 
 
         /* =================================================
-           1–2 STARS
+           HONEST REVIEW FLOW
            ================================================= */
 
-        if(
-          selectedRating <= 2
-        ){
+        googleArea
+          .classList
+          .remove("hidden");
+
+
+        privateArea
+          .classList
+          .remove("hidden");
+
+
+        if(selectedRating <= 2){
 
           messageTitle.textContent =
-            "Nous sommes désolés pour votre expérience.";
+            "We're sorry about your experience.";
 
 
           messageText.textContent =
-            "Dites-nous ce qui s'est passé. Votre retour nous permet de nous améliorer.";
-
-
-          googleArea
-            .classList
-            .add(
-              "hidden"
-            );
-
-
-          privateArea
-            .classList
-            .remove(
-              "hidden"
-            );
-
-
-          feedbackMessage.value =
-            "";
-
+            "Your honest feedback helps us improve. You can share it privately with us or leave an honest Google review.";
 
         }
 
+        else if(selectedRating === 3){
 
-        /* =================================================
-           3–5 STARS
-           ================================================= */
-
-        else{
-
-
-          privateArea
-            .classList
-            .add(
-              "hidden"
-            );
-
-
-          googleArea
-            .classList
-            .remove(
-              "hidden"
-            );
-
-
-          if(
-            selectedRating === 3
-          ){
-
-            messageTitle.textContent =
-              "Merci pour votre retour !";
-
-          }
-
-          else if(
-            selectedRating === 4
-          ){
-
-            messageTitle.textContent =
-              "Nous sommes ravis !";
-
-          }
-
-          else{
-
-            messageTitle.textContent =
-              "Merci ! Nous sommes ravis que vous ayez adoré ! ❤️";
-
-          }
+          messageTitle.textContent =
+            "Thanks for your feedback!";
 
 
           messageText.textContent =
-            "Votre avis peut aider d'autres clients. Nous apprécierions beaucoup votre avis sur Google.";
+            "We appreciate your honest opinion. You can share your experience on Google or tell us privately.";
+
+        }
+
+        else if(selectedRating === 4){
+
+          messageTitle.textContent =
+            "We're glad you enjoyed it!";
+
+
+          messageText.textContent =
+            "Thank you for your honest feedback. We'd love to hear your experience on Google.";
+
+        }
+
+        else{
+
+          messageTitle.textContent =
+            "We're thrilled you loved it! ❤️";
+
+
+          messageText.textContent =
+            "Thank you! If you'd like, share your honest experience with others on Google.";
 
         }
 
@@ -2381,7 +2011,7 @@ stars.forEach(
 
 
 /* =========================================================
-   PRIVATE WHATSAPP
+   PRIVATE WHATSAPP FEEDBACK
    ========================================================= */
 
 document
@@ -2391,7 +2021,6 @@ document
   .addEventListener(
     "click",
     () => {
-
 
       const button =
         document.getElementById(
@@ -2405,16 +2034,10 @@ document
           .trim();
 
 
-      /* =====================================================
-         CHECK BUSINESS
-         ===================================================== */
-
-      if(
-        !currentBusiness
-      ){
+      if(!currentBusiness){
 
         alert(
-          "Les informations de l'établissement sont indisponibles."
+          "Business information is unavailable."
         );
 
         return;
@@ -2422,26 +2045,16 @@ document
       }
 
 
-      /* =====================================================
-         CHECK WHATSAPP
-         ===================================================== */
-
-      if(
-        !currentBusiness.whatsapp_number
-      ){
+      if(!currentBusiness.whatsapp_number){
 
         alert(
-          "Le numéro WhatsApp n'est pas configuré."
+          "WhatsApp contact is not configured for this business."
         );
 
         return;
 
       }
 
-
-      /* =====================================================
-         CLEAN NUMBER
-         ===================================================== */
 
       let number =
         String(
@@ -2453,9 +2066,7 @@ document
         );
 
 
-      if(
-        number.startsWith("0")
-      ){
+      if(number.startsWith("0")){
 
         number =
           "213" +
@@ -2464,50 +2075,27 @@ document
       }
 
 
-      /* =====================================================
-         BUILD MESSAGE
-         ===================================================== */
-
       const businessName =
         currentBusiness.name ||
         "Business";
 
 
       let whatsappMessage =
-`🔒 Retour privé — ${businessName}
+`🔒 Private feedback — ${businessName}
 
-⭐ Note : ${selectedRating}/5`;
+⭐ Rating: ${selectedRating}/5`;
 
 
-      if(
-        text.length > 0
-      ){
+      if(text.length > 0){
 
         whatsappMessage +=
 `
 
-💬 Commentaire du client :
+💬 Customer feedback:
 ${text}`;
 
       }
 
-
-      /* =====================================================
-         BUTTON ANIMATION
-         ===================================================== */
-
-      button.classList.add(
-        "sending"
-      );
-
-
-      button.innerHTML =
-        "✓ Ouverture de WhatsApp…";
-
-
-      /* =====================================================
-         URL
-         ===================================================== */
 
       const encodedMessage =
         encodeURIComponent(
@@ -2519,9 +2107,23 @@ ${text}`;
         `https://wa.me/${number}?text=${encodedMessage}`;
 
 
-      /* =====================================================
-         OPEN
-         ===================================================== */
+      /* =================================================
+         ACTIVE BUTTON STATE
+         ================================================= */
+
+      button.disabled = true;
+
+      button.textContent =
+        "✓ Opening WhatsApp…";
+
+
+      button.style.background =
+        "linear-gradient(135deg,#168b55,#0d6f43)";
+
+
+      button.style.boxShadow =
+        "0 12px 28px rgba(18,126,78,.24)";
+
 
       setTimeout(
         () => {
