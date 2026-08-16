@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="fr">
-
 <head>
 
 <meta charset="UTF-8">
@@ -10,19 +9,38 @@
   content="width=device-width, initial-scale=1.0, viewport-fit=cover"
 >
 
-<meta
-  name="theme-color"
-  content="#061a36"
->
-
 <title>Smart Review</title>
-
 
 <style>
 
 /* =========================================================
    SMART REVIEW
-   DIGITAL TWIN OF THE PHYSICAL NFC / QR CARD
+   CARD-MATCHED UI
+   ========================================================= */
+
+:root{
+
+  --navy:#061b3a;
+  --navy-2:#08264d;
+  --navy-3:#0b315f;
+
+  --blue:#165dff;
+  --blue-light:#2675ff;
+
+  --gold:#d99213;
+  --gold-light:#ffca43;
+  --gold-dark:#a96600;
+
+  --white:#ffffff;
+  --ink:#071b3c;
+
+  --muted:#60708a;
+
+}
+
+
+/* =========================================================
+   RESET
    ========================================================= */
 
 *{
@@ -31,17 +49,17 @@
   padding:0;
 }
 
-
-html{
+html,
+body{
   width:100%;
   min-height:100%;
-  background:#ffffff;
 }
 
+html{
+  background:#061b3a;
+}
 
 body{
-
-  width:100%;
 
   min-height:100vh;
   min-height:100dvh;
@@ -49,43 +67,21 @@ body{
   font-family:
     -apple-system,
     BlinkMacSystemFont,
-    "SF Pro Display",
-    "SF Pro Text",
     "Segoe UI",
     Roboto,
+    Helvetica,
     Arial,
     sans-serif;
-
-  color:#071b38;
-
-  background:#ffffff;
-
-  overflow-x:hidden;
 
   -webkit-font-smoothing:antialiased;
   text-rendering:optimizeLegibility;
 
-  /* Prevent browser text-size weirdness */
-  -webkit-text-size-adjust:100%;
-  text-size-adjust:100%;
-}
+  background:#fff;
 
+  color:var(--ink);
 
-button,
-textarea,
-a{
-  font:inherit;
-}
+  overflow-x:hidden;
 
-
-button{
-
-  -webkit-tap-highlight-color:transparent;
-
-  -webkit-touch-callout:none;
-
-  user-select:none;
-  -webkit-user-select:none;
 }
 
 
@@ -96,75 +92,73 @@ button{
 .app{
 
   width:100%;
-
   min-height:100vh;
   min-height:100dvh;
 
   position:relative;
 
-  display:flex;
-  flex-direction:column;
-
   overflow:hidden;
 
-  background:#ffffff;
+  background:#fff;
+
 }
 
 
 /* =========================================================
-   NAVY TOP
+   NAVY HEADER
    ========================================================= */
 
-.navy-zone{
-
-  width:100%;
-
-  min-height:54%;
+.hero{
 
   position:relative;
 
-  display:flex;
-  flex-direction:column;
-  align-items:center;
+  width:100%;
+
+  min-height:
+    clamp(380px,48vh,520px);
 
   background:
 
     radial-gradient(
-      circle at 50% 5%,
-      rgba(30,89,150,.32),
-      transparent 38%
+      circle at 50% 12%,
+      rgba(255,255,255,.08),
+      transparent 28%
     ),
 
     radial-gradient(
-      circle at 15% 70%,
-      rgba(0,119,255,.08),
-      transparent 35%
+      circle at 50% 100%,
+      rgba(32,102,210,.25),
+      transparent 55%
     ),
 
     linear-gradient(
       180deg,
-      #061a36 0%,
-      #071d3b 55%,
-      #061832 100%
+      #061b3a 0%,
+      #08264d 100%
     );
 
   color:white;
 
+  display:flex;
+
+  flex-direction:column;
+
+  align-items:center;
+
+  text-align:center;
+
   padding:
 
-    max(28px, env(safe-area-inset-top))
+    max(24px,env(safe-area-inset-top))
     20px
-    85px
-    20px;
+    90px;
 
-  display:flex;
-  justify-content:center;
 }
 
 
 /* subtle premium texture */
 
-.navy-zone::before{
+.hero::before{
 
   content:"";
 
@@ -172,33 +166,163 @@ button{
 
   inset:0;
 
-  opacity:.20;
-
   pointer-events:none;
+
+  opacity:.18;
 
   background-image:
 
     radial-gradient(
-      rgba(255,255,255,.18) 0.6px,
-      transparent .6px
+      rgba(255,255,255,.14) .7px,
+      transparent .7px
     );
 
-  background-size:18px 18px;
+  background-size:13px 13px;
 
   mask-image:
     linear-gradient(
       to bottom,
       black,
-      transparent 75%
+      transparent 80%
     );
+
 }
 
 
 /* =========================================================
-   GOOGLE HEADER
+   GOOGLE BADGE
    ========================================================= */
 
-.google-header{
+.google-mark{
+
+  position:relative;
+
+  z-index:2;
+
+  width:
+    clamp(82px,22vw,112px);
+
+  height:
+    clamp(82px,22vw,112px);
+
+  border-radius:50%;
+
+  background:#fff;
+
+  display:flex;
+
+  align-items:center;
+  justify-content:center;
+
+  margin-top:4px;
+
+  margin-bottom:18px;
+
+  box-shadow:
+
+    0 12px 30px
+    rgba(0,0,0,.28),
+
+    0 0 0 3px
+    rgba(217,146,19,.9),
+
+    0 0 0 5px
+    rgba(255,202,67,.35);
+
+  animation:
+    googleEnter .65s
+    cubic-bezier(.2,.8,.2,1)
+    both;
+
+}
+
+
+.google-letter{
+
+  font-family:
+    Arial,
+    sans-serif;
+
+  font-size:
+    clamp(50px,13vw,70px);
+
+  font-weight:800;
+
+  line-height:1;
+
+  background:
+
+    conic-gradient(
+      from -35deg,
+      #4285f4 0deg 80deg,
+      #34a853 80deg 170deg,
+      #fbbc05 170deg 245deg,
+      #ea4335 245deg 320deg,
+      #4285f4 320deg 360deg
+    );
+
+  -webkit-background-clip:text;
+  background-clip:text;
+
+  color:transparent;
+
+}
+
+
+@keyframes googleEnter{
+
+  from{
+    opacity:0;
+    transform:
+      translateY(-18px)
+      scale(.82);
+  }
+
+  to{
+    opacity:1;
+    transform:
+      translateY(0)
+      scale(1);
+  }
+
+}
+
+
+/* =========================================================
+   HEADER TITLE
+   ========================================================= */
+
+.hero-title{
+
+  position:relative;
+
+  z-index:2;
+
+  font-size:
+    clamp(22px,6vw,34px);
+
+  line-height:1.12;
+
+  font-weight:850;
+
+  letter-spacing:-.7px;
+
+  max-width:900px;
+
+  text-transform:uppercase;
+
+  text-shadow:
+    0 3px 15px
+    rgba(0,0,0,.28);
+
+}
+
+
+/* =========================================================
+   GOLD DIVIDER + STARS
+   ========================================================= */
+
+.hero-rating{
 
   position:relative;
 
@@ -206,187 +330,87 @@ button{
 
   width:100%;
 
-  max-width:700px;
-
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-
-  text-align:center;
-
-  animation:
-    headerIn .7s cubic-bezier(.2,.8,.2,1) both;
-}
-
-
-@keyframes headerIn{
-
-  from{
-    opacity:0;
-    transform:translateY(-18px);
-  }
-
-  to{
-    opacity:1;
-    transform:translateY(0);
-  }
-
-}
-
-
-/* =========================================================
-   GOOGLE LOGO
-   ========================================================= */
-
-.google-logo{
-
-  width:92px;
-  height:92px;
-
-  border-radius:50%;
-
-  background:#ffffff;
-
-  display:flex;
-  align-items:center;
-  justify-content:center;
-
-  margin-bottom:18px;
-
-  position:relative;
-
-  box-shadow:
-
-    0 12px 35px rgba(0,0,0,.28),
-
-    0 0 0 2px
-    rgba(241,165,28,.95),
-
-    0 0 0 5px
-    rgba(255,255,255,.06);
-
-  overflow:hidden;
-}
-
-
-.google-g{
-
-  font-family:
-    Arial,
-    sans-serif;
-
-  font-size:68px;
-
-  line-height:1;
-
-  font-weight:700;
-
-  background:
-
-    conic-gradient(
-      from -45deg,
-      #4285f4 0deg 85deg,
-      #34a853 85deg 170deg,
-      #fbbc05 170deg 245deg,
-      #ea4335 245deg 330deg,
-      #4285f4 330deg 360deg
-    );
-
-  -webkit-background-clip:text;
-  background-clip:text;
-
-  color:transparent;
-}
-
-
-/* =========================================================
-   MAIN CARD TITLE
-   ========================================================= */
-
-.google-title{
-
-  font-size:
-    clamp(24px,6vw,42px);
-
-  line-height:1.08;
-
-  font-weight:850;
-
-  letter-spacing:-.8px;
-
-  color:#ffffff;
-
-  text-transform:uppercase;
-
-  max-width:720px;
-
-  text-shadow:
-    0 3px 20px rgba(0,0,0,.18);
-
-}
-
-
-/* =========================================================
-   GOLD STARS DECORATION
-   ========================================================= */
-
-.decor-stars{
-
   display:flex;
 
   align-items:center;
+
   justify-content:center;
 
   gap:
-    clamp(4px,2vw,12px);
+    clamp(8px,2vw,22px);
 
-  margin-top:22px;
+  margin-top:27px;
 
-  width:100%;
 }
 
 
-.decor-line{
-
-  height:1px;
+.rating-line{
 
   width:
-    clamp(25px,10vw,90px);
+    clamp(30px,13vw,100px);
+
+  height:2px;
 
   background:
     linear-gradient(
       90deg,
       transparent,
-      #1e8fff
+      #2681ff
     );
+
+  opacity:.95;
+
 }
 
 
-.decor-line.right{
+.rating-line.right{
 
   background:
     linear-gradient(
       90deg,
-      #1e8fff,
+      #2681ff,
       transparent
     );
+
 }
 
 
-.decor-star{
+.hero-stars{
 
-  color:#f6b62b;
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  gap:
+    clamp(3px,1vw,10px);
+
+}
+
+
+.hero-star{
 
   font-size:
-    clamp(26px,7vw,43px);
+    clamp(30px,8vw,53px);
 
   line-height:1;
 
-  filter:
-    drop-shadow(
-      0 4px 8px
-      rgba(246,182,43,.25)
-    );
+  color:var(--gold-light);
+
+  text-shadow:
+
+    0 3px 4px
+    rgba(0,0,0,.45),
+
+    0 0 12px
+    rgba(255,190,45,.22);
+
+  transform:
+
+    perspective(300px)
+    rotateX(7deg);
+
 }
 
 
@@ -398,84 +422,85 @@ button{
 
   position:absolute;
 
-  z-index:2;
+  z-index:5;
 
   left:-5%;
 
+  bottom:-1px;
+
   width:110%;
 
-  height:100px;
+  height:105px;
 
-  bottom:-48px;
+  background:#fff;
 
-  background:#ffffff;
+  clip-path:
 
-  border-top:
-    6px solid #1769ff;
+    ellipse(
+      72% 58%
+      at 50% 100%
+    );
 
-  border-radius:
-    50% 50% 0 0 /
-    100% 100% 0 0;
-
-  box-shadow:
-    0 -5px 18px
-    rgba(23,105,255,.12);
 }
 
 
-/* gold inner line */
-
-.wave::after{
-
-  content:"";
+.wave-blue{
 
   position:absolute;
 
-  top:-10px;
+  z-index:4;
 
-  left:0;
+  left:-5%;
 
-  width:100%;
+  bottom:62px;
 
-  height:1px;
+  width:110%;
+
+  height:58px;
 
   background:
+
     linear-gradient(
-      90deg,
-      transparent 15%,
-      rgba(221,145,15,.8) 50%,
-      transparent 85%
+      180deg,
+      #0c63ff,
+      #164fd1
     );
+
+  clip-path:
+
+    ellipse(
+      68% 55%
+      at 50% 100%
+    );
+
 }
 
 
 /* =========================================================
-   WHITE EXPERIENCE ZONE
+   MAIN WHITE AREA
    ========================================================= */
 
-.white-zone{
-
-  flex:1;
-
-  width:100%;
-
-  min-height:46%;
+.content{
 
   position:relative;
 
-  background:
+  z-index:10;
 
-    radial-gradient(
-      circle at 50% 0%,
-      rgba(24,105,255,.045),
-      transparent 42%
-    ),
+  background:#fff;
 
-    linear-gradient(
-      180deg,
-      #ffffff 0%,
-      #f9fafc 100%
-    );
+  min-height:
+    calc(100vh - 430px);
+
+  min-height:
+    calc(100dvh - 430px);
+
+  margin-top:-18px;
+
+  padding:
+
+    0
+    22px
+    max(28px,env(safe-area-inset-bottom));
 
   display:flex;
 
@@ -483,20 +508,230 @@ button{
 
   align-items:center;
 
-  padding:
+}
 
-    48px
-    20px
-    max(22px,env(safe-area-inset-bottom));
+
+/* =========================================================
+   CLIENT LOGO AREA
+   ========================================================= */
+
+.client-brand{
+
+  width:100%;
+
+  display:flex;
+
+  flex-direction:column;
+
+  align-items:center;
+
+  justify-content:center;
+
+  margin-top:-10px;
+
+  position:relative;
+
+}
+
+
+/* corner frame */
+
+.logo-frame{
+
+  width:
+    clamp(155px,46vw,215px);
+
+  height:
+    clamp(155px,46vw,215px);
+
+  position:relative;
+
+  display:flex;
+
+  align-items:center;
+  justify-content:center;
+
+  margin-bottom:20px;
+
+}
+
+
+/* four gold corner pieces */
+
+.logo-frame::before,
+.logo-frame::after{
+
+  content:"";
+
+  position:absolute;
+
+  inset:0;
+
+  pointer-events:none;
+
+}
+
+
+.logo-frame::before{
+
+  background:
+
+    linear-gradient(
+      var(--gold),
+      var(--gold)
+    ) left top / 62px 4px no-repeat,
+
+    linear-gradient(
+      var(--gold),
+      var(--gold)
+    ) left top / 4px 62px no-repeat,
+
+    linear-gradient(
+      var(--gold),
+      var(--gold)
+    ) right top / 62px 4px no-repeat,
+
+    linear-gradient(
+      var(--gold),
+      var(--gold)
+    ) right top / 4px 62px no-repeat,
+
+    linear-gradient(
+      var(--gold),
+      var(--gold)
+    ) left bottom / 62px 4px no-repeat,
+
+    linear-gradient(
+      var(--gold),
+      var(--gold)
+    ) left bottom / 4px 62px no-repeat,
+
+    linear-gradient(
+      var(--gold),
+      var(--gold)
+    ) right bottom / 62px 4px no-repeat,
+
+    linear-gradient(
+      var(--gold),
+      var(--gold)
+    ) right bottom / 4px 62px no-repeat;
+
+}
+
+
+.logo-frame::after{
+
+  border-radius:24px;
+
+  box-shadow:
+    inset 0 0 0 1px
+    rgba(217,146,19,.04);
+
+}
+
+
+.client-logo{
+
+  width:
+    clamp(112px,34vw,160px);
+
+  height:
+    clamp(112px,34vw,160px);
+
+  border-radius:22px;
+
+  display:flex;
+
+  align-items:center;
+  justify-content:center;
+
+  overflow:hidden;
+
+  background:
+
+    linear-gradient(
+      145deg,
+      #fdfdfd,
+      #f3f5f8
+    );
+
+  border:
+    1px solid
+    rgba(7,27,60,.08);
+
+  box-shadow:
+
+    0 12px 30px
+    rgba(7,27,60,.10);
+
+  font-size:50px;
+
+  color:#0b315f;
+
+}
+
+
+.client-logo img{
+
+  width:100%;
+  height:100%;
+
+  object-fit:cover;
 
 }
 
 
 /* =========================================================
-   MAIN CONTENT
+   BUSINESS NAME
    ========================================================= */
 
-.content{
+.business-name{
+
+  font-size:
+    clamp(27px,7vw,40px);
+
+  line-height:1.08;
+
+  font-weight:850;
+
+  letter-spacing:-.9px;
+
+  color:var(--navy);
+
+  text-align:center;
+
+  max-width:900px;
+
+  overflow-wrap:anywhere;
+
+  margin-bottom:9px;
+
+}
+
+
+.subtitle{
+
+  color:#53657d;
+
+  font-size:
+    clamp(16px,4.3vw,20px);
+
+  font-weight:600;
+
+  text-align:center;
+
+  line-height:1.45;
+
+  margin-bottom:26px;
+
+}
+
+
+/* =========================================================
+   FEEDBACK AREA
+   ========================================================= */
+
+.feedback-area{
 
   width:100%;
 
@@ -510,157 +745,46 @@ button{
 
   text-align:center;
 
-  position:relative;
-
-  z-index:4;
-
-  margin-top:-10px;
-}
-
-
-/* =========================================================
-   BUSINESS LOGO
-   ========================================================= */
-
-.business-logo{
-
-  width:
-    clamp(105px,28vw,155px);
-
-  height:
-    clamp(105px,28vw,155px);
-
-  border-radius:
-    clamp(25px,7vw,38px);
-
-  background:
-
-    linear-gradient(
-      145deg,
-      #ffffff,
-      #f0f3f7
-    );
-
-  border:
-    2px solid
-    rgba(7,27,56,.10);
-
-  display:flex;
-
-  align-items:center;
-  justify-content:center;
-
-  overflow:hidden;
-
-  margin-bottom:18px;
-
-  box-shadow:
-
-    0 18px 40px
-    rgba(7,27,56,.14),
-
-    0 0 0 7px
-    rgba(23,105,255,.035);
-
   animation:
-    logoIn .65s .1s cubic-bezier(.2,.8,.2,1) both;
+    contentEnter .55s
+    cubic-bezier(.2,.8,.2,1)
+    both;
+
 }
 
 
-@keyframes logoIn{
+@keyframes contentEnter{
 
   from{
-
     opacity:0;
-
-    transform:
-      translateY(15px)
-      scale(.88);
-
+    transform:translateY(18px);
   }
 
   to{
-
     opacity:1;
-
-    transform:
-      translateY(0)
-      scale(1);
-
+    transform:translateY(0);
   }
 
 }
 
 
-.business-logo img{
-
-  width:100%;
-  height:100%;
-
-  object-fit:cover;
-}
-
-
 /* =========================================================
-   BUSINESS NAME
-   ========================================================= */
-
-.business-name{
-
-  color:#071b38;
-
-  font-size:
-    clamp(28px,7vw,46px);
-
-  line-height:1.08;
-
-  font-weight:850;
-
-  letter-spacing:-1px;
-
-  max-width:700px;
-
-  overflow-wrap:anywhere;
-
-  margin-bottom:7px;
-}
-
-
-/* =========================================================
-   SUBTITLE
-   ========================================================= */
-
-.subtitle{
-
-  color:#536277;
-
-  font-size:
-    clamp(16px,4vw,21px);
-
-  line-height:1.4;
-
-  max-width:600px;
-
-  margin-bottom:24px;
-}
-
-
-/* =========================================================
-   RATING QUESTION
+   QUESTION
    ========================================================= */
 
 .rating-question{
 
-  color:#071b38;
+  color:var(--navy);
 
   font-size:
-    clamp(20px,5vw,27px);
+    clamp(21px,5.5vw,29px);
 
-  font-weight:750;
+  font-weight:800;
 
-  margin-bottom:12px;
+  letter-spacing:-.4px;
 
-  letter-spacing:-.35px;
+  margin-bottom:16px;
+
 }
 
 
@@ -674,13 +798,15 @@ button{
 
   display:flex;
 
-  align-items:center;
   justify-content:center;
 
+  align-items:center;
+
   gap:
-    clamp(2px,1.8vw,12px);
+    clamp(2px,1.2vw,12px);
 
   margin-bottom:9px;
+
 }
 
 
@@ -697,16 +823,13 @@ button{
 
   box-shadow:none !important;
 
-  color:#cbd2db;
-
   width:
-    clamp(55px,15vw,92px);
+    clamp(52px,14vw,84px);
 
   height:
-    clamp(63px,17vw,100px);
+    clamp(58px,15vw,90px);
 
   padding:0;
-
   margin:0;
 
   display:flex;
@@ -715,35 +838,39 @@ button{
   justify-content:center;
 
   font-size:
-    clamp(52px,15vw,86px);
+    clamp(52px,14vw,82px);
 
   line-height:1;
 
-  cursor:pointer;
+  color:#cbd1d9;
 
-  border-radius:18px;
+  cursor:pointer;
 
   position:relative;
 
-  transition:
+  border-radius:0;
 
-    color .18s ease,
+  user-select:none;
 
-    transform .18s
-      cubic-bezier(.2,.8,.2,1),
-
-    filter .18s ease;
+  -webkit-user-select:none;
 
   -webkit-tap-highlight-color:transparent;
 
   touch-action:manipulation;
 
-  user-select:none;
-  -webkit-user-select:none;
+  transition:
+
+    color .18s ease,
+
+    filter .18s ease,
+
+    transform .14s
+    cubic-bezier(.2,.9,.25,1.4);
+
 }
 
 
-/* Kill mobile blue tap box */
+/* absolutely kill mobile focus box */
 
 .star:focus,
 .star:focus-visible,
@@ -751,11 +878,10 @@ button{
 
   outline:none !important;
 
-  border:none !important;
-
   background:transparent !important;
 
   box-shadow:none !important;
+
 }
 
 
@@ -763,27 +889,29 @@ button{
 
 .star.active{
 
-  color:#f2ad24;
+  color:var(--gold);
 
   filter:
+
     drop-shadow(
-      0 5px 10px
-      rgba(242,173,36,.30)
+      0 5px 5px
+      rgba(150,90,0,.25)
     );
 
   animation:
-    starPop .38s
+    starPop .34s
     cubic-bezier(.2,.9,.25,1.4);
+
 }
 
 
 @keyframes starPop{
 
   0%{
-    transform:scale(.70);
+    transform:scale(.68);
   }
 
-  48%{
+  45%{
     transform:scale(1.20);
   }
 
@@ -798,11 +926,9 @@ button{
 }
 
 
-/* press */
-
 .star:active{
 
-  transform:scale(.86) !important;
+  transform:scale(.84);
 
 }
 
@@ -813,9 +939,9 @@ button{
 
 .rating-text{
 
-  min-height:28px;
+  min-height:26px;
 
-  color:#536277;
+  color:#68788e;
 
   font-size:
     clamp(15px,4vw,18px);
@@ -823,6 +949,7 @@ button{
   font-weight:650;
 
   margin-bottom:18px;
+
 }
 
 
@@ -839,8 +966,10 @@ button{
   text-align:center;
 
   animation:
-    messageIn .35s
-    cubic-bezier(.2,.8,.2,1) both;
+    messageEnter .4s
+    cubic-bezier(.2,.8,.2,1)
+    both;
+
 }
 
 
@@ -851,26 +980,16 @@ button{
 }
 
 
-@keyframes messageIn{
+@keyframes messageEnter{
 
   from{
-
     opacity:0;
-
-    transform:
-      translateY(12px)
-      scale(.985);
-
+    transform:translateY(13px);
   }
 
   to{
-
     opacity:1;
-
-    transform:
-      translateY(0)
-      scale(1);
-
+    transform:translateY(0);
   }
 
 }
@@ -878,181 +997,35 @@ button{
 
 .message h2{
 
-  color:#071b38;
+  color:var(--navy);
 
   font-size:
-    clamp(21px,5vw,29px);
+    clamp(22px,5.7vw,30px);
 
-  line-height:1.2;
+  line-height:1.18;
 
-  font-weight:800;
+  font-weight:850;
 
-  letter-spacing:-.45px;
+  letter-spacing:-.5px;
 
-  margin-bottom:7px;
+  margin-bottom:8px;
+
 }
 
 
 .message p{
 
-  color:#5d697a;
+  color:#61728a;
 
   font-size:
-    clamp(15px,3.8vw,18px);
+    clamp(16px,4.2vw,19px);
 
-  line-height:1.45;
+  line-height:1.5;
 
-  max-width:600px;
+  max-width:620px;
 
   margin:
-    0 auto 16px;
-}
-
-
-/* =========================================================
-   BUTTON
-   ========================================================= */
-
-.button{
-
-  width:100%;
-
-  min-height:
-    clamp(62px,15vw,76px);
-
-  padding:
-    16px 22px;
-
-  border-radius:18px;
-
-  border:none;
-
-  display:flex;
-
-  align-items:center;
-  justify-content:center;
-
-  text-align:center;
-
-  text-decoration:none;
-
-  font-size:
-    clamp(17px,4.3vw,21px);
-
-  font-weight:800;
-
-  cursor:pointer;
-
-  transition:
-
-    transform .15s ease,
-
-    box-shadow .2s ease,
-
-    background .2s ease;
-
-  -webkit-tap-highlight-color:transparent;
-
-  touch-action:manipulation;
-}
-
-
-.button:active{
-
-  transform:scale(.975);
-
-}
-
-
-/* =========================================================
-   GOOGLE BUTTON
-   ========================================================= */
-
-.google{
-
-  color:#ffffff;
-
-  background:
-
-    linear-gradient(
-      135deg,
-      #1769ff,
-      #0755df
-    );
-
-  box-shadow:
-
-    0 12px 28px
-    rgba(23,105,255,.24),
-
-    inset 0 1px 0
-    rgba(255,255,255,.20);
-}
-
-
-.google:hover{
-
-  transform:translateY(-2px);
-
-  box-shadow:
-
-    0 17px 34px
-    rgba(23,105,255,.30);
-}
-
-
-/* =========================================================
-   PRIVATE BUTTON
-   ========================================================= */
-
-.private{
-
-  color:#ffffff;
-
-  background:
-
-    linear-gradient(
-      135deg,
-      #071f3e,
-      #0b315b
-    );
-
-  border:
-    1px solid
-    rgba(255,255,255,.10);
-
-  box-shadow:
-
-    0 12px 28px
-    rgba(7,27,56,.22);
-}
-
-
-/* =========================================================
-   WHATSAPP ACTIVE STATE
-   ========================================================= */
-
-.private.opening{
-
-  background:
-
-    linear-gradient(
-      135deg,
-      #159447,
-      #0b7134
-    );
-
-  box-shadow:
-
-    0 12px 30px
-    rgba(20,150,70,.25);
-
-}
-
-
-.private .button-icon{
-
-  margin-right:9px;
+    0 auto 18px;
 
 }
 
@@ -1071,66 +1044,181 @@ textarea{
 
   padding:17px;
 
-  border-radius:17px;
+  border-radius:18px;
 
   border:
     1.5px solid
-    rgba(7,27,56,.13);
+    rgba(7,27,60,.12);
 
-  background:#ffffff;
+  background:#f6f8fb;
 
-  color:#071b38;
-
-  /*
-    IMPORTANT:
-    16px minimum prevents iPhone Safari
-    from automatically zooming when typing.
-  */
-
-  font-size:16px;
-
-  line-height:1.5;
+  color:var(--ink);
 
   outline:none;
+
+  font-size:18px;
+
+  line-height:1.5;
 
   margin-bottom:8px;
 
   -webkit-appearance:none;
 
-  appearance:none;
-
-  box-shadow:
-    0 8px 24px
-    rgba(7,27,56,.055);
 }
 
 
 textarea::placeholder{
 
-  color:#8a95a5;
+  color:#7c899a;
 
 }
 
 
 textarea:focus{
 
-  border-color:#1769ff;
+  border-color:
+    rgba(22,93,255,.55);
 
   box-shadow:
 
     0 0 0 4px
-    rgba(23,105,255,.08),
+    rgba(22,93,255,.08);
 
-    0 8px 24px
-    rgba(7,27,56,.06);
 }
 
 
 /* =========================================================
-   SMART REVIEW BRAND
+   BUTTON
    ========================================================= */
 
-.smart-brand{
+.button{
+
+  width:100%;
+
+  min-height:66px;
+
+  border-radius:18px;
+
+  border:none;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  text-decoration:none;
+
+  padding:17px 20px;
+
+  font-size:
+    clamp(17px,4.4vw,21px);
+
+  font-weight:850;
+
+  cursor:pointer;
+
+  margin-top:10px;
+
+  transition:
+
+    transform .16s ease,
+
+    box-shadow .22s ease,
+
+    background .22s ease,
+
+    opacity .2s ease;
+
+  -webkit-tap-highlight-color:transparent;
+
+  touch-action:manipulation;
+
+}
+
+
+.button:active{
+
+  transform:scale(.975);
+
+}
+
+
+/* Google */
+
+.google{
+
+  color:#111827;
+
+  background:
+
+    linear-gradient(
+      135deg,
+      #ffffff,
+      #edf1f5
+    );
+
+  border:
+    1px solid
+    rgba(7,27,60,.10);
+
+  box-shadow:
+
+    0 10px 25px
+    rgba(7,27,60,.13);
+
+}
+
+
+/* WhatsApp normal */
+
+.private{
+
+  color:#fff;
+
+  background:
+
+    linear-gradient(
+      135deg,
+      #123e6d,
+      #09294d
+    );
+
+  box-shadow:
+
+    0 10px 25px
+    rgba(7,27,60,.18);
+
+}
+
+
+/* WhatsApp active */
+
+.private.sending{
+
+  background:
+
+    linear-gradient(
+      135deg,
+      #159447,
+      #087a37
+    );
+
+  box-shadow:
+
+    0 12px 28px
+    rgba(20,150,75,.28);
+
+  pointer-events:none;
+
+}
+
+
+/* =========================================================
+   SMART REVIEW BRANDING
+   ========================================================= */
+
+.brand-footer{
 
   width:100%;
 
@@ -1142,126 +1230,75 @@ textarea:focus{
 
   justify-content:center;
 
-  margin-top:27px;
+  margin-top:32px;
 
-  padding-bottom:4px;
+  padding-top:21px;
 
-  position:relative;
+  border-top:
+    1px solid
+    rgba(7,27,60,.12);
+
 }
 
 
-/* blue/gold divider */
-
-.smart-divider{
+.brand-mini-line{
 
   width:
-    clamp(120px,42vw,230px);
+    clamp(90px,25vw,150px);
 
-  height:2px;
+  height:3px;
 
-  margin-bottom:12px;
+  margin-bottom:14px;
+
+  border-radius:20px;
 
   background:
 
     linear-gradient(
       90deg,
       transparent,
-      #1769ff 28%,
-      #d99516 50%,
-      #1769ff 72%,
+      var(--gold),
+      var(--blue),
       transparent
     );
 
-  position:relative;
 }
 
-
-.smart-divider::after{
-
-  content:"◆";
-
-  position:absolute;
-
-  left:50%;
-
-  top:50%;
-
-  transform:
-    translate(-50%,-50%);
-
-  color:#1769ff;
-
-  font-size:10px;
-
-  background:#ffffff;
-
-  padding:0 6px;
-}
-
-
-/* =========================================================
-   SMART REVIEW LOGO
-   ========================================================= */
 
 .smart-review{
 
   font-size:
-    clamp(30px,8vw,48px);
+    clamp(29px,8vw,44px);
 
   line-height:1;
 
-  font-weight:800;
+  font-weight:850;
 
-  letter-spacing:-1.3px;
-
-  /*
-    Navy + silver + gold
-    inspired directly by the physical card.
-  */
+  letter-spacing:-1.2px;
 
   background:
 
     linear-gradient(
-      100deg,
-      #071b38 0%,
-      #28476b 26%,
-      #aab5c2 44%,
-      #ffffff 50%,
-      #d89b24 62%,
-      #8d5d08 76%,
-      #071b38 100%
+      110deg,
+      #a86c08 0%,
+      #e3a51e 20%,
+      #f3f5f8 43%,
+      #b9c3d0 58%,
+      #123e72 78%,
+      #061b3a 100%
     );
-
-  background-size:220% auto;
 
   -webkit-background-clip:text;
   background-clip:text;
 
   color:transparent;
 
-  animation:
-    premiumShine 7s
-    ease-in-out infinite;
+  filter:
 
-  text-shadow:
-    0 4px 18px
-    rgba(7,27,56,.08);
-}
-
-
-@keyframes premiumShine{
-
-  0%{
-    background-position:0% center;
-  }
-
-  50%{
-    background-position:100% center;
-  }
-
-  100%{
-    background-position:0% center;
-  }
+    drop-shadow(
+      0 4px 8px
+      rgba(7,27,60,.12)
+    );
 
 }
 
@@ -1270,82 +1307,16 @@ textarea:focus{
 
   margin-top:7px;
 
-  color:#657286;
+  color:#6b788a;
 
   font-size:
-    clamp(10px,2.7vw,13px);
+    clamp(10px,2.8vw,13px);
 
-  font-weight:700;
+  font-weight:750;
 
-  letter-spacing:
-    2px;
+  letter-spacing:2px;
 
   text-transform:uppercase;
-
-}
-
-
-/* =========================================================
-   LOADING
-   ========================================================= */
-
-.loading{
-
-  display:flex;
-
-  align-items:center;
-
-  justify-content:center;
-
-  gap:6px;
-}
-
-
-.loading-dot{
-
-  width:7px;
-  height:7px;
-
-  border-radius:50%;
-
-  background:#d99b22;
-
-  animation:
-    pulse 1.1s infinite ease-in-out;
-}
-
-
-.loading-dot:nth-child(2){
-
-  animation-delay:.15s;
-
-}
-
-
-.loading-dot:nth-child(3){
-
-  animation-delay:.30s;
-
-}
-
-
-@keyframes pulse{
-
-  0%,80%,100%{
-
-    opacity:.25;
-
-    transform:scale(.7);
-
-  }
-
-  40%{
-
-    opacity:1;
-
-    transform:scale(1);
-
-  }
 
 }
 
@@ -1356,7 +1327,7 @@ textarea:focus{
 
 .error{
 
-  color:#c62828;
+  color:#d83b3b !important;
 
   font-weight:700;
 
@@ -1371,90 +1342,120 @@ textarea:focus{
 
 
 /* =========================================================
-   SMALL PHONES
+   LOADING
    ========================================================= */
 
-@media(max-height:700px){
+.loading{
 
-  .navy-zone{
+  color:#9db0c9;
 
-    min-height:48%;
+}
 
-    padding-bottom:72px;
 
+.loading-dot{
+
+  display:inline-block;
+
+  width:7px;
+  height:7px;
+
+  margin:0 3px;
+
+  border-radius:50%;
+
+  background:#d99213;
+
+  animation:
+    loadingPulse 1s
+    infinite ease-in-out;
+
+}
+
+
+.loading-dot:nth-child(2){
+  animation-delay:.15s;
+}
+
+.loading-dot:nth-child(3){
+  animation-delay:.30s;
+}
+
+
+@keyframes loadingPulse{
+
+  0%,80%,100%{
+    opacity:.25;
+    transform:scale(.7);
   }
 
-  .google-logo{
-
-    width:72px;
-    height:72px;
-
-    margin-bottom:12px;
-
-  }
-
-  .google-g{
-
-    font-size:53px;
-
-  }
-
-  .decor-stars{
-
-    margin-top:13px;
-
-  }
-
-  .business-logo{
-
-    width:92px;
-    height:92px;
-
-  }
-
-  .business-name{
-
-    font-size:27px;
-
-  }
-
-  .white-zone{
-
-    padding-top:40px;
-
+  40%{
+    opacity:1;
+    transform:scale(1);
   }
 
 }
 
 
 /* =========================================================
-   TABLETS
+   SMALL PHONES
    ========================================================= */
 
-@media(min-width:700px){
+@media(max-width:390px){
 
-  .navy-zone{
+  .hero{
 
-    min-height:55%;
+    min-height:355px;
+
+    padding-left:15px;
+    padding-right:15px;
 
   }
 
-  .google-logo{
+
+  .hero-title{
+
+    font-size:21px;
+
+  }
+
+
+  .hero-rating{
+
+    margin-top:22px;
+
+  }
+
+
+  .content{
+
+    padding-left:16px;
+    padding-right:16px;
+
+  }
+
+
+  .logo-frame{
+
+    width:145px;
+    height:145px;
+
+  }
+
+
+  .client-logo{
 
     width:105px;
     height:105px;
 
   }
 
-  .google-g{
 
-    font-size:78px;
+  .star{
 
-  }
+    width:56px;
+    height:63px;
 
-  .white-zone{
-
-    padding-top:60px;
+    font-size:54px;
 
   }
 
@@ -1462,7 +1463,68 @@ textarea:focus{
 
 
 /* =========================================================
-   ACCESSIBILITY
+   TALL PHONES
+   ========================================================= */
+
+@media(height >= 800px){
+
+  .hero{
+
+    min-height:425px;
+
+  }
+
+
+  .content{
+
+    margin-top:-25px;
+
+  }
+
+
+  .client-brand{
+
+    margin-top:-5px;
+
+  }
+
+}
+
+
+/* =========================================================
+   TABLETS / DESKTOP
+   ========================================================= */
+
+@media(width >= 700px){
+
+  .hero{
+
+    min-height:500px;
+
+  }
+
+
+  .content{
+
+    margin-top:-35px;
+
+    padding-left:40px;
+    padding-right:40px;
+
+  }
+
+
+  .client-brand{
+
+    margin-top:-5px;
+
+  }
+
+}
+
+
+/* =========================================================
+   REDUCED MOTION
    ========================================================= */
 
 @media(prefers-reduced-motion:reduce){
@@ -1482,110 +1544,103 @@ textarea:focus{
 }
 
 </style>
-
 </head>
 
 
 <body>
 
-
 <div class="app">
 
 
   <!-- =====================================================
-       NAVY CARD-INSPIRED HEADER
+       NAVY CARD HEADER
        ===================================================== -->
 
-  <section class="navy-zone">
+  <section class="hero">
 
 
-    <div class="google-header">
+    <!-- GOOGLE -->
 
+    <div class="google-mark">
 
-      <!-- GOOGLE -->
-
-      <div
-        class="google-logo"
-        aria-label="Google"
-      >
-
-        <div class="google-g">
-          G
-        </div>
-
+      <div class="google-letter">
+        G
       </div>
-
-
-      <!-- TITLE -->
-
-      <h2 class="google-title">
-
-        LAISSEZ-NOUS VOTRE AVIS
-        SUR GOOGLE
-
-      </h2>
-
-
-      <!-- DECORATIVE STARS -->
-
-      <div class="decor-stars">
-
-        <div class="decor-line"></div>
-
-        <div class="decor-star">★</div>
-        <div class="decor-star">★</div>
-        <div class="decor-star">★</div>
-        <div class="decor-star">★</div>
-        <div class="decor-star">★</div>
-
-        <div class="decor-line right"></div>
-
-      </div>
-
 
     </div>
 
 
-    <div class="wave"></div>
+    <!-- TITLE -->
 
+    <h1 class="hero-title">
+      LAISSEZ-NOUS VOTRE AVIS SUR GOOGLE
+    </h1>
+
+
+    <!-- STARS -->
+
+    <div class="hero-rating">
+
+      <div class="rating-line"></div>
+
+      <div class="hero-stars">
+
+        <span class="hero-star">★</span>
+        <span class="hero-star">★</span>
+        <span class="hero-star">★</span>
+        <span class="hero-star">★</span>
+        <span class="hero-star">★</span>
+
+      </div>
+
+      <div class="rating-line right"></div>
+
+    </div>
+
+
+    <!-- BLUE / WHITE WAVE -->
+
+    <div class="wave-blue"></div>
+
+    <div class="wave"></div>
 
   </section>
 
 
 
   <!-- =====================================================
-       WHITE EXPERIENCE AREA
+       WHITE CONTENT
        ===================================================== -->
 
-  <section class="white-zone">
+  <main class="content">
 
 
-    <main class="content">
+    <!-- ===================================================
+         CLIENT BRAND
+         =================================================== -->
+
+    <section class="client-brand">
 
 
-      <!-- =================================================
-           BUSINESS
-           ================================================= -->
+      <div class="logo-frame">
 
-      <div
-        class="business-logo"
-        id="logo"
-        aria-label="Logo de l'établissement"
-      >
-
-        🍽️
+        <div
+          class="client-logo"
+          id="logo"
+          aria-label="Business logo"
+        >
+          🍽️
+        </div>
 
       </div>
 
 
-      <h1
+      <h2
         class="business-name"
         id="businessName"
       >
-
-        Chargement...
-
-      </h1>
+        Loading...
+      </h2>
 
 
       <p
@@ -1593,231 +1648,197 @@ textarea:focus{
         id="subtitle"
       >
 
-        <span class="loading">
-
-          <span class="loading-dot"></span>
-          <span class="loading-dot"></span>
-          <span class="loading-dot"></span>
-
-        </span>
+        <span class="loading-dot"></span>
+        <span class="loading-dot"></span>
+        <span class="loading-dot"></span>
 
       </p>
+
+    </section>
+
+
+
+    <!-- ===================================================
+         FEEDBACK
+         =================================================== -->
+
+    <section
+      id="feedbackArea"
+      class="feedback-area hidden"
+    >
+
+
+      <div class="rating-question">
+        Comment avez-vous vécu votre expérience ?
+      </div>
+
+
+      <!-- STARS -->
+
+      <div
+        class="stars"
+        id="stars"
+        role="radiogroup"
+        aria-label="Évaluez votre expérience"
+      >
+
+        <button
+          type="button"
+          class="star"
+          data-rating="1"
+          aria-label="1 étoile"
+        >★</button>
+
+
+        <button
+          type="button"
+          class="star"
+          data-rating="2"
+          aria-label="2 étoiles"
+        >★</button>
+
+
+        <button
+          type="button"
+          class="star"
+          data-rating="3"
+          aria-label="3 étoiles"
+        >★</button>
+
+
+        <button
+          type="button"
+          class="star"
+          data-rating="4"
+          aria-label="4 étoiles"
+        >★</button>
+
+
+        <button
+          type="button"
+          class="star"
+          data-rating="5"
+          aria-label="5 étoiles"
+        >★</button>
+
+      </div>
+
+
+      <!-- RATING TEXT -->
+
+      <div
+        class="rating-text"
+        id="ratingText"
+      >
+        Touchez une étoile pour commencer
+      </div>
 
 
 
       <!-- =================================================
-           FEEDBACK
+           MESSAGE
            ================================================= -->
 
       <section
-        id="feedbackArea"
-        class="hidden"
+        class="message"
+        id="message"
       >
 
 
-        <div class="rating-question">
-
-          Comment s'est passée
-          votre expérience ?
-
-        </div>
+        <h2 id="messageTitle"></h2>
 
 
-        <!-- =================================================
-             INTERACTIVE STARS
-             ================================================= -->
-
-        <div
-          class="stars"
-          id="stars"
-          role="radiogroup"
-          aria-label="Évaluez votre expérience"
-        >
+        <p id="messageText"></p>
 
 
-          <button
-            type="button"
-            class="star"
-            data-rating="1"
-            aria-label="1 étoile"
-          >★</button>
 
-
-          <button
-            type="button"
-            class="star"
-            data-rating="2"
-            aria-label="2 étoiles"
-          >★</button>
-
-
-          <button
-            type="button"
-            class="star"
-            data-rating="3"
-            aria-label="3 étoiles"
-          >★</button>
-
-
-          <button
-            type="button"
-            class="star"
-            data-rating="4"
-            aria-label="4 étoiles"
-          >★</button>
-
-
-          <button
-            type="button"
-            class="star"
-            data-rating="5"
-            aria-label="5 étoiles"
-          >★</button>
-
-
-        </div>
-
-
-        <!-- RATING TEXT -->
+        <!-- ===============================================
+             GOOGLE
+             =============================================== -->
 
         <div
-          class="rating-text"
-          id="ratingText"
+          id="googleArea"
+          class="hidden"
         >
 
-          Touchez une étoile
-          pour noter votre expérience
+          <a
+            id="googleButton"
+            class="button google"
+            href="#"
+            target="_blank"
+            rel="noopener"
+          >
+
+            ⭐ Écrire mon avis sur Google
+
+          </a>
 
         </div>
 
 
 
-        <!-- =================================================
-             MESSAGE
-             ================================================= -->
+        <!-- ===============================================
+             PRIVATE FEEDBACK
+             =============================================== -->
 
-        <section
-          class="message"
-          id="message"
+        <div
+          id="privateArea"
+          class="hidden"
         >
 
 
-          <h2
-            id="messageTitle"
-          ></h2>
+          <textarea
+            id="feedbackMessage"
+            placeholder="Dites-nous ce qui s'est passé ou comment nous pouvons nous améliorer..."
+            aria-label="Votre commentaire privé"
+          ></textarea>
 
 
-          <p
-            id="messageText"
-          ></p>
-
-
-
-          <!-- =================================================
-               GOOGLE
-               ================================================= -->
-
-          <div
-            id="googleArea"
-            class="hidden"
+          <button
+            type="button"
+            id="sendPrivate"
+            class="button private"
           >
 
+            💬 Envoyer mon retour
 
-            <a
-              id="googleButton"
-              class="button google"
-              href="#"
-              target="_blank"
-              rel="noopener"
-            >
-
-              ⭐
-              &nbsp;
-              Laisser un avis Google
-
-            </a>
+          </button>
 
 
-          </div>
-
-
-
-          <!-- =================================================
-               PRIVATE
-               ================================================= -->
-
-          <div
-            id="privateArea"
-            class="hidden"
-          >
-
-
-            <textarea
-              id="feedbackMessage"
-              placeholder="Dites-nous ce qui n'a pas été et comment nous pouvons nous améliorer..."
-              aria-label="Votre commentaire privé"
-            ></textarea>
-
-
-            <button
-              type="button"
-              id="sendPrivate"
-              class="button private"
-            >
-
-              <span class="button-icon">
-                💬
-              </span>
-
-              <span id="privateButtonText">
-                Nous écrire en privé
-              </span>
-
-            </button>
-
-
-          </div>
-
-
-        </section>
+        </div>
 
 
       </section>
 
 
-
-      <!-- =================================================
-           SMART REVIEW
-           ================================================= -->
-
-      <footer class="smart-brand">
+    </section>
 
 
-        <div class="smart-divider"></div>
+
+    <!-- ===================================================
+         SMART REVIEW
+         =================================================== -->
+
+    <footer class="brand-footer">
 
 
-        <div class="smart-review">
-
-          Smart Review
-
-        </div>
+      <div class="brand-mini-line"></div>
 
 
-        <div class="smart-review-sub">
-
-          Better feedback. Better businesses.
-
-        </div>
+      <div class="smart-review">
+        Smart Review
+      </div>
 
 
-      </footer>
+      <div class="smart-review-sub">
+        Better feedback. Better businesses.
+      </div>
 
 
-    </main>
+    </footer>
 
 
-  </section>
-
+  </main>
 
 </div>
 
@@ -1863,7 +1884,6 @@ async function supabaseGet(endpoint){
     await fetch(
       `${SUPABASE_URL}/rest/v1/${endpoint}`,
       {
-
         method:"GET",
 
         headers:{
@@ -2015,7 +2035,7 @@ async function loadCard(){
 
 
     document.title =
-      `${currentBusiness.name || "Smart Review"} — Smart Review`;
+      `${currentBusiness.name || "Business"} — Smart Review`;
 
 
     subtitle.textContent =
@@ -2023,10 +2043,12 @@ async function loadCard(){
 
 
     /* =====================================================
-       BUSINESS LOGO
+       CLIENT LOGO
        ===================================================== */
 
-    if(currentBusiness.logo_url){
+    if(
+      currentBusiness.logo_url
+    ){
 
       const logo =
         document.getElementById(
@@ -2070,7 +2092,7 @@ async function loadCard(){
 
 
     /* =====================================================
-       GOOGLE REVIEW URL
+       GOOGLE REVIEW
        ===================================================== */
 
     const googleButton =
@@ -2092,13 +2114,14 @@ async function loadCard(){
       .classList
       .remove("hidden");
 
-
   }
 
 
   catch(error){
 
-    console.error(error);
+    console.error(
+      error
+    );
 
 
     businessName.textContent =
@@ -2174,15 +2197,14 @@ const feedbackMessage =
 stars.forEach(
   star => {
 
-
     star.addEventListener(
       "click",
-      function(){
+      () => {
 
 
         selectedRating =
           Number(
-            this.dataset.rating
+            star.dataset.rating
           );
 
 
@@ -2193,15 +2215,13 @@ stars.forEach(
         stars.forEach(
           s => {
 
-            const rating =
-              Number(
-                s.dataset.rating
-              );
-
-
             s.classList.toggle(
               "active",
-              rating <= selectedRating
+
+              Number(
+                s.dataset.rating
+              ) <= selectedRating
+
             );
 
           }
@@ -2209,7 +2229,7 @@ stars.forEach(
 
 
         /* =================================================
-           RATING TEXT
+           RATING LABEL
            ================================================= */
 
         const ratingLabels = {
@@ -2227,13 +2247,15 @@ stars.forEach(
             "Ravi de l'entendre !",
 
           5:
-            "Excellent ! Merci beaucoup !"
+            "Incroyable ! Merci beaucoup !"
 
         };
 
 
         ratingText.textContent =
-          ratingLabels[selectedRating];
+          ratingLabels[
+            selectedRating
+          ];
 
 
         /* =================================================
@@ -2271,44 +2293,30 @@ stars.forEach(
         ){
 
           messageTitle.textContent =
-            "Nous sommes désolés de votre expérience.";
+            "Nous sommes désolés pour votre expérience.";
 
 
           messageText.textContent =
-            "Dites-nous ce qui s'est passé. Votre retour nous aide à nous améliorer.";
+            "Dites-nous ce qui s'est passé. Votre retour nous permet de nous améliorer.";
 
 
           googleArea
             .classList
-            .add("hidden");
+            .add(
+              "hidden"
+            );
 
 
           privateArea
             .classList
-            .remove("hidden");
+            .remove(
+              "hidden"
+            );
 
 
           feedbackMessage.value =
             "";
 
-
-          /* Reset button */
-
-          const privateButton =
-            document.getElementById(
-              "sendPrivate"
-            );
-
-
-          privateButton.classList.remove(
-            "opening"
-          );
-
-
-          document.getElementById(
-            "privateButtonText"
-          ).textContent =
-            "Nous écrire en privé";
 
         }
 
@@ -2322,12 +2330,16 @@ stars.forEach(
 
           privateArea
             .classList
-            .add("hidden");
+            .add(
+              "hidden"
+            );
 
 
           googleArea
             .classList
-            .remove("hidden");
+            .remove(
+              "hidden"
+            );
 
 
           if(
@@ -2339,7 +2351,6 @@ stars.forEach(
 
           }
 
-
           else if(
             selectedRating === 4
           ){
@@ -2349,17 +2360,16 @@ stars.forEach(
 
           }
 
-
           else{
 
             messageTitle.textContent =
-              "Merci ! Vous êtes incroyable ❤️";
+              "Merci ! Nous sommes ravis que vous ayez adoré ! ❤️";
 
           }
 
 
           messageText.textContent =
-            "Nous apprécierions énormément que vous partagiez votre expérience sur Google.";
+            "Votre avis peut aider d'autres clients. Nous apprécierions beaucoup votre avis sur Google.";
 
         }
 
@@ -2380,16 +2390,12 @@ document
   )
   .addEventListener(
     "click",
-    function(){
+    () => {
 
 
       const button =
-        this;
-
-
-      const buttonText =
         document.getElementById(
-          "privateButtonText"
+          "sendPrivate"
         );
 
 
@@ -2403,7 +2409,9 @@ document
          CHECK BUSINESS
          ===================================================== */
 
-      if(!currentBusiness){
+      if(
+        !currentBusiness
+      ){
 
         alert(
           "Les informations de l'établissement sont indisponibles."
@@ -2457,7 +2465,7 @@ document
 
 
       /* =====================================================
-         MESSAGE
+         BUILD MESSAGE
          ===================================================== */
 
       const businessName =
@@ -2478,10 +2486,23 @@ document
         whatsappMessage +=
 `
 
-💬 Message du client :
+💬 Commentaire du client :
 ${text}`;
 
       }
+
+
+      /* =====================================================
+         BUTTON ANIMATION
+         ===================================================== */
+
+      button.classList.add(
+        "sending"
+      );
+
+
+      button.innerHTML =
+        "✓ Ouverture de WhatsApp…";
 
 
       /* =====================================================
@@ -2499,20 +2520,8 @@ ${text}`;
 
 
       /* =====================================================
-         ACTIVE BUTTON
+         OPEN
          ===================================================== */
-
-      button.classList.add(
-        "opening"
-      );
-
-
-      buttonText.textContent =
-        "Ouverture de WhatsApp…";
-
-
-      /* Small visual delay so customer
-         actually sees the state */
 
       setTimeout(
         () => {
@@ -2521,7 +2530,7 @@ ${text}`;
             whatsappURL;
 
         },
-        420
+        450
       );
 
     }
@@ -2536,7 +2545,5 @@ loadCard();
 
 </script>
 
-
 </body>
-
-  </html>
+</html>
