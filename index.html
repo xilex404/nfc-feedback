@@ -9,31 +9,38 @@
   content="width=device-width, initial-scale=1.0, viewport-fit=cover"
 >
 
+<meta
+  name="theme-color"
+  content="#061b3a"
+>
+
 <title>Smart Review</title>
 
 <style>
 
 /* =========================================================
-   SMART REVIEW — PREMIUM NFC REVIEW EXPERIENCE
+   SMART REVIEW — PREMIUM MOBILE UI
    ========================================================= */
 
 :root{
 
   --navy:#061b3a;
   --navy-2:#08264d;
-  --navy-3:#0b315f;
+  --navy-3:#0d376b;
 
   --blue:#165dff;
-  --blue-light:#2675ff;
+  --blue-light:#4285ff;
 
   --gold:#d99213;
-  --gold-light:#ffca43;
-  --gold-dark:#a96600;
+  --gold-light:#ffcf55;
+  --gold-dark:#a86600;
 
   --white:#ffffff;
   --ink:#071b3c;
 
-  --muted:#60708a;
+  --muted:#65758c;
+
+  --soft:#f5f7fa;
 
 }
 
@@ -50,12 +57,16 @@
 
 html,
 body{
+
   width:100%;
   min-height:100%;
+
 }
 
 html{
-  background:#061b3a;
+
+  background:var(--navy);
+
 }
 
 body{
@@ -76,6 +87,7 @@ body{
   text-rendering:optimizeLegibility;
 
   background:#fff;
+
   color:var(--ink);
 
   overflow-x:hidden;
@@ -103,7 +115,7 @@ body{
 
 
 /* =========================================================
-   NAVY HERO
+   HERO
    ========================================================= */
 
 .hero{
@@ -112,28 +124,7 @@ body{
 
   width:100%;
 
-  min-height:
-    clamp(380px,48vh,520px);
-
-  background:
-
-    radial-gradient(
-      circle at 50% 12%,
-      rgba(255,255,255,.08),
-      transparent 28%
-    ),
-
-    radial-gradient(
-      circle at 50% 100%,
-      rgba(32,102,210,.25),
-      transparent 55%
-    ),
-
-    linear-gradient(
-      180deg,
-      #061b3a 0%,
-      #08264d 100%
-    );
+  min-height:405px;
 
   color:#fff;
 
@@ -147,16 +138,35 @@ body{
 
   padding:
 
-    max(24px,env(safe-area-inset-top))
-    20px
-    90px;
+    max(25px,env(safe-area-inset-top))
+    18px
+    100px;
+
+  background:
+
+    radial-gradient(
+      circle at 50% 5%,
+      rgba(255,255,255,.10),
+      transparent 30%
+    ),
+
+    radial-gradient(
+      circle at 50% 105%,
+      rgba(30,111,255,.30),
+      transparent 55%
+    ),
+
+    linear-gradient(
+      180deg,
+      #061b3a 0%,
+      #08264d 65%,
+      #092e5c 100%
+    );
 
 }
 
 
-/* =========================================================
-   HERO TEXTURE
-   ========================================================= */
+/* premium texture */
 
 .hero::before{
 
@@ -173,7 +183,7 @@ body{
   background-image:
 
     radial-gradient(
-      rgba(255,255,255,.14) .7px,
+      rgba(255,255,255,.16) .7px,
       transparent .7px
     );
 
@@ -183,8 +193,37 @@ body{
     linear-gradient(
       to bottom,
       black,
-      transparent 80%
+      transparent 82%
     );
+
+}
+
+
+/* subtle glow */
+
+.hero::after{
+
+  content:"";
+
+  position:absolute;
+
+  width:260px;
+  height:260px;
+
+  top:-160px;
+
+  left:50%;
+
+  transform:translateX(-50%);
+
+  background:
+    rgba(38,117,255,.18);
+
+  filter:blur(55px);
+
+  border-radius:50%;
+
+  pointer-events:none;
 
 }
 
@@ -200,10 +239,10 @@ body{
   z-index:2;
 
   width:
-    clamp(82px,22vw,112px);
+    clamp(86px,24vw,112px);
 
   height:
-    clamp(82px,22vw,112px);
+    clamp(86px,24vw,112px);
 
   border-radius:50%;
 
@@ -214,37 +253,56 @@ body{
   align-items:center;
   justify-content:center;
 
-  margin-top:4px;
+  margin-top:3px;
 
-  margin-bottom:18px;
+  margin-bottom:19px;
 
   box-shadow:
 
-    0 12px 30px
-    rgba(0,0,0,.28),
+    0 15px 34px
+    rgba(0,0,0,.30),
 
     0 0 0 3px
-    rgba(217,146,19,.9),
+    rgba(217,146,19,.95),
 
-    0 0 0 5px
-    rgba(255,202,67,.35);
+    0 0 0 6px
+    rgba(255,202,67,.22);
 
   animation:
-    googleEnter .65s
+    googleEnter .7s
     cubic-bezier(.2,.8,.2,1)
     both;
 
 }
 
 
+/* little shine */
+
+.google-mark::after{
+
+  content:"";
+
+  position:absolute;
+
+  inset:8px;
+
+  border-radius:50%;
+
+  border:
+    1px solid
+    rgba(255,255,255,.9);
+
+  opacity:.65;
+
+}
+
+
 .google-letter{
 
-  font-family:
-    Arial,
-    sans-serif;
+  font-family:Arial,sans-serif;
 
   font-size:
-    clamp(50px,13vw,70px);
+    clamp(53px,14vw,72px);
 
   font-weight:800;
 
@@ -272,17 +330,23 @@ body{
 @keyframes googleEnter{
 
   from{
+
     opacity:0;
+
     transform:
-      translateY(-18px)
-      scale(.82);
+      translateY(-20px)
+      scale(.78);
+
   }
 
   to{
+
     opacity:1;
+
     transform:
       translateY(0)
       scale(1);
+
   }
 
 }
@@ -298,22 +362,22 @@ body{
 
   z-index:2;
 
+  max-width:560px;
+
   font-size:
-    clamp(22px,6vw,34px);
+    clamp(23px,6.3vw,34px);
 
-  line-height:1.12;
+  line-height:1.13;
 
-  font-weight:850;
+  font-weight:900;
 
-  letter-spacing:-.7px;
-
-  max-width:900px;
+  letter-spacing:-.8px;
 
   text-transform:uppercase;
 
   text-shadow:
-    0 3px 15px
-    rgba(0,0,0,.28);
+    0 4px 18px
+    rgba(0,0,0,.30);
 
 }
 
@@ -337,9 +401,9 @@ body{
   justify-content:center;
 
   gap:
-    clamp(8px,2vw,22px);
+    clamp(7px,2vw,17px);
 
-  margin-top:27px;
+  margin-top:25px;
 
 }
 
@@ -347,18 +411,17 @@ body{
 .rating-line{
 
   width:
-    clamp(30px,13vw,100px);
+    clamp(25px,11vw,85px);
 
   height:2px;
 
   background:
+
     linear-gradient(
       90deg,
       transparent,
-      #2681ff
+      rgba(38,129,255,.95)
     );
-
-  opacity:.95;
 
 }
 
@@ -366,9 +429,10 @@ body{
 .rating-line.right{
 
   background:
+
     linear-gradient(
       90deg,
-      #2681ff,
+      rgba(38,129,255,.95),
       transparent
     );
 
@@ -380,11 +444,10 @@ body{
   display:flex;
 
   align-items:center;
-
   justify-content:center;
 
   gap:
-    clamp(3px,1vw,10px);
+    clamp(3px,1vw,8px);
 
 }
 
@@ -392,7 +455,7 @@ body{
 .hero-star{
 
   font-size:
-    clamp(30px,8vw,53px);
+    clamp(30px,8vw,49px);
 
   line-height:1;
 
@@ -400,11 +463,11 @@ body{
 
   text-shadow:
 
-    0 3px 4px
+    0 4px 5px
     rgba(0,0,0,.45),
 
-    0 0 12px
-    rgba(255,190,45,.22);
+    0 0 15px
+    rgba(255,202,67,.25);
 
   transform:
     perspective(300px)
@@ -414,8 +477,39 @@ body{
 
 
 /* =========================================================
-   WAVES
+   WAVE
    ========================================================= */
+
+.wave-blue{
+
+  position:absolute;
+
+  z-index:4;
+
+  left:-5%;
+
+  bottom:55px;
+
+  width:110%;
+
+  height:65px;
+
+  background:
+
+    linear-gradient(
+      180deg,
+      #0c63ff,
+      #164fd1
+    );
+
+  clip-path:
+    ellipse(
+      69% 55%
+      at 50% 100%
+    );
+
+}
+
 
 .wave{
 
@@ -435,38 +529,7 @@ body{
 
   clip-path:
     ellipse(
-      72% 58%
-      at 50% 100%
-    );
-
-}
-
-
-.wave-blue{
-
-  position:absolute;
-
-  z-index:4;
-
-  left:-5%;
-
-  bottom:62px;
-
-  width:110%;
-
-  height:58px;
-
-  background:
-
-    linear-gradient(
-      180deg,
-      #0c63ff,
-      #164fd1
-    );
-
-  clip-path:
-    ellipse(
-      68% 55%
+      73% 58%
       at 50% 100%
     );
 
@@ -474,7 +537,7 @@ body{
 
 
 /* =========================================================
-   MAIN CONTENT
+   CONTENT
    ========================================================= */
 
 .content{
@@ -485,26 +548,27 @@ body{
 
   background:#fff;
 
-  min-height:
-    calc(100vh - 430px);
+  width:100%;
 
   min-height:
-    calc(100dvh - 430px);
+    calc(100vh - 400px);
 
-  margin-top:-18px;
+  min-height:
+    calc(100dvh - 400px);
+
+  margin-top:-23px;
 
   padding:
+
     0
-    22px
-    max(38px,env(safe-area-inset-bottom));
+    18px
+    max(30px,env(safe-area-inset-bottom));
 
   display:flex;
 
   flex-direction:column;
 
   align-items:center;
-
-  text-align:center;
 
 }
 
@@ -527,9 +591,9 @@ body{
 
   text-align:center;
 
-  margin-top:-10px;
-
   position:relative;
+
+  margin-top:-2px;
 
 }
 
@@ -541,26 +605,26 @@ body{
 .logo-frame{
 
   width:
-    clamp(170px,50vw,215px);
+    clamp(170px,48vw,215px);
 
   height:
-    clamp(170px,50vw,215px);
+    clamp(170px,48vw,215px);
 
   position:relative;
 
   display:flex;
 
   align-items:center;
-
   justify-content:center;
 
-  margin-bottom:22px;
+  margin-bottom:19px;
 
 }
 
 
-.logo-frame::before,
-.logo-frame::after{
+/* gold corners */
+
+.logo-frame::before{
 
   content:"";
 
@@ -570,63 +634,31 @@ body{
 
   pointer-events:none;
 
-}
-
-
-.logo-frame::before{
-
   background:
 
-    linear-gradient(
-      var(--gold),
-      var(--gold)
-    ) left top / 62px 4px no-repeat,
+    linear-gradient(var(--gold),var(--gold))
+      left top / 64px 4px no-repeat,
 
-    linear-gradient(
-      var(--gold),
-      var(--gold)
-    ) left top / 4px 62px no-repeat,
+    linear-gradient(var(--gold),var(--gold))
+      left top / 4px 64px no-repeat,
 
-    linear-gradient(
-      var(--gold),
-      var(--gold)
-    ) right top / 62px 4px no-repeat,
+    linear-gradient(var(--gold),var(--gold))
+      right top / 64px 4px no-repeat,
 
-    linear-gradient(
-      var(--gold),
-      var(--gold)
-    ) right top / 4px 62px no-repeat,
+    linear-gradient(var(--gold),var(--gold))
+      right top / 4px 64px no-repeat,
 
-    linear-gradient(
-      var(--gold),
-      var(--gold)
-    ) left bottom / 62px 4px no-repeat,
+    linear-gradient(var(--gold),var(--gold))
+      left bottom / 64px 4px no-repeat,
 
-    linear-gradient(
-      var(--gold),
-      var(--gold)
-    ) left bottom / 4px 62px no-repeat,
+    linear-gradient(var(--gold),var(--gold))
+      left bottom / 4px 64px no-repeat,
 
-    linear-gradient(
-      var(--gold),
-      var(--gold)
-    ) right bottom / 62px 4px no-repeat,
+    linear-gradient(var(--gold),var(--gold))
+      right bottom / 64px 4px no-repeat,
 
-    linear-gradient(
-      var(--gold),
-      var(--gold)
-    ) right bottom / 4px 62px no-repeat;
-
-}
-
-
-.logo-frame::after{
-
-  border-radius:24px;
-
-  box-shadow:
-    inset 0 0 0 1px
-    rgba(217,146,19,.04);
+    linear-gradient(var(--gold),var(--gold))
+      right bottom / 4px 64px no-repeat;
 
 }
 
@@ -638,17 +670,16 @@ body{
 .client-logo{
 
   width:
-    clamp(122px,37vw,160px);
+    clamp(120px,35vw,158px);
 
   height:
-    clamp(122px,37vw,160px);
+    clamp(120px,35vw,158px);
 
-  border-radius:24px;
+  border-radius:25px;
 
   display:flex;
 
   align-items:center;
-
   justify-content:center;
 
   overflow:hidden;
@@ -658,7 +689,7 @@ body{
     linear-gradient(
       145deg,
       #ffffff,
-      #f1f4f8
+      #f0f3f7
     );
 
   border:
@@ -667,7 +698,7 @@ body{
 
   box-shadow:
 
-    0 15px 34px
+    0 15px 35px
     rgba(7,27,60,.13),
 
     0 2px 5px
@@ -698,12 +729,14 @@ body{
 
   width:100%;
 
+  max-width:700px;
+
   font-size:
-    clamp(30px,8vw,40px);
+    clamp(29px,8vw,42px);
 
   line-height:1.08;
 
-  font-weight:850;
+  font-weight:900;
 
   letter-spacing:-1px;
 
@@ -711,23 +744,27 @@ body{
 
   text-align:center;
 
-  max-width:900px;
-
   overflow-wrap:anywhere;
 
-  margin-bottom:10px;
+  margin-bottom:8px;
 
 }
 
+
+/* =========================================================
+   SUBTITLE
+   ========================================================= */
 
 .subtitle{
 
   width:100%;
 
+  max-width:600px;
+
   color:#53657d;
 
   font-size:
-    clamp(17px,4.7vw,20px);
+    clamp(16px,4.5vw,20px);
 
   font-weight:600;
 
@@ -735,20 +772,20 @@ body{
 
   line-height:1.45;
 
-  margin-bottom:30px;
+  margin-bottom:28px;
 
 }
 
 
 /* =========================================================
-   FEEDBACK AREA
+   FEEDBACK
    ========================================================= */
 
 .feedback-area{
 
   width:100%;
 
-  max-width:700px;
+  max-width:680px;
 
   display:flex;
 
@@ -769,13 +806,21 @@ body{
 @keyframes contentEnter{
 
   from{
+
     opacity:0;
-    transform:translateY(18px);
+
+    transform:
+      translateY(20px);
+
   }
 
   to{
+
     opacity:1;
-    transform:translateY(0);
+
+    transform:
+      translateY(0);
+
   }
 
 }
@@ -792,9 +837,9 @@ body{
   color:var(--navy);
 
   font-size:
-    clamp(23px,6.2vw,29px);
+    clamp(22px,6vw,30px);
 
-  line-height:1.2;
+  line-height:1.18;
 
   font-weight:850;
 
@@ -820,12 +865,16 @@ body{
   align-items:center;
 
   gap:
-    clamp(3px,1.8vw,12px);
+    clamp(2px,1vw,10px);
 
-  margin-bottom:10px;
+  margin-bottom:7px;
 
 }
 
+
+/* =========================================================
+   STAR BUTTON
+   ========================================================= */
 
 .star{
 
@@ -833,7 +882,6 @@ body{
   -webkit-appearance:none;
 
   border:0 !important;
-
   outline:none !important;
 
   background:transparent !important;
@@ -841,33 +889,28 @@ body{
   box-shadow:none !important;
 
   width:
-    clamp(60px,16vw,84px);
+    clamp(58px,16vw,84px);
 
   height:
-    clamp(68px,17vw,90px);
+    clamp(65px,17vw,92px);
 
   padding:0;
-
-  margin:0;
 
   display:flex;
 
   align-items:center;
-
   justify-content:center;
 
   font-size:
-    clamp(59px,16vw,82px);
+    clamp(58px,16vw,82px);
 
   line-height:1;
 
-  color:#cbd1d9;
+  color:#c9d0d9;
 
   cursor:pointer;
 
   position:relative;
-
-  border-radius:0;
 
   user-select:none;
 
@@ -883,7 +926,7 @@ body{
 
     filter .18s ease,
 
-    transform .16s
+    transform .15s
     cubic-bezier(.2,.9,.25,1.4);
 
 }
@@ -909,7 +952,7 @@ body{
   filter:
 
     drop-shadow(
-      0 5px 5px
+      0 5px 6px
       rgba(150,90,0,.25)
     );
 
@@ -954,16 +997,16 @@ body{
 
 .rating-text{
 
-  min-height:26px;
+  min-height:28px;
 
-  color:#68788e;
+  color:#65758c;
 
   font-size:
-    clamp(15px,4vw,18px);
+    clamp(15px,4.1vw,18px);
 
   font-weight:650;
 
-  margin-bottom:20px;
+  margin-bottom:19px;
 
 }
 
@@ -976,9 +1019,9 @@ body{
 
   width:100%;
 
-  display:none;
-
   text-align:center;
+
+  display:none;
 
   animation:
     messageEnter .4s
@@ -998,49 +1041,383 @@ body{
 @keyframes messageEnter{
 
   from{
+
     opacity:0;
-    transform:translateY(13px);
+
+    transform:
+      translateY(14px);
+
   }
 
   to{
+
     opacity:1;
-    transform:translateY(0);
+
+    transform:
+      translateY(0);
+
   }
 
 }
 
+
+/* =========================================================
+   MESSAGE TITLE
+   ========================================================= */
 
 .message h2{
 
   color:var(--navy);
 
   font-size:
-    clamp(23px,6.2vw,30px);
+    clamp(23px,6vw,31px);
 
   line-height:1.18;
 
-  font-weight:850;
+  font-weight:900;
 
-  letter-spacing:-.5px;
+  letter-spacing:-.55px;
 
-  margin-bottom:8px;
+  margin-bottom:9px;
 
 }
 
+
+/* =========================================================
+   MESSAGE TEXT
+   ========================================================= */
 
 .message p{
 
   color:#61728a;
 
   font-size:
-    clamp(16px,4.2vw,19px);
+    clamp(16px,4.4vw,19px);
 
-  line-height:1.5;
+  line-height:1.52;
 
   max-width:620px;
 
   margin:
     0 auto 20px;
+
+}
+
+
+/* =========================================================
+   GOOGLE AREA
+   ========================================================= */
+
+#googleArea{
+
+  width:100%;
+
+  animation:
+    googleAreaEnter .45s
+    cubic-bezier(.2,.8,.2,1)
+    both;
+
+}
+
+
+@keyframes googleAreaEnter{
+
+  from{
+
+    opacity:0;
+
+    transform:
+      translateY(10px)
+      scale(.98);
+
+  }
+
+  to{
+
+    opacity:1;
+
+    transform:
+      translateY(0)
+      scale(1);
+
+  }
+
+}
+
+
+/* =========================================================
+   BUTTON BASE
+   ========================================================= */
+
+.button{
+
+  width:100%;
+
+  min-height:72px;
+
+  border-radius:20px;
+
+  border:none;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  text-decoration:none;
+
+  padding:18px 22px;
+
+  font-size:
+    clamp(18px,4.8vw,22px);
+
+  font-weight:900;
+
+  cursor:pointer;
+
+  margin-top:10px;
+
+  position:relative;
+
+  overflow:hidden;
+
+  transition:
+
+    transform .16s ease,
+
+    box-shadow .22s ease,
+
+    background .22s ease;
+
+  -webkit-tap-highlight-color:transparent;
+
+  touch-action:manipulation;
+
+}
+
+
+.button:active{
+
+  transform:
+    scale(.975);
+
+}
+
+
+/* =========================================================
+   PREMIUM GOOGLE BUTTON
+   ========================================================= */
+
+.google{
+
+  color:#fff;
+
+  background:
+
+    linear-gradient(
+      135deg,
+      #0a2d59 0%,
+      #0d407a 52%,
+      #08294f 100%
+    );
+
+  border:
+
+    2px solid
+    rgba(217,146,19,.88);
+
+  box-shadow:
+
+    0 12px 28px
+    rgba(7,27,60,.22),
+
+    0 0 0 3px
+    rgba(217,146,19,.08);
+
+  animation:
+    googleAttention 3.2s
+    ease-in-out
+    infinite;
+
+}
+
+
+/* gold accent line */
+
+.google::before{
+
+  content:"";
+
+  position:absolute;
+
+  left:0;
+  right:0;
+
+  top:0;
+
+  height:4px;
+
+  background:
+
+    linear-gradient(
+      90deg,
+      var(--gold-dark),
+      var(--gold-light),
+      var(--gold-dark)
+    );
+
+}
+
+
+/* moving shine */
+
+.google::after{
+
+  content:"";
+
+  position:absolute;
+
+  top:-20%;
+
+  left:-45%;
+
+  width:35%;
+
+  height:140%;
+
+  transform:skewX(-20deg);
+
+  background:
+
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(255,255,255,.24),
+      transparent
+    );
+
+  animation:
+    buttonShine 3.8s
+    ease-in-out
+    infinite;
+
+}
+
+
+@keyframes buttonShine{
+
+  0%,
+  55%{
+
+    left:-45%;
+
+  }
+
+  75%{
+
+    left:120%;
+
+  }
+
+  100%{
+
+    left:120%;
+
+  }
+
+}
+
+
+@keyframes googleAttention{
+
+  0%,
+  72%,
+  100%{
+
+    transform:translateY(0);
+
+    box-shadow:
+
+      0 12px 28px
+      rgba(7,27,60,.22),
+
+      0 0 0 3px
+      rgba(217,146,19,.08);
+
+  }
+
+  76%{
+
+    transform:
+      translateY(-2px)
+      scale(1.015);
+
+    box-shadow:
+
+      0 16px 34px
+      rgba(7,27,60,.28),
+
+      0 0 0 5px
+      rgba(217,146,19,.15);
+
+  }
+
+  81%{
+
+    transform:
+      translateY(0)
+      scale(1);
+
+  }
+
+}
+
+
+/* =========================================================
+   WHATSAPP NORMAL
+   ========================================================= */
+
+.private{
+
+  color:#fff;
+
+  background:
+
+    linear-gradient(
+      135deg,
+      #123e6d,
+      #09294d
+    );
+
+  box-shadow:
+
+    0 11px 26px
+    rgba(7,27,60,.18);
+
+}
+
+
+/* =========================================================
+   WHATSAPP ACTIVE
+   ========================================================= */
+
+.private.sending{
+
+  background:
+
+    linear-gradient(
+      135deg,
+      #159447,
+      #087a37
+    );
+
+  box-shadow:
+
+    0 13px 30px
+    rgba(20,150,75,.28);
+
+  pointer-events:none;
 
 }
 
@@ -1053,13 +1430,13 @@ textarea{
 
   width:100%;
 
-  min-height:145px;
+  min-height:150px;
 
   resize:none;
 
-  padding:17px;
+  padding:18px;
 
-  border-radius:18px;
+  border-radius:20px;
 
   border:
     1.5px solid
@@ -1103,291 +1480,6 @@ textarea:focus{
 
 
 /* =========================================================
-   BUTTON BASE
-   ========================================================= */
-
-.button{
-
-  width:100%;
-
-  min-height:66px;
-
-  border-radius:18px;
-
-  border:none;
-
-  display:flex;
-
-  align-items:center;
-
-  justify-content:center;
-
-  text-decoration:none;
-
-  padding:17px 20px;
-
-  font-size:
-    clamp(17px,4.4vw,21px);
-
-  font-weight:850;
-
-  cursor:pointer;
-
-  margin-top:10px;
-
-  transition:
-
-    transform .16s ease,
-
-    box-shadow .22s ease,
-
-    background .22s ease,
-
-    opacity .2s ease;
-
-  -webkit-tap-highlight-color:transparent;
-
-  touch-action:manipulation;
-
-}
-
-
-.button:active{
-
-  transform:scale(.975);
-
-}
-
-
-/* =========================================================
-   GOOGLE REVIEW — PREMIUM HERO CTA
-   ========================================================= */
-
-.google{
-
-  color:#fff;
-
-  background:
-
-    linear-gradient(
-      135deg,
-      #051832 0%,
-      #08264d 48%,
-      #0d3970 100%
-    );
-
-  border:
-    2px solid
-    rgba(255,202,67,.82);
-
-  min-height:82px;
-
-  padding:21px 22px;
-
-  font-size:
-    clamp(19px,5.2vw,23px);
-
-  font-weight:900;
-
-  letter-spacing:-.25px;
-
-  border-radius:20px;
-
-  box-shadow:
-
-    0 15px 34px
-    rgba(6,27,58,.27),
-
-    0 0 0 1px
-    rgba(255,202,67,.10),
-
-    0 0 25px
-    rgba(255,202,67,.15);
-
-  position:relative;
-
-  overflow:hidden;
-
-  transform:translateZ(0);
-
-  animation:
-    googleAttention 3.2s
-    ease-in-out
-    infinite;
-
-}
-
-
-/* Google shine */
-
-.google::before{
-
-  content:"";
-
-  position:absolute;
-
-  top:0;
-
-  left:-130%;
-
-  width:65%;
-
-  height:100%;
-
-  background:
-
-    linear-gradient(
-      90deg,
-      transparent,
-      rgba(255,255,255,.30),
-      transparent
-    );
-
-  transform:skewX(-20deg);
-
-  animation:
-    googleShine 4s
-    ease-in-out
-    infinite;
-
-  pointer-events:none;
-
-}
-
-
-/* Inner gold border */
-
-.google::after{
-
-  content:"";
-
-  position:absolute;
-
-  inset:4px;
-
-  border-radius:15px;
-
-  border:
-    1px solid
-    rgba(255,202,67,.18);
-
-  pointer-events:none;
-
-}
-
-
-@keyframes googleAttention{
-
-  0%,
-  70%,
-  100%{
-
-    box-shadow:
-
-      0 15px 34px
-      rgba(6,27,58,.27),
-
-      0 0 25px
-      rgba(255,202,67,.12);
-
-  }
-
-  84%{
-
-    box-shadow:
-
-      0 17px 38px
-      rgba(6,27,58,.31),
-
-      0 0 34px
-      rgba(255,202,67,.25);
-
-  }
-
-}
-
-
-@keyframes googleShine{
-
-  0%{
-    left:-130%;
-  }
-
-  35%,
-  100%{
-    left:145%;
-  }
-
-}
-
-
-.google:hover{
-
-  transform:translateY(-3px);
-
-  box-shadow:
-
-    0 18px 40px
-    rgba(6,27,58,.32),
-
-    0 0 32px
-    rgba(255,202,67,.22);
-
-}
-
-
-.google:active{
-
-  transform:scale(.965);
-
-}
-
-
-/* =========================================================
-   PRIVATE WHATSAPP
-   ========================================================= */
-
-.private{
-
-  color:#fff;
-
-  background:
-
-    linear-gradient(
-      135deg,
-      #123e6d,
-      #09294d
-    );
-
-  box-shadow:
-
-    0 10px 25px
-    rgba(7,27,60,.18);
-
-}
-
-
-.private.sending{
-
-  background:
-
-    linear-gradient(
-      135deg,
-      #159447,
-      #087a37
-    );
-
-  box-shadow:
-
-    0 12px 28px
-    rgba(20,150,75,.28);
-
-  pointer-events:none;
-
-}
-
-
-/* =========================================================
    SMART REVIEW FOOTER
    ========================================================= */
 
@@ -1403,23 +1495,25 @@ textarea:focus{
 
   justify-content:center;
 
-  text-align:center;
-
   margin-top:38px;
 
   padding-top:23px;
 
   border-top:
     1px solid
-    rgba(7,27,60,.12);
+    rgba(7,27,60,.11);
 
 }
 
 
+/* =========================================================
+   MINI LINE
+   ========================================================= */
+
 .brand-mini-line{
 
   width:
-    clamp(90px,25vw,150px);
+    clamp(100px,27vw,155px);
 
   height:3px;
 
@@ -1437,36 +1531,87 @@ textarea:focus{
       transparent
     );
 
+  position:relative;
+
+  overflow:hidden;
+
 }
 
 
+.brand-mini-line::after{
+
+  content:"";
+
+  position:absolute;
+
+  top:0;
+
+  left:-50%;
+
+  width:40%;
+
+  height:100%;
+
+  background:
+    rgba(255,255,255,.8);
+
+  filter:blur(2px);
+
+  animation:
+    lineShine 3.5s
+    ease-in-out
+    infinite;
+
+}
+
+
+@keyframes lineShine{
+
+  0%{
+
+    left:-50%;
+
+  }
+
+  60%,
+  100%{
+
+    left:120%;
+
+  }
+
+}
+
+
+/* =========================================================
+   SMART REVIEW LOGO
+   ========================================================= */
+
 .smart-review{
 
-  position:relative;
-
   font-size:
-    clamp(31px,8.5vw,44px);
+    clamp(31px,8.5vw,45px);
 
   line-height:1;
 
-  font-weight:900;
+  font-weight:950;
 
-  letter-spacing:-1.3px;
+  letter-spacing:-1.5px;
 
   background:
 
     linear-gradient(
       110deg,
-      #9b6205 0%,
-      #d99213 18%,
-      #ffca43 29%,
-      #f8f9fb 42%,
-      #c1cad6 54%,
-      #315b88 72%,
+      #a86c08 0%,
+      #e3a51e 18%,
+      #fff 35%,
+      #c5ced9 48%,
+      #356a9f 70%,
       #061b3a 100%
     );
 
-  background-size:220% 100%;
+  background-size:
+    240% 100%;
 
   -webkit-background-clip:text;
   background-clip:text;
@@ -1474,61 +1619,53 @@ textarea:focus{
   color:transparent;
 
   filter:
+
     drop-shadow(
       0 4px 8px
       rgba(7,27,60,.13)
     );
 
   animation:
-    smartReviewShine 5.5s
+    smartShimmer 5s
     ease-in-out
     infinite;
 
 }
 
 
-@keyframes smartReviewShine{
+@keyframes smartShimmer{
 
-  0%,
-  18%{
+  0%{
 
-    background-position:0% 50%;
-
-    transform:translateY(0);
+    background-position:
+      0% 50%;
 
   }
 
-  48%{
+  50%{
 
-    background-position:100% 50%;
-
-    transform:translateY(-1px);
-
-  }
-
-  58%{
-
-    background-position:100% 50%;
-
-    transform:translateY(0);
+    background-position:
+      100% 50%;
 
   }
 
-  82%,
   100%{
 
-    background-position:0% 50%;
-
-    transform:translateY(0);
+    background-position:
+      0% 50%;
 
   }
 
 }
 
 
+/* =========================================================
+   SMART REVIEW SUBTITLE
+   ========================================================= */
+
 .smart-review-sub{
 
-  margin-top:7px;
+  margin-top:8px;
 
   color:#6b788a;
 
@@ -1596,174 +1733,36 @@ textarea:focus{
 
 
 .loading-dot:nth-child(2){
+
   animation-delay:.15s;
+
 }
 
+
 .loading-dot:nth-child(3){
+
   animation-delay:.30s;
+
 }
 
 
 @keyframes loadingPulse{
 
-  0%,80%,100%{
+  0%,
+  80%,
+  100%{
+
     opacity:.25;
+
     transform:scale(.7);
+
   }
 
   40%{
+
     opacity:1;
+
     transform:scale(1);
-  }
-
-}
-
-
-/* =========================================================
-   PHONE OPTIMIZATION
-   ========================================================= */
-
-@media(max-width:600px){
-
-  .content{
-
-    padding-left:18px;
-
-    padding-right:18px;
-
-    padding-bottom:
-      max(42px,env(safe-area-inset-bottom));
-
-  }
-
-
-  .client-brand{
-
-    width:100%;
-
-    margin-top:-7px;
-
-  }
-
-
-  .logo-frame{
-
-    width:175px;
-
-    height:175px;
-
-    margin-bottom:20px;
-
-  }
-
-
-  .client-logo{
-
-    width:128px;
-
-    height:128px;
-
-    border-radius:24px;
-
-  }
-
-
-  .business-name{
-
-    font-size:
-      clamp(30px,8.5vw,38px);
-
-    max-width:95%;
-
-  }
-
-
-  .rating-question{
-
-    max-width:95%;
-
-    font-size:
-      clamp(23px,6.5vw,28px);
-
-    margin-bottom:14px;
-
-  }
-
-
-  .stars{
-
-    gap:2px;
-
-    margin-bottom:7px;
-
-  }
-
-
-  .star{
-
-    width:18vw;
-
-    height:19vw;
-
-    font-size:18vw;
-
-    max-width:76px;
-
-    max-height:82px;
-
-  }
-
-
-  .rating-text{
-
-    font-size:16px;
-
-    margin-bottom:20px;
-
-  }
-
-
-  .message h2{
-
-    font-size:
-      clamp(23px,6.5vw,29px);
-
-  }
-
-
-  .message p{
-
-    font-size:17px;
-
-    max-width:94%;
-
-    margin-bottom:20px;
-
-  }
-
-
-  .google{
-
-    min-height:82px;
-
-    width:100%;
-
-    font-size:
-      clamp(19px,5.3vw,22px);
-
-    padding:
-      20px 18px;
-
-    border-radius:20px;
-
-  }
-
-
-  .brand-footer{
-
-    margin-top:38px;
-
-    padding-top:23px;
 
   }
 
@@ -1771,83 +1770,95 @@ textarea:focus{
 
 
 /* =========================================================
-   VERY SMALL PHONES
+   SMALL PHONES
    ========================================================= */
 
 @media(max-width:390px){
 
   .hero{
 
-    min-height:355px;
+    min-height:370px;
 
-    padding-left:15px;
+    padding-left:14px;
+    padding-right:14px;
 
-    padding-right:15px;
+  }
+
+
+  .google-mark{
+
+    margin-bottom:17px;
 
   }
 
 
   .hero-title{
 
-    font-size:21px;
+    font-size:22px;
+
+    max-width:340px;
 
   }
 
 
   .hero-rating{
 
-    margin-top:22px;
+    margin-top:21px;
 
   }
 
 
   .content{
 
-    padding-left:16px;
-
-    padding-right:16px;
+    padding-left:15px;
+    padding-right:15px;
 
   }
 
 
   .logo-frame{
 
-    width:160px;
-
-    height:160px;
+    width:155px;
+    height:155px;
 
   }
 
 
   .client-logo{
 
-    width:118px;
+    width:110px;
+    height:110px;
 
-    height:118px;
+  }
+
+
+  .business-name{
+
+    font-size:28px;
+
+  }
+
+
+  .rating-question{
+
+    font-size:21px;
 
   }
 
 
   .star{
 
-    width:18vw;
+    width:56px;
+    height:64px;
 
-    height:19vw;
-
-    font-size:18vw;
+    font-size:55px;
 
   }
 
 
-  .google{
+  .button{
 
-    min-height:78px;
-
-    font-size:18px;
-
-    padding-left:15px;
-
-    padding-right:15px;
+    min-height:70px;
 
   }
 
@@ -1869,14 +1880,35 @@ textarea:focus{
 
   .content{
 
-    margin-top:-25px;
+    margin-top:-27px;
 
   }
 
 
   .client-brand{
 
-    margin-top:-5px;
+    margin-top:-4px;
+
+  }
+
+
+  .logo-frame{
+
+    margin-bottom:21px;
+
+  }
+
+
+  .business-name{
+
+    margin-bottom:9px;
+
+  }
+
+
+  .subtitle{
+
+    margin-bottom:30px;
 
   }
 
@@ -1898,10 +1930,9 @@ textarea:focus{
 
   .content{
 
-    margin-top:-35px;
+    margin-top:-36px;
 
     padding-left:40px;
-
     padding-right:40px;
 
   }
@@ -1910,6 +1941,46 @@ textarea:focus{
   .client-brand{
 
     margin-top:-5px;
+
+  }
+
+
+  .logo-frame{
+
+    width:215px;
+    height:215px;
+
+  }
+
+
+  .client-logo{
+
+    width:160px;
+    height:160px;
+
+  }
+
+
+  .stars{
+
+    gap:10px;
+
+  }
+
+
+  .star{
+
+    width:84px;
+    height:90px;
+
+    font-size:82px;
+
+  }
+
+
+  .button{
+
+    min-height:76px;
 
   }
 
@@ -1946,11 +2017,13 @@ textarea:focus{
 
 
   <!-- =====================================================
-       NAVY CARD HEADER
+       HERO
        ===================================================== -->
 
   <section class="hero">
 
+
+    <!-- GOOGLE -->
 
     <div class="google-mark">
 
@@ -1961,10 +2034,14 @@ textarea:focus{
     </div>
 
 
+    <!-- TITLE -->
+
     <h1 class="hero-title">
       LAISSEZ-NOUS VOTRE AVIS SUR GOOGLE
     </h1>
 
+
+    <!-- STARS -->
 
     <div class="hero-rating">
 
@@ -1985,6 +2062,8 @@ textarea:focus{
     </div>
 
 
+    <!-- WAVE -->
+
     <div class="wave-blue"></div>
 
     <div class="wave"></div>
@@ -1994,11 +2073,15 @@ textarea:focus{
 
 
   <!-- =====================================================
-       WHITE CONTENT
+       MAIN CONTENT
        ===================================================== -->
 
   <main class="content">
 
+
+    <!-- ===================================================
+         CLIENT BRAND
+         =================================================== -->
 
     <section class="client-brand">
 
@@ -2054,6 +2137,8 @@ textarea:focus{
       </div>
 
 
+      <!-- STARS -->
+
       <div
         class="stars"
         id="stars"
@@ -2103,6 +2188,8 @@ textarea:focus{
       </div>
 
 
+      <!-- RATING TEXT -->
+
       <div
         class="rating-text"
         id="ratingText"
@@ -2129,7 +2216,9 @@ textarea:focus{
 
 
 
-        <!-- GOOGLE -->
+        <!-- ===============================================
+             GOOGLE
+             =============================================== -->
 
         <div
           id="googleArea"
@@ -2152,7 +2241,9 @@ textarea:focus{
 
 
 
-        <!-- PRIVATE FEEDBACK -->
+        <!-- ===============================================
+             PRIVATE FEEDBACK
+             =============================================== -->
 
         <div
           id="privateArea"
@@ -2632,7 +2723,7 @@ stars.forEach(
 
 
         /* =================================================
-           REPLAY MESSAGE ANIMATION
+           MESSAGE ANIMATION
            ================================================= */
 
         message.classList.remove(
@@ -2699,7 +2790,6 @@ stars.forEach(
            ================================================= */
 
         else{
-
 
           privateArea
             .classList
