@@ -1,28 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 
 <meta charset="UTF-8">
 
 <meta
   name="viewport"
-  content="width=device-width, initial-scale=1.0"
->
-
-<meta
-  name="theme-color"
-  content="#07111f"
+  content="width=device-width, initial-scale=1.0, viewport-fit=cover"
 >
 
 <title>Customer Feedback</title>
 
-
 <style>
 
 /* =========================================================
-   TAPREVIEW — AAA FULL SCREEN CUSTOMER EXPERIENCE
-   UI ONLY
+   RESET
    ========================================================= */
 
 *{
@@ -31,12 +23,11 @@
   padding:0;
 }
 
-
-html{
+html,
+body{
+  width:100%;
   min-height:100%;
-  background:#07111f;
 }
-
 
 body{
 
@@ -54,27 +45,30 @@ body{
   background:
     radial-gradient(
       circle at 50% -10%,
-      rgba(255,200,61,.10),
-      transparent 38%
-    ),
-    radial-gradient(
-      circle at 0% 100%,
-      rgba(46,117,255,.10),
+      rgba(255,200,61,.09),
       transparent 35%
     ),
-    #07111f;
+    linear-gradient(
+      180deg,
+      #06101d 0%,
+      #071522 50%,
+      #050c15 100%
+    );
 
   color:#fff;
 
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+
   overflow-x:hidden;
 
-  -webkit-font-smoothing:antialiased;
-  text-rendering:optimizeLegibility;
+  -webkit-tap-highlight-color:transparent;
 }
 
 
 /* =========================================================
-   APP
+   MAIN APP
    ========================================================= */
 
 .app{
@@ -86,15 +80,19 @@ body{
   display:flex;
   flex-direction:column;
 
+  padding:
+    max(32px, env(safe-area-inset-top))
+    24px
+    max(24px, env(safe-area-inset-bottom))
+    24px;
+
   position:relative;
 
   overflow:hidden;
 }
 
 
-/* =========================================================
-   TOP AMBIENT LIGHT
-   ========================================================= */
+/* subtle premium background glow */
 
 .app::before{
 
@@ -102,8 +100,8 @@ body{
 
   position:absolute;
 
-  width:420px;
-  height:420px;
+  width:500px;
+  height:500px;
 
   top:-250px;
   left:50%;
@@ -113,7 +111,7 @@ body{
   background:
     radial-gradient(
       circle,
-      rgba(255,200,61,.16),
+      rgba(255,200,61,.10),
       transparent 68%
     );
 
@@ -123,93 +121,60 @@ body{
 
 
 /* =========================================================
-   MAIN CONTENT
+   TOP BRAND
    ========================================================= */
 
-.main{
+.top{
 
   width:100%;
+  max-width:650px;
 
-  min-height:100vh;
-  min-height:100dvh;
+  margin:0 auto;
 
   display:flex;
   flex-direction:column;
-
   align-items:center;
 
   position:relative;
   z-index:1;
-
-  padding:
-    max(32px, env(safe-area-inset-top))
-    22px
-    max(30px, env(safe-area-inset-bottom));
-
 }
 
 
-/* =========================================================
-   BRAND / LOGO
-   ========================================================= */
-
 .logo{
 
-  width:112px;
-  height:112px;
+  width:100px;
+  height:100px;
 
-  margin-top:clamp(15px,5vh,55px);
-  margin-bottom:28px;
+  border-radius:30px;
 
-  border-radius:32px;
+  margin-bottom:22px;
 
   background:
     linear-gradient(
       145deg,
-      #183552,
-      #0d1f34
+      #172f4b,
+      #0c1d31
     );
 
   border:
     1px solid rgba(255,255,255,.12);
 
   box-shadow:
-    0 20px 55px rgba(0,0,0,.30),
+    0 18px 45px rgba(0,0,0,.35),
     inset 0 1px 0 rgba(255,255,255,.08);
 
   display:flex;
   align-items:center;
   justify-content:center;
 
-  font-size:52px;
-
   overflow:hidden;
 
-  flex-shrink:0;
+  font-size:46px;
 
-  animation:
-    logoEnter .65s cubic-bezier(.2,.8,.2,1);
+  transition:
+    transform .3s ease,
+    box-shadow .3s ease;
 }
-
-
-@keyframes logoEnter{
-
-  from{
-    opacity:0;
-    transform:
-      translateY(-15px)
-      scale(.88);
-  }
-
-  to{
-    opacity:1;
-    transform:
-      translateY(0)
-      scale(1);
-  }
-
-}
-
 
 .logo img{
 
@@ -217,104 +182,279 @@ body{
   height:100%;
 
   object-fit:cover;
-
 }
 
 
-/* =========================================================
-   BUSINESS NAME
-   ========================================================= */
+.business-name{
 
-h1{
+  font-size:
+    clamp(30px, 8vw, 44px);
 
-  width:100%;
-  max-width:700px;
+  font-weight:800;
+
+  line-height:1.1;
+
+  letter-spacing:-1px;
 
   text-align:center;
 
-  font-size:
-    clamp(30px,8vw,48px);
+  max-width:100%;
 
-  line-height:1.08;
-
-  font-weight:850;
-
-  letter-spacing:-1.2px;
-
-  color:#fff;
-
-  margin-bottom:13px;
-
-  overflow-wrap:anywhere;
-
-  animation:
-    titleEnter .65s .05s both
-    cubic-bezier(.2,.8,.2,1);
-
+  word-break:break-word;
 }
 
 
-@keyframes titleEnter{
+.subtitle{
 
-  from{
-    opacity:0;
-    transform:translateY(14px);
-  }
+  margin-top:13px;
 
-  to{
-    opacity:1;
-    transform:translateY(0);
-  }
+  color:#aeb9c8;
 
+  font-size:
+    clamp(17px, 4.5vw, 21px);
+
+  line-height:1.45;
+
+  text-align:center;
+
+  max-width:560px;
 }
 
 
 /* =========================================================
-   SUBTITLE
+   CONTENT
    ========================================================= */
 
-.subtitle{
+.content{
 
   width:100%;
   max-width:650px;
 
+  margin:0 auto;
+
+  flex:1;
+
+  display:flex;
+  flex-direction:column;
+
+  justify-content:center;
+
+  position:relative;
+  z-index:1;
+}
+
+
+/* =========================================================
+   RATING TITLE
+   ========================================================= */
+
+.rating-title{
+
   text-align:center;
 
-  color:#aebdce;
+  font-size:
+    clamp(21px, 5vw, 26px);
+
+  font-weight:700;
+
+  margin-bottom:24px;
+
+  color:#f4f7fb;
+}
+
+
+/* =========================================================
+   STARS
+   ========================================================= */
+
+.stars{
+
+  width:100%;
+
+  display:flex;
+
+  justify-content:center;
+  align-items:center;
+
+  gap:
+    clamp(5px, 2vw, 15px);
+
+  margin-bottom:22px;
+}
+
+
+.star{
+
+  appearance:none;
+  -webkit-appearance:none;
+
+  border:0;
+  outline:none;
+
+  background:transparent;
+
+  box-shadow:none;
+
+  color:#39495d;
 
   font-size:
-    clamp(18px,4.8vw,23px);
+    clamp(54px, 14vw, 82px);
 
-  line-height:1.45;
+  line-height:1;
 
-  font-weight:500;
+  cursor:pointer;
 
-  margin-bottom:clamp(35px,7vh,60px);
+  padding:3px;
+
+  margin:0;
+
+  position:relative;
+
+  user-select:none;
+  -webkit-user-select:none;
+
+  -webkit-tap-highlight-color:transparent;
+
+  touch-action:manipulation;
+
+  transition:
+    color .22s ease,
+    transform .22s cubic-bezier(.2,.8,.2,1),
+    text-shadow .22s ease;
+}
+
+
+/*
+  IMPORTANT:
+
+  Remove the ugly browser focus/tap square.
+
+  Keyboard users can still get a proper focus
+  indicator with :focus-visible.
+*/
+
+.star:focus{
+  outline:none !important;
+  box-shadow:none !important;
+}
+
+.star:focus-visible{
+
+  outline:
+    3px solid rgba(255,200,61,.65);
+
+  outline-offset:6px;
+
+  border-radius:14px;
+}
+
+
+.star::-moz-focus-inner{
+  border:0;
+}
+
+
+/* hover */
+
+.star:hover{
+
+  transform:
+    scale(1.10);
+
+  color:#d7a92e;
+}
+
+
+/* pressed */
+
+.star:active{
+
+  transform:
+    scale(.88);
+
+}
+
+
+/* selected stars */
+
+.star.active{
+
+  color:#ffc83d;
+
+  text-shadow:
+    0 0 12px rgba(255,200,61,.35),
+    0 0 28px rgba(255,200,61,.18);
 
   animation:
-    titleEnter .65s .10s both
-    cubic-bezier(.2,.8,.2,1);
+    starPop .38s cubic-bezier(.2,.8,.2,1);
+}
+
+
+@keyframes starPop{
+
+  0%{
+    transform:scale(.72);
+    opacity:.55;
+  }
+
+  55%{
+    transform:scale(1.18);
+    opacity:1;
+  }
+
+  100%{
+    transform:scale(1);
+  }
 
 }
 
 
 /* =========================================================
-   FEEDBACK AREA
+   RATING TEXT
    ========================================================= */
 
-#feedbackArea{
+.rating-text{
 
-  width:100%;
-  max-width:760px;
+  min-height:32px;
 
-  animation:
-    contentEnter .7s .12s both
-    cubic-bezier(.2,.8,.2,1);
+  text-align:center;
 
+  color:#b8c3d1;
+
+  font-size:
+    clamp(16px, 4vw, 19px);
+
+  font-weight:500;
+
+  margin-bottom:28px;
+
+  transition:
+    opacity .2s ease,
+    transform .2s ease;
 }
 
 
-@keyframes contentEnter{
+/* =========================================================
+   MESSAGE
+   ========================================================= */
+
+.message{
+
+  display:none;
+
+  width:100%;
+
+  animation:
+    messageAppear .35s ease;
+}
+
+
+.message.show{
+  display:block;
+}
+
+
+@keyframes messageAppear{
 
   from{
     opacity:0;
@@ -329,322 +469,33 @@ h1{
 }
 
 
-/* =========================================================
-   STAR AREA
-   ========================================================= */
-
-.stars{
-
-  width:100%;
-
-  display:flex;
-
-  justify-content:center;
-  align-items:center;
-
-  gap:
-    clamp(4px,2vw,16px);
-
-  margin-bottom:18px;
-
-}
-
-
-/* =========================================================
-   STAR BUTTON
-   IMPORTANT:
-   We use explicit color + opacity + visibility.
-   This prevents the selected star from disappearing.
-   ========================================================= */
-
-.star{
-
-  appearance:none;
-  -webkit-appearance:none;
-
-  border:0;
-
-  background:transparent;
-
-  width:
-    clamp(58px,16vw,105px);
-
-  height:
-    clamp(64px,17vw,110px);
-
-  min-width:58px;
-  min-height:64px;
-
-  padding:0;
-
-  margin:0;
-
-  display:flex;
-  align-items:center;
-  justify-content:center;
-
-  cursor:pointer;
-
-  position:relative;
-
-  color:#526174;
-
-  opacity:1;
-
-  visibility:visible;
-
-  font-family:
-    Arial,
-    sans-serif;
-
-  font-size:
-    clamp(52px,15vw,92px);
-
-  line-height:1;
-
-  font-weight:900;
-
-  -webkit-text-fill-color:#526174;
-
-  text-shadow:
-    0 3px 10px rgba(0,0,0,.30);
-
-  transform:
-    translateZ(0)
-    scale(1);
-
-  transition:
-    color .18s ease,
-    -webkit-text-fill-color .18s ease,
-    transform .18s ease,
-    text-shadow .18s ease,
-    filter .18s ease;
-
-  touch-action:manipulation;
-
-}
-
-
-/* =========================================================
-   STAR HOVER
-   ========================================================= */
-
-.star:hover{
-
-  color:#ffd968;
-
-  -webkit-text-fill-color:#ffd968;
-
-  transform:
-    translateZ(0)
-    scale(1.10);
-
-}
-
-
-/* =========================================================
-   STAR ACTIVE
-   ========================================================= */
-
-.star.active{
-
-  color:#ffc83d !important;
-
-  -webkit-text-fill-color:#ffc83d !important;
-
-  opacity:1 !important;
-
-  visibility:visible !important;
-
-  transform:
-    translateZ(0)
-    scale(1.08);
-
-  text-shadow:
-    0 0 8px rgba(255,200,61,.45),
-    0 0 22px rgba(255,200,61,.28),
-    0 4px 12px rgba(0,0,0,.35);
-
-  filter:
-    drop-shadow(
-      0 0 7px
-      rgba(255,200,61,.30)
-    );
-
-  animation:
-    starPop .28s cubic-bezier(.2,1.5,.4,1);
-
-}
-
-
-@keyframes starPop{
-
-  0%{
-
-    opacity:1;
-
-    transform:
-      translateZ(0)
-      scale(.72)
-      rotate(-8deg);
-
-  }
-
-  55%{
-
-    opacity:1;
-
-    transform:
-      translateZ(0)
-      scale(1.18)
-      rotate(3deg);
-
-  }
-
-  100%{
-
-    opacity:1;
-
-    transform:
-      translateZ(0)
-      scale(1.08)
-      rotate(0);
-
-  }
-
-}
-
-
-/* =========================================================
-   RATING TEXT
-   ========================================================= */
-
-.rating-text{
-
-  width:100%;
-
-  min-height:32px;
-
-  text-align:center;
-
-  color:#9eacbd;
-
-  font-size:
-    clamp(16px,4.3vw,20px);
-
-  line-height:1.4;
-
-  font-weight:500;
-
-  margin-bottom:32px;
-
-  transition:
-    color .2s ease,
-    transform .2s ease;
-
-}
-
-
-.rating-text:not(:empty){
-
-  color:#dce6f1;
-
-}
-
-
-/* =========================================================
-   MESSAGE
-   ========================================================= */
-
-.message{
-
-  width:100%;
-
-  display:none;
-
-  text-align:center;
-
-}
-
-
-.message.show{
-
-  display:block;
-
-  animation:
-    messageEnter .45s
-    cubic-bezier(.2,.8,.2,1);
-
-}
-
-
-@keyframes messageEnter{
-
-  from{
-
-    opacity:0;
-
-    transform:
-      translateY(20px)
-      scale(.98);
-
-  }
-
-  to{
-
-    opacity:1;
-
-    transform:
-      translateY(0)
-      scale(1);
-
-  }
-
-}
-
-
-/* =========================================================
-   MESSAGE TITLE
-   ========================================================= */
-
 .message h2{
 
-  width:100%;
+  text-align:center;
 
   font-size:
-    clamp(24px,6.5vw,34px);
+    clamp(24px, 6vw, 31px);
 
   line-height:1.2;
 
-  font-weight:800;
-
-  letter-spacing:-.5px;
-
   margin-bottom:12px;
 
+  letter-spacing:-.5px;
 }
 
 
-/* =========================================================
-   MESSAGE DESCRIPTION
-   ========================================================= */
-
 .message p{
 
-  width:100%;
+  text-align:center;
 
-  max-width:650px;
-
-  margin:
-    0 auto 27px;
-
-  color:#aebdce;
+  color:#aeb9c8;
 
   font-size:
-    clamp(17px,4.6vw,21px);
+    clamp(16px, 4vw, 19px);
 
   line-height:1.55;
 
+  margin-bottom:24px;
 }
 
 
@@ -652,132 +503,15 @@ h1{
    GOOGLE / PRIVATE AREAS
    ========================================================= */
 
-#googleArea,
-#privateArea{
-
-  width:100%;
-
-}
-
-
-/* =========================================================
-   BUTTONS
-   ========================================================= */
-
-.button{
-
-  display:flex;
-
-  width:100%;
-
-  min-height:70px;
-
-  padding:
-    17px 22px;
-
-  border-radius:20px;
-
-  border:0;
-
-  text-decoration:none;
-
-  font-size:
-    clamp(18px,5vw,23px);
-
-  font-weight:800;
-
-  line-height:1.25;
-
-  cursor:pointer;
-
-  align-items:center;
-  justify-content:center;
-
-  text-align:center;
-
-  transition:
-    transform .15s ease,
-    box-shadow .2s ease,
-    filter .2s ease;
-
-  touch-action:manipulation;
-
-}
-
-
-.button:hover{
-
-  transform:translateY(-2px);
-
-}
-
-
-.button:active{
-
-  transform:
-    translateY(1px)
-    scale(.985);
-
-}
-
-
-/* =========================================================
-   GOOGLE BUTTON
-   ========================================================= */
-
-.google{
-
-  background:
-    linear-gradient(
-      135deg,
-      #ffffff,
-      #eef2f6
-    );
-
-  color:#101722;
-
-  box-shadow:
-    0 15px 35px rgba(0,0,0,.25);
-
-}
-
-
-.google:hover{
-
-  box-shadow:
-    0 20px 42px rgba(0,0,0,.32);
-
-}
-
-
-/* =========================================================
-   PRIVATE BUTTON
-   ========================================================= */
-
+.google,
 .private{
 
-  background:
-    linear-gradient(
-      135deg,
-      #203c5a,
-      #172e47
-    );
-
-  color:#fff;
-
-  border:
-    1px solid rgba(255,255,255,.10);
-
-  box-shadow:
-    0 15px 35px rgba(0,0,0,.25);
-
+  width:100%;
 }
 
 
-.private:hover{
-
-  filter:brightness(1.08);
-
+.hidden{
+  display:none !important;
 }
 
 
@@ -793,26 +527,21 @@ textarea{
 
   resize:vertical;
 
-  padding:20px;
+  padding:18px;
 
-  border-radius:20px;
+  border-radius:18px;
 
   border:
-    1px solid rgba(255,255,255,.12);
+    1px solid rgba(255,255,255,.10);
 
   background:
-    linear-gradient(
-      145deg,
-      #091522,
-      #07111f
-    );
+    rgba(4,12,22,.8);
 
   color:#fff;
 
   font-family:inherit;
 
-  font-size:
-    clamp(17px,4.7vw,20px);
+  font-size:17px;
 
   line-height:1.5;
 
@@ -820,53 +549,206 @@ textarea{
 
   margin-bottom:12px;
 
-  box-shadow:
-    inset 0 1px 0
-    rgba(255,255,255,.03);
-
+  transition:
+    border-color .2s ease,
+    box-shadow .2s ease;
 }
 
 
 textarea::placeholder{
-
-  color:#718298;
-
+  color:#718096;
 }
 
 
 textarea:focus{
 
   border-color:
-    rgba(255,200,61,.55);
+    rgba(255,200,61,.45);
 
   box-shadow:
-    0 0 0 4px
-    rgba(255,200,61,.08);
+    0 0 0 4px rgba(255,200,61,.07);
+}
+
+
+/* =========================================================
+   BUTTONS
+   ========================================================= */
+
+.button{
+
+  display:flex;
+
+  width:100%;
+
+  min-height:66px;
+
+  padding:17px 20px;
+
+  border-radius:18px;
+
+  border:none;
+
+  text-decoration:none;
+
+  font-size:
+    clamp(17px, 4.5vw, 20px);
+
+  font-weight:800;
+
+  cursor:pointer;
+
+  margin-top:13px;
+
+  align-items:center;
+  justify-content:center;
+
+  text-align:center;
+
+  transition:
+    transform .15s ease,
+    box-shadow .2s ease,
+    opacity .2s ease;
+
+  -webkit-tap-highlight-color:transparent;
+}
+
+
+.button:focus{
+  outline:none;
+}
+
+
+.button:focus-visible{
+
+  outline:
+    3px solid rgba(255,200,61,.7);
+
+  outline-offset:4px;
+}
+
+
+.button:active{
+
+  transform:
+    scale(.975);
+
+}
+
+
+/* GOOGLE */
+
+.google{
+
+  background:
+    linear-gradient(
+      135deg,
+      #ffffff,
+      #edf1f5
+    );
+
+  color:#111827;
+
+  box-shadow:
+    0 12px 30px rgba(0,0,0,.25);
+}
+
+
+.google:hover{
+
+  box-shadow:
+    0 15px 35px rgba(0,0,0,.32);
+
+  transform:
+    translateY(-2px);
+}
+
+
+/* PRIVATE */
+
+.private{
+
+  background:
+    linear-gradient(
+      135deg,
+      #203c5c,
+      #142b44
+    );
+
+  color:white;
+
+  border:
+    1px solid rgba(255,255,255,.08);
+
+  box-shadow:
+    0 12px 30px rgba(0,0,0,.22);
+}
+
+
+.private:hover{
+
+  transform:
+    translateY(-2px);
 
 }
 
 
 /* =========================================================
-   FOOTER
+   BOTTOM BRANDING
    ========================================================= */
 
-.small{
-
-  margin-top:auto;
-
-  padding-top:40px;
+.bottom-brand{
 
   width:100%;
 
-  text-align:center;
+  max-width:650px;
 
-  color:#66758a;
+  margin:
+    30px auto
+    0;
 
-  font-size:
-    clamp(13px,3.5vw,16px);
+  padding-top:18px;
 
-  line-height:1.4;
+  border-top:
+    1px solid rgba(255,255,255,.06);
 
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+
+  position:relative;
+  z-index:1;
+}
+
+
+.smart-review{
+
+  font-size:13px;
+
+  font-weight:800;
+
+  letter-spacing:2px;
+
+  text-transform:uppercase;
+
+  color:#c4ccd7;
+}
+
+
+.smart-review span{
+
+  color:#ffc83d;
+}
+
+
+.powered{
+
+  margin-top:6px;
+
+  color:#536174;
+
+  font-size:11px;
+
+  letter-spacing:.4px;
 }
 
 
@@ -877,205 +759,125 @@ textarea:focus{
 .error{
 
   color:#ff9696;
-
-  font-weight:600;
-
 }
 
 
 /* =========================================================
-   HIDDEN
+   MOBILE
    ========================================================= */
 
-.hidden{
+@media(max-width:600px){
 
-  display:none !important;
+  .app{
 
-}
-
-
-/* =========================================================
-   DESKTOP / TABLET
-   ========================================================= */
-
-@media(min-width:700px){
-
-  .main{
-
-    padding-left:40px;
-    padding-right:40px;
-
+    padding-left:20px;
+    padding-right:20px;
   }
-
 
   .logo{
 
-    width:130px;
-    height:130px;
+    width:92px;
+    height:92px;
 
-    border-radius:36px;
+    border-radius:28px;
 
-    font-size:60px;
-
+    font-size:42px;
   }
 
+  .content{
 
-  h1{
+    justify-content:
+      center;
 
-    font-size:50px;
-
+    padding-top:20px;
   }
-
-
-  .subtitle{
-
-    font-size:22px;
-
-  }
-
 
   .stars{
 
-    gap:12px;
-
+    gap:3px;
   }
-
 
   .star{
 
-    width:105px;
-    height:110px;
+    font-size:
+      clamp(55px, 16vw, 76px);
 
-    font-size:92px;
-
-  }
-
-
-  .button{
-
-    min-height:76px;
-
+    padding:2px;
   }
 
 }
 
 
 /* =========================================================
-   SMALL PHONES
+   VERY SMALL PHONES
    ========================================================= */
 
 @media(max-height:700px){
 
+  .app{
+
+    padding-top:24px;
+  }
+
   .logo{
 
-    width:82px;
-    height:82px;
+    width:72px;
+    height:72px;
 
-    border-radius:24px;
+    border-radius:22px;
 
-    margin-top:12px;
-    margin-bottom:16px;
-
-    font-size:38px;
-
+    margin-bottom:13px;
   }
 
+  .business-name{
 
-  h1{
-
-    font-size:29px;
-
-    margin-bottom:7px;
-
+    font-size:28px;
   }
-
 
   .subtitle{
 
-    font-size:16px;
-
-    margin-bottom:22px;
-
+    font-size:15px;
+    margin-top:8px;
   }
 
+  .rating-title{
+
+    font-size:18px;
+    margin-bottom:14px;
+  }
+
+  .stars{
+
+    margin-bottom:12px;
+  }
 
   .star{
 
-    width:56px;
-    height:60px;
-
-    font-size:50px;
-
+    font-size:52px;
   }
 
+  .bottom-brand{
 
-  .rating-text{
-
-    margin-bottom:20px;
-
-  }
-
-
-  .message h2{
-
-    font-size:23px;
-
-  }
-
-
-  .message p{
-
-    font-size:16px;
-
-    margin-bottom:18px;
-
-  }
-
-
-  .button{
-
-    min-height:62px;
-
-    font-size:18px;
-
-  }
-
-
-  textarea{
-
-    min-height:120px;
-
-  }
-
-
-  .small{
-
-    padding-top:20px;
-
+    margin-top:18px;
   }
 
 }
 
 
 /* =========================================================
-   REDUCED MOTION
+   REDUCE MOTION
    ========================================================= */
 
-@media(
-  prefers-reduced-motion:reduce
-){
+@media(prefers-reduced-motion:reduce){
 
   *,
   *::before,
   *::after{
 
     animation-duration:.01ms !important;
-
     animation-iteration-count:1 !important;
-
-    transition-duration:.01ms !important;
-
     scroll-behavior:auto !important;
+    transition-duration:.01ms !important;
 
   }
 
@@ -1092,53 +894,46 @@ textarea:focus{
 <div class="app">
 
 
-  <main class="main">
+  <!-- =====================================================
+       TOP
+       ===================================================== -->
 
+  <div class="top">
 
-    <!-- =====================================================
-         LOGO
-         ===================================================== -->
 
     <div
       class="logo"
       id="logo"
     >
-
       🍽️
-
     </div>
 
 
-    <!-- =====================================================
-         BUSINESS NAME
-         ===================================================== -->
-
     <h1
+      class="business-name"
       id="businessName"
     >
-
       Loading...
-
     </h1>
 
-
-    <!-- =====================================================
-         SUBTITLE
-         ===================================================== -->
 
     <p
       class="subtitle"
       id="subtitle"
     >
-
       Loading your experience...
-
     </p>
 
 
-    <!-- =====================================================
-         FEEDBACK AREA
-         ===================================================== -->
+  </div>
+
+
+  <!-- =====================================================
+       MAIN CONTENT
+       ===================================================== -->
+
+  <main class="content">
+
 
     <div
       id="feedbackArea"
@@ -1146,9 +941,16 @@ textarea:focus{
     >
 
 
-      <!-- ===================================================
+      <div class="rating-title">
+
+        How was your experience?
+
+      </div>
+
+
+      <!-- =================================================
            STARS
-           =================================================== -->
+           ================================================= -->
 
       <div
         class="stars"
@@ -1161,7 +963,9 @@ textarea:focus{
           class="star"
           data-rating="1"
           aria-label="1 star"
-        >★</button>
+        >
+          ★
+        </button>
 
 
         <button
@@ -1169,7 +973,9 @@ textarea:focus{
           class="star"
           data-rating="2"
           aria-label="2 stars"
-        >★</button>
+        >
+          ★
+        </button>
 
 
         <button
@@ -1177,7 +983,9 @@ textarea:focus{
           class="star"
           data-rating="3"
           aria-label="3 stars"
-        >★</button>
+        >
+          ★
+        </button>
 
 
         <button
@@ -1185,7 +993,9 @@ textarea:focus{
           class="star"
           data-rating="4"
           aria-label="4 stars"
-        >★</button>
+        >
+          ★
+        </button>
 
 
         <button
@@ -1193,29 +1003,29 @@ textarea:focus{
           class="star"
           data-rating="5"
           aria-label="5 stars"
-        >★</button>
+        >
+          ★
+        </button>
 
 
       </div>
 
 
-      <!-- ===================================================
+      <!-- =================================================
            RATING TEXT
-           =================================================== -->
+           ================================================= -->
 
       <div
         class="rating-text"
         id="ratingText"
       >
-
         Tap a star to rate your experience
-
       </div>
 
 
-      <!-- ===================================================
+      <!-- =================================================
            MESSAGE
-           =================================================== -->
+           ================================================= -->
 
       <section
         class="message"
@@ -1242,7 +1052,6 @@ textarea:focus{
           class="hidden"
         >
 
-
           <a
             id="googleButton"
             class="button google"
@@ -1250,11 +1059,8 @@ textarea:focus{
             target="_blank"
             rel="noopener"
           >
-
             ⭐ Leave us a Google review
-
           </a>
-
 
         </div>
 
@@ -1276,13 +1082,11 @@ textarea:focus{
 
 
           <button
+            type="button"
             id="sendPrivate"
             class="button private"
-            type="button"
           >
-
             💬 Send privately
-
           </button>
 
 
@@ -1295,18 +1099,31 @@ textarea:focus{
     </div>
 
 
-    <!-- =====================================================
-         FOOTER
-         ===================================================== -->
+  </main>
 
-    <div class="small">
 
-      Your feedback helps us improve.
+  <!-- =====================================================
+       BRANDING
+       ===================================================== -->
+
+  <footer class="bottom-brand">
+
+
+    <div class="smart-review">
+
+      SMART <span>REVIEW</span>
 
     </div>
 
 
-  </main>
+    <div class="powered">
+
+      Powered by Smart Review
+
+    </div>
+
+
+  </footer>
 
 
 </div>
@@ -1332,7 +1149,7 @@ const SUPABASE_KEY =
    GET CARD CODE
    ========================================================= */
 
-function getCardCode() {
+function getCardCode(){
 
   const params =
     new URLSearchParams(
@@ -1348,16 +1165,16 @@ function getCardCode() {
    SUPABASE GET
    ========================================================= */
 
-async function supabaseGet(endpoint) {
+async function supabaseGet(endpoint){
 
   const response =
     await fetch(
       `${SUPABASE_URL}/rest/v1/${endpoint}`,
       {
 
-        method: "GET",
+        method:"GET",
 
-        headers: {
+        headers:{
 
           "apikey":
             SUPABASE_KEY,
@@ -1374,7 +1191,7 @@ async function supabaseGet(endpoint) {
     );
 
 
-  if (!response.ok) {
+  if(!response.ok){
 
     const error =
       await response.text();
@@ -1402,7 +1219,7 @@ let selectedRating = null;
    LOAD CARD
    ========================================================= */
 
-async function loadCard() {
+async function loadCard(){
 
   const cardCode =
     getCardCode();
@@ -1426,9 +1243,7 @@ async function loadCard() {
     );
 
 
-  /* No card code */
-
-  if (!cardCode) {
+  if(!cardCode){
 
     businessName.textContent =
       "Card not found";
@@ -1445,7 +1260,8 @@ async function loadCard() {
   }
 
 
-  try {
+  try{
+
 
     /* ==========================================
        FIND CARD
@@ -1457,7 +1273,7 @@ async function loadCard() {
       );
 
 
-    if (!cards.length) {
+    if(!cards.length){
 
       throw new Error(
         "Card not found"
@@ -1480,7 +1296,7 @@ async function loadCard() {
       );
 
 
-    if (!businesses.length) {
+    if(!businesses.length){
 
       throw new Error(
         "Business not found"
@@ -1507,16 +1323,14 @@ async function loadCard() {
 
 
     subtitle.textContent =
-      "How was your experience with us?";
+      "Your opinion matters to us.";
 
 
     /* ==========================================
        LOGO
        ========================================== */
 
-    if (
-      currentBusiness.logo_url
-    ) {
+    if(currentBusiness.logo_url){
 
       const logo =
         document.getElementById(
@@ -1576,7 +1390,7 @@ async function loadCard() {
   }
 
 
-  catch (error) {
+  catch(error){
 
     console.error(
       error
@@ -1660,6 +1474,7 @@ stars.forEach(
       "click",
       () => {
 
+
         selectedRating =
           Number(
             star.dataset.rating
@@ -1673,15 +1488,11 @@ stars.forEach(
         stars.forEach(
           s => {
 
-            const value =
-              Number(
-                s.dataset.rating
-              );
-
-
             s.classList.toggle(
               "active",
-              value <= selectedRating
+              Number(
+                s.dataset.rating
+              ) <= selectedRating
             );
 
           }
@@ -1696,6 +1507,10 @@ stars.forEach(
           `${selectedRating} out of 5 stars`;
 
 
+        /* ==========================================
+           SHOW MESSAGE
+           ========================================== */
+
         message.classList.add(
           "show"
         );
@@ -1705,9 +1520,7 @@ stars.forEach(
            1–2 STARS
            ========================================== */
 
-        if (
-          selectedRating <= 2
-        ) {
+        if(selectedRating <= 2){
 
           messageTitle.textContent =
             "We're sorry about your experience.";
@@ -1727,8 +1540,6 @@ stars.forEach(
             .remove("hidden");
 
 
-          /* Clear previous comment */
-
           feedbackMessage.value =
             "";
 
@@ -1739,7 +1550,8 @@ stars.forEach(
            3–5 STARS
            ========================================== */
 
-        else {
+        else{
+
 
           privateArea
             .classList
@@ -1751,25 +1563,21 @@ stars.forEach(
             .remove("hidden");
 
 
-          if (
-            selectedRating === 3
-          ) {
+          if(selectedRating === 3){
 
             messageTitle.textContent =
               "Thanks for your feedback!";
 
           }
 
-          else if (
-            selectedRating === 4
-          ) {
+          else if(selectedRating === 4){
 
             messageTitle.textContent =
               "We're glad you enjoyed your experience!";
 
           }
 
-          else {
+          else{
 
             messageTitle.textContent =
               "We're thrilled you loved it! ❤️";
@@ -1781,6 +1589,7 @@ stars.forEach(
             "Thank you! We'd really appreciate you sharing your experience on Google.";
 
         }
+
 
       }
     );
@@ -1801,17 +1610,6 @@ document
     "click",
     () => {
 
-      /*
-        IMPORTANT:
-
-        The comment is OPTIONAL.
-
-        If the customer writes something,
-        it will be included.
-
-        If they leave it empty,
-        WhatsApp still opens.
-      */
 
       const text =
         feedbackMessage
@@ -1823,9 +1621,7 @@ document
          CHECK BUSINESS
          ========================================== */
 
-      if (
-        !currentBusiness
-      ) {
+      if(!currentBusiness){
 
         alert(
           "Business information is unavailable."
@@ -1837,12 +1633,10 @@ document
 
 
       /* ==========================================
-         CHECK WHATSAPP NUMBER
+         CHECK WHATSAPP
          ========================================== */
 
-      if (
-        !currentBusiness.whatsapp_number
-      ) {
+      if(!currentBusiness.whatsapp_number){
 
         alert(
           "WhatsApp contact is not configured for this business."
@@ -1854,7 +1648,7 @@ document
 
 
       /* ==========================================
-         CLEAN WHATSAPP NUMBER
+         CLEAN NUMBER
          ========================================== */
 
       let number =
@@ -1867,19 +1661,7 @@ document
         );
 
 
-      /*
-        Algeria example:
-
-        0555123456
-
-        becomes:
-
-        213555123456
-      */
-
-      if (
-        number.startsWith("0")
-      ) {
+      if(number.startsWith("0")){
 
         number =
           "213" +
@@ -1889,7 +1671,7 @@ document
 
 
       /* ==========================================
-         CREATE BASE MESSAGE
+         MESSAGE
          ========================================== */
 
       const businessName =
@@ -1903,11 +1685,7 @@ document
 ⭐ Rating: ${selectedRating}/5`;
 
 
-      /* ==========================================
-         ADD COMMENT ONLY IF PROVIDED
-         ========================================== */
-
-      if (text.length > 0) {
+      if(text.length > 0){
 
         whatsappMessage +=
 `
@@ -1919,7 +1697,7 @@ ${text}`;
 
 
       /* ==========================================
-         ENCODE MESSAGE
+         ENCODE
          ========================================== */
 
       const encodedMessage =
@@ -1929,7 +1707,7 @@ ${text}`;
 
 
       /* ==========================================
-         CREATE WHATSAPP URL
+         WHATSAPP URL
          ========================================== */
 
       const whatsappURL =
@@ -1937,7 +1715,7 @@ ${text}`;
 
 
       /* ==========================================
-         OPEN WHATSAPP
+         OPEN
          ========================================== */
 
       window.location.href =
@@ -1953,10 +1731,8 @@ ${text}`;
 
 loadCard();
 
-
 </script>
 
 
 </body>
-
 </html>
