@@ -1,16 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
 <meta charset="UTF-8">
 
 <meta
   name="viewport"
-  content="width=device-width, initial-scale=1.0"
+  content="width=device-width, initial-scale=1.0, viewport-fit=cover"
 >
 
 <title>Customer Feedback</title>
-
 
 <style>
 
@@ -25,13 +23,11 @@
 }
 
 html{
-  -webkit-text-size-adjust:100%;
+  min-height:100%;
 }
 
 body{
-
   min-height:100vh;
-  min-height:100dvh;
 
   font-family:
     -apple-system,
@@ -44,96 +40,73 @@ body{
   background:
     radial-gradient(
       circle at 50% -10%,
-      rgba(255,200,61,.12),
-      transparent 38%
+      rgba(34,65,100,.55),
+      transparent 45%
     ),
-    linear-gradient(
-      180deg,
-      #050d18 0%,
-      #07111f 50%,
-      #050c16 100%
-    );
+    #07111f;
 
   color:#fff;
 
   display:flex;
-
   justify-content:center;
   align-items:center;
 
   padding:
-    clamp(10px, 2.5vw, 24px);
+    max(22px, env(safe-area-inset-top))
+    max(18px, env(safe-area-inset-right))
+    max(22px, env(safe-area-inset-bottom))
+    max(18px, env(safe-area-inset-left));
 
   overflow-x:hidden;
-
-  -webkit-tap-highlight-color:transparent;
 }
 
 
 /* =========================================================
-   MAIN CUSTOMER CARD
+   MAIN CARD
 ========================================================= */
 
 .card{
 
-  width:
-    min(
-      94vw,
-      560px
-    );
+  width:100%;
 
-  min-height:
-    min(
-      88vh,
-      760px
-    );
+  /*
+    Bigger than before.
+    Still responsive so it never becomes wider
+    than the available screen.
+  */
 
-  min-height:
-    min(
-      88dvh,
-      760px
-    );
+  max-width:520px;
 
-  display:flex;
-
-  flex-direction:column;
-
-  justify-content:center;
+  min-height:650px;
 
   background:
     linear-gradient(
       145deg,
-      rgba(18,39,63,.98),
-      rgba(8,22,38,.99)
+      rgba(17,36,59,.98),
+      rgba(9,23,39,.98)
     );
 
   border:
-    1px solid
-    rgba(255,255,255,.09);
+    1px solid rgba(255,255,255,.09);
 
-  border-radius:
-    clamp(25px, 5vw, 34px);
+  border-radius:32px;
 
-  padding:
-    clamp(35px, 7vw, 58px)
-    clamp(22px, 6vw, 48px)
-    clamp(28px, 6vw, 45px);
+  padding:52px 38px 38px;
 
   text-align:center;
 
   box-shadow:
-    0 35px 100px rgba(0,0,0,.50),
+    0 35px 100px rgba(0,0,0,.42),
     0 0 0 1px rgba(255,255,255,.015);
 
   position:relative;
 
   overflow:hidden;
+
 }
 
 
-/* =========================================================
-   PREMIUM LIGHT
-========================================================= */
+/* subtle premium glow */
 
 .card::before{
 
@@ -141,27 +114,23 @@ body{
 
   position:absolute;
 
-  width:
-    clamp(220px, 60vw, 360px);
+  width:300px;
+  height:300px;
 
-  height:
-    clamp(220px, 60vw, 360px);
-
-  top:
-    clamp(-190px, -25vw, -120px);
-
+  top:-180px;
   left:50%;
 
-  transform:
-    translateX(-50%);
+  transform:translateX(-50%);
 
-  background:#ffc83d;
-
-  opacity:.055;
-
-  filter:blur(55px);
+  background:
+    radial-gradient(
+      circle,
+      rgba(255,200,61,.12),
+      transparent 70%
+    );
 
   pointer-events:none;
+
 }
 
 
@@ -171,24 +140,18 @@ body{
 
 .logo{
 
-  width:
-    clamp(82px, 21vw, 112px);
+  width:94px;
+  height:94px;
 
-  height:
-    clamp(82px, 21vw, 112px);
+  border-radius:27px;
 
-  border-radius:
-    clamp(23px, 5vw, 30px);
-
-  margin:
-    0 auto
-    clamp(20px, 4vw, 27px);
+  margin:0 auto 23px;
 
   background:
     linear-gradient(
       145deg,
-      #193754,
-      #10263d
+      #183653,
+      #10263e
     );
 
   display:flex;
@@ -196,20 +159,20 @@ body{
   align-items:center;
   justify-content:center;
 
-  font-size:
-    clamp(36px, 8vw, 50px);
+  font-size:42px;
 
   border:
-    1px solid
-    rgba(255,255,255,.12);
+    1px solid rgba(255,255,255,.12);
+
+  box-shadow:
+    0 14px 35px rgba(0,0,0,.25);
 
   overflow:hidden;
 
-  box-shadow:
-    0 15px 35px
-    rgba(0,0,0,.30);
+  position:relative;
 
-  flex-shrink:0;
+  z-index:1;
+
 }
 
 
@@ -219,6 +182,9 @@ body{
   height:100%;
 
   object-fit:cover;
+
+  display:block;
+
 }
 
 
@@ -228,19 +194,16 @@ body{
 
 h1{
 
-  font-size:
-    clamp(27px, 6vw, 36px);
+  font-size:31px;
 
   line-height:1.15;
 
-  margin-bottom:
-    clamp(9px, 2vw, 13px);
+  margin-bottom:10px;
 
   letter-spacing:-.7px;
 
   font-weight:800;
 
-  word-break:break-word;
 }
 
 
@@ -252,28 +215,12 @@ h1{
 
   color:#9eacbd;
 
-  font-size:
-    clamp(15px, 3.8vw, 18px);
+  font-size:16px;
 
-  line-height:1.5;
+  line-height:1.55;
 
-  margin-bottom:
-    clamp(28px, 6vw, 38px);
+  margin-bottom:38px;
 
-  max-width:430px;
-
-  margin-left:auto;
-  margin-right:auto;
-}
-
-
-/* =========================================================
-   FEEDBACK AREA
-========================================================= */
-
-#feedbackArea{
-
-  width:100%;
 }
 
 
@@ -289,160 +236,73 @@ h1{
 
   align-items:center;
 
-  gap:
-    clamp(1px, 1vw, 6px);
+  gap:9px;
 
-  margin-bottom:
-    clamp(14px, 3vw, 18px);
+  margin-bottom:17px;
 
-  padding:5px 0;
-
-  -webkit-tap-highlight-color:transparent;
 }
 
 
-/* =========================================================
-   STAR BUTTON
-========================================================= */
-
 .star{
 
-  appearance:none;
-  -webkit-appearance:none;
-
-  border:0;
-  outline:0;
+  border:none;
 
   background:transparent;
 
   color:#536174;
 
-  font-size:
-    clamp(48px, 12vw, 64px);
+  font-size:52px;
 
   line-height:1;
 
   cursor:pointer;
 
-  padding:
-    clamp(4px, 1vw, 7px);
+  padding:4px;
 
-  margin:0;
+  appearance:none;
 
-  width:
-    clamp(55px, 14vw, 72px);
+  -webkit-appearance:none;
 
-  height:
-    clamp(64px, 15vw, 78px);
+  transition:
+    transform .16s ease,
+    color .16s ease,
+    filter .16s ease;
 
-  display:flex;
-
-  align-items:center;
-  justify-content:center;
+  outline:none;
 
   -webkit-tap-highlight-color:transparent;
 
-  user-select:none;
-  -webkit-user-select:none;
-
-  opacity:1 !important;
-
-  transition:
-    color .20s ease,
-    transform .20s cubic-bezier(.2,.9,.3,1.35),
-    filter .20s ease;
 }
 
 
-/* =========================================================
-   HOVER
-========================================================= */
+/*
+  IMPORTANT:
+  Keep the active class behavior stable.
+*/
 
-@media (hover:hover){
+.star.active{
 
-  .star:hover{
-
-    color:#ffe08a;
-
-    transform:
-      translateY(-4px)
-      scale(1.08);
-
-    filter:
-      drop-shadow(
-        0 5px 11px
-        rgba(255,200,61,.25)
-      );
-  }
-
-}
-
-
-/* =========================================================
-   SELECTED STARS
-========================================================= */
-
-.star.selected{
-
-  color:#ffc83d !important;
-
-  opacity:1 !important;
+  color:#ffc83d;
 
   filter:
     drop-shadow(
-      0 5px 11px
-      rgba(255,200,61,.25)
+      0 0 8px rgba(255,200,61,.25)
     );
-}
-
-
-/* =========================================================
-   STAR POP ANIMATION
-========================================================= */
-
-.star.selected.pop{
-
-  animation:
-    starPop
-    .42s
-    cubic-bezier(.2,.9,.3,1.35);
-}
-
-
-@keyframes starPop{
-
-  0%{
-    transform:scale(.72);
-  }
-
-  45%{
-    transform:scale(1.20);
-  }
-
-  70%{
-    transform:scale(.94);
-  }
-
-  100%{
-    transform:scale(1);
-  }
 
 }
 
 
-/* =========================================================
-   FOCUS
-========================================================= */
+.star:hover{
 
-.star:focus-visible{
+  transform:scale(1.12);
 
-  outline:
-    2px solid
-    rgba(255,200,61,.7);
+}
 
-  outline-offset:3px;
 
-  border-radius:12px;
+.star:active{
+
+  transform:scale(.94);
+
 }
 
 
@@ -452,20 +312,14 @@ h1{
 
 .rating-text{
 
-  min-height:
-    clamp(24px, 5vw, 29px);
+  min-height:26px;
 
   color:#b8c3d1;
 
-  font-size:
-    clamp(14px, 3.5vw, 17px);
+  font-size:15px;
 
-  margin-bottom:
-    clamp(25px, 5vw, 33px);
+  margin-bottom:30px;
 
-  transition:
-    opacity .2s ease,
-    transform .2s ease;
 }
 
 
@@ -480,19 +334,19 @@ h1{
   text-align:left;
 
   animation:
-    messageAppear
-    .32s
-    ease;
+    appear .25s ease;
+
 }
 
 
 .message.show{
 
   display:block;
+
 }
 
 
-@keyframes messageAppear{
+@keyframes appear{
 
   from{
 
@@ -500,6 +354,7 @@ h1{
 
     transform:
       translateY(10px);
+
   }
 
   to{
@@ -508,6 +363,7 @@ h1{
 
     transform:
       translateY(0);
+
   }
 
 }
@@ -519,15 +375,12 @@ h1{
 
 .message h2{
 
-  font-size:
-    clamp(20px, 4.8vw, 24px);
+  font-size:21px;
 
-  line-height:1.25;
+  line-height:1.3;
 
-  margin-bottom:
-    clamp(9px, 2vw, 12px);
+  margin-bottom:9px;
 
-  letter-spacing:-.25px;
 }
 
 
@@ -539,13 +392,12 @@ h1{
 
   color:#aab7c7;
 
-  font-size:
-    clamp(14px, 3.5vw, 17px);
+  font-size:15px;
 
   line-height:1.55;
 
-  margin-bottom:
-    clamp(18px, 4vw, 23px);
+  margin-bottom:20px;
+
 }
 
 
@@ -557,57 +409,52 @@ textarea{
 
   width:100%;
 
-  min-height:
-    clamp(140px, 30vw, 175px);
+  min-height:145px;
 
   resize:vertical;
 
-  padding:
-    clamp(15px, 3.5vw, 19px);
+  padding:16px;
 
-  border-radius:
-    clamp(15px, 4vw, 18px);
+  border-radius:17px;
 
   border:
-    1px solid
-    rgba(255,255,255,.10);
+    1px solid rgba(255,255,255,.11);
 
-  background:
-    rgba(4,13,24,.78);
+  background:#07111f;
 
   color:white;
 
   font-family:inherit;
 
-  font-size:
-    clamp(15px, 3.8vw, 17px);
+  font-size:15px;
 
   line-height:1.5;
 
   outline:none;
 
-  margin-bottom:10px;
+  margin-bottom:11px;
 
   transition:
     border-color .2s ease,
     box-shadow .2s ease;
+
+}
+
+
+textarea:focus{
+
+  border-color:#607994;
+
+  box-shadow:
+    0 0 0 3px rgba(96,121,148,.10);
+
 }
 
 
 textarea::placeholder{
 
   color:#65758a;
-}
 
-
-textarea:focus{
-
-  border-color:
-    rgba(255,200,61,.55);
-
-  box-shadow:
-    0 0 0 3px
-    rgba(255,200,61,.07);
 }
 
 
@@ -621,21 +468,15 @@ textarea:focus{
 
   width:100%;
 
-  min-height:
-    clamp(54px, 13vw, 64px);
+  padding:16px 20px;
 
-  padding:
-    15px 18px;
-
-  border-radius:
-    clamp(15px, 4vw, 18px);
+  border-radius:16px;
 
   border:none;
 
   text-decoration:none;
 
-  font-size:
-    clamp(15px, 3.8vw, 18px);
+  font-size:16px;
 
   font-weight:750;
 
@@ -645,108 +486,70 @@ textarea:focus{
 
   text-align:center;
 
-  display:flex;
-
-  align-items:center;
-
-  justify-content:center;
-
   transition:
     transform .15s ease,
     opacity .15s ease,
-    box-shadow .2s ease;
+    box-shadow .15s ease;
+
 }
 
 
 .button:active{
 
   transform:scale(.985);
+
 }
 
 
-/* =========================================================
-   GOOGLE BUTTON
-========================================================= */
-
 .google{
 
-  background:
-    linear-gradient(
-      135deg,
-      #ffffff,
-      #edf1f5
-    );
+  background:#fff;
 
   color:#111827;
 
   box-shadow:
-    0 9px 25px
-    rgba(0,0,0,.22);
+    0 8px 24px rgba(0,0,0,.18);
+
 }
 
-
-.google:hover{
-
-  box-shadow:
-    0 13px 32px
-    rgba(0,0,0,.30);
-
-  transform:
-    translateY(-2px);
-}
-
-
-/* =========================================================
-   PRIVATE BUTTON
-========================================================= */
 
 .private{
 
   background:
     linear-gradient(
       135deg,
-      #24415f,
+      #203b59,
       #172f49
     );
 
   color:white;
 
   border:
-    1px solid
-    rgba(255,255,255,.08);
+    1px solid rgba(255,255,255,.07);
 
-  box-shadow:
-    0 9px 25px
-    rgba(0,0,0,.22);
 }
 
 
+.google:hover,
 .private:hover{
 
-  transform:
-    translateY(-2px);
+  opacity:.94;
 
-  box-shadow:
-    0 13px 32px
-    rgba(0,0,0,.30);
 }
 
 
 /* =========================================================
-   FOOTER
+   SMALL FOOTER
 ========================================================= */
 
 .small{
 
-  margin-top:
-    clamp(24px, 5vw, 32px);
+  margin-top:28px;
 
   color:#66758a;
 
-  font-size:
-    clamp(11px, 2.7vw, 13px);
+  font-size:12px;
 
-  letter-spacing:.1px;
 }
 
 
@@ -757,6 +560,7 @@ textarea:focus{
 .error{
 
   color:#ff8f8f;
+
 }
 
 
@@ -767,6 +571,145 @@ textarea:focus{
 .hidden{
 
   display:none !important;
+
+}
+
+
+/* =========================================================
+   TABLET / LARGE PHONE
+========================================================= */
+
+@media (min-width:600px){
+
+  body{
+
+    padding:35px;
+
+  }
+
+  .card{
+
+    max-width:540px;
+
+    min-height:680px;
+
+    padding:
+      58px
+      46px
+      42px;
+
+  }
+
+  .logo{
+
+    width:100px;
+    height:100px;
+
+  }
+
+  h1{
+
+    font-size:33px;
+
+  }
+
+  .stars{
+
+    gap:10px;
+
+  }
+
+  .star{
+
+    font-size:55px;
+
+  }
+
+}
+
+
+/* =========================================================
+   SMALL PHONES
+========================================================= */
+
+@media (max-width:430px){
+
+  body{
+
+    align-items:center;
+
+    padding:
+      16px
+      12px
+      16px
+      12px;
+
+  }
+
+  .card{
+
+    max-width:none;
+
+    min-height:620px;
+
+    border-radius:29px;
+
+    padding:
+      42px
+      22px
+      30px;
+
+  }
+
+  .logo{
+
+    width:86px;
+    height:86px;
+
+    border-radius:24px;
+
+    margin-bottom:20px;
+
+    font-size:38px;
+
+  }
+
+  h1{
+
+    font-size:28px;
+
+  }
+
+  .subtitle{
+
+    font-size:15px;
+
+    margin-bottom:32px;
+
+  }
+
+  .stars{
+
+    gap:5px;
+
+  }
+
+  .star{
+
+    font-size:45px;
+
+    padding:3px;
+
+  }
+
+  .rating-text{
+
+    font-size:14px;
+
+    margin-bottom:25px;
+
+  }
+
 }
 
 
@@ -774,73 +717,106 @@ textarea:focus{
    VERY SMALL PHONES
 ========================================================= */
 
-@media(max-width:360px){
-
-  body{
-
-    padding:8px;
-  }
+@media (max-width:360px){
 
   .card{
 
-    width:96vw;
-
-    min-height:
-      92dvh;
-
     padding:
-      28px 14px 23px;
+      34px
+      17px
+      27px;
+
+  }
+
+  .logo{
+
+    width:78px;
+    height:78px;
+
+  }
+
+  h1{
+
+    font-size:25px;
+
+  }
+
+  .subtitle{
+
+    margin-bottom:27px;
+
   }
 
   .stars{
 
-    gap:0;
+    gap:2px;
+
   }
 
   .star{
 
-    width:52px;
+    font-size:39px;
 
-    font-size:46px;
   }
 
 }
 
 
 /* =========================================================
-   TABLETS
+   SHORT SCREENS
 ========================================================= */
 
-@media(min-width:600px){
+@media (max-height:720px){
 
   body{
 
-    padding:24px;
+    align-items:flex-start;
+
   }
 
   .card{
 
-    width:
-      min(88vw, 600px);
+    margin-top:10px;
 
-    min-height:
-      min(82dvh, 800px);
+    min-height:auto;
+
+    padding-top:32px;
+
+    padding-bottom:28px;
+
   }
 
-}
+  .logo{
 
+    width:76px;
+    height:76px;
 
-/* =========================================================
-   LARGE DESKTOP
-========================================================= */
+    margin-bottom:16px;
 
-@media(min-width:1000px){
+  }
 
-  .card{
+  h1{
 
-    width:560px;
+    font-size:27px;
 
-    min-height:760px;
+  }
+
+  .subtitle{
+
+    margin-bottom:24px;
+
+  }
+
+  .stars{
+
+    margin-bottom:12px;
+
+  }
+
+  .star{
+
+    font-size:43px;
+
   }
 
 }
@@ -850,17 +826,16 @@ textarea:focus{
    REDUCED MOTION
 ========================================================= */
 
-@media(prefers-reduced-motion:reduce){
+@media (prefers-reduced-motion:reduce){
 
-  *,
-  *::before,
-  *::after{
+  *{
 
     animation-duration:.01ms !important;
 
     animation-iteration-count:1 !important;
 
     transition-duration:.01ms !important;
+
   }
 
 }
@@ -929,66 +904,55 @@ textarea:focus{
       class="stars"
       id="stars">
 
-
       <button
         type="button"
         class="star"
         data-rating="1"
-        aria-label="1 star"
-        aria-pressed="false">
+        aria-label="1 star">
 
         ★
 
       </button>
-
 
       <button
         type="button"
         class="star"
         data-rating="2"
-        aria-label="2 stars"
-        aria-pressed="false">
+        aria-label="2 stars">
 
         ★
 
       </button>
-
 
       <button
         type="button"
         class="star"
         data-rating="3"
-        aria-label="3 stars"
-        aria-pressed="false">
+        aria-label="3 stars">
 
         ★
 
       </button>
-
 
       <button
         type="button"
         class="star"
         data-rating="4"
-        aria-label="4 stars"
-        aria-pressed="false">
+        aria-label="4 stars">
 
         ★
 
       </button>
-
 
       <button
         type="button"
         class="star"
         data-rating="5"
-        aria-label="5 stars"
-        aria-pressed="false">
+        aria-label="5 stars">
 
         ★
 
       </button>
-
 
     </div>
 
@@ -1039,7 +1003,7 @@ textarea:focus{
           class="button google"
           href="#"
           target="_blank"
-          rel="noopener noreferrer">
+          rel="noopener">
 
           ⭐ Leave us a Google review
 
@@ -1061,14 +1025,13 @@ textarea:focus{
         <textarea
           id="feedbackMessage"
           placeholder="Tell us what went wrong or how we can improve..."
-          aria-label="Private feedback">
-        </textarea>
+        ></textarea>
 
 
         <button
+          type="button"
           id="sendPrivate"
-          class="button private"
-          type="button">
+          class="button private">
 
           💬 Send privately
 
@@ -1083,10 +1046,6 @@ textarea:focus{
 
   </div>
 
-
-  <!-- =====================================================
-       FOOTER
-  ====================================================== -->
 
   <div class="small">
 
@@ -1140,22 +1099,17 @@ async function supabaseGet(endpoint){
     await fetch(
       `${SUPABASE_URL}/rest/v1/${endpoint}`,
       {
-
         method:"GET",
 
         headers:{
-
-          "apikey":
-            SUPABASE_KEY,
+          "apikey":SUPABASE_KEY,
 
           "Authorization":
             `Bearer ${SUPABASE_KEY}`,
 
           "Content-Type":
             "application/json"
-
         }
-
       }
     );
 
@@ -1212,10 +1166,6 @@ async function loadCard(){
     );
 
 
-  /* =======================================================
-     NO CARD CODE
-  ======================================================== */
-
   if(!cardCode){
 
     businessName.textContent =
@@ -1235,9 +1185,10 @@ async function loadCard(){
 
   try{
 
-    /* =====================================================
+
+    /* ==========================================
        FIND CARD
-    ====================================================== */
+    ========================================== */
 
     const cards =
       await supabaseGet(
@@ -1258,9 +1209,9 @@ async function loadCard(){
       cards[0];
 
 
-    /* =====================================================
+    /* ==========================================
        FIND BUSINESS
-    ====================================================== */
+    ========================================== */
 
     const businesses =
       await supabaseGet(
@@ -1281,9 +1232,9 @@ async function loadCard(){
       businesses[0];
 
 
-    /* =====================================================
+    /* ==========================================
        BUSINESS NAME
-    ====================================================== */
+    ========================================== */
 
     businessName.textContent =
       currentBusiness.name ||
@@ -1298,9 +1249,9 @@ async function loadCard(){
       "How was your experience with us?";
 
 
-    /* =====================================================
+    /* ==========================================
        LOGO
-    ====================================================== */
+    ========================================== */
 
     if(currentBusiness.logo_url){
 
@@ -1310,7 +1261,8 @@ async function loadCard(){
         );
 
 
-      logo.innerHTML = "";
+      logo.innerHTML =
+        "";
 
 
       const image =
@@ -1328,15 +1280,6 @@ async function loadCard(){
         "Business logo";
 
 
-      image.onerror =
-        function(){
-
-          logo.innerHTML =
-            "🍽️";
-
-        };
-
-
       logo.appendChild(
         image
       );
@@ -1344,9 +1287,9 @@ async function loadCard(){
     }
 
 
-    /* =====================================================
+    /* ==========================================
        GOOGLE REVIEW LINK
-    ====================================================== */
+    ========================================== */
 
     const googleButton =
       document.getElementById(
@@ -1359,9 +1302,9 @@ async function loadCard(){
       "https://www.google.com/maps";
 
 
-    /* =====================================================
+    /* ==========================================
        SHOW PAGE
-    ====================================================== */
+    ========================================== */
 
     feedbackArea
       .classList
@@ -1372,9 +1315,7 @@ async function loadCard(){
 
   catch(error){
 
-    console.error(
-      error
-    );
+    console.error(error);
 
 
     businessName.textContent =
@@ -1392,7 +1333,7 @@ async function loadCard(){
 
 
 /* =========================================================
-   STAR ELEMENTS
+   STAR SYSTEM
 ========================================================= */
 
 const stars =
@@ -1444,45 +1385,6 @@ const feedbackMessage =
 
 
 /* =========================================================
-   UPDATE STAR VISUAL STATE
-========================================================= */
-
-function updateStars(){
-
-  stars.forEach(
-    star => {
-
-      const rating =
-        Number(
-          star.dataset.rating
-        );
-
-
-      const isSelected =
-        selectedRating !== null &&
-        rating <= selectedRating;
-
-
-      star.classList.toggle(
-        "selected",
-        isSelected
-      );
-
-
-      star.setAttribute(
-        "aria-pressed",
-        rating === selectedRating
-          ? "true"
-          : "false"
-      );
-
-    }
-  );
-
-}
-
-
-/* =========================================================
    STAR CLICK
 ========================================================= */
 
@@ -1491,48 +1393,29 @@ stars.forEach(
 
     star.addEventListener(
       "click",
-      function(){
+      () => {
 
         selectedRating =
           Number(
-            this.dataset.rating
+            star.dataset.rating
           );
 
 
-        /* Update persistent gold state */
-
-        updateStars();
-
-
-        /*
-          Remove old pop animation.
-        */
+        /* ==========================================
+           HIGHLIGHT SELECTED STARS
+        ========================================== */
 
         stars.forEach(
           s => {
 
-            s.classList.remove(
-              "pop"
+            s.classList.toggle(
+              "active",
+              Number(
+                s.dataset.rating
+              ) <= selectedRating
             );
 
           }
-        );
-
-
-        /*
-          Force reflow so animation can
-          replay on every click.
-        */
-
-        void this.offsetWidth;
-
-
-        /*
-          Animate clicked star.
-        */
-
-        this.classList.add(
-          "pop"
         );
 
 
@@ -1545,9 +1428,9 @@ stars.forEach(
         );
 
 
-        /* =================================================
+        /* ==========================================
            1–2 STARS
-        ================================================== */
+        ========================================== */
 
         if(selectedRating <= 2){
 
@@ -1575,9 +1458,9 @@ stars.forEach(
         }
 
 
-        /* =================================================
+        /* ==========================================
            3–5 STARS
-        ================================================== */
+        ========================================== */
 
         else{
 
@@ -1635,7 +1518,8 @@ document
   )
   .addEventListener(
     "click",
-    function(){
+    () => {
+
 
       const text =
         feedbackMessage
@@ -1643,9 +1527,9 @@ document
           .trim();
 
 
-      /* ===================================================
+      /* ==========================================
          CHECK BUSINESS
-      ==================================================== */
+      ========================================== */
 
       if(!currentBusiness){
 
@@ -1658,9 +1542,9 @@ document
       }
 
 
-      /* ===================================================
+      /* ==========================================
          CHECK WHATSAPP
-      ==================================================== */
+      ========================================== */
 
       if(!currentBusiness.whatsapp_number){
 
@@ -1673,9 +1557,9 @@ document
       }
 
 
-      /* ===================================================
+      /* ==========================================
          CLEAN NUMBER
-      ==================================================== */
+      ========================================== */
 
       let number =
         String(
@@ -1687,15 +1571,9 @@ document
         );
 
 
-      /*
-        Algeria:
-
-        0555123456
-
-        ↓
-
-        213555123456
-      */
+      /* ==========================================
+         ALGERIAN NUMBER
+      ========================================== */
 
       if(number.startsWith("0")){
 
@@ -1706,9 +1584,9 @@ document
       }
 
 
-      /* ===================================================
-         MESSAGE
-      ==================================================== */
+      /* ==========================================
+         CREATE MESSAGE
+      ========================================== */
 
       const businessName =
         currentBusiness.name ||
@@ -1732,9 +1610,9 @@ ${text}`;
       }
 
 
-      /* ===================================================
+      /* ==========================================
          ENCODE
-      ==================================================== */
+      ========================================== */
 
       const encodedMessage =
         encodeURIComponent(
@@ -1742,19 +1620,17 @@ ${text}`;
         );
 
 
-      /* ===================================================
+      /* ==========================================
          WHATSAPP URL
-      ==================================================== */
+      ========================================== */
 
       const whatsappURL =
         `https://wa.me/${number}?text=${encodedMessage}`;
 
 
-      /*
-        Nothing is saved in Supabase.
-
-        The customer goes directly to WhatsApp.
-      */
+      /* ==========================================
+         OPEN WHATSAPP
+      ========================================== */
 
       window.location.href =
         whatsappURL;
@@ -1771,6 +1647,5 @@ loadCard();
 
 </script>
 
-
 </body>
-  </html>
+</html>
