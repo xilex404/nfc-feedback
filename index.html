@@ -19,7 +19,8 @@
 <style>
 
 /* =========================================================
-   SMART REVIEW — PREMIUM MOBILE UI
+   SMART REVIEW
+   PREMIUM MOBILE EXPERIENCE
    ========================================================= */
 
 :root{
@@ -36,6 +37,7 @@
   --gold-dark:#a86600;
 
   --white:#ffffff;
+
   --ink:#071b3c;
 
   --muted:#65758c;
@@ -50,15 +52,19 @@
    ========================================================= */
 
 *{
+
   box-sizing:border-box;
+
   margin:0;
   padding:0;
+
 }
 
 html,
 body{
 
   width:100%;
+
   min-height:100%;
 
 }
@@ -84,6 +90,7 @@ body{
     sans-serif;
 
   -webkit-font-smoothing:antialiased;
+
   text-rendering:optimizeLegibility;
 
   background:#fff;
@@ -102,6 +109,7 @@ body{
 .app{
 
   width:100%;
+
   min-height:100vh;
   min-height:100dvh;
 
@@ -124,7 +132,7 @@ body{
 
   width:100%;
 
-  min-height:405px;
+  min-height:425px;
 
   color:#fff;
 
@@ -137,22 +145,21 @@ body{
   text-align:center;
 
   padding:
-
-    max(25px,env(safe-area-inset-top))
-    18px
-    100px;
+    max(28px,env(safe-area-inset-top))
+    16px
+    105px;
 
   background:
 
     radial-gradient(
-      circle at 50% 5%,
-      rgba(255,255,255,.10),
-      transparent 30%
+      circle at 50% 3%,
+      rgba(255,255,255,.12),
+      transparent 28%
     ),
 
     radial-gradient(
-      circle at 50% 105%,
-      rgba(30,111,255,.30),
+      circle at 50% 100%,
+      rgba(30,111,255,.32),
       transparent 55%
     ),
 
@@ -166,7 +173,7 @@ body{
 }
 
 
-/* premium texture */
+/* texture */
 
 .hero::before{
 
@@ -178,12 +185,12 @@ body{
 
   pointer-events:none;
 
-  opacity:.18;
+  opacity:.16;
 
   background-image:
 
     radial-gradient(
-      rgba(255,255,255,.16) .7px,
+      rgba(255,255,255,.18) .7px,
       transparent .7px
     );
 
@@ -199,7 +206,7 @@ body{
 }
 
 
-/* subtle glow */
+/* glow */
 
 .hero::after{
 
@@ -207,19 +214,19 @@ body{
 
   position:absolute;
 
-  width:260px;
-  height:260px;
+  width:280px;
+  height:280px;
 
-  top:-160px;
+  top:-170px;
 
   left:50%;
 
   transform:translateX(-50%);
 
   background:
-    rgba(38,117,255,.18);
+    rgba(38,117,255,.20);
 
-  filter:blur(55px);
+  filter:blur(60px);
 
   border-radius:50%;
 
@@ -239,10 +246,10 @@ body{
   z-index:2;
 
   width:
-    clamp(86px,24vw,112px);
+    clamp(92px,25vw,116px);
 
   height:
-    clamp(86px,24vw,112px);
+    clamp(92px,25vw,116px);
 
   border-radius:50%;
 
@@ -255,18 +262,18 @@ body{
 
   margin-top:3px;
 
-  margin-bottom:19px;
+  margin-bottom:20px;
 
   box-shadow:
 
-    0 15px 34px
-    rgba(0,0,0,.30),
+    0 17px 38px
+    rgba(0,0,0,.32),
 
     0 0 0 3px
     rgba(217,146,19,.95),
 
-    0 0 0 6px
-    rgba(255,202,67,.22);
+    0 0 0 7px
+    rgba(255,202,67,.16);
 
   animation:
     googleEnter .7s
@@ -275,8 +282,6 @@ body{
 
 }
 
-
-/* little shine */
 
 .google-mark::after{
 
@@ -292,7 +297,7 @@ body{
     1px solid
     rgba(255,255,255,.9);
 
-  opacity:.65;
+  opacity:.7;
 
 }
 
@@ -302,7 +307,7 @@ body{
   font-family:Arial,sans-serif;
 
   font-size:
-    clamp(53px,14vw,72px);
+    clamp(56px,15vw,75px);
 
   font-weight:800;
 
@@ -320,6 +325,7 @@ body{
     );
 
   -webkit-background-clip:text;
+
   background-clip:text;
 
   color:transparent;
@@ -362,12 +368,12 @@ body{
 
   z-index:2;
 
-  max-width:560px;
+  max-width:620px;
 
   font-size:
-    clamp(23px,6.3vw,34px);
+    clamp(24px,6.5vw,35px);
 
-  line-height:1.13;
+  line-height:1.12;
 
   font-weight:900;
 
@@ -401,7 +407,7 @@ body{
   justify-content:center;
 
   gap:
-    clamp(7px,2vw,17px);
+    clamp(6px,2vw,17px);
 
   margin-top:25px;
 
@@ -411,7 +417,7 @@ body{
 .rating-line{
 
   width:
-    clamp(25px,11vw,85px);
+    clamp(24px,11vw,85px);
 
   height:2px;
 
@@ -444,6 +450,7 @@ body{
   display:flex;
 
   align-items:center;
+
   justify-content:center;
 
   gap:
@@ -455,7 +462,7 @@ body{
 .hero-star{
 
   font-size:
-    clamp(30px,8vw,49px);
+    clamp(31px,8vw,50px);
 
   line-height:1;
 
@@ -466,8 +473,8 @@ body{
     0 4px 5px
     rgba(0,0,0,.45),
 
-    0 0 15px
-    rgba(255,202,67,.25);
+    0 0 16px
+    rgba(255,202,67,.28);
 
   transform:
     perspective(300px)
@@ -477,7 +484,7 @@ body{
 
 
 /* =========================================================
-   WAVE
+   WAVES
    ========================================================= */
 
 .wave-blue{
@@ -551,18 +558,17 @@ body{
   width:100%;
 
   min-height:
-    calc(100vh - 400px);
+    calc(100vh - 420px);
 
   min-height:
-    calc(100dvh - 400px);
+    calc(100dvh - 420px);
 
-  margin-top:-23px;
+  margin-top:-28px;
 
   padding:
-
     0
-    18px
-    max(30px,env(safe-area-inset-bottom));
+    17px
+    max(34px,env(safe-area-inset-bottom));
 
   display:flex;
 
@@ -605,19 +611,20 @@ body{
 .logo-frame{
 
   width:
-    clamp(170px,48vw,215px);
+    clamp(180px,53vw,225px);
 
   height:
-    clamp(170px,48vw,215px);
+    clamp(180px,53vw,225px);
 
   position:relative;
 
   display:flex;
 
   align-items:center;
+
   justify-content:center;
 
-  margin-bottom:19px;
+  margin-bottom:20px;
 
 }
 
@@ -637,28 +644,30 @@ body{
   background:
 
     linear-gradient(var(--gold),var(--gold))
-      left top / 64px 4px no-repeat,
+      left top / 66px 4px no-repeat,
 
     linear-gradient(var(--gold),var(--gold))
-      left top / 4px 64px no-repeat,
+      left top / 4px 66px no-repeat,
 
     linear-gradient(var(--gold),var(--gold))
-      right top / 64px 4px no-repeat,
+      right top / 66px 4px no-repeat,
 
     linear-gradient(var(--gold),var(--gold))
-      right top / 4px 64px no-repeat,
+      right top / 4px 66px no-repeat,
 
     linear-gradient(var(--gold),var(--gold))
-      left bottom / 64px 4px no-repeat,
+      left bottom / 66px 4px no-repeat,
 
     linear-gradient(var(--gold),var(--gold))
-      left bottom / 4px 64px no-repeat,
+      left bottom / 4px 66px no-repeat,
 
     linear-gradient(var(--gold),var(--gold))
-      right bottom / 64px 4px no-repeat,
+      right bottom / 66px 4px no-repeat,
 
     linear-gradient(var(--gold),var(--gold))
-      right bottom / 4px 64px no-repeat;
+      right bottom / 4px 66px no-repeat;
+
+  opacity:.95;
 
 }
 
@@ -670,16 +679,17 @@ body{
 .client-logo{
 
   width:
-    clamp(120px,35vw,158px);
+    clamp(130px,39vw,170px);
 
   height:
-    clamp(120px,35vw,158px);
+    clamp(130px,39vw,170px);
 
-  border-radius:25px;
+  border-radius:27px;
 
   display:flex;
 
   align-items:center;
+
   justify-content:center;
 
   overflow:hidden;
@@ -689,7 +699,7 @@ body{
     linear-gradient(
       145deg,
       #ffffff,
-      #f0f3f7
+      #eef2f6
     );
 
   border:
@@ -698,15 +708,20 @@ body{
 
   box-shadow:
 
-    0 15px 35px
-    rgba(7,27,60,.13),
+    0 18px 40px
+    rgba(7,27,60,.15),
 
-    0 2px 5px
-    rgba(7,27,60,.05);
+    0 3px 7px
+    rgba(7,27,60,.06);
 
-  font-size:52px;
+  font-size:56px;
 
   color:#0b315f;
+
+  animation:
+    logoFloat 5s
+    ease-in-out
+    infinite;
 
 }
 
@@ -714,9 +729,30 @@ body{
 .client-logo img{
 
   width:100%;
+
   height:100%;
 
   object-fit:cover;
+
+}
+
+
+@keyframes logoFloat{
+
+  0%,
+  100%{
+
+    transform:
+      translateY(0);
+
+  }
+
+  50%{
+
+    transform:
+      translateY(-4px);
+
+  }
 
 }
 
@@ -729,16 +765,16 @@ body{
 
   width:100%;
 
-  max-width:700px;
+  max-width:720px;
 
   font-size:
-    clamp(29px,8vw,42px);
+    clamp(30px,8.5vw,44px);
 
-  line-height:1.08;
+  line-height:1.06;
 
   font-weight:900;
 
-  letter-spacing:-1px;
+  letter-spacing:-1.2px;
 
   color:var(--navy);
 
@@ -746,7 +782,7 @@ body{
 
   overflow-wrap:anywhere;
 
-  margin-bottom:8px;
+  margin-bottom:9px;
 
 }
 
@@ -764,7 +800,7 @@ body{
   color:#53657d;
 
   font-size:
-    clamp(16px,4.5vw,20px);
+    clamp(16px,4.7vw,20px);
 
   font-weight:600;
 
@@ -772,7 +808,7 @@ body{
 
   line-height:1.45;
 
-  margin-bottom:28px;
+  margin-bottom:30px;
 
 }
 
@@ -837,15 +873,15 @@ body{
   color:var(--navy);
 
   font-size:
-    clamp(22px,6vw,30px);
+    clamp(23px,6.5vw,31px);
 
-  line-height:1.18;
+  line-height:1.15;
 
   font-weight:850;
 
-  letter-spacing:-.5px;
+  letter-spacing:-.6px;
 
-  margin-bottom:18px;
+  margin-bottom:20px;
 
 }
 
@@ -865,9 +901,9 @@ body{
   align-items:center;
 
   gap:
-    clamp(2px,1vw,10px);
+    clamp(3px,1.2vw,11px);
 
-  margin-bottom:7px;
+  margin-bottom:8px;
 
 }
 
@@ -879,9 +915,11 @@ body{
 .star{
 
   appearance:none;
+
   -webkit-appearance:none;
 
   border:0 !important;
+
   outline:none !important;
 
   background:transparent !important;
@@ -889,20 +927,21 @@ body{
   box-shadow:none !important;
 
   width:
-    clamp(58px,16vw,84px);
+    clamp(61px,17vw,87px);
 
   height:
-    clamp(65px,17vw,92px);
+    clamp(69px,18vw,95px);
 
   padding:0;
 
   display:flex;
 
   align-items:center;
+
   justify-content:center;
 
   font-size:
-    clamp(58px,16vw,82px);
+    clamp(62px,17vw,85px);
 
   line-height:1;
 
@@ -952,8 +991,8 @@ body{
   filter:
 
     drop-shadow(
-      0 5px 6px
-      rgba(150,90,0,.25)
+      0 5px 7px
+      rgba(150,90,0,.27)
     );
 
   animation:
@@ -1002,11 +1041,11 @@ body{
   color:#65758c;
 
   font-size:
-    clamp(15px,4.1vw,18px);
+    clamp(15px,4.2vw,18px);
 
   font-weight:650;
 
-  margin-bottom:19px;
+  margin-bottom:20px;
 
 }
 
@@ -1070,15 +1109,15 @@ body{
   color:var(--navy);
 
   font-size:
-    clamp(23px,6vw,31px);
+    clamp(24px,6.3vw,32px);
 
-  line-height:1.18;
+  line-height:1.16;
 
   font-weight:900;
 
-  letter-spacing:-.55px;
+  letter-spacing:-.6px;
 
-  margin-bottom:9px;
+  margin-bottom:10px;
 
 }
 
@@ -1092,14 +1131,14 @@ body{
   color:#61728a;
 
   font-size:
-    clamp(16px,4.4vw,19px);
+    clamp(16px,4.5vw,19px);
 
   line-height:1.52;
 
   max-width:620px;
 
   margin:
-    0 auto 20px;
+    0 auto 22px;
 
 }
 
@@ -1128,7 +1167,7 @@ body{
 
     transform:
       translateY(10px)
-      scale(.98);
+      scale(.97);
 
   }
 
@@ -1153,9 +1192,9 @@ body{
 
   width:100%;
 
-  min-height:72px;
+  min-height:78px;
 
-  border-radius:20px;
+  border-radius:22px;
 
   border:none;
 
@@ -1167,10 +1206,10 @@ body{
 
   text-decoration:none;
 
-  padding:18px 22px;
+  padding:19px 22px;
 
   font-size:
-    clamp(18px,4.8vw,22px);
+    clamp(18px,5vw,22px);
 
   font-weight:900;
 
@@ -1200,16 +1239,20 @@ body{
 .button:active{
 
   transform:
-    scale(.975);
+    scale(.965);
 
 }
 
 
 /* =========================================================
-   PREMIUM GOOGLE BUTTON
+   PREMIUM GOOGLE CTA
    ========================================================= */
 
 .google{
+
+  position:relative;
+
+  isolation:isolate;
 
   color:#fff;
 
@@ -1217,33 +1260,36 @@ body{
 
     linear-gradient(
       135deg,
-      #0a2d59 0%,
-      #0d407a 52%,
+      #061b3a 0%,
+      #0b3565 48%,
       #08294f 100%
     );
 
   border:
 
     2px solid
-    rgba(217,146,19,.88);
+    rgba(255,205,82,.95);
 
   box-shadow:
 
-    0 12px 28px
-    rgba(7,27,60,.22),
+    0 16px 34px
+    rgba(7,27,60,.27),
 
-    0 0 0 3px
-    rgba(217,146,19,.08);
+    0 0 0 4px
+    rgba(217,146,19,.11),
+
+    0 0 28px
+    rgba(217,146,19,.10);
 
   animation:
-    googleAttention 3.2s
+    googleAttention 3.6s
     ease-in-out
     infinite;
 
 }
 
 
-/* gold accent line */
+/* gold top edge */
 
 .google::before{
 
@@ -1251,12 +1297,15 @@ body{
 
   position:absolute;
 
+  z-index:-1;
+
   left:0;
+
   right:0;
 
   top:0;
 
-  height:4px;
+  height:5px;
 
   background:
 
@@ -1264,13 +1313,15 @@ body{
       90deg,
       var(--gold-dark),
       var(--gold-light),
+      #fff0a0,
+      var(--gold-light),
       var(--gold-dark)
     );
 
 }
 
 
-/* moving shine */
+/* shine */
 
 .google::after{
 
@@ -1278,27 +1329,30 @@ body{
 
   position:absolute;
 
-  top:-20%;
+  z-index:2;
 
-  left:-45%;
+  top:-30%;
+
+  left:-55%;
 
   width:35%;
 
-  height:140%;
+  height:160%;
 
-  transform:skewX(-20deg);
+  transform:
+    skewX(-20deg);
 
   background:
 
     linear-gradient(
       90deg,
       transparent,
-      rgba(255,255,255,.24),
+      rgba(255,255,255,.32),
       transparent
     );
 
   animation:
-    buttonShine 3.8s
+    buttonShine 4.2s
     ease-in-out
     infinite;
 
@@ -1308,21 +1362,21 @@ body{
 @keyframes buttonShine{
 
   0%,
-  55%{
+  52%{
 
-    left:-45%;
+    left:-55%;
 
   }
 
-  75%{
+  72%{
 
-    left:120%;
+    left:125%;
 
   }
 
   100%{
 
-    left:120%;
+    left:125%;
 
   }
 
@@ -1332,38 +1386,46 @@ body{
 @keyframes googleAttention{
 
   0%,
-  72%,
+  70%,
   100%{
 
-    transform:translateY(0);
+    transform:
+      translateY(0)
+      scale(1);
 
     box-shadow:
 
-      0 12px 28px
-      rgba(7,27,60,.22),
+      0 16px 34px
+      rgba(7,27,60,.27),
 
-      0 0 0 3px
-      rgba(217,146,19,.08);
+      0 0 0 4px
+      rgba(217,146,19,.11),
+
+      0 0 28px
+      rgba(217,146,19,.10);
 
   }
 
   76%{
 
     transform:
-      translateY(-2px)
-      scale(1.015);
+      translateY(-3px)
+      scale(1.018);
 
     box-shadow:
 
-      0 16px 34px
-      rgba(7,27,60,.28),
+      0 20px 40px
+      rgba(7,27,60,.32),
 
-      0 0 0 5px
-      rgba(217,146,19,.15);
+      0 0 0 6px
+      rgba(217,146,19,.17),
+
+      0 0 38px
+      rgba(217,146,19,.16);
 
   }
 
-  81%{
+  82%{
 
     transform:
       translateY(0)
@@ -1392,8 +1454,8 @@ body{
 
   box-shadow:
 
-    0 11px 26px
-    rgba(7,27,60,.18);
+    0 13px 28px
+    rgba(7,27,60,.19);
 
 }
 
@@ -1414,8 +1476,8 @@ body{
 
   box-shadow:
 
-    0 13px 30px
-    rgba(20,150,75,.28);
+    0 15px 32px
+    rgba(20,150,75,.30);
 
   pointer-events:none;
 
@@ -1430,7 +1492,7 @@ textarea{
 
   width:100%;
 
-  min-height:150px;
+  min-height:155px;
 
   resize:none;
 
@@ -1495,9 +1557,9 @@ textarea:focus{
 
   justify-content:center;
 
-  margin-top:38px;
+  margin-top:43px;
 
-  padding-top:23px;
+  padding-top:25px;
 
   border-top:
     1px solid
@@ -1513,11 +1575,11 @@ textarea:focus{
 .brand-mini-line{
 
   width:
-    clamp(100px,27vw,155px);
+    clamp(110px,30vw,165px);
 
   height:3px;
 
-  margin-bottom:14px;
+  margin-bottom:15px;
 
   border-radius:20px;
 
@@ -1553,7 +1615,7 @@ textarea:focus{
   height:100%;
 
   background:
-    rgba(255,255,255,.8);
+    rgba(255,255,255,.85);
 
   filter:blur(2px);
 
@@ -1589,31 +1651,35 @@ textarea:focus{
 
 .smart-review{
 
+  position:relative;
+
   font-size:
-    clamp(31px,8.5vw,45px);
+    clamp(34px,9.5vw,48px);
 
   line-height:1;
 
   font-weight:950;
 
-  letter-spacing:-1.5px;
+  letter-spacing:-1.7px;
 
   background:
 
     linear-gradient(
       110deg,
-      #a86c08 0%,
-      #e3a51e 18%,
-      #fff 35%,
-      #c5ced9 48%,
-      #356a9f 70%,
+      #8d5a05 0%,
+      #d99213 15%,
+      #ffcf55 26%,
+      #ffffff 39%,
+      #c7d0dc 50%,
+      #4b79aa 69%,
       #061b3a 100%
     );
 
   background-size:
-    240% 100%;
+    260% 100%;
 
   -webkit-background-clip:text;
+
   background-clip:text;
 
   color:transparent;
@@ -1622,23 +1688,73 @@ textarea:focus{
 
     drop-shadow(
       0 4px 8px
-      rgba(7,27,60,.13)
+      rgba(7,27,60,.14)
     );
 
   animation:
-    smartShimmer 5s
+    smartLogoMotion 5s
     ease-in-out
     infinite;
 
 }
 
 
-@keyframes smartShimmer{
+/* subtle glow behind logo */
+
+.smart-review::after{
+
+  content:"";
+
+  position:absolute;
+
+  z-index:-1;
+
+  left:15%;
+
+  right:15%;
+
+  bottom:-7px;
+
+  height:18px;
+
+  border-radius:50%;
+
+  background:
+
+    radial-gradient(
+      ellipse,
+      rgba(22,93,255,.14),
+      transparent 70%
+    );
+
+  filter:blur(5px);
+
+  animation:
+    logoGlow 3s
+    ease-in-out
+    infinite;
+
+}
+
+
+@keyframes smartLogoMotion{
 
   0%{
 
     background-position:
       0% 50%;
+
+    transform:
+      translateY(0)
+      scale(1);
+
+  }
+
+  25%{
+
+    transform:
+      translateY(-2px)
+      scale(1.008);
 
   }
 
@@ -1647,12 +1763,52 @@ textarea:focus{
     background-position:
       100% 50%;
 
+    transform:
+      translateY(0)
+      scale(1);
+
+  }
+
+  75%{
+
+    transform:
+      translateY(-2px)
+      scale(1.008);
+
   }
 
   100%{
 
     background-position:
       0% 50%;
+
+    transform:
+      translateY(0)
+      scale(1);
+
+  }
+
+}
+
+
+@keyframes logoGlow{
+
+  0%,
+  100%{
+
+    opacity:.45;
+
+    transform:
+      scaleX(.85);
+
+  }
+
+  50%{
+
+    opacity:.9;
+
+    transform:
+      scaleX(1);
 
   }
 
@@ -1665,16 +1821,16 @@ textarea:focus{
 
 .smart-review-sub{
 
-  margin-top:8px;
+  margin-top:9px;
 
   color:#6b788a;
 
   font-size:
-    clamp(10px,2.8vw,13px);
+    clamp(10px,2.9vw,13px);
 
   font-weight:750;
 
-  letter-spacing:2px;
+  letter-spacing:2.2px;
 
   text-transform:uppercase;
 
@@ -1717,6 +1873,7 @@ textarea:focus{
   display:inline-block;
 
   width:7px;
+
   height:7px;
 
   margin:0 3px;
@@ -1777,88 +1934,156 @@ textarea:focus{
 
   .hero{
 
-    min-height:370px;
+    min-height:395px;
 
-    padding-left:14px;
-    padding-right:14px;
+    padding-left:13px;
+
+    padding-right:13px;
 
   }
 
 
   .google-mark{
 
-    margin-bottom:17px;
+    margin-bottom:18px;
 
   }
 
 
   .hero-title{
 
-    font-size:22px;
+    font-size:23px;
 
-    max-width:340px;
+    max-width:355px;
 
   }
 
 
   .hero-rating{
 
-    margin-top:21px;
+    margin-top:22px;
 
   }
 
 
   .content{
 
-    padding-left:15px;
-    padding-right:15px;
+    padding-left:14px;
+
+    padding-right:14px;
 
   }
 
 
   .logo-frame{
 
-    width:155px;
-    height:155px;
+    width:170px;
+
+    height:170px;
 
   }
 
 
   .client-logo{
 
-    width:110px;
-    height:110px;
+    width:120px;
+
+    height:120px;
 
   }
 
 
   .business-name{
 
-    font-size:28px;
+    font-size:29px;
 
   }
 
 
   .rating-question{
 
-    font-size:21px;
+    font-size:22px;
 
   }
 
 
   .star{
 
-    width:56px;
-    height:64px;
+    width:58px;
 
-    font-size:55px;
+    height:66px;
+
+    font-size:57px;
 
   }
 
 
   .button{
 
-    min-height:70px;
+    min-height:74px;
+
+    border-radius:20px;
+
+  }
+
+
+  .smart-review{
+
+    font-size:32px;
+
+  }
+
+}
+
+
+/* =========================================================
+   VERY SMALL PHONES
+   ========================================================= */
+
+@media(max-width:350px){
+
+  .hero{
+
+    min-height:380px;
+
+  }
+
+
+  .hero-title{
+
+    font-size:21px;
+
+  }
+
+
+  .hero-star{
+
+    font-size:27px;
+
+  }
+
+
+  .star{
+
+    width:51px;
+
+    height:61px;
+
+    font-size:52px;
+
+  }
+
+
+  .business-name{
+
+    font-size:27px;
+
+  }
+
+
+  .rating-question{
+
+    font-size:20px;
 
   }
 
@@ -1873,14 +2098,14 @@ textarea:focus{
 
   .hero{
 
-    min-height:425px;
+    min-height:435px;
 
   }
 
 
   .content{
 
-    margin-top:-27px;
+    margin-top:-30px;
 
   }
 
@@ -1894,21 +2119,21 @@ textarea:focus{
 
   .logo-frame{
 
-    margin-bottom:21px;
+    margin-bottom:22px;
 
   }
 
 
   .business-name{
 
-    margin-bottom:9px;
+    margin-bottom:10px;
 
   }
 
 
   .subtitle{
 
-    margin-bottom:30px;
+    margin-bottom:32px;
 
   }
 
@@ -1933,6 +2158,7 @@ textarea:focus{
     margin-top:-36px;
 
     padding-left:40px;
+
     padding-right:40px;
 
   }
@@ -1947,16 +2173,18 @@ textarea:focus{
 
   .logo-frame{
 
-    width:215px;
-    height:215px;
+    width:225px;
+
+    height:225px;
 
   }
 
 
   .client-logo{
 
-    width:160px;
-    height:160px;
+    width:170px;
+
+    height:170px;
 
   }
 
@@ -1971,6 +2199,7 @@ textarea:focus{
   .star{
 
     width:84px;
+
     height:90px;
 
     font-size:82px;
@@ -1980,7 +2209,7 @@ textarea:focus{
 
   .button{
 
-    min-height:76px;
+    min-height:78px;
 
   }
 
@@ -2023,8 +2252,6 @@ textarea:focus{
   <section class="hero">
 
 
-    <!-- GOOGLE -->
-
     <div class="google-mark">
 
       <div class="google-letter">
@@ -2034,14 +2261,10 @@ textarea:focus{
     </div>
 
 
-    <!-- TITLE -->
-
     <h1 class="hero-title">
       LAISSEZ-NOUS VOTRE AVIS SUR GOOGLE
     </h1>
 
-
-    <!-- STARS -->
 
     <div class="hero-rating">
 
@@ -2062,8 +2285,6 @@ textarea:focus{
     </div>
 
 
-    <!-- WAVE -->
-
     <div class="wave-blue"></div>
 
     <div class="wave"></div>
@@ -2073,15 +2294,13 @@ textarea:focus{
 
 
   <!-- =====================================================
-       MAIN CONTENT
+       MAIN
        ===================================================== -->
 
   <main class="content">
 
 
-    <!-- ===================================================
-         CLIENT BRAND
-         =================================================== -->
+    <!-- CLIENT -->
 
     <section class="client-brand">
 
@@ -2122,9 +2341,7 @@ textarea:focus{
 
 
 
-    <!-- ===================================================
-         FEEDBACK
-         =================================================== -->
+    <!-- FEEDBACK -->
 
     <section
       id="feedbackArea"
@@ -2136,8 +2353,6 @@ textarea:focus{
         Comment avez-vous vécu votre expérience ?
       </div>
 
-
-      <!-- STARS -->
 
       <div
         class="stars"
@@ -2188,8 +2403,6 @@ textarea:focus{
       </div>
 
 
-      <!-- RATING TEXT -->
-
       <div
         class="rating-text"
         id="ratingText"
@@ -2199,9 +2412,7 @@ textarea:focus{
 
 
 
-      <!-- =================================================
-           MESSAGE
-           ================================================= -->
+      <!-- MESSAGE -->
 
       <section
         class="message"
@@ -2216,9 +2427,7 @@ textarea:focus{
 
 
 
-        <!-- ===============================================
-             GOOGLE
-             =============================================== -->
+        <!-- GOOGLE -->
 
         <div
           id="googleArea"
@@ -2241,9 +2450,7 @@ textarea:focus{
 
 
 
-        <!-- ===============================================
-             PRIVATE FEEDBACK
-             =============================================== -->
+        <!-- PRIVATE -->
 
         <div
           id="privateArea"
@@ -2279,9 +2486,7 @@ textarea:focus{
 
 
 
-    <!-- ===================================================
-         SMART REVIEW
-         =================================================== -->
+    <!-- SMART REVIEW -->
 
     <footer class="brand-footer">
 
@@ -2419,10 +2624,6 @@ async function loadCard(){
     );
 
 
-  /* =======================================================
-     NO CARD
-     ======================================================= */
-
   if(!cardCode){
 
     businessName.textContent =
@@ -2443,9 +2644,7 @@ async function loadCard(){
   try{
 
 
-    /* =====================================================
-       FIND CARD
-       ===================================================== */
+    /* FIND CARD */
 
     const cards =
       await supabaseGet(
@@ -2466,9 +2665,7 @@ async function loadCard(){
       cards[0];
 
 
-    /* =====================================================
-       FIND BUSINESS
-       ===================================================== */
+    /* FIND BUSINESS */
 
     const businesses =
       await supabaseGet(
@@ -2489,9 +2686,7 @@ async function loadCard(){
       businesses[0];
 
 
-    /* =====================================================
-       BUSINESS NAME
-       ===================================================== */
+    /* BUSINESS NAME */
 
     businessName.textContent =
       currentBusiness.name ||
@@ -2506,9 +2701,7 @@ async function loadCard(){
       "Votre opinion compte pour nous.";
 
 
-    /* =====================================================
-       CLIENT LOGO
-       ===================================================== */
+    /* CLIENT LOGO */
 
     if(
       currentBusiness.logo_url
@@ -2555,9 +2748,7 @@ async function loadCard(){
     }
 
 
-    /* =====================================================
-       GOOGLE REVIEW
-       ===================================================== */
+    /* GOOGLE REVIEW */
 
     const googleButton =
       document.getElementById(
@@ -2570,9 +2761,7 @@ async function loadCard(){
       "https://www.google.com/maps";
 
 
-    /* =====================================================
-       SHOW
-       ===================================================== */
+    /* SHOW */
 
     feedbackArea
       .classList
@@ -2672,9 +2861,7 @@ stars.forEach(
           );
 
 
-        /* =================================================
-           HIGHLIGHT
-           ================================================= */
+        /* HIGHLIGHT */
 
         stars.forEach(
           s => {
@@ -2692,9 +2879,7 @@ stars.forEach(
         );
 
 
-        /* =================================================
-           RATING LABEL
-           ================================================= */
+        /* RATING LABEL */
 
         const ratingLabels = {
 
@@ -2722,9 +2907,7 @@ stars.forEach(
           ];
 
 
-        /* =================================================
-           MESSAGE ANIMATION
-           ================================================= */
+        /* MESSAGE ANIMATION */
 
         message.classList.remove(
           "show"
@@ -2780,7 +2963,6 @@ stars.forEach(
 
           feedbackMessage.value =
             "";
-
 
         }
 
@@ -2868,9 +3050,7 @@ document
           .trim();
 
 
-      /* =====================================================
-         CHECK BUSINESS
-         ===================================================== */
+      /* CHECK BUSINESS */
 
       if(
         !currentBusiness
@@ -2885,9 +3065,7 @@ document
       }
 
 
-      /* =====================================================
-         CHECK WHATSAPP
-         ===================================================== */
+      /* CHECK WHATSAPP */
 
       if(
         !currentBusiness.whatsapp_number
@@ -2902,9 +3080,7 @@ document
       }
 
 
-      /* =====================================================
-         CLEAN NUMBER
-         ===================================================== */
+      /* CLEAN NUMBER */
 
       let number =
         String(
@@ -2927,9 +3103,7 @@ document
       }
 
 
-      /* =====================================================
-         BUILD MESSAGE
-         ===================================================== */
+      /* BUILD MESSAGE */
 
       const businessName =
         currentBusiness.name ||
@@ -2955,9 +3129,7 @@ ${text}`;
       }
 
 
-      /* =====================================================
-         BUTTON ANIMATION
-         ===================================================== */
+      /* BUTTON ANIMATION */
 
       button.classList.add(
         "sending"
@@ -2968,9 +3140,7 @@ ${text}`;
         "✓ Ouverture de WhatsApp…";
 
 
-      /* =====================================================
-         URL
-         ===================================================== */
+      /* URL */
 
       const encodedMessage =
         encodeURIComponent(
@@ -2982,9 +3152,7 @@ ${text}`;
         `https://wa.me/${number}?text=${encodedMessage}`;
 
 
-      /* =====================================================
-         OPEN
-         ===================================================== */
+      /* OPEN */
 
       setTimeout(
         () => {
