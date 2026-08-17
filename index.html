@@ -44,11 +44,6 @@
 
 }
 
-
-/* =========================================================
-   RESET
-   ========================================================= */
-
 *{
   box-sizing:border-box;
   margin:0;
@@ -57,16 +52,12 @@
 
 html,
 body{
-
   width:100%;
   min-height:100%;
-
 }
 
 html{
-
   background:var(--navy);
-
 }
 
 body{
@@ -91,13 +82,7 @@ body{
   color:var(--ink);
 
   overflow-x:hidden;
-
 }
-
-
-/* =========================================================
-   APP
-   ========================================================= */
 
 .app{
 
@@ -137,7 +122,6 @@ body{
   text-align:center;
 
   padding:
-
     max(25px,env(safe-area-inset-top))
     18px
     100px;
@@ -164,9 +148,6 @@ body{
     );
 
 }
-
-
-/* premium texture */
 
 .hero::before{
 
@@ -197,9 +178,6 @@ body{
     );
 
 }
-
-
-/* subtle glow */
 
 .hero::after{
 
@@ -275,7 +253,6 @@ body{
 
 }
 
-
 .google-mark::after{
 
   content:"";
@@ -293,7 +270,6 @@ body{
   opacity:.65;
 
 }
-
 
 .google-letter{
 
@@ -323,7 +299,6 @@ body{
   color:transparent;
 
 }
-
 
 @keyframes googleEnter{
 
@@ -405,7 +380,6 @@ body{
 
 }
 
-
 .rating-line{
 
   width:
@@ -423,7 +397,6 @@ body{
 
 }
 
-
 .rating-line.right{
 
   background:
@@ -436,7 +409,6 @@ body{
 
 }
 
-
 .hero-stars{
 
   display:flex;
@@ -448,7 +420,6 @@ body{
     clamp(3px,1vw,8px);
 
 }
-
 
 .hero-star{
 
@@ -475,7 +446,7 @@ body{
 
 
 /* =========================================================
-   WAVE
+   WAVES
    ========================================================= */
 
 .wave-blue{
@@ -507,7 +478,6 @@ body{
     );
 
 }
-
 
 .wave{
 
@@ -557,7 +527,6 @@ body{
   margin-top:-23px;
 
   padding:
-
     0
     18px
     max(30px,env(safe-area-inset-bottom));
@@ -595,11 +564,6 @@ body{
 
 }
 
-
-/* =========================================================
-   LOGO FRAME
-   ========================================================= */
-
 .logo-frame{
 
   width:
@@ -618,7 +582,6 @@ body{
   margin-bottom:19px;
 
 }
-
 
 .logo-frame::before{
 
@@ -657,11 +620,6 @@ body{
       right bottom / 4px 64px no-repeat;
 
 }
-
-
-/* =========================================================
-   CLIENT LOGO
-   ========================================================= */
 
 .client-logo{
 
@@ -706,7 +664,6 @@ body{
 
 }
 
-
 .client-logo img{
 
   width:100%;
@@ -718,7 +675,7 @@ body{
 
 
 /* =========================================================
-   BUSINESS NAME
+   BUSINESS
    ========================================================= */
 
 .business-name{
@@ -745,11 +702,6 @@ body{
   margin-bottom:8px;
 
 }
-
-
-/* =========================================================
-   SUBTITLE
-   ========================================================= */
 
 .subtitle{
 
@@ -798,7 +750,6 @@ body{
 
 }
 
-
 @keyframes contentEnter{
 
   from{
@@ -820,11 +771,6 @@ body{
   }
 
 }
-
-
-/* =========================================================
-   QUESTION
-   ========================================================= */
 
 .rating-question{
 
@@ -866,11 +812,6 @@ body{
   margin-bottom:7px;
 
 }
-
-
-/* =========================================================
-   STAR BUTTON
-   ========================================================= */
 
 .star{
 
@@ -927,7 +868,6 @@ body{
 
 }
 
-
 .star:focus,
 .star:focus-visible,
 .star:active{
@@ -939,7 +879,6 @@ body{
   box-shadow:none !important;
 
 }
-
 
 .star.active{
 
@@ -957,7 +896,6 @@ body{
     cubic-bezier(.2,.9,.25,1.4);
 
 }
-
 
 @keyframes starPop{
 
@@ -978,7 +916,6 @@ body{
   }
 
 }
-
 
 .star:active{
 
@@ -1026,13 +963,11 @@ body{
 
 }
 
-
 .message.show{
 
   display:block;
 
 }
-
 
 @keyframes messageEnter{
 
@@ -1056,11 +991,6 @@ body{
 
 }
 
-
-/* =========================================================
-   MESSAGE TITLE
-   ========================================================= */
-
 .message h2{
 
   color:var(--navy);
@@ -1077,11 +1007,6 @@ body{
   margin-bottom:9px;
 
 }
-
-
-/* =========================================================
-   MESSAGE TEXT
-   ========================================================= */
 
 .message p{
 
@@ -1115,7 +1040,6 @@ body{
 
 }
 
-
 @keyframes googleAreaEnter{
 
   from{
@@ -1142,7 +1066,7 @@ body{
 
 
 /* =========================================================
-   BUTTON BASE
+   BUTTON
    ========================================================= */
 
 .button{
@@ -1192,7 +1116,6 @@ body{
 
 }
 
-
 .button:active{
 
   transform:
@@ -1200,9 +1123,17 @@ body{
 
 }
 
+.button.disabled{
+
+  opacity:.65;
+
+  pointer-events:none;
+
+}
+
 
 /* =========================================================
-   PREMIUM GOOGLE BUTTON
+   GOOGLE
    ========================================================= */
 
 .google{
@@ -1238,7 +1169,6 @@ body{
 
 }
 
-
 .google::before{
 
   content:"";
@@ -1262,7 +1192,6 @@ body{
     );
 
 }
-
 
 .google::after{
 
@@ -1296,30 +1225,22 @@ body{
 
 }
 
-
 @keyframes buttonShine{
 
   0%,
   55%{
-
     left:-45%;
-
   }
 
   75%{
-
     left:120%;
-
   }
 
   100%{
-
     left:120%;
-
   }
 
 }
-
 
 @keyframes googleAttention{
 
@@ -1367,7 +1288,7 @@ body{
 
 
 /* =========================================================
-   WHATSAPP NORMAL
+   PRIVATE
    ========================================================= */
 
 .private{
@@ -1388,11 +1309,6 @@ body{
     rgba(7,27,60,.18);
 
 }
-
-
-/* =========================================================
-   WHATSAPP ACTIVE
-   ========================================================= */
 
 .private.sending{
 
@@ -1450,13 +1366,11 @@ textarea{
 
 }
 
-
 textarea::placeholder{
 
   color:#7c899a;
 
 }
-
 
 textarea:focus{
 
@@ -1472,7 +1386,7 @@ textarea:focus{
 
 
 /* =========================================================
-   SMART REVIEW FOOTER
+   FOOTER
    ========================================================= */
 
 .brand-footer{
@@ -1496,7 +1410,6 @@ textarea:focus{
     rgba(7,27,60,.11);
 
 }
-
 
 .brand-mini-line{
 
@@ -1525,7 +1438,6 @@ textarea:focus{
 
 }
 
-
 .brand-mini-line::after{
 
   content:"";
@@ -1552,20 +1464,15 @@ textarea:focus{
 
 }
 
-
 @keyframes lineShine{
 
   0%{
-
     left:-50%;
-
   }
 
   60%,
   100%{
-
     left:120%;
-
   }
 
 }
@@ -1620,36 +1527,21 @@ textarea:focus{
 
 }
 
-
 @keyframes smartShimmer{
 
   0%{
-
-    background-position:
-      0% 50%;
-
+    background-position:0% 50%;
   }
 
   50%{
-
-    background-position:
-      100% 50%;
-
+    background-position:100% 50%;
   }
 
   100%{
-
-    background-position:
-      0% 50%;
-
+    background-position:0% 50%;
   }
 
 }
-
-
-/* =========================================================
-   SMART REVIEW SUBTITLE
-   ========================================================= */
 
 .smart-review-sub{
 
@@ -1670,7 +1562,7 @@ textarea:focus{
 
 
 /* =========================================================
-   ERROR
+   STATUS
    ========================================================= */
 
 .error{
@@ -1681,24 +1573,17 @@ textarea:focus{
 
 }
 
-
 .hidden{
 
   display:none !important;
 
 }
 
-
-/* =========================================================
-   LOADING
-   ========================================================= */
-
 .loading{
 
   color:#9db0c9;
 
 }
-
 
 .loading-dot{
 
@@ -1719,20 +1604,13 @@ textarea:focus{
 
 }
 
-
 .loading-dot:nth-child(2){
-
   animation-delay:.15s;
-
 }
-
 
 .loading-dot:nth-child(3){
-
   animation-delay:.30s;
-
 }
-
 
 @keyframes loadingPulse{
 
@@ -1772,67 +1650,41 @@ textarea:focus{
 
   }
 
-
   .google-mark{
-
     margin-bottom:17px;
-
   }
-
 
   .hero-title{
-
     font-size:22px;
-
     max-width:340px;
-
   }
-
 
   .hero-rating{
-
     margin-top:21px;
-
   }
-
 
   .content{
-
     padding-left:15px;
     padding-right:15px;
-
   }
-
 
   .logo-frame{
-
     width:155px;
     height:155px;
-
   }
-
 
   .client-logo{
-
     width:110px;
     height:110px;
-
   }
-
 
   .business-name{
-
     font-size:28px;
-
   }
-
 
   .rating-question{
-
     font-size:21px;
-
   }
-
 
   .star{
 
@@ -1843,11 +1695,8 @@ textarea:focus{
 
   }
 
-
   .button{
-
     min-height:70px;
-
   }
 
 }
@@ -1860,61 +1709,41 @@ textarea:focus{
 @media(height >= 800px){
 
   .hero{
-
     min-height:425px;
-
   }
-
 
   .content{
-
     margin-top:-27px;
-
   }
-
 
   .client-brand{
-
     margin-top:-4px;
-
   }
-
 
   .logo-frame{
-
     margin-bottom:21px;
-
   }
-
 
   .business-name{
-
     margin-bottom:9px;
-
   }
 
-
   .subtitle{
-
     margin-bottom:30px;
-
   }
 
 }
 
 
 /* =========================================================
-   TABLETS / DESKTOP
+   TABLET / DESKTOP
    ========================================================= */
 
 @media(width >= 700px){
 
   .hero{
-
     min-height:500px;
-
   }
-
 
   .content{
 
@@ -1925,36 +1754,23 @@ textarea:focus{
 
   }
 
-
   .client-brand{
-
     margin-top:-5px;
-
   }
-
 
   .logo-frame{
-
     width:215px;
     height:215px;
-
   }
-
 
   .client-logo{
-
     width:160px;
     height:160px;
-
   }
-
 
   .stars{
-
     gap:10px;
-
   }
-
 
   .star{
 
@@ -1965,11 +1781,8 @@ textarea:focus{
 
   }
 
-
   .button{
-
     min-height:76px;
-
   }
 
 }
@@ -2009,7 +1822,6 @@ textarea:focus{
        ===================================================== -->
 
   <section class="hero">
-
 
     <div class="google-mark">
 
@@ -2053,7 +1865,7 @@ textarea:focus{
 
 
   <!-- =====================================================
-       MAIN CONTENT
+       CONTENT
        ===================================================== -->
 
   <main class="content">
@@ -2098,6 +1910,10 @@ textarea:focus{
 
 
 
+    <!-- ===================================================
+         FEEDBACK
+         =================================================== -->
+
     <section
       id="feedbackArea"
       class="feedback-area hidden"
@@ -2123,14 +1939,12 @@ textarea:focus{
           aria-label="1 étoile"
         >★</button>
 
-
         <button
           type="button"
           class="star"
           data-rating="2"
           aria-label="2 étoiles"
         >★</button>
-
 
         <button
           type="button"
@@ -2139,14 +1953,12 @@ textarea:focus{
           aria-label="3 étoiles"
         >★</button>
 
-
         <button
           type="button"
           class="star"
           data-rating="4"
           aria-label="4 étoiles"
         >★</button>
-
 
         <button
           type="button"
@@ -2167,18 +1979,23 @@ textarea:focus{
 
 
 
+      <!-- =================================================
+           MESSAGE
+           ================================================= -->
+
       <section
         class="message"
         id="message"
       >
 
-
         <h2 id="messageTitle"></h2>
-
 
         <p id="messageText"></p>
 
 
+        <!-- ===============================================
+             GOOGLE
+             =============================================== -->
 
         <div
           id="googleArea"
@@ -2201,11 +2018,14 @@ textarea:focus{
 
 
 
+        <!-- ===============================================
+             PRIVATE FEEDBACK
+             =============================================== -->
+
         <div
           id="privateArea"
           class="hidden"
         >
-
 
           <textarea
             id="feedbackMessage"
@@ -2224,7 +2044,6 @@ textarea:focus{
 
           </button>
 
-
         </div>
 
 
@@ -2235,21 +2054,21 @@ textarea:focus{
 
 
 
+    <!-- ===================================================
+         SMART REVIEW
+         =================================================== -->
+
     <footer class="brand-footer">
 
-
       <div class="brand-mini-line"></div>
-
 
       <div class="smart-review">
         Smart Review
       </div>
 
-
       <div class="smart-review-sub">
         Better feedback. Better businesses.
       </div>
-
 
     </footer>
 
@@ -2263,19 +2082,44 @@ textarea:focus{
 <script>
 
 /* =========================================================
-   SUPABASE CONFIGURATION
+   SUPABASE CONFIG
    ========================================================= */
 
 const SUPABASE_URL =
   "https://mcujzqtfbwjttjieagas.supabase.co";
-
 
 const SUPABASE_KEY =
   "sb_publishable_4eVDX1IKZj7ClhpcjfiQFQ_hQ5Hr81k";
 
 
 /* =========================================================
-   GET CARD CODE FROM URL
+   SESSION STATE
+   ========================================================= */
+
+let currentBusiness = null;
+
+let currentCard = null;
+
+let selectedRating = null;
+
+/*
+   IMPORTANT:
+
+   This prevents the same page session from recording
+   the same scan multiple times.
+
+   The customer can change 1 → 2 → 3 → 5 freely.
+
+   Nothing is recorded until the final action.
+*/
+
+let ratingSubmitted = false;
+
+let scanRecorded = false;
+
+
+/* =========================================================
+   GET CARD CODE
    ========================================================= */
 
 function getCardCode(){
@@ -2340,7 +2184,7 @@ async function supabaseGet(endpoint){
 
 async function supabaseRPC(
   functionName,
-  payload
+  args
 ){
 
   const response =
@@ -2358,12 +2202,15 @@ async function supabaseRPC(
             `Bearer ${SUPABASE_KEY}`,
 
           "Content-Type":
-            "application/json"
+            "application/json",
+
+          "Prefer":
+            "return=minimal"
 
         },
 
         body:
-          JSON.stringify(payload)
+          JSON.stringify(args)
 
       }
     );
@@ -2381,99 +2228,70 @@ async function supabaseRPC(
   }
 
 
-  const text =
-    await response.text();
-
-
-  if(!text){
-
-    return null;
-
-  }
-
-
-  try{
-
-    return JSON.parse(text);
-
-  }
-
-  catch{
-
-    return text;
-
-  }
+  return true;
 
 }
 
 
 /* =========================================================
-   VARIABLES
+   RECORD SCAN
    ========================================================= */
 
-let currentBusiness = null;
+async function recordScan(){
 
-let currentCard = null;
+  /*
+     Never record the scan twice in this page session.
+  */
 
-let selectedRating = null;
-
-
-/*
-   Prevents duplicate scan calls during the same page
-   initialization.
-*/
-
-let scanAlreadyRecorded = false;
-
-
-/* =========================================================
-   RECORD CARD SCAN
-   ========================================================= */
-
-async function recordCardScan(
-  cardCode
-){
-
-  if(
-    scanAlreadyRecorded
-  ){
-
+  if(scanRecorded){
     return;
-
   }
 
 
-  scanAlreadyRecorded = true;
+  if(!currentCard){
+    return;
+  }
 
 
   try{
 
+    /*
+       Your Supabase function is:
+
+       report_card_scan(text)
+
+       We send the CARD CODE.
+    */
+
     await supabaseRPC(
-      "record_card_scan",
+      "report_card_scan",
       {
         p_card_code:
-          cardCode
+          currentCard.card_code
       }
     );
 
 
+    scanRecorded = true;
+
+
     console.log(
-      "Smart Review: scan recorded successfully."
+      "Smart Review: scan recorded."
     );
 
   }
 
-
   catch(error){
 
     /*
-      IMPORTANT:
-      A statistics error must NEVER break
-      the customer review page.
+       Do NOT break the customer page if statistics
+       fail.
+
+       The customer can still use the card normally.
     */
 
     console.error(
-      "Smart Review scan error:",
+      "Scan recording failed:",
       error
     );
 
@@ -2483,46 +2301,92 @@ async function recordCardScan(
 
 
 /* =========================================================
-   RECORD CARD RATING
+   RECORD FINAL RATING
    ========================================================= */
 
-async function recordCardRating(
-  cardCode,
-  rating
-){
+async function recordFinalRating(){
+
+  /*
+     This is the most important protection.
+
+     A customer can tap:
+
+     1 → 2 → 3 → 4 → 5
+
+     and NOTHING is recorded until this function runs.
+
+     Once it runs successfully, it can never run again
+     during this page session.
+  */
+
+  if(ratingSubmitted){
+
+    console.log(
+      "Rating already submitted."
+    );
+
+    return false;
+
+  }
+
+
+  if(!currentCard){
+
+    console.error(
+      "Cannot record rating: no card."
+    );
+
+    return false;
+
+  }
+
+
+  if(!selectedRating){
+
+    console.error(
+      "Cannot record rating: no rating selected."
+    );
+
+    return false;
+
+  }
+
 
   try{
 
     await supabaseRPC(
-      "record_card_rating",
+      "report_card_rating",
       {
         p_card_code:
-          cardCode,
+          currentCard.card_code,
 
         p_rating:
-          rating
+          selectedRating
       }
     );
 
 
+    ratingSubmitted = true;
+
+
     console.log(
-      `Smart Review: ${rating}/5 rating recorded.`
+      "Smart Review: FINAL rating recorded:",
+      selectedRating
     );
+
+
+    return true;
 
   }
 
-
   catch(error){
 
-    /*
-      Again, the review experience continues
-      even if statistics fail.
-    */
-
     console.error(
-      "Smart Review rating error:",
+      "Rating recording failed:",
       error
     );
+
+    return false;
 
   }
 
@@ -2558,7 +2422,7 @@ async function loadCard(){
 
 
   /* =======================================================
-     NO CARD CODE
+     NO CARD
      ======================================================= */
 
   if(!cardCode){
@@ -2580,7 +2444,6 @@ async function loadCard(){
 
   try{
 
-
     /* =====================================================
        FIND CARD
        ===================================================== */
@@ -2600,12 +2463,8 @@ async function loadCard(){
     }
 
 
-    const card =
-      cards[0];
-
-
     currentCard =
-      card;
+      cards[0];
 
 
     /* =====================================================
@@ -2614,7 +2473,7 @@ async function loadCard(){
 
     const businesses =
       await supabaseGet(
-        `businesses?id=eq.${encodeURIComponent(card.business_id)}&select=*`
+        `businesses?id=eq.${encodeURIComponent(currentCard.business_id)}&select=*`
       );
 
 
@@ -2713,25 +2572,28 @@ async function loadCard(){
 
 
     /* =====================================================
-       SHOW CUSTOMER AREA
+       SHOW CUSTOMER UI
        ===================================================== */
 
     feedbackArea
       .classList
-      .remove(
-        "hidden"
-      );
+      .remove("hidden");
 
 
     /* =====================================================
-       IMPORTANT:
-       RECORD THE SCAN AFTER THE CARD HAS BEEN
-       SUCCESSFULLY LOADED.
+       RECORD ONE SCAN
        ===================================================== */
 
-    await recordCardScan(
-      cardCode
-    );
+    /*
+       IMPORTANT:
+
+       This happens AFTER the card has been successfully
+       loaded.
+
+       It is completely separate from rating selection.
+    */
+
+    await recordScan();
 
   }
 
@@ -2739,7 +2601,6 @@ async function loadCard(){
   catch(error){
 
     console.error(
-      "Smart Review card loading error:",
       error
     );
 
@@ -2811,6 +2672,62 @@ const feedbackMessage =
 
 
 /* =========================================================
+   UPDATE STAR VISUALS
+   ========================================================= */
+
+function updateStars(){
+
+  stars.forEach(
+    star => {
+
+      const value =
+        Number(
+          star.dataset.rating
+        );
+
+
+      star.classList.toggle(
+        "active",
+        value <= selectedRating
+      );
+
+    }
+  );
+
+}
+
+
+/* =========================================================
+   SHOW MESSAGE
+   ========================================================= */
+
+function showMessage(){
+
+  message.classList.remove(
+    "show"
+  );
+
+
+  requestAnimationFrame(
+    () => {
+
+      requestAnimationFrame(
+        () => {
+
+          message.classList.add(
+            "show"
+          );
+
+        }
+      );
+
+    }
+  );
+
+}
+
+
+/* =========================================================
    STAR CLICK
    ========================================================= */
 
@@ -2819,8 +2736,33 @@ stars.forEach(
 
     star.addEventListener(
       "click",
-      async () => {
+      () => {
 
+        /*
+           IMPORTANT:
+
+           If the rating has already been submitted,
+           don't allow another rating.
+
+           This prevents:
+
+           ⭐5 submit
+           then ⭐3
+           from creating another database record.
+        */
+
+        if(ratingSubmitted){
+
+          return;
+
+        }
+
+
+        /*
+           ONLY CHANGE THE LOCAL VARIABLE.
+
+           NOTHING goes to Supabase here.
+        */
 
         selectedRating =
           Number(
@@ -2829,23 +2771,10 @@ stars.forEach(
 
 
         /* =================================================
-           HIGHLIGHT STARS
+           VISUAL HIGHLIGHT
            ================================================= */
 
-        stars.forEach(
-          s => {
-
-            s.classList.toggle(
-              "active",
-
-              Number(
-                s.dataset.rating
-              ) <= selectedRating
-
-            );
-
-          }
-        );
+        updateStars();
 
 
         /* =================================================
@@ -2879,51 +2808,10 @@ stars.forEach(
 
 
         /* =================================================
-           RECORD RATING
+           SHOW MESSAGE
            ================================================= */
 
-        if(
-          currentCard &&
-          currentCard.card_code
-        ){
-
-          /*
-             Record the rating in the background.
-             The customer does NOT wait for Supabase.
-          */
-
-          recordCardRating(
-            currentCard.card_code,
-            selectedRating
-          );
-
-        }
-
-
-        /* =================================================
-           MESSAGE ANIMATION
-           ================================================= */
-
-        message.classList.remove(
-          "show"
-        );
-
-
-        requestAnimationFrame(
-          () => {
-
-            requestAnimationFrame(
-              () => {
-
-                message.classList.add(
-                  "show"
-                );
-
-              }
-            );
-
-          }
-        );
+        showMessage();
 
 
         /* =================================================
@@ -2958,6 +2846,7 @@ stars.forEach(
 
           feedbackMessage.value =
             "";
+
 
         }
 
@@ -3021,7 +2910,117 @@ stars.forEach(
 
 
 /* =========================================================
-   PRIVATE WHATSAPP
+   GOOGLE BUTTON
+   ========================================================= */
+
+document
+  .getElementById(
+    "googleButton"
+  )
+  .addEventListener(
+    "click",
+    async function(event){
+
+      /*
+         If already submitted, don't count again.
+      */
+
+      if(ratingSubmitted){
+
+        return;
+
+      }
+
+
+      /*
+         Don't navigate immediately.
+
+         First save the FINAL rating.
+      */
+
+      event.preventDefault();
+
+
+      if(!selectedRating){
+
+        return;
+
+      }
+
+
+      const button =
+        document.getElementById(
+          "googleButton"
+        );
+
+
+      const originalText =
+        button.innerHTML;
+
+
+      button.classList.add(
+        "disabled"
+      );
+
+
+      button.innerHTML =
+        "✓ Enregistrement de votre avis…";
+
+
+      /*
+         FINAL rating gets recorded HERE.
+
+         Not when the customer taps the star.
+      */
+
+      const success =
+        await recordFinalRating();
+
+
+      if(!success){
+
+        button.classList.remove(
+          "disabled"
+        );
+
+        button.innerHTML =
+          originalText;
+
+
+        alert(
+          "Une erreur est survenue. Veuillez réessayer."
+        );
+
+        return;
+
+      }
+
+
+      /*
+         Now open Google.
+      */
+
+      button.innerHTML =
+        "✓ Merci ! Ouverture de Google…";
+
+
+      setTimeout(
+        () => {
+
+          window.location.href =
+            currentBusiness.google_review_url ||
+            "https://www.google.com/maps";
+
+        },
+        300
+      );
+
+    }
+  );
+
+
+/* =========================================================
+   PRIVATE FEEDBACK
    ========================================================= */
 
 document
@@ -3030,8 +3029,7 @@ document
   )
   .addEventListener(
     "click",
-    () => {
-
+    async () => {
 
       const button =
         document.getElementById(
@@ -3080,7 +3078,76 @@ document
 
 
       /* =====================================================
-         CLEAN NUMBER
+         CHECK RATING
+         ===================================================== */
+
+      if(
+        !selectedRating
+      ){
+
+        alert(
+          "Veuillez sélectionner une note."
+        );
+
+        return;
+
+      }
+
+
+      /*
+         FINAL rating gets recorded ONLY NOW.
+
+         This is the crucial fix.
+
+         Customer can select:
+
+         ⭐1
+         ⭐2
+         ⭐3
+         ⭐2
+
+         and only the final ⭐2 is recorded.
+      */
+
+      if(!ratingSubmitted){
+
+        button.classList.add(
+          "sending"
+        );
+
+
+        button.innerHTML =
+          "✓ Enregistrement…";
+
+
+        const success =
+          await recordFinalRating();
+
+
+        if(!success){
+
+          button.classList.remove(
+            "sending"
+          );
+
+
+          button.innerHTML =
+            "💬 Envoyer mon retour";
+
+
+          alert(
+            "Impossible d'enregistrer votre retour. Veuillez réessayer."
+          );
+
+          return;
+
+        }
+
+      }
+
+
+      /* =====================================================
+         CLEAN WHATSAPP NUMBER
          ===================================================== */
 
       let number =
@@ -3132,10 +3199,6 @@ ${text}`;
       }
 
 
-      /* =====================================================
-         BUTTON ANIMATION
-         ===================================================== */
-
       button.classList.add(
         "sending"
       );
@@ -3146,7 +3209,7 @@ ${text}`;
 
 
       /* =====================================================
-         URL
+         WHATSAPP URL
          ===================================================== */
 
       const encodedMessage =
@@ -3160,7 +3223,7 @@ ${text}`;
 
 
       /* =====================================================
-         OPEN
+         OPEN WHATSAPP
          ===================================================== */
 
       setTimeout(
