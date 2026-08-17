@@ -137,6 +137,7 @@ body{
   text-align:center;
 
   padding:
+
     max(25px,env(safe-area-inset-top))
     18px
     100px;
@@ -556,6 +557,7 @@ body{
   margin-top:-23px;
 
   padding:
+
     0
     18px
     max(30px,env(safe-area-inset-bottom));
@@ -617,8 +619,6 @@ body{
 
 }
 
-
-/* gold corners */
 
 .logo-frame::before{
 
@@ -1498,10 +1498,6 @@ textarea:focus{
 }
 
 
-/* =========================================================
-   MINI LINE
-   ========================================================= */
-
 .brand-mini-line{
 
   width:
@@ -1963,7 +1959,6 @@ textarea:focus{
   .star{
 
     width:84px;
-
     height:90px;
 
     font-size:82px;
@@ -2103,10 +2098,6 @@ textarea:focus{
 
 
 
-    <!-- ===================================================
-         FEEDBACK
-         =================================================== -->
-
     <section
       id="feedbackArea"
       class="feedback-area hidden"
@@ -2176,10 +2167,6 @@ textarea:focus{
 
 
 
-      <!-- =================================================
-           MESSAGE
-           ================================================= -->
-
       <section
         class="message"
         id="message"
@@ -2192,10 +2179,6 @@ textarea:focus{
         <p id="messageText"></p>
 
 
-
-        <!-- ===============================================
-             GOOGLE
-             =============================================== -->
 
         <div
           id="googleArea"
@@ -2217,10 +2200,6 @@ textarea:focus{
         </div>
 
 
-
-        <!-- ===============================================
-             PRIVATE FEEDBACK
-             =============================================== -->
 
         <div
           id="privateArea"
@@ -2256,10 +2235,6 @@ textarea:focus{
 
 
 
-    <!-- ===================================================
-         SMART REVIEW
-         =================================================== -->
-
     <footer class="brand-footer">
 
 
@@ -2288,7 +2263,7 @@ textarea:focus{
 <script>
 
 /* =========================================================
-   SUPABASE CONFIG
+   SUPABASE CONFIGURATION
    ========================================================= */
 
 const SUPABASE_URL =
@@ -2300,7 +2275,7 @@ const SUPABASE_KEY =
 
 
 /* =========================================================
-   GET CARD CODE
+   GET CARD CODE FROM URL
    ========================================================= */
 
 function getCardCode(){
@@ -2363,176 +2338,71 @@ async function supabaseGet(endpoint){
    SUPABASE RPC
    ========================================================= */
 
-/*
-   These functions call the PostgreSQL functions we created
-   in Supabase.
-
-   IMPORTANT:
-   Statistics errors NEVER break the customer page.
-*/
-
-
 async function supabaseRPC(
   functionName,
-  body
+  payload
 ){
+
+  const response =
+    await fetch(
+      `${SUPABASE_URL}/rest/v1/rpc/${functionName}`,
+      {
+        method:"POST",
+
+        headers:{
+
+          "apikey":
+            SUPABASE_KEY,
+
+          "Authorization":
+            `Bearer ${SUPABASE_KEY}`,
+
+          "Content-Type":
+            "application/json"
+
+        },
+
+        body:
+          JSON.stringify(payload)
+
+      }
+    );
+
+
+  if(!response.ok){
+
+    const error =
+      await response.text();
+
+    throw new Error(
+      `${functionName}: ${error}`
+    );
+
+  }
+
+
+  const text =
+    await response.text();
+
+
+  if(!text){
+
+    return null;
+
+  }
+
 
   try{
 
-    const response =
-      await fetch(
-        `${SUPABASE_URL}/rest/v1/rpc/${functionName}`,
-        {
-          method:"POST",
-
-          headers:{
-
-            "apikey":
-              SUPABASE_KEY,
-
-            "Authorization":
-              `Bearer ${SUPABASE_KEY}`,
-
-            "Content-Type":
-              "application/json"
-
-          },
-
-          body:
-            JSON.stringify(body)
-
-        }
-      );
-
-
-    if(!response.ok){
-
-      const error =
-        await response.text();
-
-      console.error(
-        `Smart Review RPC error (${functionName}):`,
-        error
-      );
-
-      return false;
-
-    }
-
-
-    return true;
+    return JSON.parse(text);
 
   }
 
-  catch(error){
+  catch{
 
-    console.error(
-      `Smart Review RPC connection error (${functionName}):`,
-      error
-    );
-
-    return false;
+    return text;
 
   }
-
-}
-
-
-/* =========================================================
-   RECORD SCAN
-   ========================================================= */
-
-/*
-   Called once after a valid card is loaded.
-
-   The sessionStorage guard prevents accidental duplicate
-   scan registration if the page initialization happens twice
-   during the same browser tab session.
-*/
-
-
-async function recordCardScan(
-  cardCode
-){
-
-  if(!cardCode){
-
-    return;
-
-  }
-
-
-  const scanKey =
-    `smart_review_scan_${cardCode}`;
-
-
-  if(
-    sessionStorage.getItem(
-      scanKey
-    )
-  ){
-
-    console.log(
-      "Smart Review: scan already recorded for this page session."
-    );
-
-    return;
-
-  }
-
-
-  /*
-     Mark it before the request so a double initialization
-     cannot create two scans.
-  */
-
-  sessionStorage.setItem(
-    scanKey,
-    "1"
-  );
-
-
-  await supabaseRPC(
-    "record_card_scan",
-    {
-      p_card_code:
-        cardCode
-    }
-  );
-
-}
-
-
-/* =========================================================
-   RECORD RATING
-   ========================================================= */
-
-async function recordCardRating(
-  cardCode,
-  rating
-){
-
-  if(
-    !cardCode ||
-    rating < 1 ||
-    rating > 5
-  ){
-
-    return;
-
-  }
-
-
-  await supabaseRPC(
-    "record_card_rating",
-    {
-      p_card_code:
-        cardCode,
-
-      p_rating:
-        rating
-    }
-  );
 
 }
 
@@ -2543,9 +2413,120 @@ async function recordCardRating(
 
 let currentBusiness = null;
 
+let currentCard = null;
+
 let selectedRating = null;
 
-let currentCardCode = null;
+
+/*
+   Prevents duplicate scan calls during the same page
+   initialization.
+*/
+
+let scanAlreadyRecorded = false;
+
+
+/* =========================================================
+   RECORD CARD SCAN
+   ========================================================= */
+
+async function recordCardScan(
+  cardCode
+){
+
+  if(
+    scanAlreadyRecorded
+  ){
+
+    return;
+
+  }
+
+
+  scanAlreadyRecorded = true;
+
+
+  try{
+
+    await supabaseRPC(
+      "record_card_scan",
+      {
+        p_card_code:
+          cardCode
+      }
+    );
+
+
+    console.log(
+      "Smart Review: scan recorded successfully."
+    );
+
+  }
+
+
+  catch(error){
+
+    /*
+      IMPORTANT:
+      A statistics error must NEVER break
+      the customer review page.
+    */
+
+    console.error(
+      "Smart Review scan error:",
+      error
+    );
+
+  }
+
+}
+
+
+/* =========================================================
+   RECORD CARD RATING
+   ========================================================= */
+
+async function recordCardRating(
+  cardCode,
+  rating
+){
+
+  try{
+
+    await supabaseRPC(
+      "record_card_rating",
+      {
+        p_card_code:
+          cardCode,
+
+        p_rating:
+          rating
+      }
+    );
+
+
+    console.log(
+      `Smart Review: ${rating}/5 rating recorded.`
+    );
+
+  }
+
+
+  catch(error){
+
+    /*
+      Again, the review experience continues
+      even if statistics fail.
+    */
+
+    console.error(
+      "Smart Review rating error:",
+      error
+    );
+
+  }
+
+}
 
 
 /* =========================================================
@@ -2556,10 +2537,6 @@ async function loadCard(){
 
   const cardCode =
     getCardCode();
-
-
-  currentCardCode =
-    cardCode;
 
 
   const businessName =
@@ -2581,7 +2558,7 @@ async function loadCard(){
 
 
   /* =======================================================
-     NO CARD
+     NO CARD CODE
      ======================================================= */
 
   if(!cardCode){
@@ -2625,6 +2602,10 @@ async function loadCard(){
 
     const card =
       cards[0];
+
+
+    currentCard =
+      card;
 
 
     /* =====================================================
@@ -2732,32 +2713,25 @@ async function loadCard(){
 
 
     /* =====================================================
-       SHOW CUSTOMER UI
+       SHOW CUSTOMER AREA
        ===================================================== */
 
     feedbackArea
       .classList
-      .remove("hidden");
+      .remove(
+        "hidden"
+      );
 
 
     /* =====================================================
-       RECORD SCAN
+       IMPORTANT:
+       RECORD THE SCAN AFTER THE CARD HAS BEEN
+       SUCCESSFULLY LOADED.
        ===================================================== */
 
-    /*
-       IMPORTANT:
-
-       We record the scan only AFTER:
-       1. The card exists.
-       2. The card is active.
-       3. The business exists.
-       4. The customer page is successfully displayed.
-    */
-
-    recordCardScan(
+    await recordCardScan(
       cardCode
     );
-
 
   }
 
@@ -2845,7 +2819,7 @@ stars.forEach(
 
     star.addEventListener(
       "click",
-      () => {
+      async () => {
 
 
         selectedRating =
@@ -2855,7 +2829,7 @@ stars.forEach(
 
 
         /* =================================================
-           HIGHLIGHT
+           HIGHLIGHT STARS
            ================================================= */
 
         stars.forEach(
@@ -2908,19 +2882,18 @@ stars.forEach(
            RECORD RATING
            ================================================= */
 
-        /*
-           The rating is recorded separately from the UI.
-
-           If Supabase has a temporary problem, the customer
-           can still continue normally.
-        */
-
         if(
-          currentCardCode
+          currentCard &&
+          currentCard.card_code
         ){
 
+          /*
+             Record the rating in the background.
+             The customer does NOT wait for Supabase.
+          */
+
           recordCardRating(
-            currentCardCode,
+            currentCard.card_code,
             selectedRating
           );
 
@@ -2985,7 +2958,6 @@ stars.forEach(
 
           feedbackMessage.value =
             "";
-
 
         }
 
@@ -3206,7 +3178,7 @@ ${text}`;
 
 
 /* =========================================================
-   START
+   START APPLICATION
    ========================================================= */
 
 loadCard();
